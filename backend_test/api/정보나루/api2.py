@@ -2,7 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-api_key = "c30a173104dbac8b7924d537a3ec76270dda1187394b8cd8a8f2ae3b1bdd509a"
+api_key = ""
 isbn = "&isbn13=" + "9788983921987"
 format = "&format=" + "xml"
 

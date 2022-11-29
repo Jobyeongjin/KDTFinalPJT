@@ -1,7 +1,7 @@
 import requests
 import json
 
-api_key = "ttbqudwls74682152001"
+api_key = ""
 queryType = "&QueryType=" + "ItemNewAll"
 maxResults = "&MaxResults=" + "100"
 start = "&start=" + "1"
