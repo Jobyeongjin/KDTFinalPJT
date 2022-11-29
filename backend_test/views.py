@@ -22,9 +22,15 @@ def index(request):
             result = json.loads(response_body.decode('utf-8'))
             items = result.get('items')
 
-
     context = {
                 'items' : items
             }
 
     return render(request, 'checkup/index.html', context=context)
+    
+def map(request):
+    return render(request, "backend_test/map.html")
+
+def map2(request):
+    return render(request, "backend_test/map2.html")
+
