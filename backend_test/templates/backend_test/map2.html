@@ -19,167 +19,42 @@
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
     <script>
-      console.log("안녕하세요")
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
-          center: new kakao
-            .maps
-            .LatLng(33.450701, 126.570667), // 지도의 중심좌표
-          level: 5 // 지도의 확대 레벨
-        };
-
-      // 지도를 생성합니다
-      var map = new kakao
-        .maps
-        .Map(mapContainer, mapOption);
-
-      // 주소-좌표 변환 객체를 생성합니다
-      var geocoder = new kakao
-        .maps
-        .services
-        .Geocoder();
-
-      // 주소로 좌표를 검색합니다
-      geocoder.addressSearch('강원도', function (result, status) {
-
-        // 정상적으로 검색이 완료됐으면
-        if (status === kakao.maps.services.Status.OK) {
-
-          var coords = new kakao
-            .maps
-            .LatLng(result[0].y, result[0].x);
-
-          // 결과값으로 받은 위치를 마커로 표시합니다
-          var marker = new kakao
-            .maps
-            .Marker({map: map, position: coords});
-
-          // 인포윈도우로 장소에 대한 설명을 표시합니다
-          var infowindow = new kakao
-            .maps
-            .InfoWindow({content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'});
-          infowindow.open(map, marker);
-
-          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-          map.setCenter(coords);
-        }
-      });
-
-      var enteraddress = document.querySelector('[name="addr"]')
-      enteraddress.addEventListener('keydown', function (event) {
-        if (event.keyCode === 13) {
-          document
-            .getElementById('button-addon2')
-            .click();
-        };
-      }, true);
-
-      var mapContainer = document.getElementById('map'),
-        mapOption = {
-          center: new kakao
-            .maps
-            .LatLng(33.450701, 126.570667),
-          level: 3
-        };
-
-      var geocoder = new kakao
-        .maps
-        .services
-        .Geocoder();
-      geocoder.addressSearch(`{{ location.location }}`, function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          var coords = new kakao
-            .maps
-            .LatLng(result[0].y, result[0].x);
-          map.setCenter(coords);
-        }
-      });
-
-      var map = new kakao
-        .maps
-        .Map(mapContainer, mapOption);
-
-      var marker = new kakao
-        .maps
-        .Marker({position: map.getCenter()});
-
-      marker.setMap(map);
-      kakao
-        .maps
-        .event
-        .addListener(map, 'click', function (mouseEvent) {
-          function searchAddrFromCoords(coords, callback) {
-            geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
-          }
-
-          function searchDetailAddrFromCoords(coords, callback) {
-            geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-          }
-          searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-              var detailAddr = !!result[0].road_address
-                ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>'
-                : '';
-              detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-
-              var content = '<div class="bAddr">' + '<span class="title">법정동 주소정보</span>' + detailAddr + '</div>';
-              marker.setPosition(mouseEvent.latLng);
-              marker.setMap(map);
-              document.mapform.addr.value = result[0].road_address.address_name
-
-            }
-          });
-
-          var latlng = mouseEvent.latLng;
-
-          // 마커 위치를 클릭한 위치로 옮깁니다
-          marker.setPosition(latlng);
-          document.mapform.x.value = latlng['La']
-          document.mapform.y.value = latlng['Ma']
-
-        });
-
-      function transform() {
-        var geocoder = new kakao
-          .maps
-          .services
-          .Geocoder();
-        var address = document
-          .mapform
-          .addr
-          .value
-          geocoder
-          .addressSearch(`${address}`, function (result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-              var coords = new kakao
-                .maps
-                .LatLng(result[0].y, result[0].x);
-              // 인포윈도우로 장소에 대한 설명을 표시합니다
-              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-              map.setCenter(coords);
-            } else {
-              alert('정확한 주소를 입력해 주세요. \n( 지번 또는 도로명주소 포맷을 지원합니다. )')
-            }
-          });
-      }
-
-      function theme_change() {
-        if (document.mapform.themeselect.options[document.mapform.themeselect.selectedIndex].value == '9') {
-          document.mapform.theme.type = "text"
-          document.mapform.theme.value = "";
-          document
-            .mapform
-            .theme
-            .focus();
-        } else {
-          document.mapform.theme.type = "hidden"
-          document.mapform.theme.value = document
-            .mapform
-            .themeselect
-            .options[document.mapform.themeselect.selectedIndex]
-            .value;
-        }
-      }
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };  
+    
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+    
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch('영통', function(result, status) {
+    
+        // 정상적으로 검색이 완료됐으면 
+         if (status === kakao.maps.services.Status.OK) {
+    
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+    
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            });
+            infowindow.open(map, marker);
+    
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        } 
+    });    
     </script>
   </body>
 
