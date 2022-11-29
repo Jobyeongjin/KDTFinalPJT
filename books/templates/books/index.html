@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+  
+
+{% for book in books %}
+{{ book.bookname }}<br>
+{{ book.authors }}<br>
+{{ book.publisher }}<br>
+{{ book.publication_year }}<br>
+<img src="{{ book.bookcover }}" alt="bookcover" width="200" height="300"><br>
+{{ book.description }}<br>
+<hr>
+{% endfor %}
+  
+
+{% endblock content %}
+  
