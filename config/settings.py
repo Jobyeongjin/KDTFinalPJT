@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "accounts",
+    "backend_test",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
