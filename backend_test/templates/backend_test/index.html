@@ -2,4 +2,25 @@
 
 {% block content %}
   백엔드 테스트
+
+<form action="" method='GET'>
+    <input name="q"  placeholder="검색할 단어를 입려하세요">
+    <input type="submit">
+</form>
+
+{% for item in items %}
+ <div>
+    <p>{{ item.title }}</p>
+    <p>{{ item.link }}</p>
+    <p>{{ item.author }}</p>
+    <p>{{ item.discount }}</p>
+    <p>{{ item.description }}</p>
+    <p>{{ item.pubdate }}</p>
+    <p>{{ item.image }} </p>
+    <div>
+        <img src="{{ item.image}}" alt="">
+    </div>
+
+ </div>
+ {% endfor %}
 {% endblock content %}
