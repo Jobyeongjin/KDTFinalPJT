@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-box">
+      <!-- Nav Logo -->
+      <div class="nav__logo">
+        <img src="{% static 'img/logo-04.png' %}" alt="logo">
+      </div>
+      <div class="nav-wrap">
+        <!-- Nav List -->
+        <ul class="nav__list">
+          <li class="nav__list__item"><a href="#">도서목록</a></li>
+          <li class="nav__list__item"><a href="#">리뷰목록</a></li>
+          <li class="nav__list__item"><a href="#">모임목록</a></li>
+          <li class="nav__list__item"><a href="#">공지사항/문의하기</a></li>
+        </ul>
+        <div class="nav-wrap-inner">
+          <!-- Nav Search -->
+          <div class="nav__search">
+            <form id="search-form" action="#">
+              <input type="text" name="search">
+            </form>
+            <div class="material-icons">search</div>
+          </div>
+          <!-- Nav User -->
+          <div class="nav__user">
+            <i class="fa-solid fa-location-dot fa-xl"></i>
+            <button class="nav__user__btn btn btn--main">로그인</button>
+            <button class="nav__user__btn btn btn--main--reverse">회원가입</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</body>
+</html>

@@ -14,7 +14,7 @@ def index(request):
         request,
         "books/index.html",
         {
-            "books": books,
+            "books": books[:10],
         },
     )
 

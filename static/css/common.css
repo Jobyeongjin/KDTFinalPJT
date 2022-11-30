@@ -1,0 +1,92 @@
+/* Sub Font Style : Noto serif KR */
+body { 
+  margin: 0;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+.btn {
+  width: 120px;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn.btn--reverse {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn.btn--reverse:hover {
+  background-color: transparent;
+  color: #333;
+}
+
+.btn.btn--white {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn.btn--white:hover {
+  color: #333;
+  background-color: #fff;
+}
+
+.btn.btn--main {
+  color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+.btn.btn--main:hover {
+  color: #fff;
+  background-color: var(--main-color);
+}
+
+.btn.btn--main--reverse {
+  color: #fff;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+.btn.btn--main--reverse:hover {
+  color: var(--main-color);
+  background-color: #fff;
+}
