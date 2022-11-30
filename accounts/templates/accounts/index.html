@@ -2,6 +2,29 @@
 
 
 {% block content %}
-  hi
+{% if request.user.is_authenticated %}
+  {% for user in users  %}
+  <a href="{% url 'accounts:detail' user.pk %}">{{ user }}</a> 
+  {% endfor %}
+  <form action="{% url 'accounts:logout' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="logout">
+  </form>
+  <form action="{% url 'accounts:delete' %}">
+    {% csrf_token %}
+    <input type="submit" value="delete">
+  </form>
+
+{% else %}
+  <div>
+    <a href="{% url 'accounts:signup' %}">회원가입</a>
+  </div> 
+  <div>
+    <a href="{% url 'accounts:login' %}">로그인</a>
+  </div>
+{% endif %}
+
+ 
+
 {% endblock content %}
   
