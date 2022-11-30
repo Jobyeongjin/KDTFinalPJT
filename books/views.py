@@ -13,7 +13,16 @@ def index(request):
         },
     )
 
-# 책 디테일 페이지
+# 책 디테일 페이지(댓글추가전)
+def book_detail(request, pk):
+    book = Book.objects.get(pk=pk)
+    
+    context = {
+        "book":book,
+    }
+    return render(request, "books/book_detail.html", context)
+
+
 
 # 책 리뷰 페이지
 def review(request):
