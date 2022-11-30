@@ -4,6 +4,7 @@
 @import './books/detail.css';
 @import './common.css';
 @import './books/onboarding.css';
+@import './books/main.css';
 
 /* Root */
 :root {
@@ -150,6 +151,16 @@
 }
 
 /* Media - Nav toggle */
+@media screen and (max-width: 1200px) {
+  .nav__list__item a {
+    font-size: 14px;
+  }
+
+  .nav__list__item:last-child {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .nav-box {
     flex-direction: column;
@@ -200,6 +211,12 @@
   .nav__list.active,
   .nav__user.active {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .nav__search input:focus {
+    width: 150px;
   }
 }
 
