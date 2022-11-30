@@ -47,4 +47,16 @@ def review_detail(request, pk):
     }
     return render(request, "books/review_detail.html", context)
 
+def update(request, pk):
+    book_review = Book_Review.objects.get(pk=pk)
+    if request.method == "POST":
+        book_review_form = Book_ReviewForm(request.POST, request.FILES, instance=book_review)
+        if book_review_form.is_valid():
+            book_review_form.save()
+            return redirect("books:review_detail", pk)
+    else:
+        book_review_form = Book_ReviewForm(instance=book_review)
+    context = {"book_review_form": book_review_form}
+    return render(request, "books/create.html", context)
+
 

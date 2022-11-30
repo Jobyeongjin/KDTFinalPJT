@@ -5,4 +5,6 @@
   <p>{{book_review.content}}</p>
   <p>{{book_review.created_at}}</p>
   <p><img src="{{book_review.image.url}}" alt=""></p>
+
+  <a href="{% url "books:update" book_review.pk %}">수정</a>
 {% endblock content %}
