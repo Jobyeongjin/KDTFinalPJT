@@ -37,15 +37,18 @@ def review(request):
 
 # 책 리뷰 작성(user 추가 전)
 def create(request):
-    if request.method == "POST":
-        book_review_form = Book_ReviewForm(request.POST, request.FILES)
-        if book_review_form.is_valid():
-            book_review_form.save()
-            return redirect("books:index")
-    else:
-        book_review_form = Book_ReviewForm()
-    context = {"book_review_form": book_review_form}
-    return render(request, "books/create.html", context)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            book_review_form = Book_ReviewForm(request.POST, request.FILES)
+            if book_review_form.is_valid():
+                book_review = book_review_form.save(commit=False)
+                book_review.user = request.user
+                book_review.save()
+                return redirect("books:review")
+        else:
+            book_review_form = Book_ReviewForm()
+        context = {"book_review_form": book_review_form}
+        return render(request, "books/create.html", context)
 
 # 책 리뷰 디테일(댓글 추가 전)
 def review_detail(request, pk):
