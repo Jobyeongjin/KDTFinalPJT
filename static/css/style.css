@@ -32,6 +32,7 @@
   backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
+  z-index: 9;
 }
 
 .nav-box {
@@ -61,7 +62,7 @@
 }
 
 .nav__list__item a {
-  opacity: .8;
+  opacity: .6;
 }
 
 .nav__list__item a:hover {
@@ -86,7 +87,12 @@
   margin-left: 15px;
 }
 
-.nav__user i {
+.nav-icon-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon-wrap > i {
   color: var(--main-color);
   margin-right: 20px;
 }
@@ -132,6 +138,69 @@
 
 .nav__search.focused .material-icons {
   opacity: 0;
+}
+
+.nav-toogle-btn {
+  display: none;
+  color: var(--main-color);
+}
+
+.nav-toogle-btn:hover {
+  color: var(--main-color);
+}
+
+/* Media - Nav toggle */
+@media screen and (max-width: 992px) {
+  .nav-box {
+    flex-direction: column;
+  }
+
+  .nav-wrap {
+    flex-direction: column;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    display: none;
+  }
+
+  .nav__list__item {
+    padding: 10px 0;
+  }
+
+  .nav-wrap-inner {
+    flex-direction: column;
+  }
+  
+  .nav-icon-wrap {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+
+  .nav__user {
+    margin-top: 10px;
+    display: none;
+  }
+  
+  .nav__user .nav__user__btn:first-child {
+    margin: 0;
+  }
+  
+  .nav-toogle-btn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 32px;
+  }
+  
+  .nav__list.active,
+  .nav__user.active {
+    display: flex;
+  }
 }
 
 
