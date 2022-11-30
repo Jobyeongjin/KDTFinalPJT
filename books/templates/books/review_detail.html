@@ -7,4 +7,5 @@
   <p><img src="{{book_review.image.url}}" alt=""></p>
 
   <a href="{% url "books:update" book_review.pk %}">수정</a>
+  <a href="{% url "books:delete" book_review.pk %}">삭제</a>
 {% endblock content %}

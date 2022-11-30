@@ -47,6 +47,7 @@ def review_detail(request, pk):
     }
     return render(request, "books/review_detail.html", context)
 
+# 리뷰 업데이트 (유저확인 전)
 def update(request, pk):
     book_review = Book_Review.objects.get(pk=pk)
     if request.method == "POST":
@@ -58,5 +59,11 @@ def update(request, pk):
         book_review_form = Book_ReviewForm(instance=book_review)
     context = {"book_review_form": book_review_form}
     return render(request, "books/create.html", context)
+
+# 리뷰 삭제 (유저확인 전)
+def delete(request, pk):
+    book_review = Book_Review.objects.get(pk=pk)
+    book_review.delete()
+    return redirect("books:review")
 
 
