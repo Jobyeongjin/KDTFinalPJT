@@ -11,10 +11,10 @@
   --main-color: #92B4EC;
   --yellow-color: #FFE69A;
   --gray-color: #adb5bd;
-  --gray-light-color:#e6e5e5;
-  --gray-dark-color:#6c757d;
+  --gray-light-color: #e6e5e5;
+  --gray-dark-color: #6c757d;
   --dark-color: #3E3E3E;
-  
+
   /* Font-size */
   --xlarge-font: 36px;
   --large-font: 24px;
@@ -23,7 +23,7 @@
 }
 
 /* Sub Font Style : Noto serif KR */
-body { 
+body {
   margin: 0;
   font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,8 +35,50 @@ body {
   font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   color: var(--dark-color);
 }
 
+/* footer */
+.footer {
+  display: flex;
+  align-items: center;
+  background-color: var(--main-color);
+}
+
+.footer-txt {
+  font-size: var(--small-font);
+  color: var(--white-color);
+  margin: 0;
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.members-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.members-github {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.members-img:hover {
+  filter: brightness(110%);
+}
