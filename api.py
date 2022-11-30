@@ -14,6 +14,8 @@ django.setup()
 from books.models import Book
 
 # ============베이스 코드============
+# 인증키 1: c30a173104dbac8b7924d537a3ec76270dda1187394b8cd8a8f2ae3b1bdd509a
+# 인증키 2: 4b79eb502a251ec0b573ee817ed0c953145c242f3f57da8cdb61056c69371b64
 api_key = "4b79eb502a251ec0b573ee817ed0c953145c242f3f57da8cdb61056c69371b64"
 isbn = "&isbn13=" + "9788983921987"
 format = "&format=" + "xml"
@@ -53,12 +55,11 @@ pageSize = "&pageSize=" + "1"
 
 # ============인기도서 코드============
 like_pageNo = "&pageNo=" + "1"
-like_pageSize = "&pageSize=" + "10"
-
-"""인기대출 도서 조회"""
+like_pageSize = "&pageSize=" + "100"
 
 
 def book_like():
+    """인기대출 도서 조회"""
 
     URL = (
         "http://data4library.kr/api/loanItemSrch?authKey="
@@ -83,10 +84,8 @@ def book_like():
 book_like()
 
 
-""". 도서 상세 조회"""
-
-
 def book_info():
+    """. 도서 상세 조회"""
     # for bookId in library():
     for bookId in book_like():
 
