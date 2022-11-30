@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>{{book_review.pk}}</p>
+  <p>{{book_review.content}}</p>
+  <p>{{book_review.created_at}}</p>
+  <p><img src="{{book_review.image.url}}" alt=""></p>
+{% endblock content %}

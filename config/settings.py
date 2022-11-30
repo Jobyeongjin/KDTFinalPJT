@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "accounts",
     "books",
     "backend_test",
+    "django_bootstrap5",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
