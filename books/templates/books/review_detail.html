@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>{{book_review.pk}}</p>
+  <p>{{book_review.content}}</p>
+  <p>{{book_review.created_at}}</p>
+  <p><img src="{{book_review.image.url}}" alt=""></p>
+
+  <a href="{% url "books:update" book_review.pk %}">수정</a>
+  <a href="{% url "books:delete" book_review.pk %}">삭제</a>
+{% endblock content %}

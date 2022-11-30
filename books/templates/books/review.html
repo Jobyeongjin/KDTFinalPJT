@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  리뷰
+
+  {% for book_review in book_reviews %}
+
+    <a href="{% url 'books:review_detail' book_review.pk %}">
+      <p>{{book_review.pk}}</p>
+      <p>{{book_review.content}}</p>
+      <p>{{book_review.created_at}}</p>
+      <p><img src="{{book_review.image.url}}" alt=""></p>
+    </a>
+
+  {% endfor %}
+{% endblock content %}

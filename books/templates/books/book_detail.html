@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>작동확인</h1>
+  <p>{{book.pk}}</p>
+  <p><img src="{{book.bookcover}}" alt=""></p>
+  <p>{{book.bookname}}</p>
+  <p>{{book.authors}}</p>
+  <p>{{book.publisher}}</p>
+  <p>{{book.publication_year}}</p>
+  <p>{{book.bookcover}}</p>
+  <p>{{book.description}}</p>
+
+{% endblock content %}
