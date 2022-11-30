@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 @import './books/index.css';
 @import './books/detail.css';
+@import './books/onboarding.css';
 
 /* Root */
 :root {

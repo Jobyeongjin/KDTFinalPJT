@@ -5,6 +5,7 @@ app_name = "books"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("onboarding/", views.onboarding, name="onboarding"),
     path("<int:pk>/book_detail/", views.book_detail, name="book_detail"),
     path("review/",views.review, name="review"),
     path("create/", views.create, name="create"),

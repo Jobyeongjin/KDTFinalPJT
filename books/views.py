@@ -1,7 +1,12 @@
+
 from django.shortcuts import render, redirect
 from .models import Book, Book_Review, Book_Review_Comment
 from .forms import Book_ReviewForm, Book_Review_CommentForm
 
+
+def onboarding(request):
+    return render(request, "books/onboarding.html")
+    
 # 책 리스트 페이지
 def index(request):
     books = Book.objects.all()
