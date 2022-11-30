@@ -1,4 +1,4 @@
-// Nav-Search
+// Nav-search
 const searchEl = document.querySelector('.nav__search');
 const searchInputEl = searchEl.querySelector('input');
 
@@ -14,4 +14,15 @@ searchInputEl.addEventListener('focus', function() {
 searchInputEl.addEventListener('blur', function() {
     searchEl.classList.remove('focused');
     searchInputEl.setAttribute('placeholder', '');
+});
+
+
+// Nav-toggle
+const toggleBtn = document.querySelector('.nav-toogle-btn');
+const menu = document.querySelector('.nav__list');
+const userBtn = document.querySelector('.nav__user');
+
+toggleBtn.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    userBtn.classList.toggle('active');
 });
