@@ -1,3 +1,4 @@
+/* login */
 .login {
   min-height: 750px;
   display: flex;
@@ -7,6 +8,7 @@
 
 .login-form {
   width: 550px;
+  height: 420px;
   border: solid 1px var(--gray-light-color);
   border-radius: 10px;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
@@ -24,4 +26,21 @@
   opacity: 1;
   color: var(--dark-color);
   font-weight: 500;
+}
+
+/* login help modal */
+#my_modal {
+  display: none;
+  width: 550px;
+  height: 470px;
+  border: solid 1px var(--gray-light-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
+  background: var(--white-color);
+}
+
+#my_modal .modal_close_btn {
+  position: absolute;
+  top: 70px;
+  right: 50px;
 }
