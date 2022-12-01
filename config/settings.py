@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "accounts",
     "books",
+    "reviews",
     "backend_test",
     "django_bootstrap5",
     "django.contrib.admin",

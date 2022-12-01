@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Book, Book_Review, Book_Review_Comment
-from .forms import Book_ReviewForm, Book_Review_CommentForm
+from .models import Book
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 
@@ -35,82 +34,4 @@ def book_detail(request, pk):
     return render(request, "books/book_detail.html", context)
 
 
-# 책 리뷰 페이지
-def review(request):
-    book_reviews = Book_Review.objects.all()
 
-    context = {
-        "book_reviews": book_reviews,
-    }
-    return render(request, "books/review.html", context)
-
-
-# 책 리뷰 작성
-@login_required
-def create(request):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            book_review_form = Book_ReviewForm(request.POST, request.FILES)
-            if book_review_form.is_valid():
-                book_review = book_review_form.save(commit=False)
-                book_review.user = request.user
-                book_review.save()
-                return redirect("books:review")
-        else:
-            book_review_form = Book_ReviewForm()
-        context = {"book_review_form": book_review_form}
-        return render(request, "books/create.html", context)
-
-
-# 책 리뷰 디테일(댓글 추가 전)
-def review_detail(request, pk):
-    book_review = Book_Review.objects.get(pk=pk)
-    comments = book_review.book_review_comment_set.all()
-    comment_form = Book_Review_CommentForm()
-    context = {
-        "book_review":book_review,
-        "comments":comments,
-        "comment_form":comment_form,
-    }
-    return render(request, "books/review_detail.html", context)
-
-
-# 리뷰 업데이트
-@login_required
-def update(request, pk):
-    book_review = Book_Review.objects.get(pk=pk)
-    if request.user == book_review.user:
-        if request.method == "POST":
-            book_review_form = Book_ReviewForm(request.POST, request.FILES, instance=book_review)
-            if book_review_form.is_valid():
-                book_review_form.save()
-                return redirect("books:review_detail", pk)
-        else:
-            book_review_form = Book_ReviewForm(instance=book_review)
-        context = {"book_review_form": book_review_form}
-        return render(request, "books/create.html", context)
-    else:
-        return HttpResponseForbidden()
-
-
-# 리뷰 삭제
-@login_required
-def delete(request, pk):
-    book_review = Book_Review.objects.get(pk=pk)
-    if request.user == book_review.user:
-        book_review.delete()
-        return redirect("books:review")
-    else:
-        return HttpResponseForbidden()
-
-# 댓글 추가
-@login_required
-def comment_create(request, pk):
-    book_review = Book_Review.objects.get(pk=pk)
-    comment_form = Book_Review_CommentForm(request.POST)
-    if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.book_review = book_review
-        comment.user = request.user
-        comment.save()
-        return redirect("books:review_detail", pk)
