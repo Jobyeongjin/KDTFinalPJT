@@ -3,16 +3,47 @@
 {% block content %}
 {% include 'nav.html' %}
 
-<div class="container">
-  {% for book in books %}
-  {{ book.bookname }}<br>
-  {{ book.authors }}<br>
-  {{ book.publisher }}<br>
-  {{ book.publication_year }}<br>
-  <img src="{{ book.bookcover }}" alt="bookcover" width="200" height="300"><br>
-  {{ book.description }}<br>
-  <hr>
-  {% endfor %}
+
+<div class="container book_index">
+  <div>
+    <h3> 도서 목록</h3>
+    <p> 안내 문구</p>
+  </div>
+
+  <!--mansory layout-->
+  <div class="masonry-container">
+    {% for book in books %}
+    <div class="masonry-item">
+      <img class="bookcover" src="{{ book.bookcover }}" alt="bookcover" width="250" height="auto">
+      <p> {{ book.authors }} </p>
+    </div>
+    {% endfor %}
+  </div>
 </div>
+
+<script>
+  function masonryLayout() {
+    const masonryContainerStyle = getComputedStyle(
+        document.querySelector(".masonry-container")
+    );
+    const columnGap = parseInt(
+        masonryContainerStyle.getPropertyValue("column-gap")
+    );
+    const autoRows = parseInt(
+        masonryContainerStyle.getPropertyValue("grid-auto-rows")
+    );
+
+    document.querySelectorAll(".masonry-item").forEach((elt) => {
+        elt.style.gridRowEnd = `span ${Math.ceil(
+            elt.querySelector(".bookcover").scrollHeight / autoRows +
+                columnGap / autoRows
+        )}`;
+    });
+}
+
+masonryLayout();
+window.addEventListener("resize", masonryLayout);
+
+</script>
 
 {% endblock content %}
