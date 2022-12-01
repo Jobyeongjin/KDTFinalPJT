@@ -164,12 +164,6 @@ section.main-swiper {
   margin-left: 8px;
 }
 
-.mr__list__item:hover .image-cover {
-  border-radius: 12px;
-  visibility: visible;
-  opacity: 1;
-}
-
 /* Main-metting */
 .main-metting {
   margin-bottom: 30px;

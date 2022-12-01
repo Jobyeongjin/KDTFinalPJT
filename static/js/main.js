@@ -27,8 +27,9 @@ toggleBtn.addEventListener('click', () => {
     userBtn.classList.toggle('active');
 });
 
+
 // Main-swiper
-let swiper = new Swiper(".mainSwiper", {
+let mainSwiper = new Swiper(".mainSwiper", {
     centeredSlides: true,
     autoplay: {
         delay: 2500,
@@ -37,5 +38,62 @@ let swiper = new Swiper(".mainSwiper", {
     pagination: {
         el: ".swiper-pagination",
         type : 'progressbar',
+    },
+});
+
+
+// Books-detail-visual-snow
+function createSnow() {
+    const visual = document.querySelector('.book-visual');
+    const el = document.createElement("div");
+    el.classList.add("snow");
+    el.style.marginLeft = randomPostion() + "px";
+    visual.appendChild(el);
+}
+function randomPostion() {
+    return Math.floor(Math.random() * window.innerWidth);
+}
+for (let i = 0; i < 300; i++) {
+    createSnow();
+}
+
+
+// Book-info-toggle
+const infoToggleBtn = document.querySelector('.book-info-toggle');
+const tableMenu = document.querySelector('.book-info-in-wrap');
+
+infoToggleBtn.addEventListener('click', () => {
+    tableMenu.classList.toggle('active');
+    infoToggleBtn.classList.toggle('rotate');
+});
+
+
+// Book-info-swiper
+let bookReviewSwiper = new Swiper(".bookReviewSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop: true,
+    centerSlide: 'true',
+    fade: 'true',
+    grabCursor: 'true',
+    autoplay:{disableOnInteraction: false},
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    dynamicBullets: true,
+    breakpoints: {
+        576: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        },
+        768: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+        },
+        992: {
+        slidesPerView: 5,
+        spaceBetween: 50,
+        },  
     },
 });

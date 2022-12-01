@@ -7,10 +7,10 @@
   <p>{{book_review.created_at}}</p>
   <p><img src="{{book_review.image.url}}" alt=""></p>
 
-  <a href="{% url "books:update" book_review.pk %}">수정</a>
-  <a href="{% url "books:delete" book_review.pk %}">삭제</a>
+  <a href="{% url "reviews:update" book_review.pk %}">수정</a>
+  <a href="{% url "reviews:delete" book_review.pk %}">삭제</a>
 
-  <form action="{% url 'books:comment_create' book_review.pk %}" method="POST">
+  <form action="{% url 'reviews:comment_create' book_review.pk %}" method="POST">
     {% csrf_token %}
     {% bootstrap_form comment_form %}
     <button type="submit">제출</button>

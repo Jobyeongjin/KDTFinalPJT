@@ -1,14 +1,157 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>작동확인</h1>
-  <p>{{book.pk}}</p>
-  <p><img src="{{book.bookcover}}" alt=""></p>
-  <p>{{book.bookname}}</p>
-  <p>{{book.authors}}</p>
-  <p>{{book.publisher}}</p>
-  <p>{{book.publication_year}}</p>
-  <p>{{book.bookcover}}</p>
-  <p>{{book.description}}</p>
+{% include 'nav.html' %}
+
+<!-- Book-visual -->
+<section class="book-visual"></section>
+
+
+<!-- Book-cover -->
+<div class="book-cover">
+  <div class="book__image">
+    <img src="{{ book.bookcover }}" alt="book-image">
+  </div>
+  <div class="book__title">
+    <h5>{{ book.bookname }}</h5>
+  </div>
+  <div class="book__auther">
+    <p>{{ book.authors }}</p>
+  </div>
+</div>
+
+
+<!-- Book-detail -->
+<section class="book-detail">
+  <!-- Book-info -->
+  <div class="book-info">
+    <div class="container">
+
+      <!-- Book-info-top -->
+      <div class="book-info-top">
+        <div class="book-info-top-wrap">
+          <div class="count-box">
+            <div class="review-count">
+              <h5>리뷰 수</h5>
+              <span>(카운트)</span>
+            </div>
+            <div class="like-count">
+              <h5>좋아요 수</h5>
+              <span>(카운트)</span>
+            </div>
+          </div>
+          <div class="buy-btn">
+            <button class="btn btn--main--reverse">구매하기</button>
+            <span><i class="fa-regular fa-heart fa-2x"></i></span>
+          </div>
+        </div>
+        <div class="review-writers">
+          <h5>리뷰 남긴 사람들</h5>
+          <div class="writer-profile">
+            <span><img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image"></span>
+            <span><img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image"></span>
+            <span><img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image"></span>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <br>
+
+      <!-- Book-info-bottom -->
+      <div class="book-info-bottom">
+        <div class="book-info-auther">
+          <h5>저자</h5>
+          <p>{{ book.authors }}</p>
+        </div>
+        <div class="book-info-description">
+          <h5>책 소개글</h5>
+          <p>{{book.description}}</p>
+        </div>
+        <div class="book-info-in">
+          <div class="d-flex">
+            <h5 class="me-3">책 정보</h5>
+            <div class="book-info-toggle">
+              <i class="fa-solid fa-sort-down fa-lg"></i>
+            </div>
+          </div>
+          <div class="book-info-in-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>원제</th>
+                  <td>{{ book.bookname }}</td>
+                </tr>
+                <tr>
+                  <th>출판사</th>
+                  <td>{{ book.publisher }}</td>
+                </tr>
+                <tr>
+                  <th>출간일</th>
+                  <td>{{ book.publication_year }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="book-info-db">도서 DB 제공 : <a href="https://data4library.kr/">도서관 정보나루</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Book-reviews -->
+<section class="book-reviews">
+  <div class="container">
+
+    <!-- Book-reviews-top -->
+    <div class="book-reviews-top">
+      <h5>이 책의 다른 리뷰들</h5>
+      <button class="btn btn--main">리뷰 작성</button>
+    </div>
+
+    <!-- Book-reviews-list -->
+    <div class="book-reviews-list">
+      <div class="swiper bookReviewSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+  
 
 {% endblock content %}
