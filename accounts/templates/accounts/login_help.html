@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+<div class="container login">
+  <!-- signup form -->
+  <div class="login-help-box p-5" action="" method="POST">
+    <h4 class="text-center mb-4">로그인에 어려움이 있나요?</h4>
+    <!-- welcome icon -->
+    <div class="my-5">
+        <p class="text-center">로그인에 어려움이 있다면 고객센터에 문의해주세요.</p>
+        <p class="text-center">편리한 이용을 위해 계속해서 발전하는 책:오가 되겠습니다 :)</p>
+    </div>
+    <!-- sumbit -->
+    <a class="btn btn--main--reverse w-100" href="">문의하러 가기<a>
+  </div>
+</div>
+
+{% endblock content %}

@@ -50,6 +50,11 @@ def login(request):
     return render(request, "accounts/login.html", context)
 
 
+# 회원가입 완료
+def login_help(request):
+    return render(request, "accounts/login_help.html")
+
+
 # 로그아웃
 def logout(request):
     auth_logout(request)
