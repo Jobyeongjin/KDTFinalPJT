@@ -55,7 +55,7 @@ pageSize = "&pageSize=" + "1"
 
 # ============인기도서 코드============
 like_pageNo = "&pageNo=" + "1"
-like_pageSize = "&pageSize=" + "100"
+like_pageSize = "&pageSize=" + "1"
 
 
 def book_like():
@@ -107,6 +107,10 @@ def book_info():
         year = soup.find("publication_year").get_text()
         _bookImageURL = soup.find("bookImageURL").get_text()
         _description = soup.find("description").get_text()
+
+        _authors = _authors.replace(";", "")
+        _description = _description.replace("&lt;", "")
+        _description = _description.replace("&gt;", "")
 
         if _bookImageURL:
             pass
