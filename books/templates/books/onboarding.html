@@ -4,7 +4,7 @@
 {% block content %}
 
 <!--온보딩 메인 박스 pc-->
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 
 <div class ="onboarding-main-pc-box d-none d-sm-none d-md-block">
     <div class="d-flex">
@@ -26,7 +26,7 @@
 
 <!--온보딩 메인 박스 mobile-->
 
-<div class ="onboarding-main-mo-box d-block d-sm-none d-md-none">
+<div class="onboarding-main-mo-box d-block d-sm-none d-md-none">
     <div class="onboarding-img-box">
         <div class="image-box">
             <img src="https://via.placeholder.com/800" class="img-fluid">
@@ -35,11 +35,149 @@
 </div>
 
 
-<!--온보딩 카드-->
+<!--온보딩 설명-->
+
+<div class="container mt-5">
+    <div class="mt-5">
+        <ul class="onboarding-card-section d-flex flex-wrap justify-content-center">
+            <li>
+                <div class="onboarding-card-text me-xl-5 me-md-3 me-sm-2">
+                        <h3> 문구 </h3>
+                        <p> 문구 소개 </p>
+                </div>
+            </li>
+            <li>
+                <div class="onboarding-card-img">
+                    <img src="https://via.placeholder.com/375x450" class="img-fluid">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="mt-5">
+        <ul class="onboarding-card-section d-flex flex-wrap justify-content-center">
+            <li>
+                <div class="onboarding-card-text me-xl-5 me-md-3 me-sm-2">
+                        <h3> 문구 </h3>
+                        <p> 문구 소개 </p>
+                </div>
+            </li>
+            <li>
+                <div class="onboarding-card-img">
+                    <img src="https://via.placeholder.com/375x450" class="img-fluid">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="mt-5">
+        <ul class="onboarding-card-section d-flex flex-wrap justify-content-center">
+            <li>
+                <div class="onboarding-card-text me-xl-5 me-md-3 me-sm-2">
+                        <h3> 문구 </h3>
+                        <p> 문구 소개 </p>
+                </div>
+            </li>
+            <li>
+                <div class="onboarding-card-img">
+                    <img src="https://via.placeholder.com/375x450" class="img-fluid">
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--온보딩 슬라이드: pc에선 보이고, 모바일에선 1개 노출-->
+ 
+<div class="container mt-5">
+    <div class="slide-title">
+        <h3>NOW READING </h3>
+        <p> 소개글 </p>
+    </div>
+</div>
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="card" style="width: 18rem;">
+                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- 온보딩 하단-->
+  <div class="onboarding-outro">
+    <ul class="onboarding-outro-pc d-flex">
+        <li class="onboarding-outro-logo">
+            <img src="/static/image/logo2.png" class=" outro-imgage img-fluid">
+        </li>
+        <li class="onboarding-outro-textarea">
+            <h3 class="onboarding-outro-text"> 설명문구 여기</h3>
+            <button class="onboarding-outro-button"> 책:오 시작하기 </button>
+        </li>
+    </ul>
+
+  </div>
 
 
-<!--온보딩 슬라이드: pc에선 보이고, 모바일에선 안보이고-->
+  <!-- 슬라이드 JS (추후 JS 파일로 옮길 예정)-->
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      loop: true,
+      centerSlide: 'true',
+      fade: 'true',
+      grabCursor: 'true',
+      autoplay:{disableOnInteraction: false},
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      dynamicBullets: true,
+      breakpoints: {
+        576: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+        992: {
+          slidesPerView: 5,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>
 
 
 {% endblock %}
