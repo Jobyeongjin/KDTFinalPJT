@@ -48,14 +48,16 @@ section.main-swiper {
 }
 
 
-/* Main-book & Main-review */
+/* Main-book & Main-review & Main-metting */
 .main-book .container,
-.main-review .container {
+.main-review .container,
+.main-metting .container {
   position: relative;
 }
 
 .mb__top,
-.mr__top {
+.mr__top,
+.mm__top {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +65,8 @@ section.main-swiper {
 }
 
 .mb__top a,
-.mr__top a {
+.mr__top a,
+.mm__top a {
   position: absolute;
   right: 22px;
   margin: 0;
@@ -72,12 +75,14 @@ section.main-swiper {
 }
 
 .mb__top a:hover,
-.mr__top a:hover {
+.mr__top a:hover,
+.mm__top a:hover {
   opacity: 1;
 }
 
 .mb__list,
-.mr__list {
+.mr__list,
+.mm__list {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -85,7 +90,8 @@ section.main-swiper {
 }
 
 .mb__list__item,
-.mr__list__item {
+.mr__list__item,
+.mm__list__item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,12 +170,40 @@ section.main-swiper {
   opacity: 1;
 }
 
+/* Main-metting */
+.main-metting {
+  margin-bottom: 30px;
+}
+
+.mm__list__item .card .card-image {
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}
+
+.mm__list__item .card img {
+  object-fit:cover;     
+  transform:scale(1.0);        
+  transition: transform .5s; 
+  border-radius: 5px 5px 0 0;
+}
+
+.mm__list__item .card img:hover {
+  transform:scale(1.2);
+  transition: transform .5s;
+}
+
+
+/* Main-media */
 @media screen and (max-width: 992px) {
   .mb__list .mb__list__item:last-child {
     display: none;
   }
   
   .mr__list .mr__list__item:last-child {
+    display: none;
+  }
+  
+  .mm__list .mm__list__item:last-child {
     display: none;
   }
 }
@@ -181,6 +215,14 @@ section.main-swiper {
   
   .mr__list .mr__list__item:nth-child(2) {
     display: none;
+  }
+  
+  .mm__list .mm__list__item:nth-child(2) {
+    display: none;
+  }
+
+  .mm__list__item .card {
+    width: 28rem !important;
   }
 }
 
@@ -194,7 +236,7 @@ section.main-swiper {
     width: 100%;
     margin: 8px 0 16px 25px;
   }
-  
+
   .mr__list .mr__list__item:nth-child(1) {
     display: none;
   }
