@@ -16,7 +16,7 @@ class User(AbstractUser):
     )
     age = models.IntegerField(default=0)
     status_message = models.TextField()
-    following = models.ManyToManyField(
+    followings = models.ManyToManyField(
         "self", symmetrical=False, related_name="followers"
     )
     

@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from .forms import CustomCreationUserForm, CustonChangeUserForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -86,3 +88,20 @@ def detail(request, user_pk):
     }
 
     return render(request, "accounts/detail.html", context)
+@login_required
+def follow(request, user_pk):
+    user = get_object_or_404(get_user_model(), pk=user_pk)
+    if request.user != get_user_model().objects.get(pk=user_pk):
+        if user.followers.filter(pk=request.user.pk).exists():
+            user.followers.remove(request.user)
+            is_followed = False
+        else:
+            user.followers.add(request.user)
+            is_followed = True
+        context = {
+            'is_followed' : is_followed,
+            'followers_count' : user.followers.count(),
+            'followings_count' : user.followings.count(),
+            
+        }
+        return JsonResponse(context)
