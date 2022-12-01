@@ -1,0 +1,40 @@
+
+.masonry-container {
+    --gap: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: var(--gap);
+    grid-auto-rows: 30px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .masonry-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .masonry-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .masonry-container {
+        display: block;
+    }
+
+    .masonry-item {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.book_index {
+    margin-top: 120px;
+    text-align: center;
+}
