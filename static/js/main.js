@@ -26,3 +26,16 @@ toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('active');
     userBtn.classList.toggle('active');
 });
+
+// Main-swiper
+let swiper = new Swiper(".mainSwiper", {
+    centeredSlides: true,
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        type : 'progressbar',
+    },
+});

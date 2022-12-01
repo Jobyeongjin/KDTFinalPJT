@@ -16,10 +16,67 @@
         </div>
         <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
         <div class="d-flex justify-content-center">
-            <button class="login-help">로그인에 어려움이 있으신가요?</button>
+            <button class="login-help" id="modal_open_btn">로그인에 어려움이 있으신가요?</button>
         </div>
     </form>
+    <div id="my_modal" class="p-5">
+        <button class="modal_close_btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="d-flex flex-column justify-content-between h-100">
+            <h4 class="text-center my-4">로그인에 어려움이 있나요?</h4>
+            <div>
+                <p class="text-center">로그인에 어려움이 있다면 고객센터에 문의해주세요.</p>
+                <p class="text-center">편리한 이용을 위해 계속해서 발전하는 책:오가 되겠습니다 :)</p>
+            </div>
+            <a class="btn btn--main--reverse w-100" href="">문의하러 가기<a>
+        </div>
+    </div>
 </div>
+
+<script>
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
+        // 모달 배경 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 배경 레이어와 모달 div 지우기
+        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            zIndex: zIndex + 1,
+            // div 위치 조정
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -75%)',
+        });
+    }
+
+    // Element 에 style 설정
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    // 버튼 누르면 모달창 띄우기
+    document.getElementById('modal_open_btn').addEventListener('click', function() {
+        modal('my_modal');
+    });
+</script>
 
 {% endblock content %}
   
