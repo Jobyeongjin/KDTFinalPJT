@@ -8,6 +8,7 @@
 @import './accounts/login.css';
 @import './accounts/signup.css';
 @import './accounts/update.css';
+@import './accounts/delete.css';
 
 /* Root */
 :root {

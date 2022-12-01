@@ -4,6 +4,7 @@ from .forms import CustomCreationUserForm, CustonChangeUserForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from datetime import datetime
 
 # Create your views here.
 def index(request):
@@ -83,6 +84,19 @@ def delete(request):
     request.user.delete()
     auth_logout(request)
     return redirect("accounts:signup")
+
+
+# 회원 탈퇴 체크
+def delete_check(request):
+    user = get_user_model().objects.get(pk=request.user.pk)
+    today = datetime.date(datetime.now())
+    date_joined = datetime.date(user.date_joined)
+    diff = (today - date_joined).days + 1
+    context = {
+        "user": user,
+        "diff": diff,
+    }
+    return render(request, "accounts/delete.html", context)
 
 
 # 회원 정보

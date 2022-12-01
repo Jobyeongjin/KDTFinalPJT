@@ -10,10 +10,7 @@
     {% csrf_token %}
     <input type="submit" value="logout">
   </form>
-  <form action="{% url 'accounts:delete' %}">
-    {% csrf_token %}
-    <input type="submit" value="delete">
-  </form>
+  <a href="{% url 'accounts:delete_check' %}">탈퇴하기</a> 
 
 {% else %}
   <div>
