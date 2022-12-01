@@ -3,17 +3,25 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
+  <p>{{ request.user }}님</p>
+  <div>회원정보
+    <div>
+    <!-- 전체 유저 정보 -->
   {% for user in users  %}
   <a href="{% url 'accounts:detail' user.pk %}">{{ user }}</a> 
   {% endfor %}
+    <!-- 로그아웃 -->
   <form action="{% url 'accounts:logout' %}" method="POST">
     {% csrf_token %}
     <input type="submit" value="logout">
   </form>
+    <!-- 탈퇴 -->
   <form action="{% url 'accounts:delete' %}">
     {% csrf_token %}
     <input type="submit" value="delete">
   </form>
+    </div>
+  </div>
 
 {% else %}
   <div>

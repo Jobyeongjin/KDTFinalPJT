@@ -13,5 +13,6 @@ urlpatterns = [
     path("update/", views.update, name="update"),
     path("delete/", views.delete, name="delete"),
     path("<int:user_pk>/detail/", views.detail, name="detail"),
+    path("<int:user_pk>/follow/", views.follow, name="follow"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
