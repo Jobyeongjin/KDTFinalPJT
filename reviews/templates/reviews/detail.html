@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <p>{{book_review.pk}}</p>
+  <p>{{book_review.content}}</p>
+  <p>{{book_review.created_at}}</p>
+  <p><img src="{{book_review.image.url}}" alt=""></p>
+
+  <a href="{% url "reviews:update" book_review.pk %}">수정</a>
+  <a href="{% url "reviews:delete" book_review.pk %}">삭제</a>
+
+  <form action="{% url 'reviews:comment_create' book_review.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form comment_form %}
+    <button type="submit">제출</button>
+  </form>
+
+  {% for comment in comments %}
+    <p>{{comment.content}}</p>
+  {% endfor %}
+{% endblock content %}
