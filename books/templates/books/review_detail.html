@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
   <p>{{book_review.pk}}</p>
@@ -8,4 +9,14 @@
 
   <a href="{% url "books:update" book_review.pk %}">수정</a>
   <a href="{% url "books:delete" book_review.pk %}">삭제</a>
+
+  <form action="{% url 'books:comment_create' book_review.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form comment_form %}
+    <button type="submit">제출</button>
+  </form>
+
+  {% for comment in comments %}
+    <p>{{comment.content}}</p>
+  {% endfor %}
 {% endblock content %}
