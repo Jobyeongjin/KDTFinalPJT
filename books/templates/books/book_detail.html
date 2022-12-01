@@ -54,9 +54,10 @@
           </div>
         </div>
       </div>
-      <!-- Book-info-top-End -->
+
       <hr>
       <br>
+
       <!-- Book-info-bottom -->
       <div class="book-info-bottom">
         <div class="book-info-auther">
@@ -71,7 +72,7 @@
           <div class="d-flex">
             <h5 class="me-3">책 정보</h5>
             <div class="book-info-toggle">
-              <i class="fa-solid fa-sort-down"></i>
+              <i class="fa-solid fa-sort-down fa-lg"></i>
             </div>
           </div>
           <div class="book-info-in-wrap">
@@ -99,18 +100,58 @@
     </div>
   </div>
 </section>
+
+
+<!-- Book-reviews -->
+<section class="book-reviews">
+  <div class="container">
+
+    <!-- Book-reviews-top -->
+    <div class="book-reviews-top">
+      <h5>이 책의 다른 리뷰들</h5>
+      <button class="btn btn--main">리뷰 작성</button>
+    </div>
+
+    <!-- Book-reviews-list -->
+    <div class="book-reviews-list">
+      <div class="swiper bookReviewSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+          <div class="swiper-slide mb-5">
+            <div class="card" style="width: 18rem;">
+              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
   
 
 {% endblock content %}
-
-<!-- 
-<h1>작동확인</h1>
-<p>{{book.pk}}</p>
-<p><img src="{{book.bookcover}}" alt=""></p>
-<p>{{book.bookname}}</p>
-<p>{{book.authors}}</p>
-<p>{{book.publisher}}</p>
-<p>{{book.publication_year}}</p>
-<p>{{book.bookcover}}</p>
-<p>{{book.description}}</p> 
--->

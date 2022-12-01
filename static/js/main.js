@@ -29,7 +29,7 @@ toggleBtn.addEventListener('click', () => {
 
 
 // Main-swiper
-let swiper = new Swiper(".mainSwiper", {
+let mainSwiper = new Swiper(".mainSwiper", {
     centeredSlides: true,
     autoplay: {
         delay: 2500,
@@ -65,4 +65,35 @@ const tableMenu = document.querySelector('.book-info-in-wrap');
 infoToggleBtn.addEventListener('click', () => {
     tableMenu.classList.toggle('active');
     infoToggleBtn.classList.toggle('rotate');
+});
+
+
+// Book-info-swiper
+let bookReviewSwiper = new Swiper(".bookReviewSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop: true,
+    centerSlide: 'true',
+    fade: 'true',
+    grabCursor: 'true',
+    autoplay:{disableOnInteraction: false},
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    dynamicBullets: true,
+    breakpoints: {
+        576: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        },
+        768: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+        },
+        992: {
+        slidesPerView: 5,
+        spaceBetween: 50,
+        },  
+    },
 });
