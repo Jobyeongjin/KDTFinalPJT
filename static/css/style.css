@@ -84,6 +84,13 @@
   align-items: center;
 }
 
+.nav__user__image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 18px;
+}
+
 .nav__user__btn {
   padding: 4px 20px;
   border-radius: 5px;
@@ -197,6 +204,10 @@
   .nav__user {
     margin-top: 10px;
     display: none;
+  }
+
+  .nav__user__image {
+    margin: 0;
   }
   
   .nav__user .nav__user__btn:first-child {
