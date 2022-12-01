@@ -1,0 +1,131 @@
+/* review-modal */
+#review-guide .modal-dialog,
+#review-guide .modal-content {
+  width: 700px;
+}
+
+#review-guide .modal-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateX(-20%);
+}
+
+.record-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 670px;
+  padding: 60px 20px;
+}
+
+.record-wrap i {
+  font-size: 120px;
+  color: var(--gray-color);
+}
+
+.record-wrap h5 {
+  margin-top: 35px;
+  color: var(--gray-color);
+}
+
+.record-wording,
+.record-photo {
+  border: 1px solid var(--gray-color);
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-color);
+}
+
+.record-wording:hover,
+.record-photo:hover {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+}
+
+.record-text {
+  text-align: center;
+  color: var(--gray-dark-color);
+}
+
+/* review-create-media */
+@media screen and (max-width: 992px) {
+  #review-guide .modal-dialog,
+  #review-guide .modal-content {
+    width: 540px;
+  }
+
+  #review-guide .modal-dialog {
+    transform: translateX(0);
+  }
+
+  .record-wrap {
+    width: 500px;
+  }
+
+  .record-wrap i {
+    font-size: 80px;
+  }
+
+  .record-wording,
+  .record-photo {
+    width: 220px;
+    height: 220px;
+  }
+
+  .record-wrap h5 {
+    margin-top: 35px;
+    font-size: 21px;
+  }
+
+  .record-text {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #review-guide .modal-dialog,
+  #review-guide .modal-content {
+    width: 380px;
+  }
+
+  #review-guide .modal-dialog {
+    transform: translateX(0);
+  }
+
+  .record-wrap {
+    width: 340px;
+  }
+
+  .record-wrap i {
+    font-size: 50px;
+  }
+
+  .record-wording,
+  .record-photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .record-wrap h5 {
+    margin-top: 25px;
+    font-size: 14px;
+  }
+
+  .record-text {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #review-guide .modal-dialog {
+    transform: translateX(13%);
+  }
+}
