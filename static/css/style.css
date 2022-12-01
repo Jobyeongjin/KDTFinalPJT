@@ -6,6 +6,7 @@
 @import './books/onboarding.css';
 @import './books/main.css';
 @import './accounts/login.css';
+@import './reviews/index.css';
 
 /* Root */
 :root {
