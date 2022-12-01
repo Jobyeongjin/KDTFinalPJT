@@ -21,7 +21,7 @@ def index(request):
         request,
         "books/index.html",
         {
-            "books": books[:10],
+            "books": books,
         },
     )
 
@@ -29,7 +29,6 @@ def index(request):
 # 책 디테일 페이지(댓글추가전)
 def book_detail(request, pk):
     book = Book.objects.get(pk=pk)
-
     context = {
         "book": book,
     }
@@ -66,9 +65,12 @@ def create(request):
 # 책 리뷰 디테일(댓글 추가 전)
 def review_detail(request, pk):
     book_review = Book_Review.objects.get(pk=pk)
-
+    comments = book_review.book_review_comment_set.all()
+    comment_form = Book_Review_CommentForm()
     context = {
-        "book_review": book_review,
+        "book_review":book_review,
+        "comments":comments,
+        "comment_form":comment_form,
     }
     return render(request, "books/review_detail.html", context)
 
@@ -101,4 +103,14 @@ def delete(request, pk):
     else:
         return HttpResponseForbidden()
 
-
+# 댓글 추가
+@login_required
+def comment_create(request, pk):
+    book_review = Book_Review.objects.get(pk=pk)
+    comment_form = Book_Review_CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.book_review = book_review
+        comment.user = request.user
+        comment.save()
+        return redirect("books:review_detail", pk)
