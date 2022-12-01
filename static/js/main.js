@@ -27,6 +27,7 @@ toggleBtn.addEventListener('click', () => {
     userBtn.classList.toggle('active');
 });
 
+
 // Main-swiper
 let swiper = new Swiper(".mainSwiper", {
     centeredSlides: true,
@@ -38,4 +39,30 @@ let swiper = new Swiper(".mainSwiper", {
         el: ".swiper-pagination",
         type : 'progressbar',
     },
+});
+
+
+// Books-detail-visual-snow
+function createSnow() {
+    const visual = document.querySelector('.book-visual');
+    const el = document.createElement("div");
+    el.classList.add("snow");
+    el.style.marginLeft = randomPostion() + "px";
+    visual.appendChild(el);
+}
+function randomPostion() {
+    return Math.floor(Math.random() * window.innerWidth);
+}
+for (let i = 0; i < 300; i++) {
+    createSnow();
+}
+
+
+// Book-info-toggle
+const infoToggleBtn = document.querySelector('.book-info-toggle');
+const tableMenu = document.querySelector('.book-info-in-wrap');
+
+infoToggleBtn.addEventListener('click', () => {
+    tableMenu.classList.toggle('active');
+    infoToggleBtn.classList.toggle('rotate');
 });

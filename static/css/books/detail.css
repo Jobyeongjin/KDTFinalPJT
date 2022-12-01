@@ -1,0 +1,189 @@
+/* Book-visual */
+.book-visual {
+  width: 100%;
+  height: 400px;
+  /* background-image: url("https://i.pinimg.com/564x/c3/4a/ed/c34aedca4f6e989ecd7256afda14b2b7.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover; */
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+.snow {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  opacity: 0;
+  border-radius: 50%;
+  /*  linear  : 균일하게
+      infinite: 무제한*/
+  animation: snow 10s linear infinite;
+}
+
+/*  2의 배수에 해당하는 눈 */
+.snow:nth-of-type(2n) {
+  width: 7px;
+  height: 7px;
+  animation-duration: 7s;
+  animation-delay: 1s;
+}
+.snow:nth-of-type(2n + 1) {
+  animation-duration: 8s;
+  animation-delay: 2s;
+}
+.snow:nth-of-type(9n) {
+  animation-duration: 9s;
+  animation-delay: 3s;
+}
+
+@keyframes snow {
+  0% {
+      /*완전히 투명*/
+      opacity: 0;
+      transform: translateY(0);
+  }
+  20% {
+      opacity: 1;
+      transform: translate(-15px, 20vh);
+  }
+  40% {
+      opacity: 1;
+      transform: translate(15px, 40vh);
+  }
+  60% {
+      opacity: 1;
+      transform: translate(-15px, 60vh);
+  }
+  80% {
+      opacity: 1;
+      transform: translate(0, 80vh);
+  }
+  100% {
+      /*완전히 불투명*/
+      opacity: 1;
+      transform: translateY(100vh);
+  }
+}
+
+
+/* Book-detail */
+/* Book-cover */
+.book-detail {
+  position: relative;
+}
+
+.book-cover {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book__title {
+  margin-top: 12px;
+}
+
+.book__auther p {
+  font-size: 14px;
+}
+
+/* Book-info */
+.book-info {
+  margin-top: 100px;
+}
+
+.book-info-top-wrap {
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.count-box {
+  display: flex;
+}
+
+.review-count {
+  margin: 0 20px 50px 0;
+}
+
+.buy-btn {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.buy-btn span i {
+  margin-left: 12px;
+  color: var(--main-color);
+}
+
+.review-writers {
+  margin-top: 15px;
+}
+
+.writer-profile img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin: 10px 10px 0 0;
+}
+
+/* Book-info-bottom */
+.book-info-auther,
+.book-info-description {
+  margin-bottom: 30px;
+}
+
+.book-info-description p {
+  color: var(--dark-color);
+  font-size: 14px;
+}
+
+/* Book-info-table */
+.book-info-in-wrap {
+  display: none;
+  color: var(--gray-color);
+}
+
+.book-info-in-wrap.active {
+  display: block;
+}
+
+.book-info-db,
+.book-info-db a {
+  font-size: 14px;
+  margin: 8px 0;
+  color: var(--gray-color);
+}
+
+.book-info-db a {
+  text-decoration: underline;  
+}
+
+.book-info-toggle.rotate {
+  transform: rotate(180deg);
+}
+
+table {
+  margin-top: 10px;
+  width: 100%;
+  height: 120px;
+}
+
+tr {
+  margin-bottom: 14px;
+}
+
+th {
+  width: 80px;
+  font-size: 14px;
+}
+
+td {
+  font-size: 14px;
+}
