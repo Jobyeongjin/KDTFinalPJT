@@ -3,9 +3,14 @@
 
 {% block content %}
 <a href="{% url 'accounts:update' %}">정보수정 </a>
-<p>{{ user.username }}</p>
-<p>{{ user.email }}</p>
-<p>{{ user.age }}</p>
+<p>아이디 : {{ user.username }}</p>
+<p>관심분야 : {{ user.interest }}</p>
+<p>이메일 : {{ user.email }}</p>
+<p>나이 : {{ user.age }}</p>
+<p>상태메세지 : {{ user.status_message }}</p>
+<p>프로필사진</p>
+{% if user.profile_image %}
 <img src="{{ user.profile_image.url }}" alt="">
-<p>{{ user.status_message }}</p>
+{% else %}
+{% endif %}
 {% endblock content %}

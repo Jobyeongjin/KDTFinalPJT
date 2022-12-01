@@ -2,11 +2,107 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
+{% include 'nav.html' %}
 
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <input type="submit">
-</form>
+<div class="container update">
+    <!-- update form -->
+    <form class="update-form p-5" action="" method="POST">
+        <h4 class="text-center mb-4">회원정보 수정</h4>
+        {% csrf_token %}
+        <!-- input -->
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label class="form-label" for="id_profile_image">프로필 사진</label>
+                    <img class="img-fluid mb-1 rounded-circle border" id="profile-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=no+image">
+                    <input type="file" name="profile_image" accept="image/*" class="form-control" id="id_profile_image">
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="mb-4">
+                    <label class="form-label" for="id_nickname">닉네임</label>
+                    <input type="text" name="nickname" maxlength="20" class="form-control" placeholder="닉네임" required="" id="id_nickname" value="{{ user.nickname }}">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" for="id_email">이메일</label>
+                    <input type="email" name="email" maxlength="254" class="form-control" placeholder="이메일" id="id_email" value="{{ user.email }}">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" for="id_age">나이</label>
+                    <input type="number" name="age" class="form-control" placeholder="Age" required="" id="id_age" value="{{ user.age }}">
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="id_status_message">상태 메세지</label>
+            <textarea name="status_message" cols="40" rows="3" class="form-control" placeholder="상태 메세지" required="" id="id_status_message">{{ user.status_message }}</textarea>
+        </div>
+        <div class="mb-4 d-none">
+            <label class="form-label" for="id_interest">관심분야</label>
+            <input type="text" name="interest" value="{{ user.interest }}" maxlength="20" class="form-control" placeholder="관심분야" required="" id="id_interest">
+        </div>
+        <fieldset class="mb-4">
+            <label class="form-label" for="id_interest">관심분야</label>
+            <div class="interest">
+                <input class="radioInp" type="radio" id="총류" name="interest" value="총류"><label for="총류">총류</label>
+                <input class="radioInp" type="radio" id="철학" name="interest" value="철학"><label for="철학">철학</label>
+                <input class="radioInp" type="radio" id="종교" name="interest" value="종교"><label for="종교">종교</label>
+                <input class="radioInp" type="radio" id="사회과학" name="interest" value="사회과학"><label for="사회과학">사회과학</label>
+                <input class="radioInp" type="radio" id="자연과학" name="interest" value="자연과학"><label for="자연과학">자연과학</label>
+                <input class="radioInp" type="radio" id="기술과학" name="interest" value="기술과학"><label for="기술과학">기술과학</label>
+                <input class="radioInp" type="radio" id="예술" name="interest" value="예술"><label for="예술">예술</label>
+                <input class="radioInp" type="radio" id="언어" name="interest" value="언어"><label for="언어">언어</label>
+                <input class="radioInp" type="radio" id="문학" name="interest" value="문학"><label for="문학">문학</label>
+                <input class="radioInp" type="radio" id="역사" name="interest" value="역사"><label for="역사">역사</label>
+            </div>
+        </fieldset>
+        <!-- password change -->
+        <div class="mb-4">
+            <div class="form-control-static" disabled="" id="id_password">
+                <strong>비밀번호가 설정되지 않습니다.</strong>
+            </div>
+            <div class="form-text">원본 비밀번호는 저장되지 않으므로, 해당 사용자의 비밀번호를 확인할 수 없습니다. 다만 이 <a href="../password/">폼</a>을 사용하여 비밀번호를 변경할 수 있습니다.</div>
+        </div>
+        <!-- sumbit -->
+        <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
+    </form>
+</div>
+
+<script>
+    function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if(input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+                const previewImage = document.getElementById("profile-image")
+                previewImage.src = e.target.result
+            }
+            // reader가 이미지 읽도록 하기
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+    // input file에 change 이벤트 부여
+    const inputImage = document.getElementById("id_profile_image")
+    inputImage.addEventListener("change", e => {
+        readImage(e.target)
+    })
+
+    // user interest 관심분야 값 불러오기
+    var interest = document.querySelector("#id_interest").value
+    console.log(interest)
+    
+    // change form의 interest radio 버튼 그룹에서
+    var radioGroup = document.getElementsByName("interest")
+    // 반복문 돌려서 관심분야와 같은 값의 버튼 체크
+    for (var i = 0; i < radioGroup.length; i++) {
+        if (radioGroup[i].value === interest) {
+            console.log(radioGroup[i])
+            radioGroup[i].checked = true
+        }
+    }
+</script>
 
 {% endblock content %}

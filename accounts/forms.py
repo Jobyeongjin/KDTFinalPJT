@@ -18,14 +18,15 @@ class CustonChangeUserForm(UserChangeForm):
             "nickname",
             "email",
             "age",
-            "username",
             "profile_image",
             "status_message",
+            "interest",
         ]
         labels = {
             "nickname": "닉네임",
-            "username": "이름",
             "email": "이메일",
+            "age": "나이",
             "profile_image": "프로필 사진",
             "status_message": "상태 메세지",
+            "interest": "관심분야",
         }

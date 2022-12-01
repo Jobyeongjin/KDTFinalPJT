@@ -63,6 +63,7 @@ def logout(request):
 
 # 회원 정보 수정
 def update(request):
+    user = get_user_model().objects.get(pk=request.user.pk)
     if request.method == "POST":
         form = CustonChangeUserForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
@@ -72,7 +73,7 @@ def update(request):
     else:
         form = CustonChangeUserForm(instance=request.user)
 
-    context = {"form": form}
+    context = {"form": form, "user": user}
 
     return render(request, "accounts/update.html", context)
 
