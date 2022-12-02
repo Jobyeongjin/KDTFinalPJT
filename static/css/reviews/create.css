@@ -1,0 +1,162 @@
+/* review-modal */
+#review-guide .modal-dialog,
+#review-guide .modal-content {
+  width: 700px;
+}
+
+#review-guide .modal-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateX(-20%);
+}
+
+.record-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 670px;
+  padding: 100px 20px 60px 20px;
+}
+
+.record-wrap span {
+  font-size: 140px;
+  color: var(--gray-color);
+}
+
+.record-wrap h5 {
+  margin-top: 35px;
+  color: var(--gray-color);
+}
+
+.record-wording,
+.record-photo {
+  border: 4px solid var(--gray-dark-color);
+  border-radius: 10px;
+  position: relative;
+  padding: 0 20px 20px 20px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-color);
+}
+
+.record-wording:hover,
+.record-photo:hover {
+  border: 4px solid var(--main-color);
+  color: var(--main-color);
+}
+
+.record-wording h5,
+.record-photo h5 {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gray-dark-color);
+}
+
+.record-text {
+  text-align: center;
+  color: var(--gray-dark-color);
+  font-size: 24px;
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+/* review-create-media */
+@media screen and (max-width: 992px) {
+  #review-guide .modal-dialog,
+  #review-guide .modal-content {
+    width: 540px;
+  }
+
+  #review-guide .modal-dialog {
+    transform: translateX(0);
+  }
+
+  .record-wrap {
+    width: 500px;
+  }
+
+  .record-wrap span {
+    font-size: 80px;
+  }
+
+  .record-wording,
+  .record-photo {
+    width: 220px;
+    height: 220px;
+  }
+
+  .record-wrap h5 {
+    margin-top: 35px;
+    font-size: 21px;
+    position: absolute;
+    bottom: 8px;
+  }
+
+  .record-text {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #review-guide .modal-dialog,
+  #review-guide .modal-content {
+    width: 380px;
+  }
+
+  #review-guide .modal-dialog {
+    transform: translateX(0);
+  }
+
+  .record-wrap {
+    width: 340px;
+  }
+
+  .record-wrap span {
+    font-size: 50px;
+  }
+
+  .record-wording,
+  .record-photo {
+    width: 140px;
+    height: 140px;
+    border: 2px solid var(--gray-dark-color);
+  }
+
+  .record-wording:hover,
+  .record-photo:hover {
+    border: 2px solid var(--main-color);
+  }
+
+  .record-wrap h5 {
+    font-size: 14px;
+  }
+
+  .record-text {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #review-guide .modal-dialog {
+    transform: translateX(13%);
+  }
+}
