@@ -3,7 +3,8 @@ from django.contrib.auth import get_user_model
 from .forms import CustomCreationUserForm, CustonChangeUserForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout, authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from datetime import datetime
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -53,7 +54,7 @@ def login(request):
     return render(request, "accounts/login.html", context)
 
 
-# 회원가입 완료
+# 로그인 도움말
 def login_help(request):
     return render(request, "accounts/login_help.html")
 
@@ -82,7 +83,28 @@ def update(request):
     return render(request, "accounts/update.html", context)
 
 
+# 회원 비밀번호 변경
+@login_required
+def password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)  # 로그인 유지
+            return redirect("accounts:login")
+
+    else:
+        form = PasswordChangeForm(request.user)
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, "accounts/password.html", context)
+
+
 # 회원 탈퇴
+@login_required
 def delete(request):
     request.user.delete()
     auth_logout(request)
@@ -114,6 +136,7 @@ def detail(request, user_pk):
 
     return render(request, "accounts/detail.html", context)
 
+
 # 팔로우
 @login_required
 def follow(request, user_pk):
@@ -126,16 +149,23 @@ def follow(request, user_pk):
             user.followers.add(request.user)
             is_followed = True
         context = {
-            'is_followed' : is_followed,
-            'followers_count' : user.followers.count(),
-            'followings_count' : user.followings.count(),
-            
+            "is_followed": is_followed,
+            "followers_count": user.followers.count(),
+            "followings_count": user.followings.count(),
         }
         return JsonResponse(context)
 
 
-# 모임 목록 템플릿입니다 
+# 회원 정보 테스트용
+def detail_test(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
 
+    context = {"user": user}
+
+    return render(request, "accounts/detail_test.html", context)
+
+
+# 모임 목록 템플릿입니다 
 def jgroupli(request):
     return render(request, "accounts/jgroupli.html")
 

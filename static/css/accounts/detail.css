@@ -1,0 +1,132 @@
+.mypage {
+  min-height: 750px;
+  margin-top: 100px;
+}
+
+.myinfo {
+  padding: 100px 0;
+}
+
+.myinfo-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-img {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-left: 10px;
+}
+
+.dropdown-icon {
+  font-size: 25px;
+  color: var(--dark-color);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  padding: 10px 0;
+}
+
+.user-name {
+  word-break: keep-all;
+}
+
+.status-message {
+  max-width: 500px;
+  opacity: .8;
+  color: var(--dark-color);
+}
+
+/* tab 메뉴  */
+.tab-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tab-area input {
+  display: none;
+}
+
+.tab-area label:hover {
+  cursor: pointer;
+}
+
+.tab-area input:checked+label {
+  border: none;
+  border-radius: 5px 5px 0 0;
+  margin: 0;
+  padding: 10px;
+}
+
+.tab-area input:not(:checked)+label {
+  border: none;
+  border-radius: 5px 5px 0 0;
+  margin: 0;
+  padding: 10px;
+}
+
+.tab-content {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: none;
+  border-top: 2px solid var(--main-color);
+  padding: 20px 10px;
+}
+
+.tab-create-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px 10px;
+}
+
+#tab1:checked~#content1,
+#tab2:checked~#content2,
+#tab3:checked~#content3,
+#tab4:checked~#content4 {
+  display: flex;
+}
+
+/* tab 내용 */
+.tab-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-review-card {
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: antiquewhite;
+}
+
+.tab-book-img {
+  border-radius: 0 10px 10px 0;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, .2);
+}

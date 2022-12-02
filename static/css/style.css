@@ -12,6 +12,7 @@
 @import './accounts/signup.css';
 @import './accounts/update.css';
 @import './accounts/delete.css';
+@import './accounts/detail.css';
 
 
 /* Root */
