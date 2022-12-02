@@ -86,3 +86,13 @@ def comment_create(request, pk):
         comment.user = request.user
         comment.save()
         return redirect("reviews:detail", pk)
+
+@login_required
+def comment_delete(request, review_pk, comment_pk):
+    book_review = Book_Review.objects.get(pk=review_pk)
+    comment = Book_Review_Comment.objects.get(pk=comment_pk)
+    if request.user == comment.user:
+        comment.delete()
+        return redirect("reviews:detail", book_review.pk)
+    else:
+        return HttpResponseForbidden()
