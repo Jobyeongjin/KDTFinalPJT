@@ -17,4 +17,6 @@ urlpatterns = [
     path("deletecheck/", views.delete_check, name="delete_check"),
     path("<int:user_pk>/detail/", views.detail, name="detail"),
     path("<int:user_pk>/follow/", views.follow, name="follow"),
+    path("jgroupli/", views.jgroupli, name="jgroupli"),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

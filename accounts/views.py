@@ -127,3 +127,10 @@ def follow(request, user_pk):
             
         }
         return JsonResponse(context)
+
+
+# 모임 목록 템플릿입니다 
+
+def jgroupli(request):
+    return render(request, "accounts/jgroupli.html")
+
