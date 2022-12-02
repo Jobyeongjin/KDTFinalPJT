@@ -7,4 +7,6 @@
   <p>{{group.number}}</p>
   <p>{{group.end_date}}</p>
   <p><img src="{{group.image.url}}" alt=""></p>
+
+  <a href="{% url "groups:update" group.pk %}">수정</a>
 {% endblock content %}
