@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <p>{{group.place}}</p>
+  <p>{{group.meeting_date}}</p>
+  <p>{{group.number}}</p>
+  <p>{{group.end_date}}</p>
+  <p><img src="{{group.image.url}}" alt=""></p>
+{% endblock content %}
