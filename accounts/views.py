@@ -53,7 +53,7 @@ def login(request):
     return render(request, "accounts/login.html", context)
 
 
-# 회원가입 완료
+# 로그인 도움말
 def login_help(request):
     return render(request, "accounts/login_help.html")
 
@@ -109,6 +109,7 @@ def detail(request, user_pk):
 
     return render(request, "accounts/detail.html", context)
 
+
 # 팔로우
 @login_required
 def follow(request, user_pk):
@@ -121,9 +122,8 @@ def follow(request, user_pk):
             user.followers.add(request.user)
             is_followed = True
         context = {
-            'is_followed' : is_followed,
-            'followers_count' : user.followers.count(),
-            'followings_count' : user.followings.count(),
-            
+            "is_followed": is_followed,
+            "followers_count": user.followers.count(),
+            "followings_count": user.followings.count(),
         }
         return JsonResponse(context)
