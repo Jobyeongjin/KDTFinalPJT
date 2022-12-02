@@ -9,4 +9,5 @@
   <p><img src="{{group.image.url}}" alt=""></p>
 
   <a href="{% url "groups:update" group.pk %}">수정</a>
+  <a href="{% url "groups:delete" group.pk %}">삭제</a>
 {% endblock content %}

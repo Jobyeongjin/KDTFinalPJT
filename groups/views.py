@@ -55,3 +55,13 @@ def update(request, pk):
         return render(request, "groups/create.html", context)
     else:
         return HttpResponseForbidden()
+
+# 모임 삭제
+@login_required
+def delete(request, pk):
+    group = Group.objects.get(pk=pk)
+    if request.user == group.user:
+        group.delete()
+        return redirect("groups:index")
+    else:
+        return HttpResponseForbidden()
