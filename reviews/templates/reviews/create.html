@@ -30,12 +30,24 @@
         <div class="record-wrap">
           <!-- record-wording -->
           <div class="record-wording">
-            <i class="fa-regular fa-pen-to-square icon"></i>
+            <lord-icon
+              src="https://cdn.lordicon.com/nocovwne.json"
+              trigger="hover"
+              colors="primary:#6c757d,secondary:#6c757d"
+              stroke="30"
+              style="width:250px;height:250px">
+            </lord-icon>
             <h5 class="word">문장 기록</h5>
           </div>
           <!-- record-photo -->
           <div class="record-photo">
-            <i class="fa-regular fa-images"></i>
+            <lord-icon
+              src="https://cdn.lordicon.com/vixtkkbk.json"
+              trigger="hover"
+              colors="primary:#6c757d,secondary:#6c757d"
+              stroke="30"
+              style="width:250px;height:250px">
+            </lord-icon>
             <h5>사진 기록</h5>
           </div>
         </div>
@@ -51,27 +63,27 @@
   <script>
   // reivew-create-modal
   const wording = document.querySelector(".record-wording");
-  const wordingIcon = wording.querySelector('i');
+  const wordingIcon = wording.querySelector('lord-icon');
   const wordingHtag = wording.querySelector('h5');
   const photo = document.querySelector('.record-photo');
-  const photoIcon = photo.querySelector('i');
+  const photoIcon = photo.querySelector('lord-icon');
   const photoHtag = photo.querySelector('h5');
 
   wording.addEventListener('mouseenter', () => {
-      wordingIcon.style.color = '#92B4EC';
+      wordingIcon.setAttribute('colors', 'primary:#92B4EC,secondary:#92B4EC');
       wordingHtag.style.color = '#92B4EC';
   });
   wording.addEventListener('mouseleave', () => {
-      wordingIcon.style.color = '#adb5bd';
-      wordingHtag.style.color = '#adb5bd';
+      wordingIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
+      wordingHtag.style.color = '#6c757d';
   });
   photo.addEventListener('mouseenter', () => {
-      photoIcon.style.color = '#92B4EC';
+      photoIcon.setAttribute('colors', 'primary:#92B4EC,secondary:#92B4EC');
       photoHtag.style.color = '#92B4EC';
   });
   photo.addEventListener('mouseleave', () => {
-      photoIcon.style.color = '#adb5bd';
-      photoHtag.style.color = '#adb5bd';
+      photoIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
+      photoHtag.style.color = '#6c757d';
   });
   </script>
 {% endblock js %}

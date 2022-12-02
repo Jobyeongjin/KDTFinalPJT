@@ -18,21 +18,23 @@
 .review-list .container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 0 30px;
   justify-items: center;
 }
 
 .review__item {
-  width: 250px;
+  width: 350px;
   margin-bottom: 18px;
 }
 
 .review__item__content {
-  width: 250px;
-  height: 250px;
+  width: 350px;
+  height: 350px;
   border-radius: 20px;
-  padding: 12px;
+  padding: 18px;
+  font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
   background-color: antiquewhite;
 }
 
