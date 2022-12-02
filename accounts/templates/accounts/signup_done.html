@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+<div class="container signup">
+  <!-- signup form -->
+  <div class="signup-done p-5" action="" method="POST">
+    <h4 class="text-center mb-4">책:오에 오신 것을 환영합니다!</h4>
+    <!-- welcome icon -->
+    <div class="w-100 d-flex justify-content-center my-3">
+      <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+      <lord-icon
+          src="https://cdn.lordicon.com/lupuorrc.json"
+          trigger="loop"
+          delay="2000"
+          colors="primary:#121331,secondary:#92b4ec"
+          stroke="60"
+          style="width:250px;height:250px">
+      </lord-icon>
+    </div>
+    <!-- sumbit -->
+    <a class="btn btn--main--reverse w-100" href="{% url 'books:onboarding' %}">책:오 구경하러 가기<a>
+  </div>
+</div>
+
+{% endblock content %}

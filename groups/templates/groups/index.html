@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>그룹 인덱스</h1>
+  {% for group in groups %}
+    <a href="{% url 'groups:detail' group.pk %}">
+      <p>{{group.place}}</p>
+      <p>{{group.meeting_date}}</p>
+      <p>{{group.number}}</p>
+      <p>{{group.end_date}}</p>
+      <p><img src="{{group.image.url}}" alt=""></p>
+    </a>
+
+  {% endfor %}
+{% endblock content %}

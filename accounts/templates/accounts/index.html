@@ -6,20 +6,17 @@
   <p>{{ request.user }}님</p>
   <div>회원정보
     <div>
-    <!-- 전체 유저 정보 -->
-  {% for user in users  %}
-  <a href="{% url 'accounts:detail' user.pk %}">{{ user }}</a> 
-  {% endfor %}
-    <!-- 로그아웃 -->
-  <form action="{% url 'accounts:logout' %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="logout">
-  </form>
-    <!-- 탈퇴 -->
-  <form action="{% url 'accounts:delete' %}">
-    {% csrf_token %}
-    <input type="submit" value="delete">
-  </form>
+      <!-- 전체 유저 정보 -->
+      {% for user in users  %}
+      <a href="{% url 'accounts:detail' user.pk %}">{{ user }}</a> 
+      {% endfor %}
+      <!-- 로그아웃 -->
+      <form action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="logout">
+      </form>
+      <!-- 회원탈퇴 -->
+      <a href="{% url 'accounts:delete_check' %}">탈퇴하기</a> 
     </div>
   </div>
 
