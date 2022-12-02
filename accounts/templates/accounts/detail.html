@@ -22,7 +22,7 @@
     </div>
     {% if request.user != user %}
     <div>
-        <form id="follow-form" data-user-id="{{ user.pk }}" method="POST">
+        <form id="follow-form" data-user-id="{{ user.pk }}">
             {% csrf_token %}
             {% if request.user in user.followers.all %}
             <input type="submit" value="언팔로우">
@@ -33,6 +33,12 @@
         {% endif %}
     {% endif %}
 </div>
+리뷰들
+{% for review in reviews %}
+{{ review.content }}
+<img src="{{ review.image.url }}" alt="">
+
+{% endfor %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     const form = document.querySelector('#follow-form')

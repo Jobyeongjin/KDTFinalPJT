@@ -65,6 +65,7 @@ def logout(request):
 
 
 # 회원 정보 수정
+@login_required
 def update(request):
     user = get_user_model().objects.get(pk=request.user.pk)
     if request.method == "POST":
@@ -104,6 +105,10 @@ def delete_check(request):
 # 회원 정보
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
+    
+    context = {
+        'user': user,
+    }
 
     context = {"user": user}
 
