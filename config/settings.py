@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "accounts",
     "books",
     "reviews",
+    "groups",
     "backend_test",
     "django_bootstrap5",
     "django.contrib.admin",

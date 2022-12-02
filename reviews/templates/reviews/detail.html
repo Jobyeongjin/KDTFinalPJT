@@ -17,6 +17,18 @@
   </form>
 
   {% for comment in comments %}
-    <p>{{comment.content}}</p>
-  {% endfor %}
+    <p>{{comment.user}}
+      |
+      {{comment.content}}</p>
+    <div>
+      <!-- 댓글 삭제 -->
+      {% if request.user.is_authenticated %}
+        {% if request.user == comment.user %}
+          <a href="{% url "reviews:comment_delete" book_review.pk comment.pk %}">삭제</a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+{% endfor %}
 {% endblock content %}

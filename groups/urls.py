@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = "reviews"
+app_name = "groups"
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -9,6 +9,5 @@ urlpatterns = [
     path("<int:pk>/detail/", views.detail, name="detail"),
     path("<int:pk>/review_update", views.update, name="update"),
     path("<int:pk>/review_delete", views.delete, name="delete"),
-    path("<int:pk>/comment/create/", views.comment_create, name="comment_create"),
-    path("<int:review_pk>/<int:comment_pk>/comment/delete/", views.comment_delete, name="comment_delete"),
+
 ]
