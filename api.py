@@ -16,7 +16,8 @@ from books.models import Book
 # ============베이스 코드============
 # 인증키 1: c30a173104dbac8b7924d537a3ec76270dda1187394b8cd8a8f2ae3b1bdd509a
 # 인증키 2: 4b79eb502a251ec0b573ee817ed0c953145c242f3f57da8cdb61056c69371b64
-api_key = "4b79eb502a251ec0b573ee817ed0c953145c242f3f57da8cdb61056c69371b64"
+# 인증키 3: f6eef0c1020ec2a9c93bc051911362bff8895ebe495b7bd057252a261f232328
+api_key = "f6eef0c1020ec2a9c93bc051911362bff8895ebe495b7bd057252a261f232328"
 isbn = "&isbn13=" + "9788983921987"
 format = "&format=" + "xml"
 
@@ -55,7 +56,7 @@ pageSize = "&pageSize=" + "1"
 
 # ============인기도서 코드============
 like_pageNo = "&pageNo=" + "1"
-like_pageSize = "&pageSize=" + "1"
+like_pageSize = "&pageSize=" + "500"
 
 
 def book_like():
@@ -104,24 +105,70 @@ def book_info():
         _bookname = soup.find("bookname").get_text()
         _authors = soup.find("authors").get_text()
         _publisher = soup.find("publisher").get_text()
-        year = soup.find("publication_year").get_text()
+        _publication_year = soup.find("publication_year").get_text()
+        _class_nm = soup.find("class_nm").get_text()
         _bookImageURL = soup.find("bookImageURL").get_text()
         _description = soup.find("description").get_text()
 
-        _authors = _authors.replace(";", "")
+        # 불필요한 문자 공백으로 치환
+        _authors = _authors.replace(";", " | ")
+        _authors = _authors.replace(" ;", " | ")
         _description = _description.replace("&lt;", "")
         _description = _description.replace("&gt;", "")
 
+        # 북커버가 있고 알라딘(화질 좋은) 이미지일 경우에만 패스
+        thumb = "bookthumb"
         if _bookImageURL:
-            pass
+            if thumb in _bookImageURL:
+                continue
         else:
             continue
 
+        # 출판년도를 최신 것으로만 패스
+        # _space = ""
+        # if _publication_year is not _space:
+        #     if int(_publication_year) >= 2016:
+        #         pass
+        #     else:
+        #         continue
+        # else:
+        #     continue
+
+        """
+        import cv2
+        import numpy as np
+
+        # 이미지 해상도 높이기
+        # _bookImageURL = f'"{_bookImageURL}"'
+        sr = cv2.dnn_superres.DnnSuperResImpl_create()
+        print(_bookImageURL)
+        image = cv2.imread(_bookImageURL)
+        print(image)
+        # path = "models/EDSR_3.pb"
+        # sr.readModel(path)
+        # sr.setModel("edsr", 3)
+
+        # # 커널 생성(대상이 있는 픽셀을 강조)
+        # kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+        # # 커널 적용
+        # image_sharp = cv2.filter2D(image, -1, kernel)
+        _bookcover = sr.upsample(image)
+        """
+
+        """
+        from PIL import Image, ImageEnhance
+
+        enhancer = ImageEnhance.Sharpness(_bookImageURL)
+        _bookcover = enhancer.enhance(2.0).save()
+        """
+
+        # 모델에 입력
         book = Book(
             bookname=_bookname,
             authors=_authors,
             publisher=_publisher,
-            publication_year=year,
+            publication_year=_publication_year,
+            class_nm=_class_nm,
             bookcover=_bookImageURL,
             description=_description,
         )
