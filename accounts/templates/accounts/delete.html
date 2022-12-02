@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+<div class="container delete">
+  <!-- delete box -->
+  <div class="delete-box p-5">
+    <h4 class="text-center mb-4">회원탈퇴</h4>
+    <!-- user record -->
+    <div class="my-5 mx-auto w-50">
+      <p class="gray-text text-center fw-bold">{{ user.username }}님의 활동</p>
+      <dl class="row">
+        <dt class="col-sm-8 gray-text">책:오와 함께한 시간</dt>
+        <dd class="col-sm-4 text-center fw-bold">{{ diff }}일</dd>
+        <dt class="col-sm-8 gray-text">기록한 리뷰</dt>
+        <dd class="col-sm-4 text-center fw-bold">0개</dd>
+        <dt class="col-sm-8 gray-text">참여한 모임</dt>
+        <dd class="col-sm-4 text-center fw-bold">0개</dd>
+      </dl>
+    </div>
+    <p class="text-center my-5">탈퇴하면 여러분의 책:크 기록이 없어져요..<i class="fa-regular fa-face-sad-tear"></i></p>
+    <!-- delete form -->
+    <form action="{% url 'accounts:delete' %}">
+      {% csrf_token %}
+      <!-- checkbox -->
+      <div class="mx-2 mb-3">
+        <input type="checkbox" name="agree" onClick="agreeCheck(this.form)">
+        <label class="gray-text" for="agree">안내사항을 확인하고 탈퇴에 동의합니다.</label>
+      </div>
+      <!-- delete btn -->
+      <input class="btn btn--main--reverse w-100 mb-3" disabled="disabled" type="submit" name="checkButton" value="탈퇴하기">
+    </form>
+  </div>
+</div>
+
+<script>
+  // 삭제 폼 동의 체크여부 확인
+  function agreeCheck(frm) {
+     if (frm.checkButton.disabled==true)
+      frm.checkButton.disabled=false
+     else
+      frm.checkButton.disabled=true
+  }
+</script>
+
+{% endblock content %}

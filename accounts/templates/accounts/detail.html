@@ -4,10 +4,12 @@
 {% block content %}
 <a href="{% url 'accounts:index' %}">홈으로</a>
 <a href="{% url 'accounts:update' %}">정보수정 </a>
+
 <p>유저 아이디:{{ user.username }}</p>
 <p>닉네임:{{ user.nickname }}</p>
 <p>이메일:{{ user.email }}</p>
 <p>나이:{{ user.age }}</p>
+<p>관심분야 : {{ user.interest }}</p>
 {% if user.profile_image %}
 <img src="{{ user.profile_image.url }}" alt="">
 {% endif %}
@@ -71,4 +73,5 @@
         })
     })
 </script>
+
 {% endblock content %}

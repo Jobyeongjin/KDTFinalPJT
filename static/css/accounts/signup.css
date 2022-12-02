@@ -1,0 +1,44 @@
+/* signup */
+.signup {
+  min-height: 750px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-form {
+  width: 550px;
+  height: 600px;
+}
+
+/* interset input */
+.interest {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.radioInp {
+  opacity: 0;
+}
+
+input[type=radio]:not(:checked)+label {
+  padding: 3px 10px;
+  margin: 3px;
+  border: 1px solid #ced4da;
+  border-radius: 15px;
+}
+
+input[type=radio]:checked+label {
+  background: var(--main-color);
+  color: var(--white-color);
+  margin: 3px;
+  padding: 3px 10px;
+  border-radius: 15px;
+}
+
+/* signup done */
+.signup-done {
+  width: 550px;
+}
