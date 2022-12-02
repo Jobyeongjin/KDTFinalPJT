@@ -91,7 +91,7 @@ def password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)  # 로그인 유지
-            return redirect("accounts:mypage", request.user.pk)
+            return redirect("accounts:login")
 
     else:
         form = PasswordChangeForm(request.user)
