@@ -4,6 +4,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
+
 def onboarding(request):
     return render(request, "books/onboarding.html")
 
@@ -26,12 +27,13 @@ def index(request):
 
 
 # 책 디테일 페이지(댓글추가전)
-def book_detail(request, pk):
+def detail(request, pk):
     book = Book.objects.get(pk=pk)
     context = {
         "book": book,
     }
     return render(request, "books/book_detail.html", context)
+
 
 def like(request, book_pk):
     if request.user.is_authenticated:
@@ -44,10 +46,8 @@ def like(request, book_pk):
             book.like_user.add(request.user)
             is_liked = True
     context = {
-            'is_liked' : is_liked,
-            'like_count' : book.like_user.count(),
-        }
+        "is_liked": is_liked,
+        "like_count": book.like_user.count(),
+    }
 
     return JsonResponse(context)
-
-

@@ -127,9 +127,9 @@ def delete_check(request):
 # 회원 정보
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
-    
+
     context = {
-        'user': user,
+        "user": user,
     }
 
     context = {"user": user}
@@ -163,9 +163,3 @@ def detail_test(request, user_pk):
     context = {"user": user}
 
     return render(request, "accounts/detail_test.html", context)
-
-
-# 모임 목록 템플릿입니다 
-def jgroupli(request):
-    return render(request, "accounts/jgroupli.html")
-
