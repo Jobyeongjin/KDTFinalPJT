@@ -1,15 +1,137 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>그룹 인덱스</h1>
-  {% for group in groups %}
-    <a href="{% url 'groups:detail' group.pk %}">
-      <p>{{group.place}}</p>
-      <p>{{group.meeting_date}}</p>
-      <p>{{group.number}}</p>
-      <p>{{group.end_date}}</p>
-      <p><img src="{{group.image.url}}" alt=""></p>
-    </a>
+{% include 'nav.html' %}
 
-  {% endfor %}
+<!--모임 목록 템플릿입니다-->
+
+<div class="container group_index">
+    <div class="group_index_introduction">
+        <h3> 모임 목록 </h3>
+        <p> 안내 문구 </p>
+    </div>
+
+    <!--모임중/ 모집 마감 선택 -->
+    <div class="group_index_tap">
+        <div class="group_select">
+            <button class="group_select_btn btn btn--main"> 전체 </button>
+            <button class="group_select_btn btn btn--main"> 모집 중</button>
+            <button class="group_select_btn btn btn--main"> 모집 마감</button>
+        </div>
+        <div class="group_create">
+            <button class="group_create_btn btn btn--main--reverse"> 모임 생성하기</button>
+        </div>
+    </div>
+
+    <section class="group_list">
+        <div class="mm__list">
+            <div class="mm__list__item">
+              <div class="card" style="width: 18rem;">
+                <div class="card-image">
+                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                </div>
+              </div>
+            </div>
+            <div class="mm__list__item">
+              <div class="card" style="width: 18rem;">
+                <div class="card-image">
+                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                </div>
+              </div>
+            </div>
+            <div class="mm__list__item">
+              <div class="card" style="width: 18rem;">
+                <div class="card-image">
+                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                </div>
+              </div>
+            </div>
+    </section>
+
+    <section class="group_list_done">
+        <h5 class="text-center"> 모집 마감 배지 예시 </h5>
+        <div class="mm__list">
+            <div class="mm__list__item">
+              <div class="card" style="width: 18rem;">
+                <div class="card-image">
+                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                </div>
+              </div>
+            </div>
+            <div class="mm__list__item">
+              <div class="card" style="width: 18rem;">
+                <div class="card-image">
+                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                </div>
+              </div>
+            </div>
+            <div class="mm__list__item">
+              <div class="card" style="width: 18rem;">
+                <div class="card-image">
+                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                </div>
+              </div>
+            </div>
+            <div class="done-badge">
+                <div> 모집 마감</div>
+            </div>
+    </section>
+
+<!--<div class="group_index_tap">
+            <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">전체</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">모집 중</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">모집 마감</a>
+            </li>
+        </ul>
+        <p> 모임 생성하기</p>
+    </div>-->
+
+
+    <!--<div class="group_index_tap">
+    <form class="group_index_tap_form" id="all-nav-button">
+            <input type="radio" id="0" name="group_radio" checked="checked">
+            <label for="0">전체</label>
+            <input type="radio" id="1" name="group_radio">
+            <label for="1">모집중</label>
+            <input type="radio" id="2" name="group_radio">
+            <label for="2">모집마감</label>
+        </form>
+    <div class="group_index_tap">
+
+    </div> -->
+
+
+</div>
+
+
 {% endblock content %}
