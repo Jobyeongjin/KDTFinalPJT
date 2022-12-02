@@ -8,6 +8,9 @@
 @import './accounts/login.css';
 @import './reviews/index.css';
 @import './reviews/create.css';
+@import './accounts/signup.css';
+@import './accounts/update.css';
+@import './accounts/delete.css';
 
 /* Root */
 :root {
@@ -103,7 +106,7 @@
   align-items: center;
 }
 
-.nav-icon-wrap > i {
+.nav-icon-wrap>i {
   color: var(--main-color);
   margin-right: 20px;
 }
@@ -195,7 +198,7 @@
   .nav-wrap-inner {
     flex-direction: column;
   }
-  
+
   .nav-icon-wrap {
     position: absolute;
     top: 20px;
@@ -214,14 +217,14 @@
   .nav__user .nav__user__btn:first-child {
     margin: 0;
   }
-  
+
   .nav-toogle-btn {
     display: block;
     position: absolute;
     top: 20px;
     left: 32px;
   }
-  
+
   .nav__list.active,
   .nav__user.active {
     display: flex;
