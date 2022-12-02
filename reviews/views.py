@@ -8,13 +8,13 @@ from django.contrib.auth.decorators import login_required
 
 
 # 책 리뷰 페이지
-def review(request):
+def index(request):
     book_reviews = Book_Review.objects.all()
 
     context = {
         "book_reviews": book_reviews,
     }
-    return render(request, "reviews/review.html", context)
+    return render(request, "reviews/index.html", context)
 
 
 # 책 리뷰 작성
@@ -40,9 +40,9 @@ def detail(request, pk):
     comments = book_review.book_review_comment_set.all()
     comment_form = Book_Review_CommentForm()
     context = {
-        "book_review":book_review,
-        "comments":comments,
-        "comment_form":comment_form,
+        "book_review": book_review,
+        "comments": comments,
+        "comment_form": comment_form,
     }
     return render(request, "reviews/detail.html", context)
 
@@ -53,7 +53,9 @@ def update(request, pk):
     book_review = Book_Review.objects.get(pk=pk)
     if request.user == book_review.user:
         if request.method == "POST":
-            book_review_form = Book_ReviewForm(request.POST, request.FILES, instance=book_review)
+            book_review_form = Book_ReviewForm(
+                request.POST, request.FILES, instance=book_review
+            )
             if book_review_form.is_valid():
                 book_review_form.save()
                 return redirect("reviews:detail", pk)
@@ -75,6 +77,7 @@ def delete(request, pk):
     else:
         return HttpResponseForbidden()
 
+
 # 댓글 추가
 @login_required
 def comment_create(request, pk):
@@ -86,7 +89,6 @@ def comment_create(request, pk):
         comment.user = request.user
         comment.save()
         return redirect("reviews:detail", pk)
-
 @login_required
 def comment_delete(request, review_pk, comment_pk):
     book_review = Book_Review.objects.get(pk=review_pk)
