@@ -14,3 +14,21 @@
   backdrop-filter: blur(10px);
   margin: 100px 0;
 }
+
+/* update password */
+.password {
+  min-height: 750px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-form {
+  width: 550px;
+  border: solid 1px var(--gray-light-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  margin: 100px 0;
+}
