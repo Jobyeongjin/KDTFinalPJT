@@ -8,4 +8,5 @@ urlpatterns = [
     path("onboarding/", views.onboarding, name="onboarding"),
     path("main/", views.main, name="main"),
     path("<int:pk>/book_detail/", views.book_detail, name="book_detail"),
+    path("<int:book_pk>/like/", views.like, name="like"),
 ]

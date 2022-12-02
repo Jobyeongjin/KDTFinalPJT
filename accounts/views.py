@@ -57,6 +57,7 @@ def logout(request):
     return redirect("accounts:index")
 
 # 회원 정보 수정
+@login_required
 def update(request):
     if request.method == "POST":
         form = CustonChangeUserForm(request.POST, request.FILES, instance=request.user)
@@ -82,9 +83,9 @@ def delete(request):
 # 회원 정보
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
-
+    
     context = {
-        'user': user
+        'user': user,
     }
 
     return render(request, "accounts/detail.html", context)
