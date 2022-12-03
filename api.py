@@ -55,7 +55,7 @@ pageSize = "&pageSize=" + "1"
 # library()
 
 # ============인기도서 코드============
-like_pageNo = "&pageNo=" + "1"
+like_pageNo = "&pageNo=" + "2"
 like_pageSize = "&pageSize=" + "500"
 
 
@@ -124,6 +124,7 @@ def book_info():
         else:
             continue
 
+        """
         # 출판년도를 최신 것으로만 패스
         # _space = ""
         # if _publication_year is not _space:
@@ -133,6 +134,7 @@ def book_info():
         #         continue
         # else:
         #     continue
+        """
 
         """
         import cv2
