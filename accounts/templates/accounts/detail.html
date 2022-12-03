@@ -10,10 +10,13 @@
 <p>이메일:{{ user.email }}</p>
 <p>나이:{{ user.age }}</p>
 <p>관심분야 : {{ user.interest }}</p>
+<p>관심책 : {% for book in book_likes %}
+    {{ bbok }}
+    {% endfor %}</p>
 {% if user.profile_image %}
 <img src="{{ user.profile_image.url }}" alt="">
 {% endif %}
-<p>상태메세지:{{ user.status_message }}</p>
+{% comment %} <p>상태메세지:{{ user.status_message }}</p> {% endcomment %}
 
 <div>
     <div>
@@ -41,6 +44,7 @@
 {% endfor %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    // 팔로우 비동기
     const form = document.querySelector('#follow-form')
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     
