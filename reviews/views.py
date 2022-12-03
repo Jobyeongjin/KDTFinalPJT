@@ -3,16 +3,17 @@ from .models import Book_Review, Book_Review_Comment
 from .forms import Book_ReviewForm, Book_Review_CommentForm
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from books.models import Book
 
 # Create your views here.
 
 
 # 책 리뷰 페이지
 def index(request):
-    book_reviews = Book_Review.objects.all()
+    reviews = Book_Review.objects.order_by("-pk")
 
     context = {
-        "book_reviews": book_reviews,
+        "reviews": reviews,
     }
     return render(request, "reviews/index.html", context)
 
@@ -20,14 +21,17 @@ def index(request):
 # 책 리뷰 작성
 @login_required
 def create(request):
+    # 임시 데이터
+    bookId = Book.objects.get(pk=1)
     if request.user.is_authenticated:
         if request.method == "POST":
             book_review_form = Book_ReviewForm(request.POST, request.FILES)
             if book_review_form.is_valid():
                 book_review = book_review_form.save(commit=False)
                 book_review.user = request.user
+                book_review.bookId = bookId
                 book_review.save()
-                return redirect("reviews:review")
+                return redirect("books:detail", bookId.pk)
         else:
             book_review_form = Book_ReviewForm()
         context = {"book_review_form": book_review_form}
@@ -73,7 +77,7 @@ def delete(request, pk):
     book_review = Book_Review.objects.get(pk=pk)
     if request.user == book_review.user:
         book_review.delete()
-        return redirect("reviews:review")
+        return redirect("reviews:index")
     else:
         return HttpResponseForbidden()
 
@@ -89,6 +93,8 @@ def comment_create(request, pk):
         comment.user = request.user
         comment.save()
         return redirect("reviews:detail", pk)
+
+
 @login_required
 def comment_delete(request, review_pk, comment_pk):
     book_review = Book_Review.objects.get(pk=review_pk)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 
 class Book(models.Model):
@@ -10,4 +11,4 @@ class Book(models.Model):
     class_nm = models.CharField(max_length=100)
     bookcover = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    like_user = models.ManyToManyField(get_user_model(), related_name="like_book")
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="book")
