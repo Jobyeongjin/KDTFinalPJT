@@ -48,17 +48,15 @@ def detail(request, pk):
 
 
 def like(request, book_pk):
-    if request.user.is_authenticated:
-        book = Book.objects.get(pk=book_pk)
-
-        if book.like_user.filter(pk=request.user.pk).exists():
-            book.like_user.remove(request.user)
-            is_liked = False
-        else:
-            book.like_user.add(request.user)
-            is_liked = True
+    book = get_object_or_404(Book, pk=book_pk)
+    if request.user in book.like_user.all(): 
+        book.like_user.remove(request.user)
+        is_liked = False
+    else:
+        book.like_user.add(request.user)
+        is_liked = True
     context = {
-        "is_liked": is_liked,
+        "isLiked": is_liked,
         "like_count": book.like_user.count(),
     }
 
