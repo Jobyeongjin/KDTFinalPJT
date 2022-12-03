@@ -4,6 +4,7 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Count
+from urllib import parse
 
 
 def onboarding(request):
@@ -38,8 +39,10 @@ def index(request):
 # 책 디테일 페이지(댓글추가전)
 def detail(request, pk):
     book = Book.objects.get(pk=pk)
+    book_url = parse.quote(book.bookname)
     context = {
         "book": book,
+        "book_url": book_url,
     }
     return render(request, "books/book_detail.html", context)
 
