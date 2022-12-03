@@ -132,8 +132,10 @@ section.main-swiper {
   height: 300px;
 }
 
-.mb__list__item p {
-  margin-top: 8px;
+.mb__list__item > p {
+  font-size: 14px; 
+  color: var(--dark-color); 
+  margin-top: 10px;
 }
 
 /* Main-review */

@@ -3,6 +3,7 @@ from .models import Book
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.db.models import Count
 
 
 def onboarding(request):
@@ -11,7 +12,15 @@ def onboarding(request):
 
 # 메인 페이지
 def main(request):
-    return render(request, "books/main.html")
+    books = Book.objects.all().annotate(hot=Count("like_user")).order_by("-hot")
+
+    return render(
+        request,
+        "books/main.html",
+        {
+            "books": books[:4],
+        },
+    )
 
 
 # 책 리스트 페이지

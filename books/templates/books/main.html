@@ -36,53 +36,27 @@
     <!-- Main-book-top -->
     <div class="mb__top">
       <h3 class="mb__title">인기 도서 목록</h3>
-      <a href="#">
+      <a href="{% url 'books:index' %}">
         <span class="me-1">더보기</span><i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
     <!-- Main-book-list -->
     <div class="mb__list">
-      <div class="mb__list__item">
-        <div class="mb__list__image">
-          <div class="image-cover">
-            <p class="m-0"><i class="fa-solid fa-pencil"></i> 카운트</p>
-            <p><i class="fa-solid fa-heart"></i> 카운트</p>
+      {% for book in books %}
+      <!-- Main-book-item -->
+      <a href="{% url 'books:detail' book.pk %}">
+        <div class="mb__list__item">
+          <div class="mb__list__image">
+            <div class="image-cover">
+              <p class="m-0"><i class="fa-solid fa-pencil"></i> {{ book.book_review_set.count }}</p>
+              <p><i class="fa-solid fa-heart"></i> {{ book.like_user.count }}</p>
+            </div>
+            <img src="{{ book.bookcover }}" alt="bookcover">
           </div>
-          <img src="https://i.pinimg.com/564x/93/f3/8e/93f38e0f6cc6802ac3fb4427def5e676.jpg" alt="">
+          <p>{{ book.bookname }} | {{ book.authors }}</p>
         </div>
-        <p>(책 제목/저자)</p>
-      </div>
-      <div class="mb__list__item">
-        <div class="mb__list__image">
-          <div class="image-cover">
-            <p class="m-0"><i class="fa-solid fa-pencil"></i> 카운트</p>
-            <p><i class="fa-solid fa-heart"></i> 카운트</p>
-          </div>
-          <img src="https://i.pinimg.com/564x/93/f3/8e/93f38e0f6cc6802ac3fb4427def5e676.jpg" alt="">
-        </div>
-        <p>(책 제목/저자)</p>
-      </div>
-      <div class="mb__list__item">
-        <div class="mb__list__image">
-          <div class="image-cover">
-            <p class="m-0"><i class="fa-solid fa-pencil"></i> 카운트</p>
-            <p><i class="fa-solid fa-heart"></i> 카운트</p>
-          </div>
-          <img src="https://i.pinimg.com/564x/93/f3/8e/93f38e0f6cc6802ac3fb4427def5e676.jpg" alt="">
-        </div>
-        <p>(책 제목/저자)</p>
-      </div>
-      <div class="mb__list__item">
-        <div class="mb__list__image">
-          <div class="image-cover">
-            <p class="m-0"><i class="fa-solid fa-pencil"></i> 카운트</p>
-            <p><i class="fa-solid fa-heart"></i> 카운트</p>
-          </div>
-          <img src="https://i.pinimg.com/564x/93/f3/8e/93f38e0f6cc6802ac3fb4427def5e676.jpg" alt="">
-        </div>
-        <p>(책 제목/저자)</p>
-      </div>
-      
+      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
