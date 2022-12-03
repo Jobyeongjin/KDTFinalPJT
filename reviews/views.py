@@ -31,7 +31,9 @@ def create(request):
                 book_review.user = request.user
                 book_review.bookId = bookId
                 book_review.save()
-                return redirect("books:detail", bookId.pk)
+                return redirect(
+                    "reviews:index",
+                )
         else:
             book_review_form = Book_ReviewForm()
         context = {"book_review_form": book_review_form}
@@ -40,11 +42,15 @@ def create(request):
 
 # 책 리뷰 디테일(댓글 추가 전)
 def detail(request, pk):
-    book_review = Book_Review.objects.get(pk=pk)
-    comments = book_review.book_review_comment_set.all()
+    review = Book_Review.objects.get(pk=pk)
+    bookId = review.bookId
+    like_count = review.like_user.count()
+    comments = review.book_review_comment_set.all()
     comment_form = Book_Review_CommentForm()
     context = {
-        "book_review": book_review,
+        "review": review,
+        "book": bookId,
+        "like_count": like_count,
         "comments": comments,
         "comment_form": comment_form,
     }

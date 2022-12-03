@@ -1,18 +1,23 @@
+/* global */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
-@import './books/index.css';
-@import './books/detail.css';
 @import './common.css';
-@import './books/onboarding.css';
-@import './books/main.css';
+/* accounts */
 @import './accounts/login.css';
 @import './accounts/jgroupli.css';
-@import './reviews/index.css';
-@import './reviews/create.css';
 @import './accounts/signup.css';
 @import './accounts/update.css';
 @import './accounts/delete.css';
 @import './accounts/detail.css';
+/* books */
+@import './books/index.css';
+@import './books/detail.css';
+@import './books/onboarding.css';
+@import './books/main.css';
+/* reviews */
+@import './reviews/index.css';
+@import './reviews/create.css';
+@import './reviews/detail.css';
 
 
 /* Root */
@@ -21,6 +26,7 @@
   --white-color: #fff;
   --main-color: #92B4EC;
   --yellow-color: #FFE69A;
+  --red-color: #D42B37;
   --gray-color: #adb5bd;
   --gray-light-color: #e6e5e5;
   --gray-dark-color: #6c757d;

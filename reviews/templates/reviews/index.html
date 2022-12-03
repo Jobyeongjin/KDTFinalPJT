@@ -16,44 +16,42 @@
   <div class="container">
 
     <!-- Review-item -->
-    {% if reviews.first %}
-      {% for review in reviews %}
-        <div class="review__item">
-          <!-- review-item-content -->
-          <a href="{% url 'reviews:detail' review.pk %}">
-            <div class="review__item__content">
-              {{ review.content }}
+    {% for review in reviews %}
+      <div class="review__item">
+        <!-- review-item-content -->
+        <a href="{% url 'reviews:detail' review.pk %}">
+          <div class="review__item__content">
+            {{ review.content }}
+          </div>
+        </a>
+        <!-- review-item-info -->
+        <div class="review__item__info">
+          <!-- review-item-proflie -->
+          <a href="{% url 'accounts:detail' review.user.pk %}">
+            <div class="review__item__proflie">
+              <div class="review__item__img">
+                <img src="{{ review.user.user_image }}" alt="review-write-image">
+              </div>
+              <div class="review__item__username">
+                {{ review.user.username }}
+              </div>
             </div>
           </a>
-          <!-- review-item-info -->
-          <div class="review__item__info">
-            <!-- review-item-proflie -->
-            <a href="{% url 'accounts:detail' review.user.pk %}">
-              <div class="review__item__proflie">
-                <div class="review__item__img">
-                  <img src="{{ review.user.user_image }}" alt="review-write-image">
-                </div>
-                <div class="review__item__username">
-                  {{ review.user.username }}
-                </div>
-              </div>
-            </a>
-            <!-- review-item-button -->
-            <div class="review__item__btn">
-              <i class="fa-regular fa-heart fa-lg"></i>
-              <i class="fa-solid fa-share-nodes fa-lg"></i>
-            </div>
+          <!-- review-item-button -->
+          <div class="review__item__btn">
+            <i class="fa-regular fa-heart fa-lg"></i>
+            <i class="fa-solid fa-share-nodes fa-lg"></i>
           </div>
         </div>
-      {% endfor %}
-    {% else %}
+      </div>
+    {% empty %}
       <div class="m-5">
         <div class="m-5 d-flex flex-column align-items-center">
           <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
           <a href="{% url 'reviews:create' %}" class="btn btn--main">리뷰쓰러가기</a>
         </div>
       </div>
-    {% endif %}
+    {% endfor %}
 
   </div>
 </section>

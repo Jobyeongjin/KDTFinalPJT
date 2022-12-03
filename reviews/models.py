@@ -14,7 +14,7 @@ class Book_Review(models.Model):
 
 
 class Book_Review_Comment(models.Model):
-    content = models.TextField()
+    content = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     book_review = models.ForeignKey(Book_Review, on_delete=models.CASCADE)
