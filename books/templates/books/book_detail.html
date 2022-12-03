@@ -125,8 +125,7 @@
     <!-- Book-reviews-top -->
     <div class="book-reviews-top">
       <h5>이 책의 다른 리뷰들</h5>
-      <!-- review-modal -->
-      <!-- Button trigger modal -->
+      <!-- button: review create guide -->
       <button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
         리뷰 작성
       </button>
@@ -141,16 +140,18 @@
               <!-- Record-wrap -->
               <div class="record-wrap">
                 <!-- record-wording -->
-                <div class="record-wording">
-                  <lord-icon
-                    src="https://cdn.lordicon.com/nocovwne.json"
-                    trigger="hover"
-                    colors="primary:#6c757d,secondary:#6c757d"
-                    stroke="30"
-                    style="width:250px;height:250px">
-                  </lord-icon>
-                  <h5 class="word">문장 기록</h5>
-                </div>
+                <a href="{% url 'reviews:create' %}">
+                  <div class="record-wording">
+                    <lord-icon
+                      src="https://cdn.lordicon.com/nocovwne.json"
+                      trigger="hover"
+                      colors="primary:#6c757d,secondary:#6c757d"
+                      stroke="30"
+                      style="width:250px;height:250px">
+                    </lord-icon>
+                    <h5 class="word">문장 기록</h5>
+                  </div>
+                </a>
                 <!-- record-photo -->
                 <div class="record-photo">
                   <lord-icon

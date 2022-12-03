@@ -16,173 +16,44 @@
   <div class="container">
 
     <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        겸허하게 만들 뿐만 아니라, 마음을 섬세하고 밝고 부드럽게 만드는데도 말이야. 우리들이 잔인해지거나 살벌해지거나 하는 것은 결코 그러한 때가 아니야. 우리들이 갑자기 잔인해지는 건, 가령 이렇게 화창한 봄날 오후에 잘 다듬어진 잔디밭 위에서, 나뭇가지 사이로 햇살이 스미듯 비치는 모습을 무심코 바라보고 있을 때와 같은, 그러한 순간이라고 생각하지 않니?
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
-          </div>
-        </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
-        </div>
-      </div>
-    </div>
-    <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        (리뷰내용)
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
+    {% if reviews.first %}
+      {% for review in reviews %}
+        <div class="review__item">
+          <!-- review-item-content -->
+          <a href="{% url 'reviews:detail' review.pk %}">
+            <div class="review__item__content">
+              {{ review.content }}
+            </div>
+          </a>
+          <!-- review-item-info -->
+          <div class="review__item__info">
+            <!-- review-item-proflie -->
+            <a href="{% url 'accounts:detail' review.user.pk %}">
+              <div class="review__item__proflie">
+                <div class="review__item__img">
+                  <img src="{{ review.user.user_image }}" alt="review-write-image">
+                </div>
+                <div class="review__item__username">
+                  {{ review.user.username }}
+                </div>
+              </div>
+            </a>
+            <!-- review-item-button -->
+            <div class="review__item__btn">
+              <i class="fa-regular fa-heart fa-lg"></i>
+              <i class="fa-solid fa-share-nodes fa-lg"></i>
+            </div>
           </div>
         </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
+      {% endfor %}
+    {% else %}
+      <div class="m-5">
+        <div class="m-5 d-flex flex-column align-items-center">
+          <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
+          <a href="{% url 'reviews:create' %}" class="btn btn--main">리뷰쓰러가기</a>
         </div>
       </div>
-    </div>
-    <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        (리뷰내용)
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
-          </div>
-        </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
-        </div>
-      </div>
-    </div>
-    <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        (리뷰내용)
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
-          </div>
-        </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
-        </div>
-      </div>
-    </div>
-    <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        (리뷰내용)
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
-          </div>
-        </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
-        </div>
-      </div>
-    </div>
-    <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        (리뷰내용)
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
-          </div>
-        </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
-        </div>
-      </div>
-    </div>
-    <!-- Review-item -->
-    <div class="review__item">
-      <!-- review-item-content -->
-      <div class="review__item__content">
-        (리뷰내용)
-      </div>
-      <!-- review-item-info -->
-      <div class="review__item__info">
-        <!-- review-item-proflie -->
-        <div class="review__item__proflie">
-          <div class="review__item__img">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-write-image">
-          </div>
-          <div class="review__item__username">
-            (작성자)
-          </div>
-        </div>
-        <!-- review-item-button -->
-        <div class="review__item__btn">
-          <i class="fa-regular fa-heart fa-lg"></i>
-          <i class="fa-solid fa-share-nodes fa-lg"></i>
-        </div>
-      </div>
-    </div>
+    {% endif %}
 
   </div>
 </section>
