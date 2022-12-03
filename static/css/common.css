@@ -11,6 +11,10 @@ body {
   font-weight: 400;
 }
 
+*:focus { 
+  outline: 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: var(--dark-color);
@@ -72,6 +76,16 @@ button {
 .btn.btn--white:hover {
   color: #333;
   background-color: #fff;
+}
+
+.btn.btn--dark {
+  color: #333;
+  border: none;
+}
+
+.btn.btn--dark:hover {
+  color: #333;
+  background: none;
 }
 
 .btn.btn--main {
