@@ -240,6 +240,14 @@
   font-size: 12px;
 }
 
+.comment-top .button span {
+  transition: all ease-in-out .4s;
+}
+
+.comment-top .button span:hover {
+  color: var(--red-color);
+}
+
 .comment-item-bottom p {
   margin: 10px 0;
 }

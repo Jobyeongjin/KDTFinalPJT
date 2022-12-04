@@ -47,7 +47,7 @@ def detail(request, pk):
     review = Book_Review.objects.get(pk=pk)
     bookId = review.bookId
     like_count = review.like_user.count()
-    comments = review.book_review_comment_set.all()
+    comments = Book_Review_Comment.objects.filter(book_review=review).order_by("-pk")
     review_like_user = review.like_user
     review_user_follwers = review.user.followers.all
     comment_form = Book_Review_CommentForm()
@@ -97,14 +97,39 @@ def delete(request, pk):
 # 댓글 추가
 @login_required
 def comment_create(request, pk):
+    print(request.POST)
     book_review = Book_Review.objects.get(pk=pk)
     comment_form = Book_Review_CommentForm(request.POST)
+
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.book_review = book_review
         comment.user = request.user
         comment.save()
-        return redirect("reviews:detail", pk)
+
+    user = request.user.pk
+    data = Book_Review_Comment.objects.filter(book_review_id=pk).order_by("-pk")
+    comment_data = []
+
+    for temp in data:
+        comment_data.append(
+            {
+                "user_pk": temp.user_id,
+                "userName": temp.user.username,
+                "content": temp.content,
+                "commentPk": temp.pk,
+                "commentDate": temp.created_at.strftime("%y.%m.%d"),
+            }
+        )
+
+    print("여기까지 실행")
+    return JsonResponse(
+        {
+            "comment_data": comment_data,
+            "review_pk": book_review.pk,
+            "user": user,
+        },
+    )
 
 
 @login_required
