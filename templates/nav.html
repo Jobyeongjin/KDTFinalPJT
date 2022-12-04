@@ -30,8 +30,8 @@
           <div class="nav-icon-wrap">
             <!-- Nav Search -->
             <div class="nav__search">
-              <form id="search-form" action="#">
-                <input type="text" name="search">
+              <form id="search-form" action="{% url 'books:search' %}" method="get">
+                <input type="search" name="search" >
               </form>
               <div class="material-icons">search</div>
             </div>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+ddfdf
+<form action="{% url 'books:search' %}" method="get">
+    <input type="search"  placeholder="Search">
+</form>
+
+{{query}}
+{% if book %}
+{% for boo in book %}
+{{boo.bookname}}
+<img src="{{boo.bookcover}}" alt="">
+{% endfor %}
+{% else %}
+no search
+{% endif %}
+{% endblock content %}

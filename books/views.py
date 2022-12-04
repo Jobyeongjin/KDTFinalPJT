@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Count
 from urllib import parse
+from django.db.models import Q
+from accounts.models import User
+from books.models import Book
 
 
 def onboarding(request):
@@ -53,7 +56,7 @@ def detail(request, pk):
 
 def like(request, book_pk):
     book = get_object_or_404(Book, pk=book_pk)
-    if request.user in book.like_user.all():
+    if request.user in book.like_user.all(): 
         book.like_user.remove(request.user)
         is_liked = False
     else:
@@ -65,3 +68,19 @@ def like(request, book_pk):
     }
 
     return JsonResponse(context)
+
+# navbar search 기능
+def search(request):
+    book = None
+    query = None
+    if "search" in request.GET:
+        query = request.GET.get("search")
+        book = Book.objects.order_by("-pk").filter(
+            Q(bookname__contains=query) | Q(authors__contains=query)
+        )
+    context = {
+        "query": query,
+        "book": book,
+    }
+
+    return render(request, 'books/search.html', context)
