@@ -48,6 +48,8 @@ def detail(request, pk):
     bookId = review.bookId
     like_count = review.like_user.count()
     comments = review.book_review_comment_set.all()
+    review_like_user = review.like_user
+    review_user_follwers = review.user.followers.all
     comment_form = Book_Review_CommentForm()
     context = {
         "review": review,
@@ -55,6 +57,8 @@ def detail(request, pk):
         "like_count": like_count,
         "comments": comments,
         "comment_form": comment_form,
+        "review_like_user": review_like_user,
+        "review_user_follwers": review_user_follwers,
     }
     return render(request, "reviews/detail.html", context)
 

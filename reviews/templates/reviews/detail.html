@@ -56,7 +56,7 @@
           </div>
           <form class="review-like-forms" data-review-id="{{ review.pk }}">
             {% csrf_token %}
-            {% if request.user in review.like_user.all %}
+            {% if request.user in review_like_user.all %}
               <button id="like-{{ review.pk }}" class="button like-user-button" type="submit">
                 <i class="fa-regular fa-heart fa-lg"></i>
               </button>
@@ -77,12 +77,16 @@
             <p>{{ review.user.username }}</p>
             <p>{{ review.updated_at }}</p>
           </div>
-          <!-- Followings -->
+          <!-- review-user-followings -->
           <div class="follow">
-            <form action="follow-form" data-user-id="{{ review.user.pk }}">
+            <form id="follow-form" data-user-id="{{ review.user.pk }}">
               {% csrf_token %}
               {% if request.user != review.user %}
+                {% if request.user in review_user_follwers.all %}
+                <button type='submit' class="btn btn--white--reverse">언팔로우</button>
+                {% else %}
                 <button type='submit' class="btn btn--white">팔로우</button>
+                {% endif %}
               {% endif %}
             </form>
           </div>
@@ -227,10 +231,15 @@
       // response views
       .then((response) => {
         const isFollowed = response.data.is_followed
+        const followBtn = Form.querySelector('button');
         if (isFollowed === true) {
-
+          followBtn.classList.remove('btn--white');
+          followBtn.classList.add('btn--white--reverse');
+          followBtn.innerText = '언팔로우';
         } else {
-
+          followBtn.classList.remove('btn--white--reverse');
+          followBtn.classList.add('btn--white');
+          followBtn.innerText = '팔로우';
         }
       })
       .catch((error) => {
