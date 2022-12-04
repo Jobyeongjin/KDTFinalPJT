@@ -32,7 +32,9 @@
       <hr>
       <!-- Book-info -->
       <div class="book-info">
-        <img src="{{ book.bookcover }}" alt="bookcover">
+        <a href="{% url 'books:detail' book.pk %}">
+          <img src="{{ book.bookcover }}" alt="bookcover">
+        </a>
         <div class="text">
           <p class="title">{{ book.bookname }}</p>
           <p class="author">{{ book.authors }}</p>
