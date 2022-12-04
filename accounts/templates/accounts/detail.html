@@ -11,7 +11,8 @@
 <p>나이:{{ user.age }}</p>
 <p>관심분야 : {{ user.interest }}</p>
 <p>관심책 : {% for book in book_likes %}
-    {{ bbok }}
+    <span>{{ book.bookname }}</span>
+    <span><img src="{{ book.bookcover }}" alt=""></span>
     {% endfor %}</p>
 {% if user.profile_image %}
 <img src="{{ user.profile_image.url }}" alt="">

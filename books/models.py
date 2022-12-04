@@ -11,4 +11,4 @@ class Book(models.Model):
     class_nm = models.CharField(max_length=100)
     bookcover = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="book")
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="books")

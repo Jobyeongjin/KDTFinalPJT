@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from datetime import datetime
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from books.models import Book
 
 # Create your views here.
 def index(request):
@@ -127,12 +128,12 @@ def delete_check(request):
 # 회원 정보
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
-
+    book_likes = user.books.all()
     context = {
         "user": user,
+        "book_likes" : book_likes,
     }
 
-    context = {"user": user}
 
     return render(request, "accounts/detail.html", context)
 
