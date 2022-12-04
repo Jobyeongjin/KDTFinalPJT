@@ -52,11 +52,20 @@
         <!-- review-like -->
         <div class="review-like">
           <div class="count">
-            <p>{{ like_count }}</p>
+            <p id="like-count">{{ like_count }}</p>
           </div>
-          <button class="button">
-            <i class="fa-regular fa-heart fa-lg"></i>
-          </button>
+          <form class="review-like-forms" data-review-id="{{ review.pk }}">
+            {% csrf_token %}
+            {% if request.user in review.like_user.all %}
+              <button id="like-{{ review.pk }}" class="button like-user-button" type="submit">
+                <i class="fa-regular fa-heart fa-lg"></i>
+              </button>
+            {% else %}
+              <button id="like-{{ review.pk }}" class="button" type="submit">
+                <i class="fa-regular fa-heart fa-lg"></i>
+              </button>
+            {% endif %}
+          </form>
         </div>
   
         <!-- review-writer-info -->
@@ -128,24 +137,66 @@
 
 
 {% block js %}
-  <script>
-    // review-detail-background-snow
-    function rdCreateSnow() {
-      const reviewBg = document.querySelector('.rd-wrap');
-      const rdEl = document.createElement("div");
-      const bodyHeight = document.body.clientHeight;
-      const plusNumber = 50;
-      reviewBg.style.height = `${bodyHeight + plusNumber}px`;
-      rdEl.classList.add("snow");
-      rdEl.style.marginLeft = rdRandomPostion() + "px";
-      reviewBg.appendChild(rdEl);
-    }
-    function rdRandomPostion() {
-      return Math.floor(Math.random() * window.innerWidth);
-    }
-    for (let i = 0; i < 300; i++) {
-      rdCreateSnow();
-    }
-  </script>
+<!-- Background-snow -->
+<script>
+  function rdCreateSnow() {
+    const reviewBg = document.querySelector('.rd-wrap');
+    const rdEl = document.createElement("div");
+    const bodyHeight = document.body.clientHeight;
+    const plusNumber = 50;
+    reviewBg.style.height = `${bodyHeight + plusNumber}px`;
+    rdEl.classList.add("snow");
+    rdEl.style.marginLeft = rdRandomPostion() + "px";
+    reviewBg.appendChild(rdEl);
+  }
+  function rdRandomPostion() {
+    return Math.floor(Math.random() * window.innerWidth);
+  }
+  for (let i = 0; i < 300; i++) {
+    rdCreateSnow();
+  }
+</script>
+
+
+<!-- CDN axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Likes -->
+<script>
+  const forms = document.querySelectorAll('.review-like-forms')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', function(evnet) {
+      event.preventDefault();
+      const reviewId = event.target.dataset.reviewId
+      // request axios
+      axios({
+        method: 'post',
+        url: `/reviews/${reviewId}/like/`,
+        headers: {'X-CSRFToken': csrftoken}, // csrf token
+      })
+        // response views
+        .then((response) => {
+          const isLiked = response.data.is_liked
+          const likeBtn = document.querySelector(`#like-${reviewId}`)
+          const likeIcon = likeBtn.querySelector('i')
+          const likeCountTag = document.querySelector('#like-count')
+          const likeCount = response.data.like_count
+          likeCountTag.innerText = likeCount
+          if (isLiked === true) {
+            likeBtn.style.background = "var(--yellow-color)";
+            likeIcon.style.color = "var(--white-color)";
+          } else {
+            likeBtn.style.background = "var(--white-color)";
+            likeIcon.style.color = "var(--yellow-color)";
+          }
+        })
+        .catch((error) => {
+          console.log(error.response)
+        })
+    })
+  })
+</script>
+
 {% endblock js %}
   

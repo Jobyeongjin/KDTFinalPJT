@@ -4,6 +4,7 @@ from .forms import Book_ReviewForm, Book_Review_CommentForm
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from books.models import Book
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -111,3 +112,23 @@ def comment_delete(request, review_pk, comment_pk):
         return redirect("reviews:detail", book_review.pk)
     else:
         return HttpResponseForbidden()
+
+
+# 리뷰 좋아요
+def like(request, pk):
+    if request.user.is_authenticated:
+        review = Book_Review.objects.get(pk=pk)
+        if review.like_user.filter(pk=request.user.pk).exists():
+            review.like_user.remove(request.user)
+            is_liked = False
+        else:
+            review.like_user.add(request.user)
+            is_liked = True
+    else:
+        return redirect("reviews:detail", pk)
+    return JsonResponse(
+        {
+            "is_liked": is_liked,
+            "like_count": review.like_user.count(),
+        }
+    )

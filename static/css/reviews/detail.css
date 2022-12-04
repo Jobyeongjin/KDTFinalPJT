@@ -115,6 +115,14 @@
   color: var(--yellow-color);
 }
 
+.review-like .like-user-button {
+  background-color: var(--yellow-color);
+}
+
+.review-like .like-user-button i {
+  color: var(--white-color);
+}
+
 .review-writer-info {
   display: flex;
   align-items: flex-end;
