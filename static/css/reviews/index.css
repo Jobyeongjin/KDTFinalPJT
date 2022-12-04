@@ -69,29 +69,20 @@
 
 /* Review-media */
 @media screen and (max-width: 1200px) {
-  .review-list .review__item:last-child {
-    display: none;
+  .review-list .container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
   }
 }
 
 @media screen and (max-width: 992px) {
-  .review-list .review__item:nth-child(2) {
-    display: none;
+  .review-list .container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
   }
 }
 
 @media screen and (max-width: 768px) {
   .review-list .container {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .review-list .container {
     grid-template-columns: repeat(1, 1fr);
-  }
-  .review-list .review__item:nth-child(1) {
-    display: none;
   }
 
   .review-list .review__item {
@@ -102,5 +93,6 @@
   .review__item__content {
     width: 445px;
     height: 445px;
+    font-size: 20px;
   }
 }

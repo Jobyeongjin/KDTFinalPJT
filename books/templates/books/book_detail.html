@@ -32,7 +32,7 @@
           <div class="count-box">
             <div class="review-count">
               <h5>리뷰 수</h5>
-              <span>(카운트)</span>
+              <span>{{ book_reviews.count }}</span>
             </div>
             <div class="like-count">
               <h5>좋아요 수</h5>
@@ -55,9 +55,11 @@
         <div class="review-writers">
           <h5>리뷰 남긴 사람들</h5>
           <div class="writer-profile">
-            <span><img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image"></span>
-            <span><img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image"></span>
-            <span><img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image"></span>
+            {% for book_review in book_reviews_writer %}
+            <a href="{% url 'accounts:detail' book_review.user.pk %}">
+              <span><img src="{{ book_review.user.user_image }}" alt="review-writer-image"></span>
+            </a>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -165,36 +167,15 @@
     <div class="book-reviews-list">
       <div class="swiper bookReviewSwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
+          {% for book_review in book_reviews_carousel %}
+            <div class="swiper-slide mb-5">
+              <div class="card" style="width: 200px; height: 200px;">
+                <a href="{% url 'reviews:detail' book_review.pk %}">
+                  <p>{{ book_review.content }}</p>
+                </a>
+              </div>
             </div>
-          </div>
-          <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-          </div>
-          <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-          </div>
-          <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-          </div>
-          <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-          </div>
-          <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-              <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
