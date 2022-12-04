@@ -16,6 +16,18 @@
       <!-- Review-countent -->
       <div class="review-content">
         {{ review.content }}
+        <!-- review-content-dot -->
+        <div class="review-content-dot">
+          <div class="btn-group">
+            <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis fa-2x"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><a class="dropdown-item" href="{% url 'reviews:update' review.pk %}">수정하기</a></li>
+              <li><a class="dropdown-item" href="{% url 'reviews:delete' review.pk %}" style="color: var(--red-color);">삭제하기</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <hr>
       <!-- Book-info -->
@@ -93,6 +105,10 @@
           <div class="comment-item-bottom">
             <p>{{ comment.content }}</p>
           </div>
+        </div>
+        {% empty %}
+        <div class="my-5" style="color: var(--gray-color);">
+          <p>댓글이 없어요...</p>
         </div>
         {% endfor %}
       </div>
