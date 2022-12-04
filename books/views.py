@@ -40,16 +40,20 @@ def index(request):
 def detail(request, pk):
     book = Book.objects.get(pk=pk)
     book_url = parse.quote(book.bookname)
+    book_reviews = book.book_review_set.order_by("-pk")
     context = {
         "book": book,
         "book_url": book_url,
+        "book_reviews": book_reviews,
+        "book_reviews_writer": book_reviews[:8],
+        "book_reviews_carousel": book_reviews[:6],
     }
     return render(request, "books/book_detail.html", context)
 
 
 def like(request, book_pk):
     book = get_object_or_404(Book, pk=book_pk)
-    if request.user in book.like_user.all(): 
+    if request.user in book.like_user.all():
         book.like_user.remove(request.user)
         is_liked = False
     else:

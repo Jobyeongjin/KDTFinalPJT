@@ -32,7 +32,8 @@ def create(request):
                 book_review.bookId = bookId
                 book_review.save()
                 return redirect(
-                    "reviews:index",
+                    "books:detail",
+                    bookId.pk,
                 )
         else:
             book_review_form = Book_ReviewForm()

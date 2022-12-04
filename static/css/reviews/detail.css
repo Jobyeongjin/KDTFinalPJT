@@ -46,6 +46,14 @@
   transform: scale(1.2);
 }
 
+.review-content-dot  .dropstart .dropdown-toggle::before {
+  display: none;
+}
+
+.review-content-dot .dropdown-menu li:first-child .dropdown-item:hover {
+  border-radius: 5px 5px 0 0;
+}
+
 .detail-top-wrap > .book-info {
   margin: 0;
   padding: 30px;
