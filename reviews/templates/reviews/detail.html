@@ -70,13 +70,21 @@
   
         <!-- review-writer-info -->
         <div class="review-writer-info">
-          <img src="{{ review.user.user_image }}" alt="writer-image">
+          <a href="{% url 'accounts:detail' review.user.pk %}">
+            <img src="{{ review.user.user_image }}" alt="writer-image">
+          </a>
           <div class="username">
             <p>{{ review.user.username }}</p>
             <p>{{ review.updated_at }}</p>
           </div>
+          <!-- Followings -->
           <div class="follow">
-            <button class="btn btn--white">팔로우</button>
+            <form action="follow-form" data-user-id="{{ review.user.pk }}">
+              {% csrf_token %}
+              {% if request.user != review.user %}
+                <button type='submit' class="btn btn--white">팔로우</button>
+              {% endif %}
+            </form>
           </div>
         </div>
         
@@ -137,6 +145,11 @@
 
 
 {% block js %}
+
+<!-- CDN axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 <!-- Background-snow -->
 <script>
   function rdCreateSnow() {
@@ -158,8 +171,6 @@
 </script>
 
 
-<!-- CDN axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!-- Likes -->
 <script>
   const forms = document.querySelectorAll('.review-like-forms')
@@ -195,6 +206,36 @@
           console.log(error.response)
         })
     })
+  })
+</script>
+
+
+<!-- Followings -->
+<script>
+  const Form = document.querySelector('#follow-form')
+
+  Form.addEventListener('submit', function(event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    // request axios
+    axios({
+      method: 'post',
+      url: `/accounts/${userId}/follow/`,
+      headers: {'X-CSRFToken': csrftoken}, // csrf token
+    })
+      // response views
+      .then((response) => {
+        const isFollowed = response.data.is_followed
+        if (isFollowed === true) {
+
+        } else {
+
+        }
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
   })
 </script>
 
