@@ -8,6 +8,7 @@ from urllib import parse
 from django.db.models import Q
 from accounts.models import User
 from books.models import Book
+from reviews.models import Book_Review
 
 
 def onboarding(request):
@@ -17,12 +18,14 @@ def onboarding(request):
 # 메인 페이지
 def main(request):
     books = Book.objects.all().annotate(hot=Count("like_user")).order_by("-hot")
+    reviews = Book_Review.objects.annotate(hot=Count("like_user")).order_by("-hot")
 
     return render(
         request,
         "books/main.html",
         {
             "books": books[:4],
+            "reviews": reviews[:3],
         },
     )
 
@@ -56,7 +59,7 @@ def detail(request, pk):
 
 def like(request, book_pk):
     book = get_object_or_404(Book, pk=book_pk)
-    if request.user in book.like_user.all(): 
+    if request.user in book.like_user.all():
         book.like_user.remove(request.user)
         is_liked = False
     else:
@@ -68,6 +71,7 @@ def like(request, book_pk):
     }
 
     return JsonResponse(context)
+
 
 # navbar search 기능
 def search(request):
@@ -83,4 +87,4 @@ def search(request):
         "book": book,
     }
 
-    return render(request, 'books/search.html', context)
+    return render(request, "books/search.html", context)

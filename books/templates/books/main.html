@@ -68,67 +68,32 @@
     <!-- Main-review-top -->
     <div class="mr__top">
       <h3 class="mr__title">인기 리뷰 목록</h3>
-      <a href="#">
+      <a href="{% url 'reviews:index' %}">
         <span class="me-1">더보기</span><i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
     <!-- Main-review-list -->
     <div class="mr__list">
+      {% for review in reviews %}
+      <!-- Main-review-item -->
       <div class="mr__list__item">
-        <div class="mr__item__content">
-          (리뷰 내용)
-        </div>
+        <a href="{% url 'reviews:detail' review.pk %}">
+          <div class="mr__item__content">
+            {{ review.content }}
+          </div>
+        </a>
         <div class="mr__item__writer">
-          <div class="mr__item__writer-image">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image">
-          </div>
-          <div class="mr__item__writer-name">
-            <p>(작성자 이름)</p>
-          </div>
+          <a href="{% url 'accounts:detail' review.user.pk %}" class="d-flex align-items-center">
+            <div class="mr__item__writer-image">
+              <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image">
+            </div>
+            <div class="mr__item__writer-name">
+              <p>{{ review.user.username }}</p>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="mr__list__item">
-        <div class="mr__item__content">
-          (리뷰 내용)
-        </div>
-        <div class="mr__item__writer">
-          <div class="mr__item__writer-image">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image">
-          </div>
-          <div class="mr__item__writer-name">
-            <p>(작성자 이름)</p>
-          </div>
-        </div>
-      </div>
-      <div class="mr__list__item">
-        <div class="mr__item__content">
-          (리뷰 내용)
-        </div>
-        <div class="mr__item__writer">
-          <div class="mr__item__writer-image">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image">
-          </div>
-          <div class="mr__item__writer-name">
-            <p>(작성자 이름)</p>
-          </div>
-        </div>
-      </div>
-      <div class="mr__list__item">
-        <div class="mr__item__content">
-          (리뷰 내용)
-        </div>
-        <div class="mr__item__writer">
-          <div class="mr__item__writer-image">
-            <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image">
-          </div>
-          <div class="mr__item__writer-name">
-            <p>(작성자 이름)</p>
-          </div>
-        </div>
-      </div>
-      
-
-    
+      {% endfor %}
     </div>
   </div>
 </section>
