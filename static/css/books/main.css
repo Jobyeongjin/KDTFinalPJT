@@ -90,7 +90,6 @@ section.main-swiper {
 }
 
 .mb__list__item,
-.mr__list__item,
 .mm__list__item {
   display: flex;
   flex-direction: column;
@@ -111,6 +110,7 @@ section.main-swiper {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, .5);
+  border-radius: 0 15px 15px 0;
   color: #fff;
   font-size: 18px;
   visibility: hidden;
@@ -130,6 +130,8 @@ section.main-swiper {
 .mb__list__item img {
   width: 200px;
   height: 300px;
+  border-radius: 0 15px 15px 0;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, .3);
 }
 
 .mb__list__item > p {
@@ -139,11 +141,23 @@ section.main-swiper {
 }
 
 /* Main-review */
+.mr__list {
+  justify-items: center;
+}
+
+.mr__list__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
 .mr__item__content {
-  width: 200px;
-  height: 200px;
-  padding: 10px;
-  border-radius: 12px;
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  padding: 18px;
+  font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
   background-color: antiquewhite;
 }
 
@@ -155,8 +169,8 @@ section.main-swiper {
 }
 
 .mr__item__writer-image img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
 }
 
@@ -190,13 +204,15 @@ section.main-swiper {
 
 
 /* Main-media */
-@media screen and (max-width: 992px) {
-  .mb__list .mb__list__item:last-child {
-    display: none;
+@media screen and (max-width: 1200px) {
+  .mr__list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
   }
-  
-  .mr__list .mr__list__item:last-child {
-    display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .mr__list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
   }
   
   .mm__list .mm__list__item:last-child {
@@ -209,8 +225,19 @@ section.main-swiper {
     display: none;
   }
   
-  .mr__list .mr__list__item:nth-child(2) {
-    display: none;
+  .mr__list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .mr__list__item {
+    width: 445px;
+    height: 500px;
+  }
+
+  .mr__item__content {
+    width: 445px;
+    height: 445px;
+    font-size: 20px;
   }
   
   .mm__list .mm__list__item:nth-child(2) {
@@ -219,21 +246,5 @@ section.main-swiper {
 
   .mm__list__item .card {
     width: 28rem !important;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .mr__item__content {
-    width: 445px;
-    height: 445px;
-  }
-
-  .mr__item__writer {
-    width: 100%;
-    margin: 8px 0 16px 25px;
-  }
-
-  .mr__list .mr__list__item:nth-child(1) {
-    display: none;
   }
 }

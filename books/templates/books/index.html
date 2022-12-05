@@ -13,9 +13,9 @@
   <!--masonry layout-->
   <div class="masonry-container">
     {% for book in books %}
-    <div class="masonry-item">
-      <img class="bookcover" src="{{ book.bookcover }}" alt="bookcover" width="250" height="auto">
-      <p> {{ book.authors }} </p>
+    <div class="masonry-item" width="18rem">
+      <img style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';" class="bookcover" src="{{ book.bookcover }}" alt="bookcover" width="100%" height="auto">
+      <p> {{ book.bookname }}</p>
     </div>
     {% endfor %}
   </div>

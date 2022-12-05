@@ -116,7 +116,7 @@
             <div class="button">
               {% if request.user == comment.user %}
                 <button class="comment-del" onclick="comment_delete(this)">
-                  <span id="comment-delete-{{ comment.pk }}" data-commentdel-id="{{ comment.pk }}" class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
+                  <span id="comment-delete-{{ comment.pk }}" data-commentdel-id="{{ comment.pk }}" class="material-symbols-outlined" style="font-size: 28px;">delete</span>
                 </button>
               {% else %}
               <i class="fa-regular fa-heart fa-lg me-2"></i>
@@ -258,7 +258,7 @@
               </div>
               <div class="button">
                 <button onclick="comment_delete(this)">
-                  <span id="comment-delete-${ comment_data[i].commentPk }" data-commentdel-id="${ comment_data[i].commentPk }" class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
+                  <span id="comment-delete-${ comment_data[i].commentPk }" data-commentdel-id="${ comment_data[i].commentPk }" class="material-symbols-outlined" style="font-size: 28px;">delete</span>
                 </button>
               </div>
             </div>
@@ -328,7 +328,7 @@
               </div>
               <div class="button">
                 <button onclick="comment_delete(this)">
-                  <span id="comment-delete-${ comment_data[i].commentPk }" data-commentdel-id="${ comment_data[i].commentPk }" class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
+                  <span id="comment-delete-${ comment_data[i].commentPk }" data-commentdel-id="${ comment_data[i].commentPk }" class="material-symbols-outlined" style="font-size: 28px;">delete</span>
                 </button>
               </div>
             </div>
