@@ -5,7 +5,6 @@
     text-align: center;
 }
 
-
 .book_index_intro {
     margin-bottom: 100px;
 }
@@ -34,6 +33,11 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, .2);
+    transition: all ease-in-out .3s;
+}
+
+.masonry-item img:hover {
+    transform: scale(1.03);
 }
 
 .masonry-item p {

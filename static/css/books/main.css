@@ -158,7 +158,14 @@ section.main-swiper {
   padding: 18px;
   font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
-  background-color: antiquewhite;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
+}
+
+.mr__item__content p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 13;
+  overflow: hidden;
 }
 
 .mr__item__writer {
@@ -240,6 +247,10 @@ section.main-swiper {
     font-size: 20px;
   }
   
+  .mr__item__content p {
+    -webkit-line-clamp: 16;
+  }
+
   .mm__list .mm__list__item:nth-child(2) {
     display: none;
   }
