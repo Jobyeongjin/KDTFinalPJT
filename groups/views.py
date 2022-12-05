@@ -34,8 +34,10 @@ def create(request):
 # 모임 디테일
 def detail(request, pk):
     group = Group.objects.get(pk=pk)
+    place = group.place
     context = {
         "group":group,
+        "place":place,
     }
     return render(request, "groups/detail.html", context)
 

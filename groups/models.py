@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 
 
 class Group(models.Model):
+    title = models.CharField(max_length=200)
+    introduce = models.TextField()
     place = models.TextField()
     meeting_date = models.DateField()
     number = models.IntegerField()
@@ -11,7 +13,8 @@ class Group(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     like_user = models.ManyToManyField(get_user_model(), related_name="like_group")
     image = models.ImageField()
-    title = models.CharField(max_length=200)
-    introduce = models.TextField()
     closed = models.BooleanField(default=False)
+
+    X = models.CharField(max_length=20, null=True)
+    Y = models.CharField(max_length=20, null=True)
 
