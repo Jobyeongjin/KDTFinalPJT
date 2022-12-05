@@ -116,11 +116,9 @@
             </div>
             <div class="button">
               {% if request.user == comment.user %}
-              <a href="{% url 'reviews:comment_delete' review.pk comment.pk  %}">
-                <button onclick="comment_delete(this)" id=" comment-delete-{{ comment.pk }}" data-commentdel-id="{{ comment.pk }}">
-                  <span class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
+                <button class="comment-del" onclick="comment_delete(this)">
+                  <span id="comment-delete-{{ comment.pk }}" data-commentdel-id="{{ comment.pk }}" class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
                 </button>
-              </a>
               {% else %}
               <i class="fa-regular fa-heart fa-lg me-2"></i>
               {% endif %}
@@ -254,7 +252,7 @@
     event.preventDefault()
     axios({
       method: 'post',
-      url: `/reviews/${event.target.dataset.reviewId}/comment/create/`,
+      url: `/reviews/${event.target.dataset.reviewId}/comment_create/`,
       headers: {'X-CSRFToken': csrftoken},
       data: new FormData(commentForm)
     })
@@ -265,7 +263,6 @@
       comments.textContent = ""
       const comment_data = response.data.comment_data
       const user = response.data.user
-      const userImage = response.data.userImage
 
       for (let i = 0; i < comment_data.length; i++){
         const review_pk = response.data.review_pk
@@ -281,8 +278,8 @@
                 </div>
               </div>
               <div class="button">
-                <button onclick="comment_delete(this)" id="comment-delete-${comment_data[i].commentPk}" data-commentdel-id="${comment_data[i].commentPk}">
-                  <span class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
+                <button onclick="comment_delete(this)">
+                  <span id="comment-delete-${comment_data[i].commentPk}" data-commentdel-id="${comment_data[i].commentPk}" class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
                 </button>
               </div>
             </div>
@@ -294,12 +291,78 @@
         } else {
           comments.insertAdjacentHTML('beforeend',  
           `
+          <div class="comment-item">
+            <div class="comment-top">
+              <div class="writer">
+                <div class="">
+                  <p>${ comment_data[i].userName }</p>
+                  <p>${ comment_data[i].commentDate }</p>
+                </div>
+              </div>
+              <div class="button">
+                <i class="fa-regular fa-heart fa-lg me-2"></i>
+              </div>
+            </div>
+            <div class="comment-item-bottom">
+              <p>${ comment_data[i].content }</p>
+            </div>
+          </div>
           `)
         }
       }
     })
   })
 
+</script>
+
+
+<!-- Comment Delete -->
+<script>
+  
+  const comment_delete = (e) => {
+    console.log(e)
+    axios({
+      method: 'post',
+      headers: {'X-CSRFToken': csrftoken},
+      url: `/reviews/comment_delete/${event.target.dataset.commentdelId}/`,
+    })
+    .then(response => {
+      const comments = document.querySelector('.comment-list')
+      comments.textContent = ""
+      const comment_data = response.data.comment_data
+      const user = response.data.user
+      for (let i = 0; i < comment_data.length; i++){
+        const review_pk = response.data.review_pk
+        if (user === comment_data[i].user_pk){
+          comments.insertAdjacentHTML('beforeend',
+          `
+          <div class="comment-item">
+            <div class="comment-top">
+              <div class="writer">
+                <div class="">
+                  <p>${ comment_data[i].userName }</p>
+                  <p>${ comment_data[i].commentDate }</p>
+                </div>
+              </div>
+              <div class="button">
+                <button onclick="comment_delete(this)">
+                  <span id="comment-delete-${comment_data[i].commentPk}" data-commentdel-id="${comment_data[i].commentPk}" class="material-symbols-outlined me-2" style="font-size: 28px;">delete</span>
+                </button>
+              </div>
+            </div>
+            <div class="comment-item-bottom">
+              <p>${ comment_data[i].content }</p>
+            </div>
+          </div>
+          `)
+        } else {
+          comments.insertAdjacentHTML('beforeend',  
+          `
+          
+          `)
+    }
+  }
+})}
 </script>
 
 {% endblock js %}

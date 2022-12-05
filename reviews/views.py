@@ -96,9 +96,9 @@ def delete(request, pk):
 
 # 댓글 추가
 @login_required
-def comment_create(request, pk):
+def comment_create(request, review_pk):
     print(request.POST)
-    book_review = Book_Review.objects.get(pk=pk)
+    book_review = Book_Review.objects.get(pk=review_pk)
     comment_form = Book_Review_CommentForm(request.POST)
 
     if comment_form.is_valid():
@@ -108,7 +108,7 @@ def comment_create(request, pk):
         comment.save()
 
     user = request.user.pk
-    data = Book_Review_Comment.objects.filter(book_review_id=pk).order_by("-pk")
+    data = Book_Review_Comment.objects.filter(book_review_id=review_pk).order_by("-pk")
     comment_data = []
 
     for temp in data:
@@ -133,14 +133,34 @@ def comment_create(request, pk):
 
 
 @login_required
-def comment_delete(request, review_pk, comment_pk):
-    book_review = Book_Review.objects.get(pk=review_pk)
+def comment_delete(request, comment_pk):
     comment = Book_Review_Comment.objects.get(pk=comment_pk)
-    if request.user == comment.user:
-        comment.delete()
-        return redirect("reviews:detail", book_review.pk)
-    else:
-        return HttpResponseForbidden()
+    book_review = comment.book_review
+    comment.delete()
+
+    user = request.user.pk
+    data = Book_Review_Comment.objects.filter(book_review_id=book_review).order_by(
+        "-pk"
+    )
+    comment_data = []
+
+    for temp in data:
+        comment_data.append(
+            {
+                "user_pk": temp.user_id,
+                "userName": temp.user.username,
+                "content": temp.content,
+                "commentPk": temp.pk,
+                "commentDate": temp.created_at.strftime("%y.%m.%d"),
+            }
+        )
+    return JsonResponse(
+        {
+            "comment_data": comment_data,
+            "review_pk": book_review.pk,
+            "user": user,
+        }
+    )
 
 
 # 리뷰 좋아요
