@@ -21,7 +21,7 @@
         <!-- review-item-content -->
         <a href="{% url 'reviews:detail' review.pk %}">
           <div class="review__item__content">
-            {{ review.content }}
+            <p>{{ review.content }}</p>
           </div>
         </a>
         <!-- review-item-info -->
@@ -39,7 +39,19 @@
           </a>
           <!-- review-item-button -->
           <div class="review__item__btn">
-            <i class="fa-regular fa-heart fa-lg"></i>
+            <!-- review-like-form -->
+            <form class="like-forms" data-review-id="{{ review.pk }}">
+              {% csrf_token %}
+              {% if user in review.like_user.all %}
+              <button id="like-{{ review.pk }}" type="submit">
+              <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
+              </button>
+              {% else %}
+              <button id="like-{{ review.pk }}" type="submit">
+                <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
+              </button>
+              {% endif %}
+            </form>
             <i class="fa-solid fa-share-nodes fa-lg"></i>
           </div>
         </div>
@@ -57,3 +69,57 @@
 </section>
 
 {% endblock content %}
+
+<!-- JS -->
+{% block js %}
+
+  <!-- CDN axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Likes -->
+<script>
+  const forms = document.querySelectorAll('.like-forms')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', function(evnet) {
+      event.preventDefault();
+      const reviewId = event.target.dataset.reviewId
+      // request axios
+      axios({
+        method: 'post',
+        url: `/reviews/${reviewId}/like/`,
+        headers: {'X-CSRFToken': csrftoken}, // csrf token
+      })
+        // response views
+        .then((response) => {
+          const isLiked = response.data.is_liked
+          const likeBtn = document.querySelector(`#like-${reviewId}`)
+          const heartBtn = document.querySelector(`#heart-${reviewId}`)
+          if (isLiked === true) {
+            heartBtn
+            .classList
+            .remove('fa-regular')
+            heartBtn
+            .classList
+            .add('fa-solid')
+            heartBtn.style.color = 'var(--main-color)';
+          } else {
+            heartBtn
+            .classList
+            .remove('fa-solid')
+            heartBtn
+            .classList
+            .add('fa-regular')
+            heartBtn.style.color = 'var(--main-color)';
+          }
+        })
+        .catch((error) => {
+          console.log(error.response)
+        })
+    })
+  })
+</script>
+
+{% endblock js %}
+  

@@ -38,6 +38,13 @@
   background-color: antiquewhite;
 }
 
+.review__item__content p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 13;
+  overflow: hidden;
+}
+
 .review__item__info {
   display: flex;
   align-items: center;
@@ -62,9 +69,14 @@
   font-size: 14px;
 }
 
+.review__item__btn {
+  display: flex;
+  align-items: center;
+}
+
 .review__item__btn i {
   margin-right: 10px;
-  color: var(--dark-color);
+  color: var(--main-color);
 }
 
 /* Review-media */
@@ -94,5 +106,9 @@
     width: 445px;
     height: 445px;
     font-size: 20px;
+  }
+
+  .review__item__content p {
+    -webkit-line-clamp: 16;
   }
 }

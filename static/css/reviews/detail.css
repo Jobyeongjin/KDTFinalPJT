@@ -23,6 +23,13 @@
   height: 500px;
   padding: 30px 30px 0;
   position: relative;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.review-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 .review-content-dot {

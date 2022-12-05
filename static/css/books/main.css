@@ -161,6 +161,13 @@ section.main-swiper {
   background-color: antiquewhite;
 }
 
+.mr__item__content p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 13;
+  overflow: hidden;
+}
+
 .mr__item__writer {
   display: flex;
   align-items: center;
@@ -240,6 +247,10 @@ section.main-swiper {
     font-size: 20px;
   }
   
+  .mr__item__content p {
+    -webkit-line-clamp: 16;
+  }
+
   .mm__list .mm__list__item:nth-child(2) {
     display: none;
   }
