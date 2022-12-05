@@ -2,81 +2,358 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<a href="{% url 'accounts:index' %}">홈으로</a>
-<a href="{% url 'accounts:update' %}">정보수정 </a>
+{% include 'nav.html' %}
 
-<p>유저 아이디:{{ user.username }}</p>
-<p>닉네임:{{ user.nickname }}</p>
-<p>이메일:{{ user.email }}</p>
-<p>나이:{{ user.age }}</p>
-<p>관심분야 : {{ user.interest }}</p>
-<p>관심책 : {% for book in book_likes %}
-    <span>{{ book.bookname }}</span>
-    <span><img src="{{ book.bookcover }}" alt=""></span>
-    {% endfor %}</p>
-{% if user.profile_image %}
-<img src="{{ user.profile_image.url }}" alt="">
-{% endif %}
-{% comment %} <p>상태메세지:{{ user.status_message }}</p> {% endcomment %}
-
-<div>
-    <div>
-        팔로우: <span id='followers-count'> {{ user.followers.all|length }} </span>
-        팔로잉: <span id='followings-count'> {{ user.followings.all|length }} </span>
-    </div>
-    {% if request.user != user %}
-    <div>
-        <form id="follow-form" data-user-id="{{ user.pk }}">
-            {% csrf_token %}
-            {% if request.user in user.followers.all %}
-            <input type="submit" value="언팔로우">
-            {% else %}
-            <input type="submit" value="팔로우">
-        </form>
-    </div>
+<div class="container mypage">
+  <div class="myinfo">
+    <!-- 회원 정보 -->
+    <div class="d-flex">
+      <!-- 프로필 이미지 -->
+      <div class="profile-img me-3">
+        {% if user.profile_image %}
+        <img width="200" height="200" class="rounded-circle border border-2" src="{{ user.profile_image.url }}" alt="">
+        {% else %}
+        <img class="rounded-circle border border-2" src="https://dummyimage.com/200x200/ffffff/000000.png&text=no+image" alt="">
         {% endif %}
-    {% endif %}
-</div>
-리뷰들
-{% for review in reviews %}
-{{ review.content }}
-<img src="{{ review.image.url }}" alt="">
+      </div>
+      <!-- 정보 -->
+      <div class="myinfo-content px-3">
+        <!-- 드롭다운 -->
+        {% if request.user == user %}
+        <div class="dropdown dropdown-btn">
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis fa-2x dropdown-icon"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'accounts:delete_check' %}">회원 탈퇴</a></li>
+            </ul>
+          </div>
+        {% endif %}
+        <!-- 닉네임 / 유저네임 -->
+        {% if user.nickname %}
+        <h4 class="user-name mb-3">{{ user.nickname }} 님의 책크리스트</h4>
+        {% else %}
+        <h4 class="user-name mb-3">{{ user.username }} 님의 책크리스트</h4>
+        {% endif %}
+        <!-- 리뷰/팔로워/팔로잉 수 -->
+        <div class="d-flex">
+          <div class="d-flex flex-column">
+            <p class="text-center m-0">리뷰</p>
+            <p class="text-center">0</p>
+          </div>
+          <div class="d-flex flex-column mx-3">
+            <p class="text-center m-0">팔로워</p>
+            <p class="text-center" id="followers-count">{{ user.followers.all|length }}</p>
+          </div>
+          <div class="d-flex flex-column">
+            <p class="text-center m-0">팔로잉</p>
+            <p class="text-center" id="followings-count">{{ user.followings.all|length }}</p>
+          </div>
+        </div>
+        <!-- 상태 메세지 -->
+        {% if user.status_message %}
+        <p class="status-message">{{ user.status_message }}</p>
+        {% else %}
+        <p class="status-message">상태 메세지가 없어요</p>
+        {% endif %}
+        <!-- 프로필 수정 / 팔로우 버튼-->
+        {% if request.user == user %}
+        <a class="btn btn--main--reverse" href="{% url 'accounts:update' %}">프로필 수정</a>
+        {% else %}
+        <form id="follow-form" data-user-id="{{ user.pk }}" method="POST">
+          {% csrf_token %}
+          {% if request.user in user.followers.all %}
+          <input class="btn btn--main--reverse" type="submit" value="언팔로우">
+          {% else %}
+          <input class="btn btn--main" type="submit" value="팔로우">
+          {% endif %}
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 
-{% endfor %}
+  <!-- 활동 내역 -->
+  <div class="tab-area">
+    <!-- 탭 메뉴 -->
+    <input type="radio" name="tabs" id="tab1" checked>
+    <label for="tab1">작성한 리뷰</label>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">좋아요한 리뷰</label>
+    <input type="radio" name="tabs" id="tab3">
+    <label for="tab3">좋아요한 책</label>
+    <input type="radio" name="tabs" id="tab4">
+    <label for="tab4">참여한 모임</label>
+
+    <!-- 탭1 : 작성한 리뷰 -->
+    <div id="content1" class="tab-content">
+        <!-- 리뷰 작성 버튼 -->
+        <button type="button" class="btn btn--main tab-create-btn my-3" data-bs-toggle="modal" data-bs-target="#review-guide">리뷰 작성</button>
+        <!-- 리뷰 작성 모달 -->
+        <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
+            <!-- modal-dialog -->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- modal-body -->
+                    <div class="modal-body">
+                        <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
+                        <!-- Record-wrap -->
+                        <div class="record-wrap">
+                            <!-- record-wording -->
+                            <a href="{% url 'reviews:create' %}">
+                                <div class="record-wording">
+                                    <lord-icon
+                                    src="https://cdn.lordicon.com/nocovwne.json"
+                                    trigger="hover"
+                                    colors="primary:#6c757d,secondary:#6c757d"
+                                    stroke="30"
+                                    style="width:250px;height:250px">
+                                    </lord-icon>
+                                    <h5 class="word">문장 기록</h5>
+                                </div>
+                            </a>
+                            <!-- record-photo -->
+                            <div class="record-photo">
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/vixtkkbk.json"
+                                    trigger="hover"
+                                    colors="primary:#6c757d,secondary:#6c757d"
+                                    stroke="30"
+                                    style="width:250px;height:250px">
+                                </lord-icon>
+                                <h5>사진 기록</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 작성한 리뷰 리스트 -->
+        <section class="review-list w-100">
+            <div class="container">
+                <!-- Review-item -->
+                {% for review in user.book_review_set.all %}
+                <div class="review__item">
+                    <!-- review-item-content -->
+                    <a href="{% url 'reviews:detail' review.pk %}">
+                        <div class="review__item__content">
+                            {{ review.content }}
+                        </div>
+                    </a>
+                    <!-- review-item-info -->
+                    <div class="review__item__info">
+                        <!-- review-item-proflie -->
+                        <a href="{% url 'accounts:detail' review.user.pk %}">
+                            <div class="review__item__proflie">
+                            <div class="review__item__img">
+                                <img src="{{ review.user.user_image }}" alt="review-write-image">
+                            </div>
+                            <div class="review__item__username">
+                                {{ review.user.username }}
+                            </div>
+                            </div>
+                        </a>
+                        <!-- review-item-button -->
+                        <div class="review__item__btn">
+                            <i class="fa-regular fa-heart fa-lg"></i>
+                            <i class="fa-solid fa-share-nodes fa-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                    <div class="m-5 d-flex flex-column align-items-center">
+                        <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
+                        <a href="{% url 'reviews:create' %}" class="btn btn--main">리뷰쓰러가기</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <!-- 탭2 : 좋아요 리뷰 -->
+    <div id="content2" class="tab-content">
+        <!-- 좋아요한 리뷰 리스트 -->
+        <section class="review-list w-100">
+            <div class="container">
+                <!-- Review-item -->
+                {% for review in user.like_review.all %}
+                <div class="review__item">
+                    <!-- review-item-content -->
+                    <a href="{% url 'reviews:detail' review.pk %}">
+                        <div class="review__item__content">
+                            {{ review.content }}
+                        </div>
+                    </a>
+                    <!-- review-item-info -->
+                    <div class="review__item__info">
+                        <!-- review-item-proflie -->
+                        <a href="{% url 'accounts:detail' review.user.pk %}">
+                            <div class="review__item__proflie">
+                            <div class="review__item__img">
+                                <img src="{{ review.user.user_image }}" alt="review-write-image">
+                            </div>
+                            <div class="review__item__username">
+                                {{ review.user.username }}
+                            </div>
+                            </div>
+                        </a>
+                        <!-- review-item-button -->
+                        <div class="review__item__btn">
+                            <i class="fa-regular fa-heart fa-lg"></i>
+                            <i class="fa-solid fa-share-nodes fa-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                    <div class="m-5 d-flex flex-column align-items-center">
+                        <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
+                        <a href="{% url 'reviews:create' %}" class="btn btn--main">리뷰쓰러가기</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <!-- 탭3 : 좋아요 책 -->
+    <div id="content3" class="tab-content">
+        <!-- 좋아요한 책 리스트 -->
+        {% if book_likes %}
+        <div class="row">
+            {% for book in book_likes %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 tab-card justify-content-end">
+                <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';">
+                <p class="tab-book-title">{{ book.bookname }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="w-100 m-5 d-flex flex-column align-items-center">
+            <p style="color: var(--gray-dark-color);">책이 하나도 없어요...</p>
+            <a href="{% url 'books:index' %}" class="btn btn--main">책보러가기</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- 탭4 : 참여한 모임 -->
+    <div id="content4" class="tab-content">
+        <!-- 모임 생성 버튼 -->
+        <a class="btn btn--main tab-create-btn my-3" href="">모임 생성</a>
+        <!-- 참여한 모임 리스트 -->
+        <div class="row gx-5">
+            <!-- 반복문 시작 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;" onclick="location.href='';">
+                <div class="card w-100 mb-5 mx-auto">
+                    <div class="card-image">
+                      <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                      <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;" onclick="location.href='';">
+                <div class="card w-100 mb-5 mx-auto">
+                    <div class="card-image">
+                      <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                      <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;" onclick="location.href='';">
+                <div class="card w-100 mb-5 mx-auto">
+                    <div class="card-image">
+                      <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                      <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;" onclick="location.href='';">
+                <div class="card w-100 mb-5 mx-auto">
+                    <div class="card-image">
+                      <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
+                      <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 반복문 끝 -->
+        </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    // 팔로우 비동기
-    const form = document.querySelector('#follow-form')
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  // 팔로우 비동기
+  const form = document.querySelector('#follow-form')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  
+  form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
     
-    form.addEventListener('submit', function (event) {
-        event.preventDefault()
-        const userId = event.target.dataset.userId
-        
-        axios({
-            method: 'post',
-            url: `/accounts/${userId}/follow/`,
-            headers: {'X-CSRFToken': csrftoken,}
-        })
-        .then((response) => {
-            const isFollowed = response.data.is_followed
-            const followBtn = document.querySelector('#follow-form > input[type=submit]')
-            if (isFollowed === true) {
-                followBtn.value = '언팔로우'
-            } else {
-                followBtn.value = '팔로우'
-            }
-            const followersCountTag = document.querySelector('#followers-count')
-            const followingsCountTag = document.querySelector('#followings-count')
-            const followersCount = response.data.followers_count
-            const followingsCount = response.data.followings_count
-            followersCountTag.innerText = followersCount
-            followingsCountTag.innerText = followingsCount
-        })
-        .catch((error) => {
-            console.log(error.response)
-        })
+    axios({
+        method: 'post',
+        url: `/accounts/${userId}/follow/`,
+        headers: {'X-CSRFToken': csrftoken,}
     })
+    .then((response) => {
+        const isFollowed = response.data.is_followed
+        const followBtn = document.querySelector('#follow-form > input[type=submit]')
+        if (isFollowed === true) {
+            followBtn.value = '언팔로우'
+            followBtn.classList.add('btn--main--reverse')
+            followBtn.classList.remove('btn--main')
+        } else {
+            followBtn.value = '팔로우'
+            followBtn.classList.add('btn--main')
+            followBtn.classList.remove('btn--main--reverse')
+        }
+        const followersCountTag = document.querySelector('#followers-count')
+        const followingsCountTag = document.querySelector('#followings-count')
+        const followersCount = response.data.followers_count
+        const followingsCount = response.data.followings_count
+        followersCountTag.innerText = followersCount
+        followingsCountTag.innerText = followingsCount
+    })
+    .catch((error) => {
+        console.log(error.response)
+    })
+  })
+
+    // 리뷰 작성 모달
+    const wording = document.querySelector(".record-wording");
+    const wordingIcon = wording.querySelector('lord-icon');
+    const wordingHtag = wording.querySelector('h5');
+    const photo = document.querySelector('.record-photo');
+    const photoIcon = photo.querySelector('lord-icon');
+    const photoHtag = photo.querySelector('h5');
+  
+    wording.addEventListener('mouseenter', () => {
+        wordingIcon.setAttribute('colors', 'primary:#92B4EC,secondary:#92B4EC');
+        wordingHtag.style.color = '#92B4EC';
+    });
+    wording.addEventListener('mouseleave', () => {
+        wordingIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
+        wordingHtag.style.color = '#6c757d';
+    });
+    photo.addEventListener('mouseenter', () => {
+        photoIcon.setAttribute('colors', 'primary:#92B4EC,secondary:#92B4EC');
+        photoHtag.style.color = '#92B4EC';
+    });
+    photo.addEventListener('mouseleave', () => {
+        photoIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
+        photoHtag.style.color = '#6c757d';
+    });
 </script>
 
 {% endblock content %}
