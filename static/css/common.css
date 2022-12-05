@@ -73,6 +73,12 @@ button {
   border-color: #fff;
 }
 
+.btn.btn--white--reverse {
+  color: #D42B37;
+  background-color: #fff;
+  border-color: #fff;
+}
+
 .btn.btn--white:hover {
   color: #333;
   background-color: #fff;

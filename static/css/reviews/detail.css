@@ -1,15 +1,8 @@
-.rd-wrap {
-  position: absolute;
-  top: 0;
-  background: radial-gradient(ellipse at bottom, #4a607b 0%, #2e334a 100%);
-  overflow: hidden;
-  width: 100%;
-  z-index: -1;
-}
-
 /* Review-detail */
 .review-detail-wrap {
   padding: 150px 0 80px 0;
+  background: radial-gradient(ellipse at bottom, #4a607b 0%, #2e334a 100%);
+  width: 100%;
 }
 
 .detail-top-wrap,
@@ -20,6 +13,7 @@
 
 .detail-top-wrap {
   background-color: #fff;
+  border-radius: 20px;
 }
 
 
@@ -64,6 +58,7 @@
 .detail-top-wrap > .book-info img {
   width: 120px;
   margin-right: 30px;
+  border-radius: 0 10px 10px 0;
 }
 
 .detail-top-wrap > .book-info .text p {
@@ -215,9 +210,20 @@
 
 /* Comment-list */
 .comment-item {
-  background-color: #fff;
   padding: 10px;
   margin-top: 20px;
+  border: 1px solid var(--gray-color);
+  border-radius: 13px;
+  color: var(--gray-color);
+}
+
+.comment-item:hover {
+  border: 1px solid var(--white-color);
+  color: var(--white-color);
+}
+
+.comment-item:hover .comment-top .writer p {
+  color: var(--white-color);
 }
 
 .comment-top {
@@ -232,12 +238,21 @@
 }
 
 .comment-top .writer p {
-  color: var(--dark-color);
+  color: var(--gray-color);
   margin: 0;
 }
 
 .comment-top .writer p:last-child {
   font-size: 12px;
+}
+
+.comment-top .button span {
+  color: var(--gray-color);
+  transition: all ease-in-out .4s;
+}
+
+.comment-top .button span:hover {
+  color: var(--red-color);
 }
 
 .comment-item-bottom p {
