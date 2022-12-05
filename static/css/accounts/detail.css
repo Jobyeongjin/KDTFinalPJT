@@ -27,8 +27,12 @@
 }
 
 .dropdown-icon {
-  font-size: 25px;
   color: var(--dark-color);
+  transition: all ease-in-out .4s;
+}
+
+.dropdown-icon:hover {
+  transform: scale(1.2);
 }
 
 .dropdown-toggle::after {
@@ -49,6 +53,7 @@
   border: 0;
   padding: 10px 0;
 }
+
 
 .user-name {
   word-break: keep-all;

@@ -21,13 +21,13 @@
         <!-- 드롭다운 -->
         {% if request.user == user %}
         <div class="dropdown dropdown-btn">
-          <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-ellipsis dropdown-icon"></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'accounts:delete_check' %}">회원 탈퇴</a></li>
-          </ul>
-        </div>
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis fa-2x dropdown-icon"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'accounts:delete_check' %}">회원 탈퇴</a></li>
+            </ul>
+          </div>
         {% endif %}
         <!-- 닉네임 / 유저네임 -->
         {% if user.nickname %}
@@ -217,7 +217,8 @@
     <!-- 탭3 : 좋아요 책 -->
     <div id="content3" class="tab-content">
         <!-- 좋아요한 책 리스트 -->
-        <div class="row gx-5">
+        {% if book_likes %}
+        <div class="row">
             {% for book in book_likes %}
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 tab-card justify-content-end" style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';">
                 <img class="border tab-book-img" src="{{ book.bookcover }}" alt="">
@@ -225,6 +226,12 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="w-100 m-5 d-flex flex-column align-items-center">
+            <p style="color: var(--gray-dark-color);">책이 하나도 없어요...</p>
+            <a href="{% url 'books:index' %}" class="btn btn--main">책보러가기</a>
+        </div>
+        {% endif %}
     </div>
 
     <!-- 탭4 : 참여한 모임 -->
