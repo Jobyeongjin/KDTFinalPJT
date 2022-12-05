@@ -97,7 +97,6 @@ def delete(request, pk):
 # 댓글 추가
 @login_required
 def comment_create(request, review_pk):
-    print(request.POST)
     book_review = Book_Review.objects.get(pk=review_pk)
     comment_form = Book_Review_CommentForm(request.POST)
 
@@ -116,9 +115,10 @@ def comment_create(request, review_pk):
             {
                 "user_pk": temp.user_id,
                 "userName": temp.user.username,
+                "userImage": temp.user.user_image(),
                 "content": temp.content,
                 "commentPk": temp.pk,
-                "commentDate": temp.created_at.strftime("%y.%m.%d"),
+                "commentDate": temp.created_at.strftime("%Y-%m-%d"),
             }
         )
 
@@ -149,9 +149,10 @@ def comment_delete(request, comment_pk):
             {
                 "user_pk": temp.user_id,
                 "userName": temp.user.username,
+                "userImage": temp.user.user_image(),
                 "content": temp.content,
                 "commentPk": temp.pk,
-                "commentDate": temp.created_at.strftime("%y.%m.%d"),
+                "commentDate": temp.created_at.strftime("%Y-%m-%d"),
             }
         )
     return JsonResponse(
