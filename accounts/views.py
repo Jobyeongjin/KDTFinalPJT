@@ -131,9 +131,8 @@ def detail(request, user_pk):
     book_likes = user.books.all()
     context = {
         "user": user,
-        "book_likes" : book_likes,
+        "book_likes": book_likes,
     }
-
 
     return render(request, "accounts/detail.html", context)
 
@@ -155,12 +154,3 @@ def follow(request, user_pk):
             "followings_count": user.followings.count(),
         }
         return JsonResponse(context)
-
-
-# 회원 정보 테스트용
-def detail_test(request, user_pk):
-    user = get_user_model().objects.get(pk=user_pk)
-
-    context = {"user": user}
-
-    return render(request, "accounts/detail_test.html", context)

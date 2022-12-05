@@ -95,7 +95,7 @@
   min-height: 600px;
   display: none;
   border-top: 2px solid var(--main-color);
-  padding: 20px 10px;
+  padding: 80px 10px;
 }
 
 .tab-create-btn {
@@ -118,15 +118,16 @@
   flex-direction: column;
 }
 
-.tab-review-card {
-  width: 300px;
-  height: 300px;
-  padding: 10px;
-  border-radius: 12px;
-  background-color: antiquewhite;
-}
-
 .tab-book-img {
+  margin: 15px auto;
+  width: 200px;
   border-radius: 0 10px 10px 0;
   box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, .2);
+}
+
+.tab-book-title {
+  font-size: 14px;
+  color: var(--dark-color);
+  text-align: center;
+  min-height: 42px;
 }
