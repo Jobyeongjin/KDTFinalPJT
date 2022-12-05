@@ -8,11 +8,14 @@ class GroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = [
+            "title",
+            "introduce",
             "place",
             "number",
             "meeting_date",
             "end_date",
             "image",
+            "closed"
         ]
         widgets = {
             "meeting_date": DateInput(),

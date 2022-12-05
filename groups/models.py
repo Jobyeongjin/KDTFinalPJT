@@ -11,4 +11,7 @@ class Group(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     like_user = models.ManyToManyField(get_user_model(), related_name="like_group")
     image = models.ImageField()
+    title = models.CharField(max_length=200)
+    introduce = models.TextField()
+    closed = models.BooleanField(default=False)
 
