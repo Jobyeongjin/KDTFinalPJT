@@ -67,3 +67,15 @@ def delete(request, pk):
         return redirect("groups:index")
     else:
         return HttpResponseForbidden()
+
+# 리뷰 좋아요
+def like(request, pk):
+    if request.user.is_authenticated:
+        group = Group.objects.get(pk=pk)
+        if group.like_user.filter(pk=request.user.pk).exists():
+            group.like_user.remove(request.user)
+        else:
+            group.like_user.add(request.user)
+        return redirect("groups:detail", pk)
+    else:
+        return redirect("groups:detail", pk)

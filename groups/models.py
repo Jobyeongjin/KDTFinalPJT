@@ -6,7 +6,7 @@ class Group(models.Model):
     title = models.CharField(max_length=200)
     introduce = models.TextField()
     place = models.TextField()
-    detail_place = models.CharField(max_length=200)
+    detail_place = models.CharField(max_length=200,default="모임장소")
     meeting_date = models.DateField()
     number = models.IntegerField()
     end_date = models.DateField()

@@ -10,6 +10,16 @@
   <p>{{group.end_date}}</p>
   <p><img src="{{group.image.url}}" alt=""></p>
 
+  {% if request.user.is_authenticated %}
+    <a href="{% url 'groups:like' group.pk %}">
+      {% if request.user in group.like_user.all %}
+        <i class="bi bi-heart-fill"></i>
+      {% else %}
+        <i class="bi bi-heart"></i>
+      {% endif %}
+    </a>
+  {% endif %}
+
   <a href="{% url "groups:update" group.pk %}">수정</a>
   <a href="{% url "groups:delete" group.pk %}">삭제</a>
   <br>
@@ -20,11 +30,11 @@
       </a>
     </em>
   </p>
+  <!-- 지도 div(크기 위치 조절)-->
   <div id="map" style="width:100%;height:350px;"></div>
 {% endblock content %}
 
 {% block js %}
-
   <!--여기부터 지도-->
 
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac496d224ad8e6aeb9687fa6abedb0fd&libraries=services"></script>
@@ -66,7 +76,7 @@
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao
           .maps
-          .InfoWindow({content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'});
+          .InfoWindow({content: '<div style="width:150px;text-align:center;padding:6px 0;">{{group.detail_place}}</div>'});
         infowindow.open(map, marker);
 
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
