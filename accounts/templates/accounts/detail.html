@@ -220,8 +220,8 @@
         {% if book_likes %}
         <div class="row">
             {% for book in book_likes %}
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 tab-card justify-content-end" style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';">
-                <img class="border tab-book-img" src="{{ book.bookcover }}" alt="">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 tab-card justify-content-end">
+                <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';">
                 <p class="tab-book-title">{{ book.bookname }}</p>
             </div>
             {% endfor %}
