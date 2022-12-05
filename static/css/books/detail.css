@@ -87,6 +87,7 @@
 .book__image img {
   width: 200px;
   height: 290px;
+  border-radius: 0 15px 15px 0;
 }
 
 .book__title {
@@ -249,4 +250,11 @@ td {
 .bookReviewSwiper .swiper-slide a {
   width: 100%;
   height: 100%;
+}
+
+.bookReviewSwiper .swiper-slide a p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
 }
