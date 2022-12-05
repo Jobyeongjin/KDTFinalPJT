@@ -59,6 +59,10 @@
             <a href="{% url 'accounts:detail' book_review.user.pk %}">
               <span><img src="{{ book_review.user.user_image }}" alt="review-writer-image"></span>
             </a>
+            {% empty %}
+            <div class="my-5">
+              <p style="color: var(--gray-color); font-size: 14px;">리뷰를 남긴 사람이 없어요...</p>
+            </div>
             {% endfor %}
           </div>
         </div>
@@ -174,6 +178,10 @@
                   <p>{{ book_review.content }}</p>
                 </a>
               </div>
+            </div>
+          {% empty %}
+            <div class="mb-5 mt-3">
+              <p style="color: var(--gray-color); font-size: 14px;">리뷰를 남긴 사람이 없어요...</p>
             </div>
           {% endfor %}
         </div>

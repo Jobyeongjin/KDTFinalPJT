@@ -32,10 +32,10 @@
   width: 350px;
   height: 350px;
   border-radius: 20px;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
   padding: 18px;
   font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
-  background-color: antiquewhite;
 }
 
 .review__item__content p {
