@@ -23,10 +23,10 @@
 /* masonry */
 
 .masonry-container {
-    --gap: 30px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: var(--gap);
+    column-gap: 30px;
+    row-gap: 2px;
     grid-auto-rows: 30px;
 }
 
@@ -39,6 +39,8 @@
 .masonry-item p {
     font-family: sans-serif;
     padding-top: 10px;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 @media screen and (max-width: 992px) {
@@ -60,10 +62,14 @@
     }
 
     .masonry-item {
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .masonry-item img {
+        width: 80%;
     }
 }
 
