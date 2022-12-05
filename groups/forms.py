@@ -11,6 +11,7 @@ class GroupForm(forms.ModelForm):
             "title",
             "introduce",
             "place",
+            "detail_place",
             "number",
             "meeting_date",
             "end_date",

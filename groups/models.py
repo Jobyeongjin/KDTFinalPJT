@@ -6,6 +6,7 @@ class Group(models.Model):
     title = models.CharField(max_length=200)
     introduce = models.TextField()
     place = models.TextField()
+    detail_place = models.CharField(max_length=200)
     meeting_date = models.DateField()
     number = models.IntegerField()
     end_date = models.DateField()
@@ -15,6 +16,6 @@ class Group(models.Model):
     image = models.ImageField()
     closed = models.BooleanField(default=False)
 
-    X = models.CharField(max_length=20, null=True)
-    Y = models.CharField(max_length=20, null=True)
+
+    
 
