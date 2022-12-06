@@ -114,3 +114,24 @@ button {
   color: var(--main-color);
   background-color: #fff;
 }
+
+.btn.btn--yellow {
+  color: var(--yellow-color);
+  border-color: var(--yellow-color);
+}
+
+.btn.btn--yellow:hover {
+  color: #fff;
+  background-color: var(--yellow-color);
+}
+
+.btn.btn--yellow--reverse {
+  color: #fff;
+  background-color: var(--yellow-color);
+  border-color: var(--yellow-color);
+}
+
+.btn.btn--yellow--reverse:hover {
+  color: var(--yellow-color);
+  background-color: #fff;
+}

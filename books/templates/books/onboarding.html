@@ -1,96 +1,76 @@
 {% extends 'base.html' %}
-
-
+{% load static %}
 {% block content %}
 
 <!--온보딩 메인 박스 pc-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 
-<div class ="onboarding-main-pc-box d-none d-sm-none d-md-block">
-    <div class="d-flex">
-        <div class="onboarding-text-box">
-            <div class="logo-box">
-                <img src="/static/image/logo2.png" class="img-fluid">
-            </div>
-            <div class="text-box">
-                설명글 들어가면 여기
-            </div>
-        </div>
-        <div class="onboarding-img-box">
-            <div class="image-box">
-                <img src="https://via.placeholder.com/800" class="img-fluid">
-            </div>
+<!-- onboarding intro -->
+
+<article class="onboarding-intro1">
+    <div class="onboarding-intro1-textbox">
+        <div class="onboarding-intro1-logobox">
+            <img src="static/img/logo-02.png">
+            <p> 읽고, 발견하고, 연결되는 독서 소셜 플랫폼</p>
         </div>
     </div>
-</div>
-
-<!--온보딩 메인 박스 mobile-->
-
-<div class="onboarding-main-mo-box d-block d-sm-none d-md-none">
-    <div class="onboarding-img-box">
-        <div class="image-box">
-            <img src="https://via.placeholder.com/800" class="img-fluid">
-        </div>
+    <div class="onboarding-intro1-imgbox">
+        <img src="static/image/onboarding4.jpg">
     </div>
-</div>
+</article>
+
+<article class="onboarding-intro1-mo">
+    <div class="onboarding-intro1-mo-wrap">
+        <img class="onboarding-intro1-mo-bg" src="static/image/onboarding4.jpg">
+        <img class="onboarding-intro1-mo-lg" src="static/img/logo-02.png">
+    </div>
+
+</article>
 
 
-<!--온보딩 설명-->
+<!--온보딩 카드 설명-->
+<div class="onboarding-mo-btn-div">
+    <button class="btn btn--yellow--reverse"> 책:오 시작하기 </button>
 
+  </div>
 <div class="container mt-5">
     <div class="mt-5">
-        <ul class="onboarding-card-section d-flex flex-wrap justify-content-center">
-            <li>
-                <div class="onboarding-card-text me-xl-5 me-md-3 me-sm-2">
-                        <h3> 문구 </h3>
-                        <p> 문구 소개 </p>
-                </div>
-            </li>
-            <li>
-                <div class="onboarding-card-img">
-                    <img src="https://via.placeholder.com/375x450" class="img-fluid">
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="mt-5">
-        <ul class="onboarding-card-section d-flex flex-wrap justify-content-center">
-            <li>
-                <div class="onboarding-card-text me-xl-5 me-md-3 me-sm-2">
-                        <h3> 문구 </h3>
-                        <p> 문구 소개 </p>
-                </div>
-            </li>
-            <li>
-                <div class="onboarding-card-img">
-                    <img src="https://via.placeholder.com/375x450" class="img-fluid">
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="mt-5">
-        <ul class="onboarding-card-section d-flex flex-wrap justify-content-center">
-            <li>
-                <div class="onboarding-card-text me-xl-5 me-md-3 me-sm-2">
-                        <h3> 문구 </h3>
-                        <p> 문구 소개 </p>
-                </div>
-            </li>
-            <li>
-                <div class="onboarding-card-img">
-                    <img src="https://via.placeholder.com/375x450" class="img-fluid">
-                </div>
-            </li>
-        </ul>
-    </div>
+
+        <div class="onboarding-intro2">
+            <div class="onboarding-intro2-textbox">
+                <h1> READ </h1>
+                <p> 책 속 문장으로 쉬운 독서를 시작합니다.<br> 맘에 드는 문장은 스크랩으로 기록합니다.</p>
+            </div>
+            <div class="onboarding-intro2-imgbox">
+                <img src="https://via.placeholder.com/350" class="img-fluid">
+            </div>
+        </div>
+        <div class="onboarding-intro2 mt-5">
+            <div class="onboarding-intro2-textbox">
+                <h1> RECORD </h1>
+                <p> 책 속 문장으로 쉬운 독서를 시작합니다.<br> 맘에 드는 문장은 스크랩으로 기록합니다.</p>
+            </div>
+            <div class="onboarding-intro2-imgbox">
+                <img src="https://via.placeholder.com/350" class="img-fluid">
+            </div>
+        </div>
+        <div class="onboarding-intro2 mt-5">
+            <div class="onboarding-intro2-textbox">
+                <h1> RELINK </h1>
+                <p> 책 속 문장으로 쉬운 독서를 시작합니다.<br> 맘에 드는 문장은 스크랩으로 기록합니다.</p>
+            </div>
+            <div class="onboarding-intro2-imgbox">
+                <img src="https://via.placeholder.com/350" class="img-fluid">
+            </div>
+        </div>
 </div>
 
 <!--온보딩 슬라이드: pc에선 보이고, 모바일에선 1개 노출-->
  
 <div class="container mt-5">
-    <div class="slide-title">
+    <div class="slide-title mb-5">
         <h3>NOW READING </h3>
-        <p> 소개글 </p>
+        <h5> 책:오 기록가들의 문장을 소개합니다. </h5>
     </div>
 </div>
 <div class="swiper mySwiper">
@@ -141,9 +121,13 @@
             </a>
         </li>
     </ul>
-
   </div>
 
+  <!-- 모바일 버튼-->
+  <div class="onboarding-mo-btn-div">
+    <button class="btn btn--yellow--reverse"> 책:오 시작하기 </button>
+
+  </div>
 
   <!-- 슬라이드 JS (추후 JS 파일로 옮길 예정)-->
   <!-- Swiper JS -->

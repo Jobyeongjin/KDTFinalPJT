@@ -1,17 +1,144 @@
 
+.onboarding-intro1 {
+  display: flex;
+  width: 100%;
+  height: 600px;
+}
 
+.onboarding-intro1-textbox {
+  width:50%;
+  background-color: var(--main-color);
+}
 
+.onboarding-intro1-textbox img {
+  display: block;
+  margin: auto;
+
+}
+
+.onboarding-intro1-textbox p {
+  color: var(--yellow-color);
+  font-family: 'Noto serif KR';
+  font-size: var(--xlarge-font);
+  text-align: center;
+  position: absolute;
+	top: 90%;
+	left: 50%;
+  transform: translate( -50%, -50% );
+}
+
+.onboarding-intro1-logobox {
+  position: relative;
+}
+
+.onboarding-intro1-imgbox {
+  width:50%;
+  overflow: hidden;
+}
+
+.onboarding-intro1-imgbox > img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.onboarding-intro1-mo {
+  width: 100%;
+  height: 600px;
+  display: none;
+  overflow: hidden;
+
+}
+
+.onboarding-intro1-mo-bg {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.onboarding-intro1-mo-wrap {
+  position: relative;
+}
+
+.onboarding-intro1-mo-lg {
+  position: absolute;
+	top: 40%;
+	left: 50%;
+  transform: translate( -50%, -50% );
+}
 
 .text-box {
     font-size: var(--xlarge-font);
 
 }
 
+
+
 @media screen and (max-width: 992px) {
-    .text-box {
+  .text-box {
+    font-size: 1.2rem;
+  }
+  
+}
+
+
+@media screen and (max-width: 992px) {
+    .onboarding-intro1-textbox p {
       font-size: 1.2rem;
     }
 }
+
+@media screen and (max-width: 768px) {
+
+  .onboarding-intro1 {
+    display: none;
+  }
+  .onboarding-intro1-textbox  {
+    display: none;
+  }
+  .onboarding-intro1-imgbox  {
+    display: none;
+  }
+  .onboarding-intro1-mo {
+    display: block;
+    
+  }
+
+}
+
+/* 온보딩 카드 설명 */
+
+.onboarding-intro2 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.onboarding-intro2-textbox {
+  margin: auto;
+  justify-content: center;
+  text-align: left;
+}
+
+.onboarding-intro2-textbox p {
+  font-size: var(--large-font);
+}
+
+@media screen and (max-width: 992px) {
+  .onboarding-intro2 {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .onboarding-intro2-textbox p {
+    font-size: var(--middle-font);
+  }
+}
+
 
 .onboarding-card-text {
     text-align: center;
@@ -73,6 +200,42 @@ button {
     border: none;
     background: none;
   }
+
+/*모바일 전용 버튼 */
+
+.btn.btn--yellow--reverse {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .btn.btn--yellow--reverse {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+}
+
+.btn.btn--yellow {
+  color: var(--yellow-color);
+  border-color: var(--yellow-color);
+}
+
+.btn.btn--yellow:hover {
+  color: #fff;
+  background-color: var(--yellow-color);
+}
+
+.btn.btn--yellow--reverse {
+  color: #fff;
+  background-color: var(--yellow-color);
+  border-color: var(--yellow-color);
+}
+
+.btn.btn--yellow--reverse:hover {
+  color: var(--yellow-color);
+  background-color: #fff;
+}
   
   .onboarding-outro-button {
     width: 120px;
