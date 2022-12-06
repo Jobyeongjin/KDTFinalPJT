@@ -23,14 +23,14 @@
   opacity: 0;
 }
 
-input[type=radio]:not(:checked)+label {
+.interest input[type=radio]:not(:checked)+label {
   padding: 3px 10px;
   margin: 3px;
   border: 1px solid #ced4da;
   border-radius: 15px;
 }
 
-input[type=radio]:checked+label {
+.interest input[type=radio]:checked+label {
   background: var(--main-color);
   color: var(--white-color);
   margin: 3px;
