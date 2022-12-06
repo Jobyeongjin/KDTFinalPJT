@@ -78,7 +78,7 @@
       <!-- Main-review-item -->
       <div class="mr__list__item">
         <a href="{% url 'reviews:detail' review.pk %}">
-          <div class="mr__item__content">
+          <div class="mr__item__content" style="background-color: {{ review.color }};">
             <p>{{ review.content }}</p>
           </div>
         </a>
