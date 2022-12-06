@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+  <h1>create img</h1>
+  <div class="container">
+    <form name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!-- 글 : hidden -->
+      <div class="mb-3" style="display: none;">
+        <label class="form-label" for="id_content">Content</label>
+        <textarea name="content" cols="40" rows="10" class="form-control" placeholder="Content" id="id_content"></textarea>
+      </div>
+      <!-- 사진 -->
+      <div class="mb-3">
+        <label class="form-label" for="id_image">Image</label>
+        <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
+      </div>
+      <!-- sumbit -->
+      <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
+    </form>
+  </div>
+
+  <script>
+    // 사진이 첨부되었는지 확인
+    function check() {
+      if(review_form.image.value == '') {
+        alert("사진을 첨부해주세요.");
+        review_form.image.focus();
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+  </script>
+
+{% endblock content %}

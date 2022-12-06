@@ -19,9 +19,9 @@ def index(request):
     return render(request, "reviews/index.html", context)
 
 
-# 책 리뷰 작성
+# 글 리뷰 작성
 @login_required
-def create(request):
+def create_txt(request):
     # 임시 데이터
     bookId = Book.objects.get(pk=1)
     if request.user.is_authenticated:
@@ -39,7 +39,30 @@ def create(request):
         else:
             book_review_form = Book_ReviewForm()
         context = {"book_review_form": book_review_form}
-        return render(request, "reviews/create.html", context)
+        return render(request, "reviews/create_txt.html", context)
+
+
+# 사진 리뷰 작성
+@login_required
+def create_img(request):
+    # 임시 데이터
+    bookId = Book.objects.get(pk=1)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            book_review_form = Book_ReviewForm(request.POST, request.FILES)
+            if book_review_form.is_valid():
+                book_review = book_review_form.save(commit=False)
+                book_review.user = request.user
+                book_review.bookId = bookId
+                book_review.save()
+                return redirect(
+                    "books:detail",
+                    bookId.pk,
+                )
+        else:
+            book_review_form = Book_ReviewForm()
+        context = {"book_review_form": book_review_form}
+        return render(request, "reviews/create_img.html", context)
 
 
 # 책 리뷰 디테일(댓글 추가 전)
@@ -77,8 +100,14 @@ def update(request, pk):
                 return redirect("reviews:detail", pk)
         else:
             book_review_form = Book_ReviewForm(instance=book_review)
-        context = {"book_review_form": book_review_form}
-        return render(request, "reviews/create.html", context)
+        context = {"book_review_form": book_review_form, "book_review": book_review}
+
+        # 글이 작성되어 있으면(""이 아니면) 글 리뷰 페이지로
+        if book_review.content != "":
+            return render(request, "reviews/create_txt.html", context)
+        # 글이 없으면(=사진이 있으면) 사진 리뷰 페이지로
+        else:
+            return render(request, "reviews/create_img.html", context)
     else:
         return HttpResponseForbidden()
 

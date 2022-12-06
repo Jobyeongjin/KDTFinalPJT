@@ -137,7 +137,7 @@
               <!-- Record-wrap -->
               <div class="record-wrap">
                 <!-- record-wording -->
-                <a href="{% url 'reviews:create' %}">
+                <a href="{% url 'reviews:create_txt' %}">
                   <div class="record-wording">
                     <lord-icon
                       src="https://cdn.lordicon.com/nocovwne.json"
@@ -150,16 +150,18 @@
                   </div>
                 </a>
                 <!-- record-photo -->
-                <div class="record-photo">
-                  <lord-icon
-                    src="https://cdn.lordicon.com/vixtkkbk.json"
-                    trigger="hover"
-                    colors="primary:#6c757d,secondary:#6c757d"
-                    stroke="30"
-                    style="width:250px;height:250px">
-                  </lord-icon>
-                  <h5>사진 기록</h5>
-                </div>
+                <a href="{% url 'reviews:create_img' %}">
+                  <div class="record-photo">
+                    <lord-icon
+                      src="https://cdn.lordicon.com/vixtkkbk.json"
+                      trigger="hover"
+                      colors="primary:#6c757d,secondary:#6c757d"
+                      stroke="30"
+                      style="width:250px;height:250px">
+                    </lord-icon>
+                    <h5>사진 기록</h5>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
