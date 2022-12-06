@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Group
 from .forms import GroupForm
+from django.http import JsonResponse
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 
@@ -35,9 +36,13 @@ def create(request):
 def detail(request, pk):
     group = Group.objects.get(pk=pk)
     place = group.place
+    like_count = group.like_user.count()
+    group_like_user = group.like_user
     context = {
         "group":group,
         "place":place,
+        "like_count": like_count,
+        "group_like_user": group_like_user,
     }
     return render(request, "groups/detail.html", context)
 
@@ -74,8 +79,15 @@ def like(request, pk):
         group = Group.objects.get(pk=pk)
         if group.like_user.filter(pk=request.user.pk).exists():
             group.like_user.remove(request.user)
+            is_liked = False
         else:
             group.like_user.add(request.user)
-        return redirect("groups:detail", pk)
+            is_liked = True
     else:
         return redirect("groups:detail", pk)
+    context = {
+        "is_liked": is_liked,
+        "like_count": group.like_user.count(),
+    }
+
+    return JsonResponse(context)
