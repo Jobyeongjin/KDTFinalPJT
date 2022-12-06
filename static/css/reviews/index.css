@@ -15,6 +15,7 @@
 
 
 /* Review-list */
+.accounts-review-list .container,
 .review-list .container .infinite .inflist {
   width: 100%;
   display: grid;
