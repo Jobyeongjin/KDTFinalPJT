@@ -9,6 +9,7 @@ from django.db.models import Q
 from accounts.models import User
 from books.models import Book
 from reviews.models import Book_Review
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def onboarding(request):
@@ -32,12 +33,51 @@ def main(request):
 
 # 책 리스트 페이지
 def index(request):
-    books = Book.objects.all()
+    print(request.GET)
+    if request.GET.get("page"):
+        books = Book.objects.all()
+        page1 = request.GET.get("page", 1)
+        totalnum = len(books)
+        books_page = Paginator(books, 20)
+        totalpagenum = books_page.num_pages
+        try:
+            book_list = books_page.page(page1)
+        except PageNotAnInteger:
+            book_list = books_page.page(1)
+        except EmptyPage:
+            book_list = books_page.page(books_page.num_pages)
+
+    else:
+        books = Book.objects.all()
+        page1 = request.GET.get("page", 1)
+        totalnum = len(books)
+        books_page = Paginator(books, 20)
+        totalpagenum = books_page.num_pages
+        try:
+            book_list = books_page.page(page1)
+        except PageNotAnInteger:
+            book_list = books_page.page(1)
+        except EmptyPage:
+            book_list = books_page.page(books_page.num_pages)
+
+        return render(
+            request,
+            "books/index.html",
+            {
+                "books": books,
+                "book_list": book_list,
+                "totalnum": totalnum,
+                "totalpagenum": totalpagenum,
+            },
+        )
     return render(
         request,
         "books/index.html",
         {
             "books": books,
+            "book_list": book_list,
+            "totalnum": totalnum,
+            "totalpagenum": totalpagenum,
         },
     )
 

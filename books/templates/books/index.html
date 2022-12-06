@@ -1,26 +1,53 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 {% include 'nav.html' %}
 
 
 <div class="container book_index">
+
+  <!-- Intro -->
   <div class="book_index_intro">
     <h3> 도서 목록</h3>
     <p> 책:오에서 당신의 책을 찾아보세요.</p>
   </div>
 
-  <!--masonry layout-->
-  <div class="masonry-container">
-    {% for book in books %}
-    <div class="masonry-item" width="18rem">
-      <img style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';" class="bookcover" src="{{ book.bookcover }}" alt="bookcover" width="100%" height="auto">
-      <p> {{ book.bookname }}</p>
+  <!--Masonry layout-->
+  <ul class="infinite">
+    <div class="masonry-container inflist">
+      {% for book in book_list %}
+      <li class="masonry-item" width="18rem">
+        <img style="cursor: pointer;" onclick="location.href='{% url 'books:detail' book.pk %}';" class="bookcover" src="{{ book.bookcover }}" alt="bookcover" width="100%" height="auto">
+        <p> {{ book.bookname }}</p>
+      </li>
+      {% endfor %}
     </div>
-    {% endfor %}
+  </ul>
+
+  <!-- Pagination -->
+  <div class="pagination" style="display:none;">
+    {% if book_list.has_other_pages %}
+    <ul>
+      {% if book_list.has_previous %}
+        <li><a href="?&page={{ book_list.previous_page_number }}" class="prevPage">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+        <li class="totalpagenum">{{totalpagenum}}</li>
+      {% if book_list.has_next %}
+        <li><a href="?&page={{ book_list.next_page_number }}" class="nextPage">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
   </div>
+
 </div>
 
+<!-- JS -->
+<!-- Masonry-layout -->
 <script>
   function masonryLayout() {
     const masonryContainerStyle = getComputedStyle(
@@ -43,7 +70,10 @@
 
 masonryLayout();
 window.addEventListener("resize", masonryLayout);
-
 </script>
 
+
+<!-- Infinite -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{% static 'js/infinite.js' %}"></script>
 {% endblock content %}
