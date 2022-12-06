@@ -10,7 +10,7 @@
   <p>{{group.end_date}}</p>
   <p><img src="{{group.image.url}}" alt=""></p>
 
-  <!-- group-like -->
+  <!-- group-like (신청하기) -->
   <div class="review-like">
     <div class="count">
       <p id="like-count">{{ like_count }}</p>
@@ -29,7 +29,20 @@
     </form>
   </div>
 
+  <!-- 마감 버튼 -->
+  {% if request.user == friend.user %}
+    <a href="{% url 'groups:group_closed' group.pk %}" type="submit">
+      {% if group.closed == False %}
+        마감하기
+      {% else %}
+        마감 취소하기
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- 수정 -->
   <a href="{% url "groups:update" group.pk %}">수정</a>
+  <!-- 삭제 -->
   <a href="{% url "groups:delete" group.pk %}">삭제</a>
   <br>
   <p style="margin-top:10px">
@@ -48,7 +61,7 @@
   <!-- CDN axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <!-- like -->
+  <!-- like(신청하기) -->
   <script>
     const forms = document.querySelectorAll('.review-like-forms')
     const csrftoken = document

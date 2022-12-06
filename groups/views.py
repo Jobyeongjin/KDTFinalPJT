@@ -73,7 +73,8 @@ def delete(request, pk):
     else:
         return HttpResponseForbidden()
 
-# 리뷰 좋아요
+# 모집 신청
+@login_required
 def like(request, pk):
     if request.user.is_authenticated:
         group = Group.objects.get(pk=pk)
@@ -91,3 +92,17 @@ def like(request, pk):
     }
 
     return JsonResponse(context)
+
+# 모집마감
+def group_closed(request, pk):
+    if request.user.is_authenticated:
+        group = Group.objects.get(pk=pk)
+        if group.closed == False:
+            group.closed = True
+            group.save()
+        else:
+            group.closed = False
+            group.save()
+        return redirect("groups:detail", pk)
+    else:
+        return redirect("groups:detail", pk)
