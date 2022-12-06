@@ -2,24 +2,25 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
+{% include 'nav.html' %}
 
-  <h1>create txt</h1>
-  <div class="container">
+  <div class="container review-create">
+    <!-- update form -->
     <form name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <!-- 글 -->
-      <div class="mb-3">
-        <label class="form-label" for="id_content">Content</label>
-        <textarea name="content" cols="40" rows="10" class="form-control" placeholder="Content" id="id_content">{{ book_review.content }}</textarea>
-      </div>
-      <!-- 사진 : hidden -->
-      <div class="mb-3" style="display: none;">
-        <label class="form-label" for="id_image">Image</label>
-        <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
-      </div>
-      <!-- sumbit -->
-      <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
-    </form>
+        <h4 class="text-center mb-4">글 리뷰 작성</h4>
+        {% csrf_token %}
+        <!-- 글 -->
+        <div class="mb-3">
+          <textarea name="content" cols="40" rows="14" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
+        </div>
+        <!-- 사진 : hidden -->
+        <div class="mb-3" style="display: none;">
+          <label class="form-label" for="id_image">Image</label>
+          <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
+        </div>
+        <!-- sumbit -->
+        <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
+      </form>
   </div>
 
   <script>
