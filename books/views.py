@@ -33,7 +33,6 @@ def main(request):
 
 # 책 리스트 페이지
 def index(request):
-    print(request.GET)
     if request.GET.get("page"):
         books = Book.objects.all()
         page1 = request.GET.get("page", 1)

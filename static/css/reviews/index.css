@@ -15,7 +15,7 @@
 
 
 /* Review-list */
-.review-list .container {
+.review-list .container .infinite .inflist {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -55,11 +55,12 @@
 .review__item__proflie {
   display: flex;
   align-items: center;
+  margin-top: 3px;
 }
 
 .review__item__img img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   margin-right: 8px;
 }
@@ -77,6 +78,7 @@
 .review__item__btn i {
   margin-right: 10px;
   color: var(--main-color);
+  font-size: 26px;
 }
 
 /* Review-media */

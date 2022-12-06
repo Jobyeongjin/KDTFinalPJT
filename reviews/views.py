@@ -5,18 +5,55 @@ from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from books.models import Book
 from django.http import JsonResponse
-
-# Create your views here.
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # 책 리뷰 페이지
 def index(request):
-    reviews = Book_Review.objects.order_by("-pk")
-
-    context = {
-        "reviews": reviews,
-    }
-    return render(request, "reviews/index.html", context)
+    if request.GET.get("page"):
+        reviews = Book_Review.objects.order_by("-pk")
+        page1 = request.GET.get("page", 1)
+        totalnum = len(reviews)
+        reviews_page = Paginator(reviews, 9)
+        totalpagenum = reviews_page.num_pages
+        try:
+            review_list = reviews_page.page(page1)
+        except PageNotAnInteger:
+            review_list = reviews_page.page(1)
+        except EmptyPage:
+            review_list = reviews_page.page(reviews_page.num_pages)
+    else:
+        reviews = Book_Review.objects.order_by("-pk")
+        page1 = request.GET.get("page", 1)
+        totalnum = len(reviews)
+        reviews_page = Paginator(reviews, 9)
+        totalpagenum = reviews_page.num_pages
+        try:
+            review_list = reviews_page.page(page1)
+        except PageNotAnInteger:
+            review_list = reviews_page.page(1)
+        except EmptyPage:
+            review_list = reviews_page.page(reviews_page.num_pages)
+        return render(
+            request,
+            "reviews/index.html",
+            {
+                "reviews": reviews,
+                "review_list": review_list,
+                "totalnum": totalnum,
+                "totalpagenum": totalpagenum,
+            },
+        )
+    return render(
+        request,
+        "reviews/index.html",
+        {
+            "reviews": reviews,
+            "review_list": review_list,
+            "totalnum": totalnum,
+            "totalpagenum": totalpagenum,
+        },
+    )
 
 
 # 글 리뷰 작성
