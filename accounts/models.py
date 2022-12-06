@@ -10,9 +10,9 @@ class User(AbstractUser):
     profile_image = ProcessedImageField(
         upload_to="media/",
         blank=True,
-        processors=[ResizeToFill(100, 100)],
+        processors=[ResizeToFill(200, 200)],
         format="JPEG",
-        options={"quality": 60},
+        options={"quality": 70},
     )
     age = models.IntegerField(default=0)
     status_message = models.TextField()
