@@ -60,7 +60,51 @@
       <div class="m-5">
         <div class="m-5 d-flex flex-column align-items-center">
           <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
-          <a href="{% url 'reviews:create' %}" class="btn btn--main">리뷰쓰러가기</a>
+          <!-- button: review create guide -->
+          <button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
+            리뷰 작성
+          </button>
+          <!-- reivew-guide-modal -->
+          <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
+            <!-- modal-dialog -->
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- modal-body -->
+                <div class="modal-body">
+                  <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
+                  <!-- Record-wrap -->
+                  <div class="record-wrap">
+                    <!-- record-wording -->
+                    <a href="{% url 'reviews:create_txt' %}">
+                      <div class="record-wording">
+                        <lord-icon
+                          src="https://cdn.lordicon.com/nocovwne.json"
+                          trigger="hover"
+                          colors="primary:#6c757d,secondary:#6c757d"
+                          stroke="30"
+                          style="width:250px;height:250px">
+                        </lord-icon>
+                        <h5 class="word">문장 기록</h5>
+                      </div>
+                    </a>
+                    <!-- record-photo -->
+                    <a href="{% url 'reviews:create_img' %}">
+                      <div class="record-photo">
+                        <lord-icon
+                          src="https://cdn.lordicon.com/vixtkkbk.json"
+                          trigger="hover"
+                          colors="primary:#6c757d,secondary:#6c757d"
+                          stroke="30"
+                          style="width:250px;height:250px">
+                        </lord-icon>
+                        <h5>사진 기록</h5>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     {% endfor %}

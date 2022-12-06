@@ -12,7 +12,11 @@
     <div class="detail-top-wrap">
       <!-- Review-countent -->
       <div class="review-content">
+        {% if review.content != "" %}
         <p>{{ review.content }}</p>
+        {% else %}
+        <img class="w-100" src="{{ review.image.url }}" alt="">
+        {% endif %}
         <!-- review-content-dot -->
         {% if request.user == review.user %}
           <div class="review-content-dot">
