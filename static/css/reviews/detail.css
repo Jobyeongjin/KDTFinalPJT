@@ -9,11 +9,12 @@
 .detail-bottom-wrap {
   width: 80%;
   margin: 0 auto;
+  position: relative;
 }
 
 .detail-top-wrap {
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 25px;
 }
 
 
@@ -26,6 +27,7 @@
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  border-radius: 25px 25px 0 0;
 }
 
 .review-content::-webkit-scrollbar {
@@ -60,6 +62,7 @@
   padding: 30px;
   display: flex;
   align-items: center;
+  border-top: 1px solid var(--gray-light-color);
 }
 
 .detail-top-wrap > .book-info img {
@@ -84,19 +87,19 @@
 
 .review-like .count p {
   color: var(--yellow-color);
-  font-size: 18px;
-  margin: 0;
+  font-size: 21px;
+  font-weight: 500;
+  margin: 10px 83px 0;
   text-align: end;
-  margin-right: 55px;
 }
 
 .review-like .button {
   position: absolute;
-  top: -30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  border: 1px solid var(--yellow-color);
+  top: -40px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--yellow-color);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -115,6 +118,22 @@
 
 .review-like .button i {
   color: var(--yellow-color);
+  font-size: 28px;
+}
+
+@media screen and (max-width: 992px) {
+  .review-like .button {
+    top: -30px;
+    width: 60px;
+    height: 60px;
+  }
+  .review-like .button i {
+    font-size: 22px;
+  }
+  .review-like .count p {
+    font-size: 20px;
+    margin: 2px 75px 0;
+  }
 }
 
 .review-like .like-user-button {

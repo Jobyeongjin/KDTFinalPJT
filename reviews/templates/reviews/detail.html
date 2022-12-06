@@ -10,6 +10,20 @@
 
     <!-- review-countent & book-info-->
     <div class="detail-top-wrap">
+      <!-- review-content-dot -->
+      {% if request.user == review.user %}
+        <div class="review-content-dot">
+          <div class="btn-group dropstart">
+            <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis fa-2x"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><a class="dropdown-item" href="{% url 'reviews:update' review.pk %}">수정하기</a></li>
+              <li><a class="dropdown-item" href="{% url 'reviews:delete' review.pk %}" style="color: var(--red-color);">삭제하기</a></li>
+            </ul>
+          </div>
+        </div>
+      {% endif %}
       <!-- Review-countent -->
       <div class="review-content" style="background-color: {{ review.color }};">
         {% if review.content != "" %}
@@ -17,22 +31,7 @@
         {% else %}
         <img class="w-100" src="{{ review.image.url }}" alt="">
         {% endif %}
-        <!-- review-content-dot -->
-        {% if request.user == review.user %}
-          <div class="review-content-dot">
-            <div class="btn-group dropstart">
-              <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                <i class="fa-solid fa-ellipsis fa-2x"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-lg-end">
-                <li><a class="dropdown-item" href="{% url 'reviews:update' review.pk %}">수정하기</a></li>
-                <li><a class="dropdown-item" href="{% url 'reviews:delete' review.pk %}" style="color: var(--red-color);">삭제하기</a></li>
-              </ul>
-            </div>
-          </div>
-        {% endif %}
       </div>
-      <hr>
       <!-- Book-info -->
       <div class="book-info">
         <a href="{% url 'books:detail' book.pk %}">
@@ -84,9 +83,9 @@
               {% csrf_token %}
               {% if request.user != review.user %}
                 {% if request.user in review_user_follwers.all %}
-                <button type='submit' class="btn btn--white--reverse">언팔로우</button>
+                <button type='submit' class="btn btn--main--reverse">언팔로우</button>
                 {% else %}
-                <button type='submit' class="btn btn--white">팔로우</button>
+                <button type='submit' class="btn btn--main">팔로우</button>
                 {% endif %}
               {% endif %}
             </form>
@@ -99,7 +98,7 @@
         <img src="{{ request.user.user_image }}" alt="my-image">
         <form id="comment-form" data-review-id="{{ review.pk }}">
           {% csrf_token %}
-          <input type="text" name="content" placeholder=" 댓글 남기기" required>
+          <input type="text" name="content" placeholder=" 댓글 남기기" onkeyup="checkword(this, 100)" maxlength="100" required>
           <button type="submit" class="btn">게시</button>
         </form>
       </div>
@@ -152,6 +151,40 @@
 <!-- CDN axios -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+
+<!-- Check-word -->
+<script>
+  function checkword(obj, maxByte) {
+		let strValue = obj.value;
+		let strLen = strValue.length;
+		let totalByte = 0;
+		let len = 0;
+		let oneChar = "";
+		let str2 = "";
+
+		for (let i = 0; i < strLen; i++) {
+			oneChar = strValue.charAt(i);
+			if (escape(oneChar).length > 4) {
+				totalByte += 2;
+			} else {
+				totalByte++;
+			}
+
+			// 입력한 문자 길이보다 넘치면 잘라내기 위해 저장
+			if (totalByte <= maxByte) {
+				len = i + 1;
+			}
+		}
+
+		// 넘어가는 글자는 자른다.
+		if (totalByte > maxByte) {
+			alert(maxByte + "자를 초과 입력 할 수 없습니다.");
+			str2 = strValue.substr(0, len);
+			obj.value = str2;
+			chkword(obj, 4000);
+		}
+	}
+</script>
 
 <!-- Likes -->
 <script>

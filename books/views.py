@@ -33,7 +33,6 @@ def main(request):
 
 # 책 리스트 페이지
 def index(request):
-    print(request.GET)
     if request.GET.get("page"):
         books = Book.objects.all()
         page1 = request.GET.get("page", 1)
@@ -92,7 +91,7 @@ def detail(request, pk):
         "book_url": book_url,
         "book_reviews": book_reviews,
         "book_reviews_writer": book_reviews[:8],
-        "book_reviews_carousel": book_reviews[:6],
+        "book_reviews_carousel": book_reviews[:10],
     }
     return render(request, "books/book_detail.html", context)
 

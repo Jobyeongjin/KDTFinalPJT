@@ -46,6 +46,11 @@
             <a href="{% url 'accounts:detail' request.user.pk %}">
               <img class="nav__user__image" src="{{ user.user_image }}" alt="user-profile">
             </a>
+            <a href="{% url 'accounts:logout' %}" class="ms-3">
+              <!-- fa-door-open / fa-person-walking-arrow-right 
+                fa-right-from-bracket / fa-arrow-right-from-bracket -->
+              <i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color: var(--main-color);"></i>
+            </a>
             {% else %}
             <a href="{% url 'accounts:login' %}">
               <button class="nav__user__btn btn btn--main">로그인</button>

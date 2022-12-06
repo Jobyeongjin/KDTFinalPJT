@@ -176,9 +176,15 @@
           {% for book_review in book_reviews_carousel %}
             <div class="swiper-slide mb-5">
               <div class="card" style="width: 18rem; height: 200px; background-color: {{ book_review.color }};">
+                <div class="up-quote">
+                  <i class="fa-solid fa-quote-left fa-lg"></i>
+                </div>
                 <a href="{% url 'reviews:detail' book_review.pk %}">
                   <p>{{ book_review.content }}</p>
                 </a>
+                <div class="down-quote">
+                  <i class="fa-solid fa-quote-right fa-lg"></i>
+                </div>
               </div>
             </div>
           {% empty %}

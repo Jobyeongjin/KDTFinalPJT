@@ -259,6 +259,19 @@ td {
 .bookReviewSwiper .swiper-slide a p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 6;
   overflow: hidden;
+}
+
+.bookReviewSwiper .swiper-slide .card .fa-quote-left {
+  color: var(--dark-color); 
+}
+
+.bookReviewSwiper .swiper-slide .card .fa-quote-right {
+  color: var(--dark-color); 
+  text-align: end; 
+  width: 100%; 
+  position: absolute; 
+  bottom: 15px; 
+  right: 15px;
 }

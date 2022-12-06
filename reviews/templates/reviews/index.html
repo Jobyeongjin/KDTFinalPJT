@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 {% include 'nav.html' %}
@@ -16,108 +16,139 @@
   <div class="container">
 
     <!-- Review-item -->
-    {% for review in reviews %}
-      <div class="review__item">
-        <!-- review-item-content -->
-        <a href="{% url 'reviews:detail' review.pk %}">
-          <div class="review__item__content" style="background-color: {{ review.color }};">
-            <p>{{ review.content }}</p>
-          </div>
-        </a>
-        <!-- review-item-info -->
-        <div class="review__item__info">
-          <!-- review-item-proflie -->
-          <a href="{% url 'accounts:detail' review.user.pk %}">
-            <div class="review__item__proflie">
-              <div class="review__item__img">
-                <img src="{{ review.user.user_image }}" alt="review-write-image">
+    <div class="infinite">
+      <div class="inflist">
+        {% for review in review_list %}
+          <div class="review__item">
+            <!-- review-item-content -->
+            <a href="{% url 'reviews:detail' review.pk %}">
+              <div class="review__item__content" style="background-color: {{ review.color }};">
+                <p>{{ review.content }}</p>
               </div>
-              <div class="review__item__username">
-                {{ review.user.username }}
+            </a>
+            <!-- review-item-info -->
+            <div class="review__item__info">
+              <!-- review-item-proflie -->
+              <a href="{% url 'accounts:detail' review.user.pk %}">
+                <div class="review__item__proflie">
+                  <div class="review__item__img">
+                    <img src="{{ review.user.user_image }}" alt="review-write-image">
+                  </div>
+                  <div class="review__item__username">
+                    {{ review.user.username }}
+                  </div>
+                </div>
+              </a>
+              <!-- review-item-button -->
+              <div class="review__item__btn">
+                <!-- review-like-form -->
+                <form class="like-forms" data-review-id="{{ review.pk }}">
+                  {% csrf_token %}
+                  {% if user in review.like_user.all %}
+                  <button id="like-{{ review.pk }}" type="submit">
+                  <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
+                  </button>
+                  {% else %}
+                  <button id="like-{{ review.pk }}" type="submit">
+                    <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
+                  </button>
+                  {% endif %}
+                </form>
+                <i class="fa-solid fa-share-nodes fa-lg"></i>
               </div>
             </div>
-          </a>
-          <!-- review-item-button -->
-          <div class="review__item__btn">
-            <!-- review-like-form -->
-            <form class="like-forms" data-review-id="{{ review.pk }}">
-              {% csrf_token %}
-              {% if user in review.like_user.all %}
-              <button id="like-{{ review.pk }}" type="submit">
-              <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
-              </button>
-              {% else %}
-              <button id="like-{{ review.pk }}" type="submit">
-                <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
-              </button>
-              {% endif %}
-            </form>
-            <i class="fa-solid fa-share-nodes fa-lg"></i>
           </div>
-        </div>
-      </div>
-    {% empty %}
-      <div class="m-5">
-        <div class="m-5 d-flex flex-column align-items-center">
-          <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
-          <!-- button: review create guide -->
-          <button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
-            리뷰 작성
-          </button>
-          <!-- reivew-guide-modal -->
-          <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
-            <!-- modal-dialog -->
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <!-- modal-body -->
-                <div class="modal-body">
-                  <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
-                  <!-- Record-wrap -->
-                  <div class="record-wrap">
-                    <!-- record-wording -->
-                    <a href="{% url 'reviews:create_txt' %}">
-                      <div class="record-wording">
-                        <lord-icon
-                          src="https://cdn.lordicon.com/nocovwne.json"
-                          trigger="hover"
-                          colors="primary:#6c757d,secondary:#6c757d"
-                          stroke="30"
-                          style="width:250px;height:250px">
-                        </lord-icon>
-                        <h5 class="word">문장 기록</h5>
+        {% empty %}
+          <div class="m-5">
+            <div class="m-5 d-flex flex-column align-items-center">
+              <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
+              <!-- button: review create guide -->
+              <button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
+                리뷰 작성
+              </button>
+              <!-- reivew-guide-modal -->
+              <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
+                <!-- modal-dialog -->
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <!-- modal-body -->
+                    <div class="modal-body">
+                      <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
+                      <!-- Record-wrap -->
+                      <div class="record-wrap">
+                        <!-- record-wording -->
+                        <a href="{% url 'reviews:create_txt' %}">
+                          <div class="record-wording">
+                            <lord-icon
+                              src="https://cdn.lordicon.com/nocovwne.json"
+                              trigger="hover"
+                              colors="primary:#6c757d,secondary:#6c757d"
+                              stroke="30"
+                              style="width:250px;height:250px">
+                            </lord-icon>
+                            <h5 class="word">문장 기록</h5>
+                          </div>
+                        </a>
+                        <!-- record-photo -->
+                        <a href="{% url 'reviews:create_img' %}">
+                          <div class="record-photo">
+                            <lord-icon
+                              src="https://cdn.lordicon.com/vixtkkbk.json"
+                              trigger="hover"
+                              colors="primary:#6c757d,secondary:#6c757d"
+                              stroke="30"
+                              style="width:250px;height:250px">
+                            </lord-icon>
+                            <h5>사진 기록</h5>
+                          </div>
+                        </a>
                       </div>
-                    </a>
-                    <!-- record-photo -->
-                    <a href="{% url 'reviews:create_img' %}">
-                      <div class="record-photo">
-                        <lord-icon
-                          src="https://cdn.lordicon.com/vixtkkbk.json"
-                          trigger="hover"
-                          colors="primary:#6c757d,secondary:#6c757d"
-                          stroke="30"
-                          style="width:250px;height:250px">
-                        </lord-icon>
-                        <h5>사진 기록</h5>
-                      </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" style="display:none;">
+      {% if review_list.has_other_pages %}
+      <ul>
+        {% if review_list.has_previous %}
+          <li><a href="?&page={{ review_list.previous_page_number }}" class="prevPage">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+          <li class="totalpagenum">{{totalpagenum}}</li>
+        {% if review_list.has_next %}
+          <li><a href="?&page={{ review_list.next_page_number }}" class="nextPage">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+      {% endif %}
+    </div>
 
   </div>
 </section>
+
+
+
 
 {% endblock content %}
 
 <!-- JS -->
 {% block js %}
 
-  <!-- CDN axios -->
+<!-- review-infinite -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{% static 'js/rv-infinite.js' %}"></script>
+
+
+<!-- CDN axios -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <!-- Likes -->
