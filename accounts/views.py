@@ -47,7 +47,7 @@ def login(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect("accounts:index")
+            return redirect("books:main")
     else:
         form = AuthenticationForm()
     context = {"form": form}
@@ -63,7 +63,7 @@ def login_help(request):
 # 로그아웃
 def logout(request):
     auth_logout(request)
-    return redirect("accounts:index")
+    return redirect("books:main")
 
 
 # 회원 정보 수정
@@ -74,7 +74,7 @@ def update(request):
         form = CustonChangeUserForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("accounts:index")
+            return redirect("accounts:detail", user.pk)
 
     else:
         form = CustonChangeUserForm(instance=request.user)
