@@ -20,7 +20,7 @@
       <div class="review__item">
         <!-- review-item-content -->
         <a href="{% url 'reviews:detail' review.pk %}">
-          <div class="review__item__content">
+          <div class="review__item__content" style="background-color: {{ review.color }};">
             <p>{{ review.content }}</p>
           </div>
         </a>

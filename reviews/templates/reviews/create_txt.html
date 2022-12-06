@@ -13,6 +13,33 @@
         <div class="mb-3">
           <textarea name="content" cols="40" rows="14" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
         </div>
+        <!-- 색상 : hidden(기본값 하양) -->
+        <div class="mb-3" style="display: none;">
+          <label class="form-label" for="id_color">색상</label>
+          {% if book_review.color %}
+          <input type="text" name="color" value="{{ book_review.color }}" maxlength="7" class="form-control" placeholder="Color" required="" id="id_color">
+          {% else %}
+          <input type="text" name="color" value="#FFFFFF" maxlength="7" class="form-control" placeholder="Color" required="" id="id_color">
+          {% endif %}
+        </div>
+        <fieldset class="mb-4">
+          <div class="d-flex review-create-color">
+              <input class="radioInp d-none" type="radio" id="하양" name="color" value="#FFFFFF" onclick="colorPick(this)" checked>
+              <label style="background-color: #FFFFFF" for="하양"></label>
+              <input class="radioInp d-none" type="radio" id="노랑" name="color" value="#FBF6A4" onclick="colorPick(this)">
+              <label style="background-color: #FBF6A4" for="노랑"></label>
+              <input class="radioInp d-none" type="radio" id="주황" name="color" value="#EFAD59" onclick="colorPick(this)">
+              <label style="background-color: #EFAD59" for="주황"></label>
+              <input class="radioInp d-none" type="radio" id="민트" name="color" value="#B8D1CE" onclick="colorPick(this)">
+              <label style="background-color: #B8D1CE" for="민트"></label>
+              <input class="radioInp d-none" type="radio" id="파랑" name="color" value="#9BBBE1" onclick="colorPick(this)">
+              <label style="background-color: #9BBBE1" for="파랑"></label>
+              <input class="radioInp d-none" type="radio" id="보라" name="color" value="#B6AAD0" onclick="colorPick(this)">
+              <label style="background-color: #B6AAD0" for="보라"></label>
+              <input class="radioInp d-none" type="radio" id="분홍" name="color" value="#F2A69C" onclick="colorPick(this)">
+              <label style="background-color: #F2A69C" for="분홍"></label>
+          </div>
+        </fieldset>
         <!-- 사진 : hidden -->
         <div class="mb-3" style="display: none;">
           <label class="form-label" for="id_image">Image</label>
@@ -26,14 +53,41 @@
   <script>
     // 글이 작성되었는지 확인
     function check() {
+      // 공백이면
       if(review_form.content.value == '') {
+        // 경고 alert 출력
         alert("글을 작성해주세요.");
+        // content textarea 커서 이동
         review_form.content.focus();
+        // false : submit X
         return false;
       }
+      // 공백이 아니면
       else {
+        // true : submit reader.onload
         return true;
       }
+    }
+
+    // 기존 색상코드 값 불러오기
+    var color = document.querySelector("#id_color").value
+    console.log(color)
+    // color radio 버튼 그룹
+    var radioGroup = document.getElementsByName("color")
+    // 반복문 돌려서 기존 색상코드와 같은 값의 버튼 체크
+    for (var i = 0; i < radioGroup.length; i++) {
+        if (radioGroup[i].value === color) {
+            radioGroup[i].checked = true;
+            document.getElementById("id_content").style.backgroundColor = radioGroup[i].value;
+        }
+    }
+
+    // 색상 변경
+    function colorPick(obj) {
+      // 현재 선택된 radio 버튼 객체의 색상코드
+      var colorPick = obj.value;
+      // 해당 색상코드로 content textarea 배경색 변경
+      document.getElementById("id_content").style.backgroundColor = colorPick;
     }
   </script>
 

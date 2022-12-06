@@ -11,7 +11,7 @@
     <!-- review-countent & book-info-->
     <div class="detail-top-wrap">
       <!-- Review-countent -->
-      <div class="review-content">
+      <div class="review-content" style="background-color: {{ review.color }};">
         {% if review.content != "" %}
         <p>{{ review.content }}</p>
         {% else %}

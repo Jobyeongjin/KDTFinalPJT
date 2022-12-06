@@ -13,6 +13,11 @@
         <div class="mb-3" style="display: none;">
           <textarea name="content" cols="40" rows="14" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
         </div>
+        <!-- 색상 : hidden(기본값 하양) -->
+        <div class="mb-3" style="display: none;">
+          <label class="form-label" for="id_color">색상</label>
+          <input type="text" name="color" value="#FFFFFF" maxlength="7" class="form-control" placeholder="Color" required="" id="id_color">
+        </div>
         <!-- 사진 -->
         <div class="mb-3">
           <div class="mx-auto mb-2" style="width: 350px; height: 350px">
