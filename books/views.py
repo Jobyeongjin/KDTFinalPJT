@@ -10,7 +10,7 @@ from accounts.models import User
 from books.models import Book
 from reviews.models import Book_Review
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from taggit.models import Tag
 
 def onboarding(request):
     return render(request, "books/onboarding.html")
@@ -115,15 +115,37 @@ def like(request, book_pk):
 # navbar search 기능
 def search(request):
     book = None
+    user = None
     query = None
+    reviews = None
+    authors = None
+    tags = None
     if "search" in request.GET:
         query = request.GET.get("search")
         book = Book.objects.order_by("-pk").filter(
-            Q(bookname__contains=query) | Q(authors__contains=query)
+            bookname__contains=query
         )
+        authors = Book.objects.order_by("-pk").filter(
+            authors__contains=query
+            )
+        user = User.objects.order_by("-pk").filter(
+            nickname__contains=query
+        )
+        reviews = Book_Review.objects.filter(
+            content__contains=query
+        )
+        tags = Tag.objects.filter(
+            name__contains=query
+        )
+
     context = {
         "query": query,
         "book": book,
+        "user" : user,
+        "reviews" : reviews,
+        "authors" : authors,
+        "tags" : tags,
+
     }
 
     return render(request, "books/search.html", context)

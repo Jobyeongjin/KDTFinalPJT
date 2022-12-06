@@ -9,6 +9,7 @@ class Book_ReviewForm(forms.ModelForm):
             "content",
             "image",
             "color",
+            "tags",
         ]
 
 

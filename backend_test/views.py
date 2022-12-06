@@ -1,7 +1,8 @@
 from django.shortcuts import render
 import urllib.request
 import json
-
+from django.db.models import Q
+from books.models import Book
 # Create your views here.
 def index(request):
     if request.method == 'GET':
@@ -21,13 +22,29 @@ def index(request):
             response_body = response.read()
             result = json.loads(response_body.decode('utf-8'))
             items = result.get('items')
-
+   
     context = {
                 'items' : items
             }
 
-    return render(request, 'checkup/index.html', context=context)
+    return render(request, 'backend_test/index.html', context=context)
     
+def search(request):
+    books = Book.objects.get(pk=1)
+    book = None
+    query = None
+    if "search" in request.GET:
+        query = request.GET.get("search")
+        book = Book.objects.order_by("-pk").filter(
+            Q(bookname__contains=query) | Q(authors__contains=query)
+        )
+    context = {
+        "query": query,
+        "book": book,
+        "books" : books
+    }
+    return render(request, 'backend_test/index.html', context)
+
 def map(request):
     return render(request, "backend_test/map.html")
 
