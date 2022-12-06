@@ -92,7 +92,7 @@ def detail(request, pk):
         "book_url": book_url,
         "book_reviews": book_reviews,
         "book_reviews_writer": book_reviews[:8],
-        "book_reviews_carousel": book_reviews[:6],
+        "book_reviews_carousel": book_reviews[:10],
     }
     return render(request, "books/book_detail.html", context)
 

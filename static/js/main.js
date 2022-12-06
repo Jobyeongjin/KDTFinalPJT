@@ -72,7 +72,7 @@ infoToggleBtn.addEventListener('click', () => {
 let bookReviewSwiper = new Swiper(".bookReviewSwiper", {
     slidesPerView: 1,
     spaceBetween: 10,
-    loop: true,
+    loop: false,
     centerSlide: 'true',
     fade: 'true',
     grabCursor: 'true',
@@ -84,14 +84,22 @@ let bookReviewSwiper = new Swiper(".bookReviewSwiper", {
     dynamicBullets: true,
     breakpoints: {
         576: {
-        slidesPerView: 2,
-        spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 80,
         },
         768: {
-        slidesPerView: 4,
-        spaceBetween: 40,
+        slidesPerView: 2,
+        spaceBetween: 80,
         },
         992: {
+        slidesPerView: 3,
+        spaceBetween: 80,
+        },  
+        1200: {
+        slidesPerView: 4,
+        spaceBetween: 50,
+        },  
+        1400: {
         slidesPerView: 5,
         spaceBetween: 50,
         },  
