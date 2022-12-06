@@ -7,10 +7,30 @@ ddfdf
     <input type="search"  placeholder="Search">
 </form>
 
-{{query}}
+{% for tag in tags %}
+#{{tag}}
+{% endfor %}
+<!--리뷰내용-->
+{% if reviews %}
+{% for review in reviews %}
+<span>리뷰 내용</span>
+{{review.content}}
+{% endfor %}
+{% endif %}
+<!--유저 닉네임-->
+{% for use in user %}
+{{use.nickname}}
+{% endfor %}
+<!--작가 이름-->
+{% for author in authors %}
+{{review.content}}
+{% endfor %}
+<!--책-->
 {% if book %}
+<p>책 이름</p>
 {% for boo in book %}
 {{boo.bookname}}
+{{boo.pk}}
 <img src="{{boo.bookcover}}" alt="">
 {% endfor %}
 {% else %}

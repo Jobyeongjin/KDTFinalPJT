@@ -32,6 +32,10 @@
         <img class="w-100" src="{{ review.image.url }}" alt="">
         {% endif %}
       </div>
+      <!-- 태그 내용 시험용 -->
+      {% for tag in review.tags.all %}
+        #{{tag.name}}
+        {% endfor %}
       <!-- Book-info -->
       <div class="book-info">
         <a href="{% url 'books:detail' book.pk %}">

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from books.models import Book
+from taggit.managers import TaggableManager
 
 
 class Book_Review(models.Model):
@@ -12,6 +13,7 @@ class Book_Review(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     like_user = models.ManyToManyField(get_user_model(), related_name="like_review")
     bookId = models.ForeignKey(Book, on_delete=models.CASCADE)
+    tags = TaggableManager(blank=True)
 
 
 class Book_Review_Comment(models.Model):

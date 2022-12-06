@@ -16,9 +16,12 @@ dj-database-url==1.0.0
 Django==3.2.13
 django-appconf==1.0.5
 django-bootstrap5==22.1
+django-classy-tags==4.0.0
 django-extensions==3.2.1
 django-imagekit==4.1.0
 django-storages==1.13.1
+django-taggit==3.1.0
+django-taggit-templatetags2==1.6.1
 django-widget-tweaks==1.4.12
 executing==1.1.1
 gunicorn==20.1.0

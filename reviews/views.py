@@ -92,6 +92,7 @@ def create_img(request):
                 book_review.user = request.user
                 book_review.bookId = bookId
                 book_review.save()
+                book_review_form.save_m2m()
                 return redirect(
                     "books:detail",
                     bookId.pk,

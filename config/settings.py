@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'taggit', 
+    'taggit_templatetags2',
     "accounts",
     "books",
     "reviews",
