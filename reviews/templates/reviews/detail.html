@@ -155,6 +155,9 @@
 <!-- CDN axios -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<!-- Sweet alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 <!-- Check-word -->
 <script>
@@ -182,10 +185,11 @@
 
 		// 넘어가는 글자는 자른다.
 		if (totalByte > maxByte) {
-			alert(maxByte + "자를 초과 입력 할 수 없습니다.");
-			str2 = strValue.substr(0, len);
-			obj.value = str2;
-			chkword(obj, 4000);
+      Swal.fire({
+        icon: 'warning',    
+        title: 'Oops...',
+        text: '100자 이내로 작성해주세요!',
+      })
 		}
 	}
 </script>
