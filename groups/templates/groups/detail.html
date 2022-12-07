@@ -42,7 +42,7 @@
               <table>
                 <tr>
                   <td>일시</td>
-                  <td>{{ group.meeting_date|date:'Y-m-d' }}</td>
+                  <td>{{ group.meeting_date|date:"m.d(l) A h:i" }}</td>
                 </tr>
                 <tr>
                   <td>장소</td>
@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                   <td>모집일</td>
-                  <td>{{ group.end_date|date:'Y-m-d' }}</td>
+                  <td>{{ group.end_date|date:"m.d(l) A h:i" }}</td>
                 </tr>
               </table>
             </div>
