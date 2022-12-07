@@ -30,7 +30,7 @@
   </div>
 
   <!-- 마감 버튼 -->
-  {% if request.user == friend.user %}
+  {% if request.user == group.user %}
     <a href="{% url 'groups:group_closed' group.pk %}" type="submit">
       {% if group.closed == False %}
         마감하기
