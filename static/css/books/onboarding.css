@@ -1,4 +1,10 @@
 
+body {
+  overflow-x: hidden;
+  
+}
+
+
 .onboarding-intro1 {
   display: flex;
   width: 100%;
