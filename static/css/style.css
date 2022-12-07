@@ -18,6 +18,8 @@
 @import './reviews/index.css';
 @import './reviews/create.css';
 @import './reviews/detail.css';
+/* Group */
+@import './groups/detail.css';
 
 
 /* Root */
