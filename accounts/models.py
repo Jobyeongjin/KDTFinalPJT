@@ -14,7 +14,7 @@ class User(AbstractUser):
         format="JPEG",
         options={"quality": 70},
     )
-    age = models.IntegerField(default=0)
+    age = models.PositiveIntegerField(default=0)
     status_message = models.TextField()
     followings = models.ManyToManyField(
         "self", symmetrical=False, related_name="followers"

@@ -27,7 +27,7 @@
                         <i class="fa-solid fa-ellipsis fa-2x dropdown-icon"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'accounts:delete_check' %}">회원 탈퇴</a></li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'accounts:delete_check' %}">회원 탈퇴</a></li>
                     </ul>
                 </div>
                 {% endif %}
@@ -101,37 +101,6 @@
                                 <p>{{ review.content }}</p>
                             </div>
                         </a>
-                        <!-- review-item-info -->
-                        <div class="review__item__info">
-                            <!-- review-item-proflie -->
-                            <a href="{% url 'accounts:detail' review.user.pk %}">
-                                <div class="review__item__proflie">
-                                    <div class="review__item__img">
-                                        <img src="{{ review.user.user_image }}" alt="review-write-image">
-                                    </div>
-                                    <div class="review__item__username">
-                                        {{ review.user.username }}
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- review-item-button -->
-                            <div class="review__item__btn">
-                                <!-- review-like-form -->
-                                <form class="like-forms" data-review-id="{{ review.pk }}">
-                                    {% csrf_token %}
-                                    {% if user in review.like_user.all %}
-                                    <button id="like-{{ review.pk }}" type="submit">
-                                        <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
-                                    </button>
-                                    {% else %}
-                                    <button id="like-{{ review.pk }}" type="submit">
-                                        <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
-                                    </button>
-                                    {% endif %}
-                                </form>
-                                <i class="fa-solid fa-share-nodes fa-lg"></i>
-                            </div>
-                        </div>
                     </div>
                     {% empty %}
                     <div class="m-5 d-flex flex-column align-items-center">
@@ -195,37 +164,6 @@
                                 <p>{{ review.content }}</p>
                             </div>
                         </a>
-                        <!-- review-item-info -->
-                        <div class="review__item__info">
-                            <!-- review-item-proflie -->
-                            <a href="{% url 'accounts:detail' review.user.pk %}">
-                                <div class="review__item__proflie">
-                                    <div class="review__item__img">
-                                        <img src="{{ review.user.user_image }}" alt="review-write-image">
-                                    </div>
-                                    <div class="review__item__username">
-                                        {{ review.user.username }}
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- review-item-button -->
-                            <div class="review__item__btn">
-                                <!-- review-like-form -->
-                                <form class="like-forms" data-review-id="{{ review.pk }}">
-                                    {% csrf_token %}
-                                    {% if user in review.like_user.all %}
-                                    <button id="like-{{ review.pk }}" type="submit">
-                                        <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
-                                    </button>
-                                    {% else %}
-                                    <button id="like-{{ review.pk }}" type="submit">
-                                        <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
-                                    </button>
-                                    {% endif %}
-                                </form>
-                                <i class="fa-solid fa-share-nodes fa-lg"></i>
-                            </div>
-                        </div>
                     </div>
                     {% empty %}
                     <div class="m-5 d-flex flex-column align-items-center">
@@ -242,9 +180,9 @@
         <div id="content3" class="tab-content">
             <!-- 좋아요한 책 리스트 -->
             {% if book_likes %}
-            <div class="row">
+            <div class="row gx-5 w-100 mx-auto">
                 {% for book in book_likes %}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 tab-card justify-content-end">
+                <div class="col-6 col-md-4 col-lg-3 tab-card justify-content-end">
                     <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;"
                         onclick="location.href='{% url 'books:detail' book.pk %}';">
                     <p class="tab-book-title">{{ book.bookname }}</p>
@@ -323,53 +261,6 @@
 
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-<!-- Likes -->
-<script>
-    const forms = document.querySelectorAll('.like-forms')
-
-    forms.forEach((form) => {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const reviewId = event.target.dataset.reviewId
-            // request axios
-            axios({
-                method: 'post',
-                url: `/reviews/${reviewId}/like/`,
-                headers: { 'X-CSRFToken': csrftoken }, // csrf token
-            })
-                // response views
-                .then((response) => {
-                    const isLiked = response.data.is_liked
-                    const likeBtn = document.querySelector(`#like-${reviewId}`)
-                    const heartBtn = document.querySelector(`#heart-${reviewId}`)
-                    if (isLiked === true) {
-                        heartBtn
-                            .classList
-                            .remove('fa-regular')
-                        heartBtn
-                            .classList
-                            .add('fa-solid')
-                        heartBtn.style.color = 'var(--main-color)';
-                    } else {
-                        heartBtn
-                            .classList
-                            .remove('fa-solid')
-                        heartBtn
-                            .classList
-                            .add('fa-regular')
-                        heartBtn.style.color = 'var(--main-color)';
-                    }
-                })
-                .catch((error) => {
-                    console.log(error.response)
-                })
-        })
-    })
-</script>
-
-
 <!-- Follow -->
 <script>
     const Form = document.querySelector('#follow-form')
