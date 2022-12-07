@@ -12,8 +12,19 @@ from reviews.models import Book_Review
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from taggit.models import Tag
 
+
 def onboarding(request):
-    return render(request, "books/onboarding.html")
+    books = Book.objects.all().annotate(hot=Count("like_user")).order_by("-hot")
+    reviews = Book_Review.objects.annotate(hot=Count("like_user")).order_by("-hot")
+
+    return render(
+        request,
+        "books/onboarding.html",
+        {
+            "books": books,
+            "reviews": reviews,
+        },
+    )
 
 
 # 메인 페이지
@@ -26,7 +37,8 @@ def main(request):
         "books/main.html",
         {
             "books": books[:4],
-            "reviews": reviews[:3],
+            "reviews": reviews[:5],
+             "book_reviews_carousel": reviews[:10],
         },
     )
 

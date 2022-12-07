@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-onboarding.html' %}
 {% load static %}
 {% block content %}
 
@@ -24,15 +24,18 @@
         <img class="onboarding-intro1-mo-bg" src="static/image/onboarding4.jpg">
         <img class="onboarding-intro1-mo-lg" src="static/img/logo-02.png">
     </div>
-
 </article>
 
 
-<!--온보딩 카드 설명-->
-<div class="onboarding-mo-btn-div">
-    <button class="btn btn--yellow--reverse"> 책:오 시작하기 </button>
 
-  </div>
+<div class="onboarding-mo-btn-div">
+    <a href="{% url 'books:main' %}">
+        <button class="btn btn--yellow--reverse"> 책:오 시작하기 </button>
+    </a>
+</div>
+
+<!--온보딩 카드 설명-->
+
 <div class="container mt-5">
     <div class="mt-5">
 
@@ -73,61 +76,71 @@
         <h5> 책:오 기록가들의 문장을 소개합니다. </h5>
     </div>
 </div>
-<div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
+
+    <!-- Book-reviews-list -->
+    <div class="book-reviews-list">
+        <div class="swiper bookReviewSwiper">
+          <div class="swiper-wrapper">
+            {% for review in reviews %}
+              <div class="swiper-slide mb-5">
+                <div class="card" style="width: 18rem; height: 200px; background-color: {{ review.color }};">
+                  <div class="up-quote">
+                    <i class="fa-solid fa-quote-left fa-lg"></i>
+                  </div>
+                  <a href="{% url 'reviews:detail' review.pk %}">
+                    <p>{{ review.content }}</p>
+                  </a>
+                  <div class="down-quote">
+                    <i class="fa-solid fa-quote-right fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <div class="mb-5 mt-3">
+                <p style="color: var(--gray-color); font-size: 14px;">리뷰를 남긴 사람이 없어요...</p>
+              </div>
+            {% endfor %}
+          </div>
         </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/395" class="card-img-top" alt="...">
-            </div>
-        </div>
+      </div>
+</div>
+
+<!-- 온보딩 하단-->
+
+
+<article class="onboarding-mo-outro">
+    <div class="d-flex justify-content-center">
+        <img src = "static/img/logo-01.png">
     </div>
-  </div>
+    <div class="onboarding-mo-outro-mp">
+        <p> 읽고, 발견하고, 연결되는 <br> 독서 소셜 플랫폼 </p>
+    </div>
+    <p class="onboarding-mo-outro-sp"> 책:오의 다른 이야기가 궁금하다면?</p>
+</article>
 
-  <!-- 온보딩 하단-->
-  <div class="onboarding-outro">
-    <ul class="onboarding-outro-pc d-flex">
-        <li class="onboarding-outro-logo">
-            <img src="/static/image/logo2.png" class=" outro-imgage img-fluid">
-        </li>
-        <li class="onboarding-outro-textarea">
-            <h3 class="onboarding-outro-text"> 설명문구 여기</h3>
-            <a href="{% url 'books:main' %}">
-                <button class="onboarding-outro-button">책:오 시작하기 </button>
-            </a>
-        </li>
-    </ul>
-  </div>
 
-  <!-- 모바일 버튼-->
-  <div class="onboarding-mo-btn-div">
-    <button class="btn btn--yellow--reverse"> 책:오 시작하기 </button>
+<article class="onboarding-web-outro">
+        <img class="onboarding-web-outro-bg" src = "static/image/onboarding4.jpg">
+        <img class="onboarding-web-outro-logo" src = "static/img/logo-02.png">
+            <div class="onboarding-web-outro-text">
+                <div class="onboarding-web-outro-mp">
+                    <p> 읽고, 발견하고, 연결되는 <br> 독서 소셜 플랫폼 </p>
+                </div>
+                <div class="onboarding-web-outro-sp">
+                    <p class="onboarding-web-outro-sp"> 책:오의 다른 이야기가 궁금하다면?</p>
+                </div>
+            </div>
+            <div class="onboarding-web-btn-div">
+                <a href="{% url 'books:main' %}">
+                    <button class="btn btn--yellow--reverse"> 책:오 시작하기 </button>
+                </a>
+            </div>
+</article>
 
-  </div>
+
+
+
+
 
   <!-- 슬라이드 JS (추후 JS 파일로 옮길 예정)-->
   <!-- Swiper JS -->
@@ -135,35 +148,43 @@
 
   <!-- Initialize Swiper -->
   <script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 10,
-      loop: true,
-      centerSlide: 'true',
-      fade: 'true',
-      grabCursor: 'true',
-      autoplay:{disableOnInteraction: false},
-      pagination: {
+
+// Book-info-swiper
+let bookReviewSwiper = new Swiper(".bookReviewSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop: false,
+    centerSlide: 'true',
+    fade: 'true',
+    grabCursor: 'true',
+    autoplay:{disableOnInteraction: false},
+    pagination: {
         el: ".swiper-pagination",
         clickable: true,
-      },
-      dynamicBullets: true,
-      breakpoints: {
+    },
+    dynamicBullets: true,
+    breakpoints: {
         576: {
-          slidesPerView: 2,
-          spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 80,
         },
         768: {
-          slidesPerView: 4,
-          spaceBetween: 40,
+        slidesPerView: 2,
+        spaceBetween: 80,
         },
         992: {
-          slidesPerView: 5,
-          spaceBetween: 50,
-        },
-      },
-    });
-  </script>
-
-
+        slidesPerView: 3,
+        spaceBetween: 80,
+        },  
+        1200: {
+        slidesPerView: 4,
+        spaceBetween: 50,
+        },  
+        1400: {
+        slidesPerView: 5,
+        spaceBetween: 50,
+        },  
+    },
+});
+</script>
 {% endblock %}

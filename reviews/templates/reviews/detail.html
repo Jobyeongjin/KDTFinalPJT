@@ -32,10 +32,6 @@
         <img class="w-100" src="{{ review.image.url }}" alt="">
         {% endif %}
       </div>
-      <!-- 태그 내용 시험용 -->
-      {% for tag in review.tags.all %}
-        #{{tag.name}}
-        {% endfor %}
       <!-- Book-info -->
       <div class="book-info">
         <a href="{% url 'books:detail' book.pk %}">
@@ -55,9 +51,6 @@
   
         <!-- review-like -->
         <div class="review-like">
-          <div class="count">
-            <p id="like-count">{{ like_count }}</p>
-          </div>
           <form class="review-like-forms" data-review-id="{{ review.pk }}">
             {% csrf_token %}
             {% if request.user in review_like_user.all %}
@@ -70,6 +63,10 @@
               </button>
             {% endif %}
           </form>
+        </div>
+        <div class="review-like-count">
+          <p id="like-count">좋아요 {{ like_count }}</p>
+          <p id="like-count">댓글 {{ comments_count }}</p>
         </div>
   
         <!-- review-writer-info -->
@@ -96,6 +93,13 @@
           </div>
         </div>
         
+        <!-- review-tags -->
+        <div class="review-tags">
+          {% for tag in review.tags.all %}
+            <p>#{{tag.name}}</p>
+          {% endfor %}
+        </div>
+
       </div>
       <!-- Comment-create -->
       <div class="comment-create">
@@ -155,6 +159,9 @@
 <!-- CDN axios -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<!-- Sweet alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 <!-- Check-word -->
 <script>
@@ -182,10 +189,12 @@
 
 		// 넘어가는 글자는 자른다.
 		if (totalByte > maxByte) {
-			alert(maxByte + "자를 초과 입력 할 수 없습니다.");
-			str2 = strValue.substr(0, len);
-			obj.value = str2;
-			chkword(obj, 4000);
+      // Sweet alert
+      Swal.fire({
+        icon: 'warning',    
+        title: 'Oops...',
+        text: '100자 이내로 작성해주세요!',
+      })
 		}
 	}
 </script>
@@ -212,7 +221,7 @@
           const likeIcon = likeBtn.querySelector('i')
           const likeCountTag = document.querySelector('#like-count')
           const likeCount = response.data.like_count
-          likeCountTag.innerText = likeCount
+          likeCountTag.innerText = '좋아요 ' + likeCount
           if (isLiked === true) {
             likeBtn.style.background = "var(--yellow-color)";
             likeIcon.style.color = "var(--white-color)";

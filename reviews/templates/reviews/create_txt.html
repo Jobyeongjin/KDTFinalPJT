@@ -13,8 +13,10 @@
         <div class="mb-3">
           <textarea name="content" cols="40" rows="14" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
         </div>
+        <!-- 태그 -->
         <div class="mb-3">
-          <input type="text" class='form-control' name="tags">
+          <label class="form-label" style="color: var(--gray-dark-color);" for="id_tag"># 해시태그 입력</label>
+          <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" >
         </div>
         <!-- 색상 : hidden(기본값 하양) -->
         <div class="mb-3" style="display: none;">

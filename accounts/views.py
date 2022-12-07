@@ -109,7 +109,7 @@ def password(request):
 def delete(request):
     request.user.delete()
     auth_logout(request)
-    return redirect("accounts:signup")
+    return redirect("books:main")
 
 
 # 회원 탈퇴 체크

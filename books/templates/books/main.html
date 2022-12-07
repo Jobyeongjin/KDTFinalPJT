@@ -76,16 +76,26 @@
     <div class="mr__list">
       {% for review in reviews %}
       <!-- Main-review-item -->
-      <div class="mr__list__item">
-        <a href="{% url 'reviews:detail' review.pk %}">
-          <div class="mr__item__content" style="background-color: {{ review.color }};">
-            <p>{{ review.content }}</p>
+      <div class="mr__list__item">      
+        <div class="mr__item__content" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+          {% if review.content != "" %}
+          <div class="review__item__content__quote">
+            <div class="up-quote">
+              <i class="fa-solid fa-quote-left fa-lg"></i>
+            </div>
+            <p class="text-center m-0">{{ review.content }}</p>
+            <div class="down-quote">
+              <i class="fa-solid fa-quote-right fa-lg"></i>
+            </div>
           </div>
-        </a>
+          {% else %}
+          <img class="border" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" src="{{ review.image.url }}" alt="">
+          {% endif %}
+        </div>
         <div class="mr__item__writer">
           <a href="{% url 'accounts:detail' review.user.pk %}" class="d-flex align-items-center">
             <div class="mr__item__writer-image">
-              <img src="https://postfiles.pstatic.net/MjAyMDExMDFfMTA1/MDAxNjA0MjI4ODc1Mzk0.05ODadJdsa3Std55y7vd2Vm8kxU1qScjh5-3eVJ9T-4g.h7lHansSdReVq7IggiFAc44t2W_ZPTPoZWihfRMB_TYg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EB%9E%91.jpg?type=w773" alt="review-writer-image">
+              <img src="{{ review.user.user_image }}" alt="review-writer-image">
             </div>
             <div class="mr__item__writer-name">
               <p>{{ review.user.username }}</p>

@@ -29,10 +29,12 @@
   animation-duration: 7s;
   animation-delay: 1s;
 }
+
 .snow:nth-of-type(2n + 1) {
   animation-duration: 8s;
   animation-delay: 2s;
 }
+
 .snow:nth-of-type(9n) {
   animation-duration: 9s;
   animation-delay: 3s;
@@ -40,30 +42,35 @@
 
 @keyframes snow {
   0% {
-      /*완전히 투명*/
-      opacity: 0;
-      transform: translateY(0);
+    /*완전히 투명*/
+    opacity: 0;
+    transform: translateY(0);
   }
+
   20% {
-      opacity: 1;
-      transform: translate(-15px, 20vh);
+    opacity: 1;
+    transform: translate(-15px, 20vh);
   }
+
   40% {
-      opacity: 1;
-      transform: translate(15px, 40vh);
+    opacity: 1;
+    transform: translate(15px, 40vh);
   }
+
   60% {
-      opacity: 1;
-      transform: translate(-15px, 60vh);
+    opacity: 1;
+    transform: translate(-15px, 60vh);
   }
+
   80% {
-      opacity: 1;
-      transform: translate(0, 80vh);
+    opacity: 1;
+    transform: translate(0, 80vh);
   }
+
   100% {
-      /*완전히 불투명*/
-      opacity: 1;
-      transform: translateY(100vh);
+    /*완전히 불투명*/
+    opacity: 1;
+    transform: translateY(100vh);
   }
 }
 
@@ -182,7 +189,7 @@
 }
 
 .book-info-db a {
-  text-decoration: underline;  
+  text-decoration: underline;
 }
 
 .book-info-toggle.rotate {
@@ -223,6 +230,7 @@ td {
   height: 100%;
   padding: 0 12px;
 }
+
 .bookReviewSwiper .swiper-slide {
   text-align: start;
   font-size: 18px;
@@ -263,15 +271,12 @@ td {
   overflow: hidden;
 }
 
-.bookReviewSwiper .swiper-slide .card .fa-quote-left {
-  color: var(--dark-color); 
+.bookReviewSwiper .swiper-slide .card {
+  color: var(--dark-color);
 }
 
 .bookReviewSwiper .swiper-slide .card .fa-quote-right {
-  color: var(--dark-color); 
-  text-align: end; 
-  width: 100%; 
-  position: absolute; 
-  bottom: 15px; 
-  right: 15px;
+  color: var(--dark-color);
+  text-align: end;
+  width: 100%;
 }

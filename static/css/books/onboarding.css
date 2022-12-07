@@ -196,70 +196,213 @@
     margin-top: 150px;
 }
 
-button {
-    border: none;
-    background: none;
-  }
 
 /*모바일 전용 버튼 */
 
-.btn.btn--yellow--reverse {
+.onboarding-mo-btn-div .btn.btn--yellow--reverse {
   display: none;
 }
 
+/*모바일 전용 아웃트로 */
+
+.onboarding-mo-outro {
+  display: none;
+}
+
+
 @media screen and (max-width: 992px) {
-  .btn.btn--yellow--reverse {
+  .onboarding-mo-btn-div .btn.btn--yellow--reverse {
     display: block;
     font-size: 16px;
     font-weight: 600;
+    width: 350px;
+    position: fixed;
+    justify-content: center;
+    bottom: 40px;
+    left: 78px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .onboarding-mo-outro {
+    display: block;
+    background-color: var(--gray-light-color);
+    padding:80px;
+  }
+
+  .onboarding-mo-outro img {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
   }
   
+  .onboarding-mo-outro-mp p {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Noto Serif KR';
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .onboarding-mo-outro-sp {
+    margin-top: 40px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-family: 'Noto Serif KR';
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .onboarding-web-outro {
+    display: none;
+  }
 }
 
-.btn.btn--yellow {
+
+.onboarding-mo-btn-div .btn.btn--yellow {
   color: var(--yellow-color);
   border-color: var(--yellow-color);
 }
-
-.btn.btn--yellow:hover {
+s
+.onboarding-mo-btn-div .btn.btn--yellow:hover {
   color: #fff;
   background-color: var(--yellow-color);
 }
 
-.btn.btn--yellow--reverse {
+.onboarding-mo-btn-div .btn.btn--yellow--reverse {
   color: #fff;
   background-color: var(--yellow-color);
   border-color: var(--yellow-color);
 }
 
-.btn.btn--yellow--reverse:hover {
+.onboarding-mo-btn-div .btn.btn--yellow--reverse:hover {
   color: var(--yellow-color);
   background-color: #fff;
+
 }
-  
-  .onboarding-outro-button {
-    width: 120px;
-    padding: 10px;
-    border: 1px solid #333;
-    border-radius: 4px;
-    color: #333;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    box-sizing: border-box;
-    display: block;
-    transition: .4s;
-  }
-  
 
-  @media screen and (max-width: 576px) {
-    .onboarding-outro-text {
-        visibility: hidden;
-    }
+.onboarding-web-btn-div .btn.btn--yellow--reverse {
 
-    .onboarding-outro-button {
-        display: flex;
-        justify-content: center;
-        margin-top: 60px;
-    }
+}
+
+
+
+/* 온보딩 아웃트로 웹 */
+
+.onboarding-web-outro {
+  width: 100%;
+  height: 600px;
+
+}
+
+.onboarding-web-outro-bg {
+  display: block;
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  position: absolute;
+
+
+}
+
+.onboarding-web-outro-logo {
+  position: relative;
+  top: 50%;
+	left: 30%;
+  transform: translate( -50%, -50% );
+}
+
+.onboarding-web-outro-text {
+  position: relative;
+  font-family: 'Noto Serif KR';
+  top: -45%;
+  left: 45%;
+}
+
+.onboarding-web-outro-mp p {
+  font-size: 32px;
+  color: var(--yellow-color);
+}
+
+.onboarding-web-outro-sp p {
+  font-size: 16px;
+  color: white;
+}
+
+.onboarding-web-btn-div {
+  position: relative;
+  top: -45%;
+  left: 45%;
+}
+
+.onboarding-web-btn-div .btn.btn--yellow--reverse {
+  color: #fff;
+  background-color: var(--yellow-color);
+  border-color: var(--yellow-color);
+  cursor: pointer;
+}
+
+.onboarding-web-btn-div .btn.btn--yellow--reverse:hover {
+  color: var(--yellow-color);
+  background-color: #fff;
+
+}
+
+/* Book-reviews-swiper */
+.bookReviewSwiper {
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+}
+.bookReviewSwiper .swiper-slide {
+  text-align: start;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.bookReviewSwiper .swiper-slide .card {
+  padding: 10px 12px;
+  font-family: 'Noto serif KR';
+  border: none;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .1);
+}
+
+.bookReviewSwiper .swiper-slide a {
+  width: 100%;
+  height: 100%;
+}
+
+.bookReviewSwiper .swiper-slide a p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+}
+
+.bookReviewSwiper .swiper-slide .card .fa-quote-left {
+  color: var(--dark-color); 
+}
+
+.bookReviewSwiper .swiper-slide .card .fa-quote-right {
+  color: var(--dark-color); 
+  text-align: end; 
+  width: 100%; 
+  position: absolute; 
+  bottom: 15px; 
+  right: 15px;
 }

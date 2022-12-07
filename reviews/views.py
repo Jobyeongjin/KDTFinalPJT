@@ -14,7 +14,7 @@ def index(request):
         reviews = Book_Review.objects.order_by("-pk")
         page1 = request.GET.get("page", 1)
         totalnum = len(reviews)
-        reviews_page = Paginator(reviews, 9)
+        reviews_page = Paginator(reviews, 6)
         totalpagenum = reviews_page.num_pages
         try:
             review_list = reviews_page.page(page1)
@@ -26,7 +26,7 @@ def index(request):
         reviews = Book_Review.objects.order_by("-pk")
         page1 = request.GET.get("page", 1)
         totalnum = len(reviews)
-        reviews_page = Paginator(reviews, 9)
+        reviews_page = Paginator(reviews, 6)
         totalpagenum = reviews_page.num_pages
         try:
             review_list = reviews_page.page(page1)
@@ -93,6 +93,7 @@ def create_img(request):
                 book_review.user = request.user
                 book_review.bookId = bookId
                 book_review.save()
+                book_review_form.save_m2m()
                 return redirect(
                     "books:detail",
                     bookId.pk,
@@ -117,6 +118,7 @@ def detail(request, pk):
         "book": bookId,
         "like_count": like_count,
         "comments": comments,
+        "comments_count": comments.count(),
         "comment_form": comment_form,
         "review_like_user": review_like_user,
         "review_user_follwers": review_user_follwers,
