@@ -55,8 +55,8 @@ format = "&format=" + "xml"
 # library()
 
 # ============인기도서 코드============
-like_pageNo = "&pageNo=" + "2"
-like_pageSize = "&pageSize=" + "500"
+like_pageNo = "&pageNo=" + "3"
+like_pageSize = "&pageSize=" + "450"
 
 
 def book_like():
@@ -125,7 +125,10 @@ def book_info():
             continue
 
         # 책 제거
-        if "7년의" in _bookname or "아홉살" in _bookname:
+        if _bookname.startswith("("):
+            continue
+
+        if "7년의" in _bookname or "아홉살" in _bookname or "몽실" in _bookname:
             continue
 
         if "아몬드" in _bookname:

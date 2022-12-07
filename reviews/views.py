@@ -14,7 +14,7 @@ def index(request):
         reviews = Book_Review.objects.order_by("-pk")
         page1 = request.GET.get("page", 1)
         totalnum = len(reviews)
-        reviews_page = Paginator(reviews, 9)
+        reviews_page = Paginator(reviews, 6)
         totalpagenum = reviews_page.num_pages
         try:
             review_list = reviews_page.page(page1)
@@ -26,7 +26,7 @@ def index(request):
         reviews = Book_Review.objects.order_by("-pk")
         page1 = request.GET.get("page", 1)
         totalnum = len(reviews)
-        reviews_page = Paginator(reviews, 9)
+        reviews_page = Paginator(reviews, 6)
         totalpagenum = reviews_page.num_pages
         try:
             review_list = reviews_page.page(page1)
