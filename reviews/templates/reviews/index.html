@@ -21,11 +21,21 @@
         {% for review in review_list %}
           <div class="review__item">
             <!-- review-item-content -->
-            <a href="{% url 'reviews:detail' review.pk %}">
-              <div class="review__item__content" style="background-color: {{ review.color }};">
-                <p>{{ review.content }}</p>
+            <div class="review__item__content" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+              {% if review.content != "" %}
+              <div class="review__item__content__quote">
+                <div class="up-quote">
+                  <i class="fa-solid fa-quote-left fa-lg"></i>
+                </div>
+                <p class="text-center m-0">{{ review.content }}</p>
+                <div class="down-quote">
+                  <i class="fa-solid fa-quote-right fa-lg"></i>
+                </div>
               </div>
-            </a>
+              {% else %}
+              <img class="border" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" src="{{ review.image.url }}" alt="">
+              {% endif %}
+            </div>
             <!-- review-item-info -->
             <div class="review__item__info">
               <!-- review-item-proflie -->

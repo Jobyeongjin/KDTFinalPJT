@@ -21,13 +21,13 @@
 
 .dropdown-btn {
   position: absolute;
-  top: 0;
+  top: -40px;
   right: 0;
   margin-left: 10px;
 }
 
 .dropdown-icon {
-  color: var(--dark-color);
+  color: var(--main-color);
   transition: all ease-in-out .4s;
 }
 
@@ -84,6 +84,8 @@
   border-radius: 5px 5px 0 0;
   margin: 0;
   padding: 10px;
+  background-color: var(--main-color);
+  color: white;
 }
 
 .tab-area input:not(:checked)+label {
@@ -96,10 +98,9 @@
 .tab-content {
   position: relative;
   width: 100%;
-  min-height: 600px;
   display: none;
   border-top: 2px solid var(--main-color);
-  padding: 80px 10px;
+  padding: 75px 10px;
 }
 
 .tab-create-btn {
@@ -124,7 +125,7 @@
 
 .tab-book-img {
   margin: 15px auto;
-  width: 200px;
+  width: 80%;
   border-radius: 0 10px 10px 0;
   box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, .2);
 }
@@ -134,5 +135,5 @@
   font-weight: 600;
   color: var(--dark-color);
   text-align: center;
-  min-height: 42px;
+  min-height: 50px;
 }

@@ -6,7 +6,7 @@
 
 <div class="container update">
     <!-- update form -->
-    <form class="update-form p-5" action="" method="POST" enctype="multipart/form-data">
+    <form class="update-form p-5" name="update_form" onsubmit="return ageCheck();" action="" method="POST" enctype="multipart/form-data">
         <h4 class="text-center mb-4">회원정보 수정</h4>
         {% csrf_token %}
         <!-- input -->
@@ -15,7 +15,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="id_profile_image">프로필 사진</label>
                     <div class="mx-auto mb-2" style="width: 180px; height: 180px">
-                        <img class="w-100 h-100 rounded-circle border" style="object-fit: cover;" id="profile-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=no+image">
+                        <img class="w-100 h-100 rounded-circle border" style="object-fit: cover;" id="profile-image" src="/static/image/no_profile.png">
                     </div>
                     <input type="file" name="profile_image" accept="image/*" class="form-control" id="id_profile_image">
                 </div>
@@ -103,6 +103,23 @@
         if (radioGroup[i].value === interest) {
             console.log(radioGroup[i])
             radioGroup[i].checked = true
+        }
+    }
+
+    // 나이가 양수 이상인지 확인
+    function ageCheck() {
+        // 공백이면
+        if(update_form.age.value <= 0) {
+            // 경고 alert 출력
+            alert("본인 나이를 작성해주세요!");
+            update_form.age.focus();
+            // false : submit X
+            return false;
+        }
+        // 공백이 아니면
+        else {
+            // true : submit reader.onload
+            return true;
         }
     }
 </script>

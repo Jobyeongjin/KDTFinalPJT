@@ -34,7 +34,6 @@
   height: 350px;
   border-radius: 20px;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
-  padding: 18px;
   font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
 }
@@ -100,6 +99,7 @@
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .accounts-review-list .review__item,
   .review-list .review__item {
     width: 445px;
     height: 500px;
@@ -114,4 +114,22 @@
   .review__item__content p {
     -webkit-line-clamp: 16;
   }
+}
+
+.review__item__content__quote {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.fa-quote-left {
+  color: var(--dark-color);
+}
+
+.fa-quote-right {
+  color: var(--dark-color);
+  text-align: end;
+  width: 100%;
 }

@@ -21,9 +21,14 @@
         <!-- 사진 -->
         <div class="mb-3">
           <div class="mx-auto mb-2" style="width: 350px; height: 350px">
-            <img class="w-100 h-100" style="object-fit: cover;" id="image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=no+image">
+            <img class="w-100 h-100" style="object-fit: cover;" id="image" src="/static/image/no_image.png">
           </div>
           <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
+        </div>
+        <!-- 태그 -->
+        <div class="mb-3">
+          <label class="form-label" style="color: var(--gray-dark-color);" for="id_tag"># 해시태그 입력</label>
+          <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" >
         </div>
         <!-- sumbit -->
         <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
