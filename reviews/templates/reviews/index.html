@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load taggit_templatetags2_tags %}
 
 {% block content %}
 {% include 'nav.html' %}
@@ -46,6 +47,11 @@
                   </div>
                   <div class="review__item__username">
                     {{ review.user.username }}
+                    {% get_tags_for_object review as "tags" %}
+                    {% for tag in tags %}
+                    #{{tag}}
+                    {% endfor %}
+
                   </div>
                 </div>
               </a>
