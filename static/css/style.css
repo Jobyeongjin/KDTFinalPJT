@@ -117,7 +117,7 @@ body > .nav {
   align-items: center;
 }
 
-.nav-icon-wrap>i {
+.nav-icon-wrap > i {
   color: var(--main-color);
   margin-right: 20px;
 }
@@ -174,7 +174,35 @@ body > .nav {
   color: var(--main-color);
 }
 
+
+/* Write-global-button */
+.write-gb {
+  z-index: 9;
+  position: fixed;
+  bottom: 75px;
+  right: 130px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .3);
+}
+
+.write-gb button lord-icon {
+  width: 60px;
+  height: 60px;
+}
+
+
 /* Media - Nav toggle */
+@media screen and (max-width: 1400px) {
+  .write-gb {
+    right: 100px;
+  } 
+}
 @media screen and (max-width: 1200px) {
   .nav__list__item a {
     font-size: 14px;
@@ -240,11 +268,26 @@ body > .nav {
   .nav__user.active {
     display: flex;
   }
+
+  .write-gb {
+    right: 50px;
+    width: 70px;
+    height: 70px;
+  }
 }
 
 @media screen and (max-width: 576px) {
   .nav__search input:focus {
     width: 150px;
+  }
+  .write-gb {
+    right: 30px;
+    width: 65px;
+    height: 65px;
+  }
+  .write-gb button lord-icon {
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -286,25 +329,4 @@ body > .nav {
 
 .members-img:hover {
   filter: brightness(110%);
-}
-
-
-/* Write-global-button */
-.write-gb {
-  position: fixed;
-  bottom: 75px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid var(--gray-dark-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.write-gb i {
-  font-size: 24px;
-  color: var(--gray-dark-color);
 }
