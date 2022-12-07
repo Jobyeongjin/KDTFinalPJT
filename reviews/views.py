@@ -117,6 +117,7 @@ def detail(request, pk):
         "book": bookId,
         "like_count": like_count,
         "comments": comments,
+        "comments_count": comments.count(),
         "comment_form": comment_form,
         "review_like_user": review_like_user,
         "review_user_follwers": review_user_follwers,
