@@ -165,7 +165,7 @@
 
 /* review form */
 .review-create {
-  min-height: 750px;
+  min-height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;

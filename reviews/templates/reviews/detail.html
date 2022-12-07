@@ -24,14 +24,26 @@
           </div>
         </div>
       {% endif %}
-      <!-- Review-countent -->
-      <div class="review-content" style="background-color: {{ review.color }};">
-        {% if review.content != "" %}
-        <p>{{ review.content }}</p>
-        {% else %}
-        <img class="w-100" src="{{ review.image.url }}" alt="">
-        {% endif %}
-      </div>
+      <!-- Review Content -->
+      {% if review.content != "" %}
+        <!-- Review-Text -->
+        <div class="review-content" style="background-color: {{ review.color }};">
+          <div class="review__item__content__quote">
+            <div class="up-quote">
+              <i class="fa-solid fa-quote-left fa-lg"></i>
+            </div>
+            <p class="text-center m-0">{{ review.content }}</p>
+            <div class="down-quote">
+              <i class="fa-solid fa-quote-right fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <!-- Review-Image -->
+        <div class="review-content-image" style="background-color: {{ review.color }};">
+          <img src="{{ review.image.url }}" alt="">
+        </div>
+      {% endif %}
       <!-- Book-info -->
       <div class="book-info">
         <a href="{% url 'books:detail' book.pk %}">
