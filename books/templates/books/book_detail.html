@@ -181,13 +181,13 @@
                   <div class="up-quote">
                     <i class="fa-solid fa-quote-left fa-lg"></i>
                   </div>
-                  <p class="text-center m-0">{{ book_review.content }}</p>
+                  <p class="bookReviewCardContent">{{ book_review.content }}</p>
                   <div class="down-quote">
                     <i class="fa-solid fa-quote-right fa-lg"></i>
                   </div>
                 </div>
                 {% else %}
-                <img class="border border-2" style="height: 100%; object-fit: cover; border-radius: 12px;" src="{{ book_review.image.url }}" alt="">
+                <img class="bookReviewCardImage border" style="border-radius: 12px;" src="{{ book_review.image.url }}" alt="">
                 {% endif %}
               </div>
             </div>

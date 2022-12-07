@@ -6,17 +6,17 @@
 
   <div class="container review-create">
     <!-- update form -->
-    <form name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
+    <form class="review-create-form" name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
         <h4 class="text-center mb-4">글 리뷰 작성</h4>
         {% csrf_token %}
         <!-- 글 -->
         <div class="mb-3">
-          <textarea name="content" cols="40" rows="14" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
+          <textarea name="content" onkeyup="check_length(this);" cols="40" rows="17" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
         </div>
         <!-- 태그 -->
         <div class="mb-3">
           <label class="form-label" style="color: var(--gray-dark-color);" for="id_tag"># 해시태그 입력</label>
-          <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" >
+          <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" value="{% for tag in book_review.tags.all %}{{ tag.name }},{% endfor %}">
         </div>
         <!-- 색상 : hidden(기본값 하양) -->
         <div class="mb-3" style="display: none;">
@@ -71,6 +71,18 @@
       else {
         // true : submit reader.onload
         return true;
+      }
+    }
+
+    function check_length(area) {
+      var text = area.value;
+      var text_length = text.length;
+
+      if(text_length > 400) {
+        alert("400자 이상 작성할 수 없습니다.")
+        text = text.substr(0, 400);
+        area.value = text;
+        area
       }
     }
 

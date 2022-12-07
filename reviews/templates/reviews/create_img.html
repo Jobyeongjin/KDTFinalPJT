@@ -6,7 +6,7 @@
 
   <div class="container review-create">
     <!-- update form -->
-    <form name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
+    <form class="review-create-form" name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
         <h4 class="text-center mb-4">사진 리뷰 작성</h4>
         {% csrf_token %}
         <!-- 글 : hidden -->
@@ -20,7 +20,7 @@
         </div>
         <!-- 사진 -->
         <div class="mb-3">
-          <div class="mx-auto mb-2" style="width: 350px; height: 350px">
+          <div class="mx-auto mb-2" style="width: 440px; height: 440px">
             <img class="w-100 h-100" style="object-fit: cover;" id="image" src="/static/image/no_image.png">
           </div>
           <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
@@ -28,7 +28,7 @@
         <!-- 태그 -->
         <div class="mb-3">
           <label class="form-label" style="color: var(--gray-dark-color);" for="id_tag"># 해시태그 입력</label>
-          <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" >
+          <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" value="{% for tag in book_review.tags.all %}{{ tag.name }}, {% endfor %}">
         </div>
         <!-- sumbit -->
         <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
