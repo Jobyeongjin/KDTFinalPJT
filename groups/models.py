@@ -4,11 +4,11 @@ from django.contrib.auth import get_user_model
 
 class Group(models.Model):
     title = models.CharField(max_length=200)
-    introduce = models.TextField()
-    place = models.TextField()
+    introduce = models.CharField(max_length=200)
+    place = models.CharField(max_length=200)
     detail_place = models.CharField(max_length=200,default="모임장소")
     meeting_date = models.DateField()
-    number = models.IntegerField()
+    number = models.PositiveIntegerField()
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

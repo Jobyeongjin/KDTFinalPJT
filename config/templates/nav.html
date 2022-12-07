@@ -5,6 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src=  
+  "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+      </script>  
+      
+      <script src=  
+  "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+      </script>  
+      
+      <link href=  
+  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet" type="text/css" />  
   <title>Document</title>
 </head>
 <body>
@@ -31,7 +42,7 @@
             <!-- Nav Search -->
             <div class="nav__search">
               <form id="search-form" action="{% url 'books:search' %}" method="get">
-                <input type="search" name="search" >
+                <input type="search" name="search" id="d" >
               </form>
               <div class="material-icons">search</div>
             </div>
@@ -69,5 +80,18 @@
     </div>
   </nav>
 
+
+<script>
+  $( function() {
+    var availableTags = [
+        {% for book in books %}
+            "{{book.bookname}}",
+        {% endfor %}
+    ];
+    $( "#d" ).autocomplete({
+      source: availableTags
+    });
+  } );
+</script>
 </body>
 </html>

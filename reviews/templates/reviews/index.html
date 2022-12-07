@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load taggit_templatetags2_tags %}
 
 {% block content %}
 {% include 'nav.html' %}
@@ -17,7 +18,7 @@
 
     <!-- Review-item -->
     <div class="infinite">
-      <div class="inflist">
+      <div class="inflist" style="min-height: 500px;">
         {% for review in review_list %}
           <div class="review__item">
             <!-- review-item-content -->
@@ -33,7 +34,7 @@
                 </div>
               </div>
               {% else %}
-              <img class="border" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" src="{{ review.image.url }}" alt="">
+              <img class="bookReviewCardImage border" src="{{ review.image.url }}" alt="">
               {% endif %}
             </div>
             <!-- review-item-info -->
@@ -46,6 +47,11 @@
                   </div>
                   <div class="review__item__username">
                     {{ review.user.username }}
+                    {% get_tags_for_object review as "tags" %}
+                    {% for tag in tags %}
+                    #{{tag}}
+                    {% endfor %}
+
                   </div>
                 </div>
               </a>
@@ -70,7 +76,7 @@
           </div>
         {% empty %}
           <div class="m-5">
-            <div class="m-5 d-flex flex-column align-items-center">
+            <div class="d-flex flex-column align-items-center" style="min-height: 500px;">
               <p style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
               <!-- button: review create guide -->
               <button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">

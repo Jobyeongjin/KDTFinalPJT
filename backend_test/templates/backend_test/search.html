@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load taggit_templatetags2_tags %}
+
+{% block content %}
+
+{% get_taglist as tags %}
+{% for tag in tags %}
+#{{tag}}|{{tag.num_times}}
+{% endfor %}
+<button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
+    리뷰 작성
+  </button>
+  <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
+    <!-- modal-dialog -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- modal-body -->
+        <div class="modal-body">
+          <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
+          <!-- Record-wrap -->
+          <div class="record-wrap">
+            <form id="search-form" action="{% url 'backend_test:search' %}" method="get">
+              <input type="search" name="q" id="t">
+            </form>
+            {{query}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{query}}
+  {% for boo in book %}
+  <form action="{% url 'backend_test:search' %}" method='get'>
+    <button><img src="{{boo.bookcover}}" alt=""></button>
+  </form>
+
+  {% endfor %}
+
+   <script>
+  $( function() {
+    var availableTags = [
+        {% for book in books %}
+            "{{book.bookname}}",
+        {% endfor %}
+    ];
+    $( "#t" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+
+{% endblock content %}

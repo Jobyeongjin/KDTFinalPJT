@@ -5,6 +5,8 @@ from django.db.models import Q
 from books.models import Book
 # Create your views here.
 def index(request):
+    # books = Book.objects.all()
+
     if request.method == 'GET':
 
         client_id = "Jl5rK_P9cdCDLGlhIPuy"
@@ -24,17 +26,18 @@ def index(request):
             items = result.get('items')
    
     context = {
-                'items' : items
+                'items' : items,
+                # 'books' : books
             }
 
-    return render(request, 'backend_test/index.html', context=context)
+    return render(request, 'backend_test/index.html', context)
     
 def search(request):
-    books = Book.objects.get(pk=1)
+    books = Book.objects.all()
     book = None
     query = None
-    if "search" in request.GET:
-        query = request.GET.get("search")
+    if "q" in request.GET:
+        query = request.GET.get("q")
         book = Book.objects.order_by("-pk").filter(
             Q(bookname__contains=query) | Q(authors__contains=query)
         )
@@ -43,7 +46,7 @@ def search(request):
         "book": book,
         "books" : books
     }
-    return render(request, 'backend_test/index.html', context)
+    return render(request, 'backend_test/search.html', context)
 
 def map(request):
     return render(request, "backend_test/map.html")

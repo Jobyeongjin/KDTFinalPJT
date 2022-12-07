@@ -58,7 +58,10 @@ def update(request, pk):
                 return redirect("groups:detail", pk)
         else:
             group_form = GroupForm(instance=group)
-        context = {"group_form": group_form}
+        context = {
+            "group_form": group_form,
+            "group": group,
+        }
         return render(request, "groups/create.html", context)
     else:
         return HttpResponseForbidden()
