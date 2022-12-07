@@ -73,6 +73,7 @@
 
 .detail-top-wrap > .book-info .text p {
   font-size: 14px;
+  cursor: default;
 }
 
 
@@ -81,16 +82,16 @@
   position: relative;
 }
 
-.review-like .count {
-  padding: 30px 0;
+.review-like-count {
+  display: flex;
 }
 
-.review-like .count p {
-  color: var(--yellow-color);
-  font-size: 21px;
+.review-like-count p {
+  color: var(--white-color);
+  font-size: 16px;
   font-weight: 500;
-  margin: 10px 83px 0;
-  text-align: end;
+  padding: 14px 0 14px 14px;
+  cursor: default;
 }
 
 .review-like .button {
@@ -119,21 +120,6 @@
 .review-like .button i {
   color: var(--yellow-color);
   font-size: 28px;
-}
-
-@media screen and (max-width: 992px) {
-  .review-like .button {
-    top: -30px;
-    width: 60px;
-    height: 60px;
-  }
-  .review-like .button i {
-    font-size: 22px;
-  }
-  .review-like .count p {
-    font-size: 20px;
-    margin: 2px 75px 0;
-  }
 }
 
 .review-like .like-user-button {
@@ -182,13 +168,36 @@
   margin-left: 20px;
 }
 
+.review-tags {
+  padding: 14px 0;
+  display: flex;
+  width: 100%;
+  overflow: auto;
+}
+
+.review-tags::-webkit-scrollbar{
+  display:none;
+}
+
+.review-tags p {
+  color: var(--gray-color);
+  margin: 0;
+  margin-right: 12px;
+  padding: 5px 20px 7px 20px;
+  border: 1px solid var(--gray-color);
+  border-radius: 35px;
+  opacity: .5;
+  font-size: 16px;
+  cursor: default;
+}
+
 
 /* Comment-create */
 .comment-create {
   display: flex;
   align-items: center;
   padding: 0 10px;
-  margin: 20px 0;
+  margin-bottom: 20px;
   border-top: 1px solid var(--gray-color);
   border-bottom: 1px solid var(--gray-color);
 }
@@ -283,4 +292,25 @@
 
 .comment-item-bottom p {
   margin: 10px 0;
+}
+
+/* Media */
+@media screen and (max-width: 992px) {
+  .review-like .button {
+    top: -30px;
+    width: 60px;
+    height: 60px;
+  }
+  .review-like .button i {
+    font-size: 22px;
+  }
+
+  .review-like-count p {
+    font-size: 14px;
+  }
+
+  .review-tags p {
+    font-size: 14px;
+    padding: 3px 15px 5px 15px;
+  }
 }
