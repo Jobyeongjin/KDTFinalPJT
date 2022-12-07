@@ -111,6 +111,31 @@
   </div>
 </div>
 
+  <!-- 마감 버튼 -->
+  {% if request.user == group.user %}
+    <a href="{% url 'groups:group_closed' group.pk %}" type="submit">
+      {% if group.closed == False %}
+        마감하기
+      {% else %}
+        마감 취소하기
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- 수정 -->
+  <a href="{% url "groups:update" group.pk %}">수정</a>
+  <!-- 삭제 -->
+  <a href="{% url "groups:delete" group.pk %}">삭제</a>
+  <br>
+  <p style="margin-top:10px">
+    <em class="link">
+      <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+        혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+      </a>
+    </em>
+  </p>
+  <!-- 지도 div(크기 위치 조절)-->
+  <div id="map" style="width:100%;height:350px;"></div>
 {% endblock content %}
 
 
