@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+<div class="container">
+  <div class="" style="margin-top: 100px;">
+    <form action="{% url 'notices:update' notice.pk %}" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% bootstrap_button button_type="submit" content="OK" %}
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

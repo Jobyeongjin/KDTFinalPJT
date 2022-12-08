@@ -35,6 +35,8 @@
       </form>
   </div>
 
+  <!-- Sweet alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     function readImage(input) {
       // 인풋 태그에 파일이 있는 경우
@@ -60,7 +62,14 @@
     // 사진이 첨부되었는지 확인
     function check() {
       if(review_form.image.value == '') {
-        alert("사진을 첨부해주세요.");
+        // Sweet alert
+        Swal.fire({
+          icon: 'question',
+          iconHtml: '!',
+          title: '사진을 첨부해주세요!',
+          text: '맘에 드는 장면을 기록해보세요',
+          confirmButtonColor: '#92B4EC',
+        })
         review_form.image.focus();
         return false;
       }

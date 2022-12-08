@@ -6,7 +6,7 @@ class Group(models.Model):
     title = models.CharField(max_length=200)
     introduce = models.CharField(max_length=200)
     place = models.CharField(max_length=200)
-    detail_place = models.CharField(max_length=200,default="모임장소")
+    detail_place = models.CharField(max_length=200, default="모임장소")
     meeting_date = models.DateTimeField()
     number = models.PositiveIntegerField()
     end_date = models.DateTimeField()
@@ -15,7 +15,3 @@ class Group(models.Model):
     like_user = models.ManyToManyField(get_user_model(), related_name="like_group")
     image = models.ImageField()
     closed = models.BooleanField(default=False)
-
-
-    
-

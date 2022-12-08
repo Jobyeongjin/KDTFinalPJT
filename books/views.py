@@ -37,8 +37,8 @@ def main(request):
         "books/main.html",
         {
             "books": books[:4],
-            "reviews": reviews[:5],
-             "book_reviews_carousel": reviews[:10],
+            "reviews": reviews[:3],
+            "book_reviews_carousel": reviews[:10],
         },
     )
 
@@ -134,30 +134,19 @@ def search(request):
     tags = None
     if "search" in request.GET:
         query = request.GET.get("search")
-        book = Book.objects.order_by("-pk").filter(
-            bookname__contains=query
-        )
-        authors = Book.objects.order_by("-pk").filter(
-            authors__contains=query
-            )
-        user = User.objects.order_by("-pk").filter(
-            nickname__contains=query
-        )
-        reviews = Book_Review.objects.filter(
-            content__contains=query
-        )
-        tags = Tag.objects.filter(
-            name__contains=query
-        )
+        book = Book.objects.order_by("-pk").filter(bookname__contains=query)
+        authors = Book.objects.order_by("-pk").filter(authors__contains=query)
+        user = User.objects.order_by("-pk").filter(nickname__contains=query)
+        reviews = Book_Review.objects.filter(content__contains=query)
+        tags = Book_Review.objects.filter(tags__name__contains=query)
 
     context = {
         "query": query,
-        "book": book,
-        "user" : user,
-        "reviews" : reviews,
-        "authors" : authors,
-        "tags" : tags,
-
+        "books": book,
+        "user": user,
+        "reviews": reviews,
+        "authors": authors,
+        "tags": tags,
     }
 
     return render(request, "books/search.html", context)

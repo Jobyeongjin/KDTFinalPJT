@@ -1,39 +1,121 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
+{% include 'nav.html' %}
 
-ddfdf
-<form action="{% url 'books:search' %}" method="get">
-    <input type="search"  placeholder="Search">
-</form>
+<!-- Search-top -->
+<div class="search-top">
+    <h1>검색 목록</h1>
+    <h5><span class="search-query">"{{ query }}"</span> 에 대한 검색 결과입니다.</h5>
+    <!-- search-form -->
+    <div class="search-form-wrap">
+        <form class="search-top-form" action="{% url 'books:search' %}" method="get">
+            <input class="search-input" type="search" name="search" placeholder="검색어를 입력하세요.">
+        </form>
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</div>
 
-{% for tag in tags %}
-#{{tag}}
-{% endfor %}
-<!--리뷰내용-->
-{% if reviews %}
-{% for review in reviews %}
-<span>리뷰 내용</span>
-{{review.content}}
-{% endfor %}
-{% endif %}
-<!--유저 닉네임-->
-{% for use in user %}
-{{use.nickname}}
-{% endfor %}
-<!--작가 이름-->
-{% for author in authors %}
-{{review.content}}
-{% endfor %}
-<!--책-->
-{% if book %}
-<p>책 이름</p>
-{% for boo in book %}
-{{boo.bookname}}
-{{boo.pk}}
-<img src="{{boo.bookcover}}" alt="">
-{% endfor %}
-{% else %}
-no search
-{% endif %}
+
+<!-- Search-tab -->
+<div class="search-tab">
+    <div class="container">
+
+        <!-- search-tab-radio -->
+        <input type="radio" name="s-tabs" id="s-tab1" checked>
+        <label for="s-tab1">책 이름</label>
+        <input type="radio" name="s-tabs" id="s-tab2">
+        <label for="s-tab2">저자</label>
+        <input type="radio" name="s-tabs" id="s-tab3">
+        <label for="s-tab3">리뷰 내용</label>
+        <input type="radio" name="s-tabs" id="s-tab4">
+        <label for="s-tab4">태그</label>
+    
+        <!-- search-tab-container -->
+        <!-- bookname -->
+        <div id="s-content1" class="s-tab-content">
+            {% if books %}
+            <div class="row gx-5 w-100 mx-auto">
+                {% for book in books %}
+                <div class="col-6 col-md-4 col-lg-3 tab-card s-tab-card justify-content-end">
+                    <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;"
+                        onclick="location.href='{% url 'books:detail' book.pk %}';">
+                    <div class="text-center tab-book-title">
+                        <p class="m-0" style="font-weight: 700;">{{ book.bookname }}</p>
+                        <p class="ellipsis"> {{ book.authors }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <!-- author -->
+        <div id="s-content2" class="s-tab-content">
+            {% if authors %}
+            <div class="row gx-5 w-100 mx-auto">
+                {% for book in authors %}
+                <div class="col-6 col-md-4 col-lg-3 tab-card s-tab-card justify-content-end">
+                    <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;"
+                        onclick="location.href='{% url 'books:detail' book.pk %}';">
+                    <div class="text-center tab-book-title">
+                        <p class="m-0" style="font-weight: 700;">{{ book.bookname }}</p>
+                        <p class="ellipsis""> {{ book.authors }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <!-- review -->
+        <div id="s-content3" class="s-tab-content">
+            <section class="accounts-review-list">
+                <div class="container">
+                    <!-- Review-item -->
+                    {% for review in reviews %}
+                    <div class="review__item">
+                        <!-- review-item-content -->
+                        <div class="review__item__content" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+                            <div class="review__item__content__quote">
+                                <div class="up-quote">
+                                <i class="fa-solid fa-quote-left fa-lg"></i>
+                                </div>
+                                <p class="text-center m-0">{{ review.content }}</p>
+                                <div class="down-quote">
+                                <i class="fa-solid fa-quote-right fa-lg"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        <!-- tag -->
+        <div id="s-content4" class="s-tab-content">
+            <section class="accounts-review-list">
+                <div class="container">
+                    <!-- Review-item -->
+                    {% for tag_review in tags %}
+                    <div class="review__item">
+                        <!-- review-item-content -->
+                        <div class="review__item__content" style="cursor: pointer; background-color: {{ tag_review.color }};" onclick="location.href='{% url 'reviews:detail' tag_review.pk %}';">
+                            <div class="review__item__content__quote">
+                                <div class="up-quote">
+                                <i class="fa-solid fa-quote-left fa-lg"></i>
+                                </div>
+                                <p class="text-center m-0">{{ tag_review.content }}</p>
+                                <div class="down-quote">
+                                <i class="fa-solid fa-quote-right fa-lg"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+
 {% endblock content %}

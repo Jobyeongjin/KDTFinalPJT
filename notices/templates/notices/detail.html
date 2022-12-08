@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  {{ notice.pk }}
+  {{ notice.title }}
+  {{ notice.content }}
+
+  <a href="{% url 'notices:update' notice.pk %}">공지사항 수정하기</a>
+  <a href="{% url 'notices:delete' notice.pk %}">공지사항 삭제하기</a>
+{% endblock content %}
+  

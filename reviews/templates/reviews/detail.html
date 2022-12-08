@@ -9,7 +9,11 @@
   <div class="container">
 
     <!-- review-countent & book-info-->
+    {% if review.content != "" %}
     <div class="detail-top-wrap">
+    {% else %}
+    <div class="detail-top-wrap detail-top-wrap-img">
+    {% endif %}
       <!-- review-content-dot -->
       {% if request.user == review.user %}
         <div class="review-content-dot">
@@ -57,7 +61,11 @@
     </div>
 
     <!-- review-writer -->
+    {% if review.content != "" %}
     <div class="detail-bottom-wrap">
+    {% else %}
+    <div class="detail-bottom-wrap detail-bottom-wrap-img">
+    {% endif %}
       <!-- review-writer -->
       <div class="review-writer">
   
@@ -203,11 +211,13 @@
 		if (totalByte > maxByte) {
       // Sweet alert
       Swal.fire({
-        icon: 'warning',    
-        title: 'Oops...',
+        icon: 'question',
+        iconHtml: '!',
+        title: '너무 길어요!',
         text: '100자 이내로 작성해주세요!',
+        confirmButtonColor: '#92B4EC',
       })
-		}
+}
 	}
 </script>
 
