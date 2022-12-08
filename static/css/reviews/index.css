@@ -41,7 +41,7 @@
 .review__item__content p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 11;
+  -webkit-line-clamp: 10;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
@@ -120,6 +120,10 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
+}
+
+.review__item__content__quote p {
+  padding: 0 10px;
 }
 
 .fa-quote-left {

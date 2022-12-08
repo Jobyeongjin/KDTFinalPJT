@@ -175,7 +175,7 @@
         <div class="swiper-wrapper">
           {% for book_review in book_reviews_carousel %}
             <div class="swiper-slide mb-5">
-              <div class="card p-0" style="cursor: pointer; width: 18rem; height: 200px; background-color: {{ book_review.color }};" onclick="location.href='{% url 'reviews:detail' book_review.pk %}';">
+              <div class="card p-0" style="cursor: pointer; background-color: {{ book_review.color }};" onclick="location.href='{% url 'reviews:detail' book_review.pk %}';">
                 {% if book_review.content != "" %}
                 <div class="review__item__content__quote">
                   <div class="up-quote">
