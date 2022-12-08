@@ -26,6 +26,7 @@
       <!-- Nav Logo -->
       <div class="nav__logo">
         <a href="{% url 'books:main' %}">
+          <!-- <h4 style="color: var(--main-color); width: 65px; margin: 0; font-family: 'Nanum Myeongjo'">책:오</h3> -->
           <img src="{% static 'img/logo-04.png' %}" alt="logo">
         </a>
       </div>
@@ -35,7 +36,7 @@
           <li class="nav__list__item"><a href="{% url 'books:index' %}">도서목록</a></li>
           <li class="nav__list__item"><a href="{% url 'reviews:index' %}">리뷰목록</a></li>
           <li class="nav__list__item"><a href="{% url 'groups:index' %}">모임목록</a></li>
-          <li class="nav__list__item"><a href="#">공지사항/문의하기</a></li>
+          <li class="nav__list__item"><a href="{% url 'notices:index' %}">공지사항</a></li>
         </ul>
         <div class="nav-wrap-inner">
           <div class="nav-icon-wrap">
@@ -82,16 +83,16 @@
 
 
 <script>
-  $( function() {
-    var availableTags = [
-        {% for book in books %}
-            "{{book.bookname}}",
-        {% endfor %}
-    ];
-    $( "#d" ).autocomplete({
-      source: availableTags
-    });
-  } );
+$( function() {
+  var availableTags = [
+      {% for book in books %}
+          "{{book.bookname}}",
+      {% endfor %}
+  ];
+  $( "#d" ).autocomplete({
+    source: availableTags
+  });
+} );
 </script>
 </body>
 </html>
