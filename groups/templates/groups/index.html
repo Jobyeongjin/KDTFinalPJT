@@ -6,131 +6,95 @@
 <!--모임 목록 템플릿입니다-->
 
 <div class="container group_index">
-    <div class="group_index_introduction">
-        <h3> 모임 목록 </h3>
-        <p> 안내 문구 </p>
-    </div>
+  <div class="group_index_introduction">
+    <h3> 모임 목록 </h3>
+    <p> 안내 문구 </p>
+  </div>
 
-    <!--모임중/ 모집 마감 선택 -->
-    <div class="group_index_tap">
-        <div class="group_select">
-            <button class="group_select_btn btn btn--main"> 전체 </button>
-            <button class="group_select_btn btn btn--main"> 모집 중</button>
-            <button class="group_select_btn btn btn--main"> 모집 마감</button>
+  <!--모임중/ 모집 마감 선택 -->
+  <div class="tab-area">
+    <!-- 탭 메뉴 -->
+    <input type="radio" name="tabs" id="tab1" checked>
+    <label for="tab1">전체 모임</label>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">모집 중</label>
+    <input type="radio" name="tabs" id="tab3">
+    <label for="tab3">모집 마감 </label>
+
+    <!-- 탭1 : 모집중 -->
+    <div id="content1" class="tab-content">
+      <!-- 모임 생성 버튼 -->
+      <a class="btn btn--main tab-create-btn my-3" href="{% url 'groups:create' %}">모임 생성</a>
+      <!-- 전체 모임 리스트 -->
+      <div class="row gx-5">
+        <!-- 반복문 시작 -->
+        {% for group in groups %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
+          onclick="location.href='{% url 'groups:detail' group.pk %}';">
+          <div class="card w-100 mb-5 mx-auto">
+            <div class="card-image" style="height: 250px;">
+              <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
+            </div>
+            <div class="card-body">
+              <h6 class="card-title" style="margin-bottom: 20px;">{{ group.title }}</h6>
+              <p class="card-text" style="font-size: 14px;">{{ group.place }} /{{ group.number }}명 / 
+                {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+            </div>
+          </div>
         </div>
-        <div class="group_create">
-            <button class="group_create_btn btn btn--main--reverse"> 모임 생성하기</button>
-        </div>
+        {% endfor %}
+        <!-- 반복문 끝 -->
+      </div>
+      <!-- 탭2 : 모집 중 -->
     </div>
-
-    <section class="group_list">
-        <div class="mm__list">
-            <div class="mm__list__item">
-              <div class="card" style="width: 18rem;">
-                <div class="card-image">
-                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                </div>
-              </div>
+    <div id="content2" class="tab-content">
+      <!-- 모집중 모임 리스트 -->
+      <div class="row gx-5">
+        <!-- 반복문 시작 -->
+        {% for group in groups %}
+        {% if group.closed == 0 %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
+          onclick="location.href='{% url 'groups:detail' group.pk %}';">
+          <div class="card w-100 mb-5 mx-auto">
+            <div class="card-image" style="height: 250px;">
+              <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
-            <div class="mm__list__item">
-              <div class="card" style="width: 18rem;">
-                <div class="card-image">
-                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                </div>
-              </div>
+            <div class="card-body">
+              <h6 class="card-title" style="margin-bottom: 20px;">{{ group.title }}</h6>
+              <p class="card-text" style="font-size: 14px;">{{ group.place }} /{{ group.number }}명 / {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
             </div>
-            <div class="mm__list__item">
-              <div class="card" style="width: 18rem;">
-                <div class="card-image">
-                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                </div>
-              </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <!-- 반복문 끝 -->
+      </div>
+    </div>
+    <!-- 탭3 : 모집 마감 -->
+    <div id="content3" class="tab-content">
+      <!-- 모집마감 모임 리스트 -->
+      <div class="row gx-5">
+        <!-- 반복문 시작 -->
+        {% for group in groups %}
+        {% if group.closed == 1 %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
+          onclick="location.href='{% url 'groups:detail' group.pk %}';">
+          <div class="card w-100 mb-5 mx-auto">
+            <div class="card-image" style="height: 250px;">
+              <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100px;">
             </div>
-    </section>
-
-    <section class="group_list_done">
-        <h5 class="text-center"> 모집 마감 배지 예시 </h5>
-        <div class="mm__list">
-            <div class="mm__list__item">
-              <div class="card" style="width: 18rem;">
-                <div class="card-image">
-                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                </div>
-              </div>
+            <div class="card-body">
+              <h6 class="card-title" style="margin-bottom: 20px;">{{ group.title }}</h6>
+              <p class="card-text" style="font-size: 14px;">{{ group.place }} /{{ group.number }}명 / {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
             </div>
-            <div class="mm__list__item">
-              <div class="card" style="width: 18rem;">
-                <div class="card-image">
-                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                </div>
-              </div>
-            </div>
-            <div class="mm__list__item">
-              <div class="card" style="width: 18rem;">
-                <div class="card-image">
-                  <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                  <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                </div>
-              </div>
-            </div>
-            <div class="done-badge">
-                <div> 모집 마감</div>
-            </div>
-    </section>
-
-<!--<div class="group_index_tap">
-            <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">전체</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">모집 중</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">모집 마감</a>
-            </li>
-        </ul>
-        <p> 모임 생성하기</p>
-    </div>-->
-
-
-    <!--<div class="group_index_tap">
-    <form class="group_index_tap_form" id="all-nav-button">
-            <input type="radio" id="0" name="group_radio" checked="checked">
-            <label for="0">전체</label>
-            <input type="radio" id="1" name="group_radio">
-            <label for="1">모집중</label>
-            <input type="radio" id="2" name="group_radio">
-            <label for="2">모집마감</label>
-        </form>
-    <div class="group_index_tap">
-
-    </div> -->
-
-
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <!-- 반복문 끝 -->
+      </div>
+    </div>
+  </div>
 </div>
 
 
