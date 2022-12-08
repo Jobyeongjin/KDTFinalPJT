@@ -191,7 +191,6 @@ def comment_create(request, review_pk):
             }
         )
 
-    print("여기까지 실행")
     return JsonResponse(
         {
             "comment_data": comment_data,

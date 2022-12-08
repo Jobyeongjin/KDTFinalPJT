@@ -105,28 +105,36 @@
               <p>{{ review.user.username }}</p>
             </div>
           </a>
+          
+          {% if request.user.is_authenticated %}
           <div class="mr__item-like">
-              <!-- review-item-button -->
-              <div class="review__item__btn">
-                <div id="like-count-{{ review.pk }}" class="m-0 me-2 fw-bold" style="color: var(--main-color);">
-                  {{ review.like_user.count }}
-                </div>
-                <!-- review-like-form -->
-                <form class="like-forms" data-review-id="{{ review.pk }}">
-                  {% csrf_token %}
-                  {% if user in review.like_user.all %}
-                  <button id="like-{{ review.pk }}" type="submit">
-                  <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
-                  </button>
-                  {% else %}
-                  <button id="like-{{ review.pk }}" type="submit">
-                    <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
-                  </button>
-                  {% endif %}
-                </form>
-                <i class="fa-solid fa-share-nodes fa-lg"></i>
+            <!-- review-item-button -->
+            <div class="review__item__btn">
+              <div id="like-count-{{ review.pk }}" class="m-0 me-2 fw-bold" style="color: var(--main-color);">
+                {{ review.like_user.count }}
               </div>
+              <!-- review-like-form -->
+              <form class="like-forms" data-review-id="{{ review.pk }}">
+                {% csrf_token %}
+                {% if user in review.like_user.all %}
+                <button id="like-{{ review.pk }}" type="submit">
+                <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
+                </button>
+                {% else %}
+                <button id="like-{{ review.pk }}" type="submit">
+                  <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
+                </button>
+                {% endif %}
+              </form>
+              <i class="fa-solid fa-share-nodes fa-lg"></i>
+            </div>
           </div>
+          {% else %}
+          <a href="{% url 'accounts:login' %}">
+            <span style="color: var(--dark-color); font-size: 14px;">로그인 이후 사용이 가능합니다.</span>
+          </a>
+          {% endif %}
+            
         </div>
       </div>
       {% empty %}
