@@ -83,16 +83,20 @@
           <div class="swiper-wrapper">
             {% for review in reviews %}
               <div class="swiper-slide mb-5">
-                <div class="card" style="width: 18rem; height: 200px; background-color: {{ review.color }};">
-                  <div class="up-quote">
-                    <i class="fa-solid fa-quote-left fa-lg"></i>
-                  </div>
-                  <a href="{% url 'reviews:detail' review.pk %}">
-                    <p>{{ review.content }}</p>
-                  </a>
-                  <div class="down-quote">
-                    <i class="fa-solid fa-quote-right fa-lg"></i>
-                  </div>
+                <div class="card p-0" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+                    {% if review.content != "" %}
+                    <div class="review__item__content__quote">
+                      <div class="up-quote">
+                        <i class="fa-solid fa-quote-left fa-lg"></i>
+                      </div>
+                      <p class="bookReviewCardContent">{{ review.content }}</p>
+                      <div class="down-quote">
+                        <i class="fa-solid fa-quote-right fa-lg"></i>
+                      </div>
+                    </div>
+                    {% else %}
+                    <img class="bookReviewCardImage border" style="border-radius: 12px;" src="{{ review.image.url }}" alt="">
+                    {% endif %}
                 </div>
               </div>
             {% empty %}
