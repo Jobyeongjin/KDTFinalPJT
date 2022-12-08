@@ -55,13 +55,22 @@
       </form>
   </div>
 
+
+  <!-- Sweet alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     // 글이 작성되었는지 확인
     function check() {
       // 공백이면
       if(review_form.content.value == '') {
-        // 경고 alert 출력
-        alert("글을 작성해주세요.");
+        // Sweet alert
+        Swal.fire({
+          icon: 'question',
+          iconHtml: '!',
+          title: '글을 작성해주세요!',
+          text: '맘에 드는 구절을 기록해보세요',
+          confirmButtonColor: '#92B4EC',
+        })
         // content textarea 커서 이동
         review_form.content.focus();
         // false : submit X
@@ -79,10 +88,17 @@
       var text_length = text.length;
 
       if(text_length > 400) {
-        alert("400자 이상 작성할 수 없습니다.")
+        // Sweet alert
+        Swal.fire({
+          icon: 'question',
+          iconHtml: '!',
+          title: '너무 길어요!',
+          text: '400자 이내로 작성해주세요!',
+          confirmButtonColor: '#92B4EC',
+        })
         text = text.substr(0, 400);
         area.value = text;
-        area
+        area.focus();
       }
     }
 

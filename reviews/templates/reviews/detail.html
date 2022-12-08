@@ -203,11 +203,13 @@
 		if (totalByte > maxByte) {
       // Sweet alert
       Swal.fire({
-        icon: 'warning',    
-        title: 'Oops...',
+        icon: 'question',
+        iconHtml: '!',
+        title: '너무 길어요!',
         text: '100자 이내로 작성해주세요!',
+        confirmButtonColor: '#92B4EC',
       })
-		}
+}
 	}
 </script>
 
