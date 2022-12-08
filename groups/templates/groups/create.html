@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
+
+
 {% block content %}
 
   <h1>create</h1>
@@ -37,11 +39,11 @@
       </div>
       <div class="mb-3">
         <label class="form-label" for="id_meeting_date">모임날짜</label>
-        <input type="date" name="meeting_date" class="form-control" placeholder="모임날짜" required="" id="id_meeting_date" value="{{group.end_date}}">
+        <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date" value="{{group.meeting_date}}" autocomplete="off" required>
       </div>
       <div class="mb-3">
         <label class="form-label" for="id_end_date">마감일</label>
-        <input type="date" name="end_date" class="form-control" placeholder="마감일" required="" id="id_end_date">
+        <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date" value="{{group.end_date}}" autocomplete="off" required>
       </div>
       <div class="mb-3">
         <label class="form-label" for="id_image">이미지</label>
@@ -69,5 +71,21 @@
     var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     document.getElementById("id_meeting_date").setAttribute("min", today);
     document.getElementById("id_end_date").setAttribute("min", today);
+  </script>
+  <script>
+    $("#id_meeting_date").datepicker({
+        language: 'ko',
+        timepicker: true,
+        timeFormat: "hh:ii",
+        minDate: new Date(),
+    });
+  </script>
+  <script>
+      $("#id_end_date").datepicker({
+          language: 'ko',
+          timepicker: true,
+          timeFormat: "hh:ii",
+          minDate: new Date(),
+      });
   </script>
 {% endblock js %}

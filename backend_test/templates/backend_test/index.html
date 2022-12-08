@@ -1,54 +1,43 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  백엔드 테스트
+백엔드 테스트
 {{books}}
 <form action="" method='GET'>
-    <input name="q"  placeholder="검색할 단어를 입려하세요">
-    <input type="submit">
+  <input name="q" placeholder="검색할 단어를 입려하세요">
+  <input type="submit">
 </form>
+<input type="text" id="tags">
 
 
-<button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
-  리뷰 작성
-</button>
-<div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
-  <!-- modal-dialog -->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- modal-body -->
-      <div class="modal-body">
-        <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
-        <!-- Record-wrap -->
-        <div class="record-wrap">
-          <form id="search-form" action="{% url 'backend_test:search' %}" method="get">
-            <input type="search" name="search">
-          </form>
-          {{query}}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{{query}}
+
 
 {% for item in items %}
- <div>
-    <p>{{ item.title }}</p>
-    <p>{{ item.link }}</p>
-    <p>{{ item.author }}</p>
-    <p>{{ item.discount }}</p>
-    <p>{{ item.description }}</p>
-    <p>{{ item.pubdate }}</p>
-    <p>{{ item.image }} </p>
-    <div>
-        <img src="{{ item.image}}" alt="">
-    </div>
+<div>
+  <p>{{ item.title }}</p>
+  <p>{{ item.link }}</p>
+  <p>{{ item.author }}</p>
+  <p>{{ item.discount }}</p>
+  <p>{{ item.description }}</p>
+  <p>{{ item.pubdate }}</p>
+  <p>{{ item.image }} </p>
+  <div>
+    <img src="{{ item.image}}" alt="">
+  </div>
 
- </div>
- {% endfor %}
+</div>
+{% endfor %}
 <script>
-  
+  $(function () {
+    var availableTags = [
+      {% for book in books %}
+            "{{book.bookname}}"
+        {% endfor %}
+    ];
+  $("#tags").autocomplete({
+    source: availableTags
+  });
+  } );
 </script>
- 
+
 {% endblock content %}

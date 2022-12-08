@@ -14,17 +14,30 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('bookname', models.CharField(max_length=200)),
-                ('authors', models.CharField(max_length=200)),
-                ('publisher', models.CharField(max_length=200)),
-                ('publication_year', models.CharField(max_length=100)),
-                ('class_nm', models.CharField(max_length=100)),
-                ('bookcover', models.CharField(max_length=200)),
-                ('description', models.CharField(max_length=200)),
-                ('like_user', models.ManyToManyField(related_name='books', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("bookname", models.CharField(max_length=200)),
+                ("authors", models.CharField(max_length=200)),
+                ("publisher", models.CharField(max_length=200)),
+                ("publication_year", models.CharField(max_length=100)),
+                ("class_nm", models.CharField(max_length=100)),
+                ("bookcover", models.CharField(max_length=200)),
+                ("description", models.CharField(max_length=200)),
+                (
+                    "like_user",
+                    models.ManyToManyField(
+                        related_name="books", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
             ],
         ),
     ]
