@@ -17,6 +17,14 @@
   border-radius: 25px;
 }
 
+.detail-top-wrap-img,
+.detail-bottom-wrap-img {
+  width: 80%;
+  max-width: 748px;
+  margin: 0 auto;
+  position: relative;
+}
+
 
 /* Review-content */
 .review-content {
@@ -323,6 +331,8 @@
 }
 
 /* Media */
+@media screen and (max-width: 1200px) {}
+
 @media screen and (max-width: 992px) {
   .review-like .button {
     top: -30px;

@@ -11,14 +11,15 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     groups = Group.objects.all()
     context = {
-        "groups":groups,
+        "groups": groups,
     }
-    return render(request, "groups/index.html",context)
+    return render(request, "groups/index.html", context)
 
 
 # 모임 생성
 @login_required
 def create(request):
+    print(request.POST)
     if request.user.is_authenticated:
         if request.method == "POST":
             group_form = GroupForm(request.POST, request.FILES)
@@ -32,6 +33,7 @@ def create(request):
         context = {"group_form": group_form}
         return render(request, "groups/create.html", context)
 
+
 # 모임 디테일
 def detail(request, pk):
     group = Group.objects.get(pk=pk)
@@ -39,12 +41,13 @@ def detail(request, pk):
     like_count = group.like_user.count()
     group_like_user = group.like_user
     context = {
-        "group":group,
-        "place":place,
+        "group": group,
+        "place": place,
         "like_count": like_count,
         "group_like_user": group_like_user,
     }
     return render(request, "groups/detail.html", context)
+
 
 # 모임 업데이트
 @login_required
@@ -66,6 +69,7 @@ def update(request, pk):
     else:
         return HttpResponseForbidden()
 
+
 # 모임 삭제
 @login_required
 def delete(request, pk):
@@ -75,6 +79,7 @@ def delete(request, pk):
         return redirect("groups:index")
     else:
         return HttpResponseForbidden()
+
 
 # 모집 신청
 @login_required
@@ -95,6 +100,7 @@ def like(request, pk):
     }
 
     return JsonResponse(context)
+
 
 # 모집마감
 def group_closed(request, pk):

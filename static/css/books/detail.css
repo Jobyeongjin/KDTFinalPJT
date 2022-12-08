@@ -267,7 +267,7 @@ td {
 .bookReviewSwiper .swiper-slide a p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
   overflow: hidden;
 }
 
@@ -275,18 +275,11 @@ td {
   color: var(--dark-color);
 }
 
-.bookReviewSwiper .swiper-slide .card .fa-quote-right {
-  color: var(--dark-color);
-  text-align: end;
-  width: 100%;
-}
-
 .bookReviewCardContent {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  max-height: 112px;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;

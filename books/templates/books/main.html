@@ -76,8 +76,9 @@
     <div class="mr__list">
       {% for review in reviews %}
       <!-- Main-review-item -->
-      <div class="mr__list__item">      
-        <div class="mr__item__content p-0" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+      <div class="mr__list__item">
+        <div class="mr__item__content p-0" style="cursor: pointer; background-color: {{ review.color }};"
+          onclick="location.href='{% url 'reviews:detail' review.pk %}';">
           {% if review.content != "" %}
           <div class="review__item__content__quote">
             <div class="up-quote">
@@ -129,7 +130,8 @@
       <div class="mm__list__item">
         <div class="card" style="width: 18rem;">
           <div class="card-image">
-            <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+            <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top"
+              alt="metting-image">
           </div>
           <div class="card-body">
             <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
@@ -140,7 +142,8 @@
       <div class="mm__list__item">
         <div class="card" style="width: 18rem;">
           <div class="card-image">
-            <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+            <img src="https://i.pinimg.com/564x/47/15/9f/47159faf62691e0a28513aafd883389c.jpg" class="card-img-top"
+              alt="metting-image">
           </div>
           <div class="card-body">
             <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
@@ -151,7 +154,8 @@
       <div class="mm__list__item">
         <div class="card" style="width: 18rem;">
           <div class="card-image">
-            <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top" alt="metting-image">
+            <img src="https://i.pinimg.com/564x/06/54/6a/06546a0b2d7bf1ed86914a482e3ca80c.jpg" class="card-img-top"
+              alt="metting-image">
           </div>
           <div class="card-body">
             <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
@@ -159,7 +163,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </section>
@@ -168,10 +172,10 @@
 <!-- Write-global-button -->
 <div class="write-gb">
   <button type="button" data-bs-toggle="modal" data-bs-target="#review-guide">
-    <i class="fa-solid fa-pencil"></i>
+    <lord-icon src="https://cdn.lordicon.com/puvaffet.json" trigger="hover" colors="primary:#6c757d,secondary:#92B4EC">
+    </lord-icon>
   </button>
 </div>
-
 <!-- reivew-guide-modal -->
 <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
   <!-- modal-dialog -->
@@ -185,12 +189,8 @@
           <!-- record-wording -->
           <a href="{% url 'reviews:create_txt' %}">
             <div class="record-wording">
-              <lord-icon
-                src="https://cdn.lordicon.com/nocovwne.json"
-                trigger="hover"
-                colors="primary:#6c757d,secondary:#6c757d"
-                stroke="30"
-                style="width:250px;height:250px">
+              <lord-icon src="https://cdn.lordicon.com/nocovwne.json" trigger="hover"
+                colors="primary:#6c757d,secondary:#6c757d" stroke="30" style="width:250px;height:250px">
               </lord-icon>
               <h5 class="word">문장 기록</h5>
             </div>
@@ -198,12 +198,8 @@
           <!-- record-photo -->
           <a href="{% url 'reviews:create_img' %}">
             <div class="record-photo">
-              <lord-icon
-                src="https://cdn.lordicon.com/vixtkkbk.json"
-                trigger="hover"
-                colors="primary:#6c757d,secondary:#6c757d"
-                stroke="30"
-                style="width:250px;height:250px">
+              <lord-icon src="https://cdn.lordicon.com/vixtkkbk.json" trigger="hover"
+                colors="primary:#6c757d,secondary:#6c757d" stroke="30" style="width:250px;height:250px">
               </lord-icon>
               <h5>사진 기록</h5>
             </div>

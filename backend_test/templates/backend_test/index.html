@@ -1,43 +1,43 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  백엔드 테스트
+백엔드 테스트
 {{books}}
 <form action="" method='GET'>
-    <input name="q"  placeholder="검색할 단어를 입려하세요">
-    <input type="submit">
+  <input name="q" placeholder="검색할 단어를 입려하세요">
+  <input type="submit">
 </form>
 <input type="text" id="tags">
-    
+
 
 
 
 {% for item in items %}
- <div>
-    <p>{{ item.title }}</p>
-    <p>{{ item.link }}</p>
-    <p>{{ item.author }}</p>
-    <p>{{ item.discount }}</p>
-    <p>{{ item.description }}</p>
-    <p>{{ item.pubdate }}</p>
-    <p>{{ item.image }} </p>
-    <div>
-        <img src="{{ item.image}}" alt="">
-    </div>
+<div>
+  <p>{{ item.title }}</p>
+  <p>{{ item.link }}</p>
+  <p>{{ item.author }}</p>
+  <p>{{ item.discount }}</p>
+  <p>{{ item.description }}</p>
+  <p>{{ item.pubdate }}</p>
+  <p>{{ item.image }} </p>
+  <div>
+    <img src="{{ item.image}}" alt="">
+  </div>
 
- </div>
- {% endfor %}
- <script>
-  $( function() {
+</div>
+{% endfor %}
+<script>
+  $(function () {
     var availableTags = [
-        {% for book in books %}
+      {% for book in books %}
             "{{book.bookname}}"
         {% endfor %}
     ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
+  $("#tags").autocomplete({
+    source: availableTags
+  });
   } );
-  </script>
- 
+</script>
+
 {% endblock content %}
