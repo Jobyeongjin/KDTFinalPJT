@@ -67,6 +67,7 @@ body > .nav {
 
 .nav__logo img {
   width: 45px;
+  border-radius: 10px;
 }
 
 .nav-wrap {

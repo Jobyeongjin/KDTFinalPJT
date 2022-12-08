@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 
 {% block content %}
@@ -211,3 +211,12 @@
 </div>
 
 {% endblock content %}
+
+
+
+{% block js %}
+
+<script src="{% static 'js/write-btn.js' %}"></script>
+
+{% endblock js %}
+  

@@ -26,6 +26,7 @@
       <!-- Nav Logo -->
       <div class="nav__logo">
         <a href="{% url 'books:main' %}">
+          <!-- <h4 style="color: var(--main-color); width: 65px; margin: 0; font-family: 'Nanum Myeongjo'">책:오</h3> -->
           <img src="{% static 'img/logo-04.png' %}" alt="logo">
         </a>
       </div>
@@ -82,16 +83,16 @@
 
 
 <script>
-  $( function() {
-    var availableTags = [
-        {% for book in books %}
-            "{{book.bookname}}",
-        {% endfor %}
-    ];
-    $( "#d" ).autocomplete({
-      source: availableTags
-    });
-  } );
+$( function() {
+  var availableTags = [
+      {% for book in books %}
+          "{{book.bookname}}",
+      {% endfor %}
+  ];
+  $( "#d" ).autocomplete({
+    source: availableTags
+  });
+} );
 </script>
 </body>
 </html>
