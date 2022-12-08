@@ -44,7 +44,7 @@
             
             {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:detail' request.user.pk %}">
-              <img class="nav__user__image" src="{{ user.user_image }}" alt="user-profile">
+              <img class="nav__user__image" src="{{ request.user.user_image }}" alt="user-profile">
             </a>
             <a href="{% url 'accounts:logout' %}" class="ms-3">
               <!-- fa-door-open / fa-person-walking-arrow-right 
