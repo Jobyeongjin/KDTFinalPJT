@@ -195,6 +195,7 @@ section.main-swiper {
 .mm__list__item .card .card-image {
   overflow: hidden;
   border-radius: 5px 5px 0 0;
+  height: 250px;
 }
 
 .mm__list__item .card img {
@@ -202,6 +203,7 @@ section.main-swiper {
   transform:scale(1.0);        
   transition: transform .5s; 
   border-radius: 5px 5px 0 0;
+  height: 100%;
 }
 
 .mm__list__item .card img:hover {
