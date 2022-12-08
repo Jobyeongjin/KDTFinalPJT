@@ -4,5 +4,16 @@
 {% block content %}
 {% include 'nav.html' %}
   
+
+<div class="" style="margin-top: 100px;">
+  <div class="container">
+    {% for notice in notices %}
+      <a href="{% url 'notices:detail' notice.pk %}">
+        {{ notice.pk }}
+      </a>
+    {% endfor %}
+  </div>
+</div>
+  
 {% endblock content %}
   
