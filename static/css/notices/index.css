@@ -1,4 +1,10 @@
 /* Notice */
+.notice-body {
+  width: 100%;
+  height: 100vh;
+  
+}
+
 .notices-wrap {
   width: 600px;
   margin: 0 auto;
@@ -7,6 +13,10 @@
 .notice__top {
   margin-top: 120px;
   margin-bottom: 50px;
+}
+
+.notice__top h3 {
+  color: var(--white-color);
 }
 
 
