@@ -228,7 +228,8 @@ body {
     position: fixed;
     justify-content: center;
     bottom: 40px;
-    left: 78px;
+    left: 50%;
+    transform:translateX(-50%);
     cursor: pointer;
     z-index: 100;
   }
@@ -279,7 +280,7 @@ s .onboarding-mo-btn-div .btn.btn--yellow:hover {
 }
 
 .onboarding-mo-btn-div .btn.btn--yellow--reverse {
-  color: #fff;
+  color: black;
   background-color: var(--yellow-color);
   border-color: var(--yellow-color);
 }

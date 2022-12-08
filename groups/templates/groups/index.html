@@ -22,11 +22,11 @@
     <label for="tab3">모집 마감 </label>
 
     <!-- 탭1 : 모집중 -->
-    <div id="content1" class="tab-content">
+    <div id="content1" class="tab-content d-flex justify-content-center">
       <!-- 모임 생성 버튼 -->
       <a class="btn btn--main tab-create-btn my-3" href="{% url 'groups:create' %}">모임 생성</a>
       <!-- 전체 모임 리스트 -->
-      <div class="row gx-5">
+      <div class="row gx-5 w-100">
         <!-- 반복문 시작 -->
         {% for group in groups %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
@@ -36,9 +36,10 @@
               <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
             <div class="card-body">
-              <h6 class="card-title" style="margin-bottom: 20px;">{{ group.title }}</h6>
-              <p class="card-text" style="font-size: 14px;">{{ group.place }} /{{ group.number }}명 / 
-                {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+              <h6 class="card-title" style="margin-bottom: 20px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;">{{ group.title }}</h6>
+              <p class="card-text" style="font-size: 14px;">장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 
+                일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
             </div>
           </div>
         </div>
@@ -47,21 +48,23 @@
       </div>
       <!-- 탭2 : 모집 중 -->
     </div>
-    <div id="content2" class="tab-content">
+    <div id="content2" class="tab-content d-flex justify-content-center">
       <!-- 모집중 모임 리스트 -->
-      <div class="row gx-5">
+      <div class="row gx-5 w-100">
         <!-- 반복문 시작 -->
         {% for group in groups %}
         {% if group.closed == 0 %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
           onclick="location.href='{% url 'groups:detail' group.pk %}';">
           <div class="card w-100 mb-5 mx-auto">
-            <div class="card-image" style="height: 250px;">
+            <div class="position-relative card-image" style="height: 250px;">
+              <span class="position-absolute top-0 start-100 translate-middle p-2 badge rounded-pill text-bg-success">모집중</span>
               <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
             <div class="card-body">
-              <h6 class="card-title" style="margin-bottom: 20px;">{{ group.title }}</h6>
-              <p class="card-text" style="font-size: 14px;">{{ group.place }} /{{ group.number }}명 / {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+              <h6 class="card-title" style="margin-bottom: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;">{{ group.title }}</h6>
+              <p class="card-text" style="font-size: 14px;"> 장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 일시 :{{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
             </div>
           </div>
         </div>
@@ -71,21 +74,23 @@
       </div>
     </div>
     <!-- 탭3 : 모집 마감 -->
-    <div id="content3" class="tab-content">
+    <div id="content3" class="tab-content d-flex justify-content-center">
       <!-- 모집마감 모임 리스트 -->
-      <div class="row gx-5">
+      <div class="row gx-5 w-100">
         <!-- 반복문 시작 -->
         {% for group in groups %}
         {% if group.closed == 1 %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
           onclick="location.href='{% url 'groups:detail' group.pk %}';">
           <div class="card w-100 mb-5 mx-auto">
-            <div class="card-image" style="height: 250px;">
-              <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100px;">
+            <div class="position-relative card-image" style="height: 250px;">
+              <span class="position-absolute top-0 start-100 translate-middle p-2 badge rounded-pill text-bg-secondary">모집마감</span>
+              <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
             <div class="card-body">
-              <h6 class="card-title" style="margin-bottom: 20px;">{{ group.title }}</h6>
-              <p class="card-text" style="font-size: 14px;">{{ group.place }} /{{ group.number }}명 / {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+              <h6 class="card-title" style="margin-bottom: 20px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;">{{ group.title }}</h6>
+              <p class="card-text " style="font-size: 14px;">장소: {{ group.place }} <br> 인원: {{ group.number }}명 <br> 일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
             </div>
           </div>
         </div>
