@@ -5,87 +5,84 @@
 
 {% block content %}
 
-  <h1>create</h1>
-  <div class="container">
-    <form action="" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-    
-      <!-- 연습 -->
-      {% comment %} {{group.end_date}}
-      <p>{{group.end_date | date:'Y-m-d' }}</p> {% endcomment %}
+<h1>create</h1>
+<div class="container">
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
-      <!-- input -->
-       {% comment %} {% bootstrap_form group_form %}  {% endcomment %}
-      
-       <div class="mb-3">
-        <label class="form-label" for="id_title">모임 제목</label>
-        <input type="text" name="title" maxlength="200" class="form-control" placeholder="모임 제목" required="" id="id_title" value="{{group.title}}">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_introduce">소개글</label>
-        <input type="text" name="introduce" maxlength="200" class="form-control" placeholder="소개글" required="" id="id_introduce" value="{{group.introduce}}">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_place">주소</label>
-        <input type="text" name="place" maxlength="200" class="form-control" placeholder="주소" required="" id="id_place" value="{{group.place}}">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_detail_place">모임장소</label>
-        <input type="text" name="detail_place" value="{{group.detail_place}}" maxlength="200" class="form-control" placeholder="모임장소" required="" id="id_detail_place">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_number">모집인원</label>
-        <input type="number" name="number" min="0" class="form-control" placeholder="모집인원" required="" id="id_number" value="{{group.number}}">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_meeting_date">모임날짜</label>
-        <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date" value="{{group.meeting_date}}" autocomplete="off" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_end_date">마감일</label>
-        <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date" value="{{group.end_date}}" autocomplete="off" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="id_image">이미지</label>
-        <input type="file" name="image" accept="image/*" class="form-control" required="" id="id_image">
+    <!-- 연습 -->
+    {% comment %} {{group.end_date}}
+    <p>{{group.end_date | date:'Y-m-d' }}</p> {% endcomment %}
 
-      </div>
-      <div class="mb-3">
-        <div class="form-check"><input type="checkbox" name="closed" class="form-check-input" id="id_closed">
-          <label class="form-check-label" for="id_closed">마감버튼</label>
-        </div>
-      </div> 
-      <button type="submit">제출</button>
+    <!-- input -->
+    {% comment %} {% bootstrap_form group_form %} {% endcomment %}
 
-    </form>
-    
-  </div>
-  
+    <div class="mb-3">
+      <label class="form-label" for="id_title">모임 제목</label>
+      <input type="text" name="title" maxlength="200" class="form-control" placeholder="모임 제목" required="" id="id_title"
+        value="{{group.title}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_introduce">소개글</label>
+      <input type="text" name="introduce" maxlength="200" class="form-control" placeholder="소개글" required=""
+        id="id_introduce" value="{{group.introduce}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_place">주소</label>
+      <input type="text" name="place" maxlength="200" class="form-control" placeholder="주소" required="" id="id_place"
+        value="{{group.place}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_detail_place">모임장소</label>
+      <input type="text" name="detail_place" value="{{group.detail_place}}" maxlength="200" class="form-control"
+        placeholder="모임장소" required="" id="id_detail_place">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_number">모집인원</label>
+      <input type="number" name="number" min="0" class="form-control" placeholder="모집인원" required="" id="id_number"
+        value="{{group.number}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_end_date">신청 마감일</label>
+      <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date"
+        value="{{group.end_date}}" autocomplete="off" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_meeting_date">모임날짜</label>
+      <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date"
+        value="{{group.meeting_date}}" autocomplete="off" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="id_image">이미지</label>
+      <input type="file" name="image" accept="image/*" class="form-control" required="" id="id_image">
+
+    </div>
+    <button type="submit">제출</button>
+
+  </form>
+
+</div>
+
 
 {% endblock content %}
 
 {% block js %}
-  <script>
-    var now_utc = Date.now()
-    var timeOff = new Date().getTimezoneOffset() * 60000;
-    var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
-    document.getElementById("id_meeting_date").setAttribute("min", today);
-    document.getElementById("id_end_date").setAttribute("min", today);
-  </script>
-  <script>
-    $("#id_meeting_date").datepicker({
-        language: 'ko',
-        timepicker: true,
-        timeFormat: "hh:ii",
-        minDate: new Date(),
-    });
-  </script>
-  <script>
-      $("#id_end_date").datepicker({
-          language: 'ko',
-          timepicker: true,
-          timeFormat: "hh:ii",
-          minDate: new Date(),
-      });
-  </script>
-{% endblock js %}
+
+<script>
+  $("#id_end_date").datepicker({
+    language: 'ko',
+    timeFormat: "hh:ii",
+    minDate: new Date(),
+    autoClose: true,
+  });
+</script>
+<script>
+  $("#id_meeting_date").datepicker({
+    language: 'ko',
+    timeFormat: "hh:ii",
+    minDate: new Date(),
+    autoClose: true,
+  });
+</script>
+
+  {% endblock js %}
