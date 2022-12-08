@@ -4,16 +4,33 @@
 {% block content %}
 {% include 'nav.html' %}
   
+<!-- Notice-wrap -->
+<div class="notices-wrap">
 
-<div class="" style="margin-top: 100px;">
-  <div class="container">
+  <!-- Notice-top -->
+  <div class="notice__top">
+    <h3>공지사항</h3>
+  </div>
+
+  <!-- Notice-list -->
+  <div class="notice__list">
+    <!-- Notice-item -->
     {% for notice in notices %}
-      <a href="{% url 'notices:detail' notice.pk %}">
-        {{ notice.pk }}
-      </a>
+      <div class="notice__item">
+        <div class="notice__item__date">
+          <p>{{ notice.created_at|date:'Y.m.d' }}</p>
+        </div>
+        <a href="{% url 'notices:detail' notice.pk %}">
+          <div class="notice__item__title">
+            <p><span>[{{ notice.notice_name }}] </span>{{ notice.title }}</p>
+            <span><i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </a>
+      </div>
+      <hr>
     {% endfor %}
   </div>
+
 </div>
-  
+
 {% endblock content %}
-  

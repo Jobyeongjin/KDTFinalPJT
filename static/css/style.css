@@ -19,8 +19,12 @@
 @import './reviews/index.css';
 @import './reviews/create.css';
 @import './reviews/detail.css';
-/* Group */
+/* Groups */
 @import './groups/detail.css';
+/* Notices */
+@import './notices/index.css';
+
+
 
 
 /* Root */
@@ -207,10 +211,6 @@ body > .nav {
 @media screen and (max-width: 1200px) {
   .nav__list__item a {
     font-size: 14px;
-  }
-
-  .nav__list__item:last-child {
-    display: none;
   }
 }
 
