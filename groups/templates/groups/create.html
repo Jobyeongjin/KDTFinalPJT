@@ -38,12 +38,12 @@
         <input type="number" name="number" min="0" class="form-control" placeholder="모집인원" required="" id="id_number" value="{{group.number}}">
       </div>
       <div class="mb-3">
-        <label class="form-label" for="id_meeting_date">모임날짜</label>
-        <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date" value="{{group.meeting_date}}" autocomplete="off" required>
-      </div>
-      <div class="mb-3">
         <label class="form-label" for="id_end_date">마감일</label>
         <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date" value="{{group.end_date}}" autocomplete="off" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="id_meeting_date">모임날짜</label>
+        <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date" value="{{group.meeting_date}}" autocomplete="off" required>
       </div>
       <div class="mb-3">
         <label class="form-label" for="id_image">이미지</label>
@@ -65,14 +65,17 @@
 {% endblock content %}
 
 {% block js %}
-  <script>
+  <!-- 옛날코드 -->
+  {% comment %} <script>
     var now_utc = Date.now()
     var timeOff = new Date().getTimezoneOffset() * 60000;
     var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     document.getElementById("id_meeting_date").setAttribute("min", today);
     document.getElementById("id_end_date").setAttribute("min", today);
-  </script>
-  <script>
+  </script> {% endcomment %}
+
+  <!-- 최소값 제한달력 -->
+  {% comment %} <script>
     $("#id_meeting_date").datepicker({
         language: 'ko',
         timepicker: true,
@@ -87,5 +90,58 @@
           timeFormat: "hh:ii",
           minDate: new Date(),
       });
-  </script>
+  </script> {% endcomment %}
+
+  <script>
+    
+    var date = new Date();
+    var dp = $('#id_end_date').datepicker({
+      //년-월-일
+      startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+      language: 'ko',
+      autoClose: true,
+      //선택한 날짜를 가져옴
+      onSelect: function (date) {
+          var endNum = date;
+          //종료일 datepicker에 최소날짜를 방금 클릭한 날짜로 설정
+          $('#id_meeting_date').datepicker({
+              minDate: new Date(endNum),
+          });
+      }
+    }).data('datepicker');
+    var dp2 = $('#id_meeting_date').datepicker({
+      startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),  // 시간, 분은 00으로 초기 설정
+      language: 'ko',
+      autoClose: true,
+      //선택한 날짜를 가져옴
+      onSelect: function (date) {
+          var startNum = date;
+          $('#id_end_date').datepicker({
+              //시작일 datepicker에 최대날짜를 방금 클릭한 날짜로 설정
+              minDate: new Date(),
+              maxDate: new Date(startNum),
+          });
+      }
+    }).data('datepicker');
+    </script>
+
+  {% comment %} <script>
+    let dpMin, dpMax;
+
+    dpMin = new AirDatepicker('#el1', {
+        onSelect({date}) {
+            dpMax.update({
+                minDate: date
+            })
+        }
+    })
+
+    dpMax = new AirDatepicker('#el2', {
+        onSelect({date}) {
+            dpMin.update({
+                maxDate: date
+            })
+        }
+    })
+  </script> {% endcomment %}
 {% endblock js %}
