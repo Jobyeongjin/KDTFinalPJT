@@ -69,7 +69,7 @@
 
 .review__item__username {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .review__item__btn {
@@ -82,6 +82,13 @@
   color: var(--main-color);
   font-size: 26px;
 }
+
+.review-item-tag {
+  font-size: 14px;
+  margin-left: 5px;
+  color: var(--gray-dark-color);
+}
+
 
 /* Review-media */
 @media screen and (max-width: 1200px) {
@@ -104,7 +111,6 @@
   .accounts-review-list .review__item,
   .review-list .review__item {
     width: 445px;
-    height: 500px;
   }
 
   .review__item__content {

@@ -47,11 +47,6 @@
                   </div>
                   <div class="review__item__username">
                     {{ review.user.username }}
-                    {% get_tags_for_object review as "tags" %}
-                    {% for tag in tags %}
-                    #{{tag}}
-                    {% endfor %}
-
                   </div>
                 </div>
               </a>
@@ -72,6 +67,12 @@
                 </form>
                 <i class="fa-solid fa-share-nodes fa-lg"></i>
               </div>
+            </div>
+            <div class="review-item-tag">
+              {% get_tags_for_object review as "tags" %}
+              {% for tag in tags %}
+                #{{tag}}
+              {% endfor %}
             </div>
           </div>
         {% empty %}
