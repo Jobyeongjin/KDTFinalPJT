@@ -41,8 +41,10 @@
 .review__item__content p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 13;
+  -webkit-line-clamp: 11;
   overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .review__item__info {
@@ -109,10 +111,6 @@
     width: 445px;
     height: 445px;
     font-size: 20px;
-  }
-
-  .review__item__content p {
-    -webkit-line-clamp: 16;
   }
 }
 
