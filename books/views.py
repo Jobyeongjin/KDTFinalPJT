@@ -71,16 +71,8 @@ def index(request):
         except EmptyPage:
             book_list = books_page.page(books_page.num_pages)
 
-        return render(
-            request,
-            "books/index.html",
-            {
-                "books": books,
-                "book_list": book_list,
-                "totalnum": totalnum,
-                "totalpagenum": totalpagenum,
-            },
-        )
+    count = Book.objects.all().count()
+    
     return render(
         request,
         "books/index.html",
@@ -89,6 +81,7 @@ def index(request):
             "book_list": book_list,
             "totalnum": totalnum,
             "totalpagenum": totalpagenum,
+            "count": count,
         },
     )
 
