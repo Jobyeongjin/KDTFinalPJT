@@ -1,0 +1,46 @@
+
+.group_index {
+    margin-top: 120px;
+}
+
+.group_index_introduction {
+    text-align: center;
+}
+
+.group_index_tap {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
+.group_select {
+    display: flex;
+
+}
+
+.group_index .card-image {
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+    height: 250px;
+  }
+
+.group_index .card-image img {
+    object-fit: cover;
+    transform: scale(1.0);
+    transition: transform .5s;
+    border-radius: 5px 5px 0 0;
+    height: 100%;
+  }
+
+.group_index .card-image img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: transform .5s;
+
+}
+
+.group_index .card-body span {
+    position:absolute;
+    translate: middle;
+    
+}

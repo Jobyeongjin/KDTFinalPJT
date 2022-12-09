@@ -7,5 +7,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("map/", views.map, name="map"),
     path("map2/", views.map2, name="map2"),
-    path("search/", views.search, name="search")
+    path("search/", views.search, name="search"),
+    path("<int:book_pk>/book/", views.book, name="book")
 ]

@@ -29,17 +29,17 @@
       <div class="row gx-5 w-100">
         <!-- 반복문 시작 -->
         {% for group in groups %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
+        <div class="col-12 col-md-6 col-lg-3" style="cursor: pointer;"
           onclick="location.href='{% url 'groups:detail' group.pk %}';">
           <div class="card w-100 mb-5 mx-auto">
             <div class="card-image" style="height: 250px;">
               <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
             <div class="card-body">
-              <h6 class="card-title" style="margin-bottom: 20px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
-              -webkit-box-orient: vertical;">{{ group.title }}</h6>
-              <p class="card-text" style="font-size: 14px;">장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 
-                일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+              <p class="card-title" style="margin-bottom: 10px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical; font-weight: 600;">{{ group.title }}</p>
+              <p class="card-text" style="font-size: 14px; color: var(--gray-dark-color);">장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 
+                일시: {{ group.meeting_date|date:"m.d A h:i" }} <br> 모집 마감일: {{ group.end_date |date:"m.d A h:i" }}까지</p>
             </div>
           </div>
         </div>
@@ -57,14 +57,14 @@
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
           onclick="location.href='{% url 'groups:detail' group.pk %}';">
           <div class="card w-100 mb-5 mx-auto">
-            <div class="position-relative card-image" style="height: 250px;">
-              <span class="position-absolute top-0 start-100 translate-middle p-2 badge rounded-pill text-bg-success">모집중</span>
+            <div class="card-image" style="height: 250px;">
               <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
-            <div class="card-body">
-              <h6 class="card-title" style="margin-bottom: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
-              -webkit-box-orient: vertical;">{{ group.title }}</h6>
-              <p class="card-text" style="font-size: 14px;"> 장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 일시 :{{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+            <div class="position-relative card-body">
+              <span class="p-2 badge rounded-pill text-bg-success">모집중</span>
+              <p class="card-title" style="margin-bottom: 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical; font-weight: 600;">{{ group.title }}</p>
+              <p class="card-text" style="font-size: 14px; color: var(--gray-dark-color);"> 장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 일시: {{ group.meeting_date|date:"m.d(l) A h:i" }} <br> 모집 마감일: {{ group.end_date |date:"m.d A h:i" }}까지</p>
             </div>
           </div>
         </div>
@@ -88,9 +88,9 @@
               <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
             </div>
             <div class="card-body">
-              <h6 class="card-title" style="margin-bottom: 20px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
-              -webkit-box-orient: vertical;">{{ group.title }}</h6>
-              <p class="card-text " style="font-size: 14px;">장소: {{ group.place }} <br> 인원: {{ group.number }}명 <br> 일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}</p>
+              <p class="card-title" style="margin-bottom: 10px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical; font-weight: 600;">{{ group.title }}</p>
+              <p class="card-text " style="font-size: 14px; color: var(--gray-dark-color);">장소: {{ group.place }} <br> 인원: {{ group.number }}명 <br> 일시: {{ group.meeting_date|date:"m.d(l) A h:i" }} <br>모집 마감일: {{ group.end_date |date:"m.d A h:i" }}까지</p>
             </div>
           </div>
         </div>

@@ -40,8 +40,7 @@
             </div>
           </div>
           <div class="buy-btn">
-            <!-- http://isearch.interpark.com/isearch?q= -->
-            <!-- https://www.aladin.co.kr/search/wsearchresult.aspx?&SearchWord= -->
+            {% if request.user.is_authenticated %}
             <a href="http://isearch.interpark.com/isearch?q={{book_url}}" class="btn btn--main--reverse">구매하기</a>
             <span>
               {% if request.user in book.like_user.all %}
@@ -49,7 +48,12 @@
               {% else %}
               <i id="like-btn" data-book-id="{{ book.pk }}" class="fa-regular fa-heart fa-2x"></i>
               {% endif %}
-              </span>
+            </span>
+            {% else %}
+            <a href="{% url 'accounts:login' %}">
+              <span style="margin-left: 30px; color: var(--dark-color); font-size: 14px;">로그인 이후 사용이 가능합니다.</span>
+            </a>
+            {% endif %}
           </div>
         </div>
         <div class="review-writers">

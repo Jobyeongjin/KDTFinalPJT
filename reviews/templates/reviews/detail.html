@@ -70,6 +70,7 @@
       <div class="review-writer">
   
         <!-- review-like -->
+        {% if request.user.is_authenticated %}
         <div class="review-like">
           <form class="review-like-forms" data-review-id="{{ review.pk }}">
             {% csrf_token %}
@@ -84,6 +85,7 @@
             {% endif %}
           </form>
         </div>
+        {% endif %}
         <div class="review-like-count">
           <p id="like-count">좋아요 {{ like_count }}</p>
           <p id="like-count">댓글 {{ comments_count }}</p>
@@ -98,6 +100,7 @@
             <p>{{ review.user.username }}</p>
             <p>{{ review.updated_at }}</p>
           </div>
+          {% if request.user.is_authenticated %}
           <!-- review-user-followings -->
           <div class="follow">
             <form id="follow-form" data-user-id="{{ review.user.pk }}">
@@ -111,6 +114,11 @@
               {% endif %}
             </form>
           </div>
+          {% else %}
+          <a href="{% url 'accounts:login' %}">
+            <span style="margin-left: 30px; color: var(--white-color); font-size: 14px;">로그인 이후 사용이 가능합니다.</span>
+          </a>
+          {% endif %}
         </div>
         
         <!-- review-tags -->
@@ -123,7 +131,9 @@
       </div>
       <!-- Comment-create -->
       <div class="comment-create">
-        <img src="{{ request.user.user_image }}" alt="my-image">
+        {% if request.user.is_authenticated %}
+          <img src="{{ request.user.user_image }}" alt="my-image">
+        {% endif %}
         <form id="comment-form" data-review-id="{{ review.pk }}">
           {% csrf_token %}
           <input type="text" name="content" placeholder=" 댓글 남기기" onkeyup="checkword(this, 100)" maxlength="100" required>

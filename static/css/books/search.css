@@ -27,7 +27,11 @@
   border-radius: 35px;
   padding: 0 30px 0 50px;
   color: var(--dark-color);
-  border: 1px solid var(--gray-color);
+  border: 1px solid var(--dark-color);
+}
+
+.search-input:focus {
+  border: 1px solid var(--main-color);
 }
 
 .search-form-wrap i {
@@ -36,7 +40,10 @@
   transform: translateY(-50%);
   left: 18px;
   font-size: 24px;
-  color: var(--gray-dark-color);
+}
+
+.focused {
+  color: var(--main-color);
 }
 
 /* Search-tab  */
@@ -89,6 +96,14 @@
 
 .s-tab-card .tab-book-title {
   min-height: 85px;
+}
+
+.s-tab-card img {
+  transition: all ease-in-out .3s;
+}
+
+.s-tab-card img:hover {
+  transform: scale(1.05);
 }
 
 .ellipsis {

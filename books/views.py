@@ -71,16 +71,8 @@ def index(request):
         except EmptyPage:
             book_list = books_page.page(books_page.num_pages)
 
-        return render(
-            request,
-            "books/index.html",
-            {
-                "books": books,
-                "book_list": book_list,
-                "totalnum": totalnum,
-                "totalpagenum": totalpagenum,
-            },
-        )
+    count = Book.objects.all().count()
+    
     return render(
         request,
         "books/index.html",
@@ -89,6 +81,7 @@ def index(request):
             "book_list": book_list,
             "totalnum": totalnum,
             "totalpagenum": totalpagenum,
+            "count": count,
         },
     )
 
@@ -138,7 +131,8 @@ def search(request):
         authors = Book.objects.order_by("-pk").filter(authors__contains=query)
         user = User.objects.order_by("-pk").filter(nickname__contains=query)
         reviews = Book_Review.objects.filter(content__contains=query)
-        tags = Book_Review.objects.filter(tags__name__contains=query)
+        tags = Tag.objects.filter(name__contains=query)
+        tags_review = Book_Review.objects.filter(tags__name__contains=query)
 
     context = {
         "query": query,
@@ -147,6 +141,7 @@ def search(request):
         "reviews": reviews,
         "authors": authors,
         "tags": tags,
+        "tags_review": tags_review,
     }
 
     return render(request, "books/search.html", context)

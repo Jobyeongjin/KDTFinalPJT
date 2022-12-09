@@ -191,7 +191,6 @@ def comment_create(request, review_pk):
             }
         )
 
-    print("여기까지 실행")
     return JsonResponse(
         {
             "comment_data": comment_data,
@@ -251,3 +250,45 @@ def like(request, pk):
             "like_count": review.like_user.count(),
         }
     )
+
+def create(request):
+    book = None
+    query = None
+    t = request.GET.get("aa")
+    try:
+        bookId = Book.objects.get(pk=t)
+
+    except Book.DoesNotExist:
+        bookId = None
+
+    
+    
+    if "q" in request.GET:
+        query = request.GET.get("q")
+        book = Book.objects.order_by("-pk").filter(
+            bookname__contains=query
+        )
+
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            book_review_form = Book_ReviewForm(request.POST, request.FILES)
+            if book_review_form.is_valid():
+                book_review = book_review_form.save(commit=False)
+                book_review.user = request.user
+                book_review.bookId = bookId
+                book_review.save()
+                book_review_form.save_m2m()
+                return redirect(
+                    "books:detail",
+                    bookId.pk,
+                )
+        else:
+            book_review_form = Book_ReviewForm()
+  
+    context = {
+        "query": query,
+        "book": book,
+        "book_review_form": book_review_form,
+        "bookId" : bookId,
+    }
+    return render(request, 'reviews/create.html', context)
