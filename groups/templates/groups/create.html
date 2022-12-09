@@ -39,13 +39,13 @@
         value="{{group.number}}">
     </div>
     <div class="mb-3">
-      <label class="form-label" for="id_end_date">신청 마감일</label>
-      <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date"
+      <label class="form-label" for="id_end_date">신청 마감일(진수)</label>
+      <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date2"
         value="{{group.end_date}}" autocomplete="off" required>
     </div>
     <div class="mb-3">
-      <label class="form-label" for="id_meeting_date">모임날짜</label>
-      <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date"
+      <label class="form-label" for="id_meeting_date">모임날짜(진수)</label>
+      <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date2"
         value="{{group.meeting_date}}" autocomplete="off" required>
     </div>
     <div class="mb-3">
@@ -64,83 +64,106 @@
 
 {% block js %}
 
-  <!-- 옛날코드 -->
-  {% comment %} <script>
-    var now_utc = Date.now()
-    var timeOff = new Date().getTimezoneOffset() * 60000;
-    var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
-    document.getElementById("id_meeting_date").setAttribute("min", today);
-    document.getElementById("id_end_date").setAttribute("min", today);
-  </script> {% endcomment %}
+<script>
+  $("#id_end_date2").datepicker({
+      language: 'ko',
+      timepicker: true,
+      timeFormat: "hh:ii AA",
+      minDate: new Date(),
+      autoClose: true,
+  });
+</script>
 
-  <!-- 최소값 제한달력 -->
-  {% comment %} <script>
-    $("#id_meeting_date").datepicker({
+  <script>
+    $("#id_meeting_date2").datepicker({
         language: 'ko',
         timepicker: true,
-        timeFormat: "hh:ii",
+        timeFormat: "hh:ii AA",
         minDate: new Date(),
+        autoClose: true,
     });
   </script>
-  <script>
-      $("#id_end_date").datepicker({
-          language: 'ko',
-          timepicker: true,
-          timeFormat: "hh:ii",
-          minDate: new Date(),
-      });
-  </script> {% endcomment %}
+
+  <!-- 최소값 제한달력 -->
 
   <script>
-    
-    var date = new Date();
-    var dp = $('#id_end_date').datepicker({
-      //년-월-일
-      startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-      language: 'ko',
-      autoClose: true,
-      //선택한 날짜를 가져옴
-      onSelect: function (date) {
-          var endNum = date;
-          //종료일 datepicker에 최소날짜를 방금 클릭한 날짜로 설정
-          $('#id_meeting_date').datepicker({
-              minDate: new Date(endNum),
-          });
-      }
-    }).data('datepicker');
-    var dp2 = $('#id_meeting_date').datepicker({
-      startDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),  // 시간, 분은 00으로 초기 설정
-      language: 'ko',
-      autoClose: true,
-      //선택한 날짜를 가져옴
-      onSelect: function (date) {
-          var startNum = date;
-          $('#id_end_date').datepicker({
-              //시작일 datepicker에 최대날짜를 방금 클릭한 날짜로 설정
-              minDate: new Date(),
-              maxDate: new Date(startNum),
-          });
-      }
-    }).data('datepicker');
-    </script>
+    datePickerSet($("#id_end_date2"), $("#id_meeting_date2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
 
-  {% comment %} <script>
-    let dpMin, dpMax;
+/*
+    * 달력 생성기
+    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
+    * @example   datePickerSet($("#datepicker"));
+    * 
+    * 
+    * @param sDate, 
+    * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
+    * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
+    */
+function datePickerSet(sDate, eDate, flag) {
 
-    dpMin = new AirDatepicker('#el1', {
-        onSelect({date}) {
-            dpMax.update({
-                minDate: date
-            })
+    //시작 ~ 종료 2개 짜리 달력 datepicker	
+    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
+        var sDay = sDate.val();
+        var eDay = eDate.val();
+
+        if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { //처음 입력 날짜 설정, update...			
+            var sdp = sDate.datepicker().data("datepicker");
+            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+
+            var edp = eDate.datepicker().data("datepicker");
+            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
         }
-    })
 
-    dpMax = new AirDatepicker('#el2', {
-        onSelect({date}) {
-            dpMin.update({
-                maxDate: date
-            })
+        //시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
+        if (!isValidStr(eDay)) {
+            sDate.datepicker({
+                maxDate: new Date(eDay.replace(/-/g, "/"))
+            });
         }
-    })
-  </script> {% endcomment %}
+        sDate.datepicker({
+            language: 'ko',
+            autoClose: true,
+            onSelect: function () {
+                datePickerSet(sDate, eDate);
+            }
+        });
+
+        //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
+        if (!isValidStr(sDay)) {
+            eDate.datepicker({
+                minDate: new Date(sDay.replace(/-/g, "/"))
+            });
+        }
+        eDate.datepicker({
+            language: 'ko',
+            autoClose: true,
+            onSelect: function () {
+                datePickerSet(sDate, eDate);
+            }
+        });
+
+        //한개짜리 달력 datepicker
+    } else if (!isValidStr(sDate)) {
+        var sDay = sDate.val();
+        if (flag && !isValidStr(sDay)) { //처음 입력 날짜 설정, update...			
+            var sdp = sDate.datepicker().data("datepicker");
+            sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+        }
+
+        sDate.datepicker({
+            language: 'ko',
+            autoClose: true
+        });
+    }
+
+
+    function isValidStr(str) {
+        if (str == null || str == undefined || str == "")
+            return true;
+        else
+            return false;
+    }
+}
+  </script>
+
 {% endblock js %}
