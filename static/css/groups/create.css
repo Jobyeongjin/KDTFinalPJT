@@ -1,0 +1,29 @@
+/* groups form */
+.groups-create {
+  min-height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.groups-create-form {
+  width: 800px;
+  margin: 150px 0;
+  border: solid 1px var(--gray-light-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .1);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.groups-form-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.group-form-map {
+  width: 100%;
+  padding-bottom: 100%;
+  border-radius: 5px;
+}

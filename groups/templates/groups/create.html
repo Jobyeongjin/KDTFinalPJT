@@ -1,149 +1,127 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
-
-
 {% block content %}
+{% include 'nav.html' %}
 
-<h1>create</h1>
-<div class="container">
-  <form action="" method="POST" enctype="multipart/form-data">
+<div class="container groups-create">
+  <form class="groups-create-form p-5" name="groups_form" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-
-    <!-- input -->
-    {% comment %} {% bootstrap_form group_form %} {% endcomment %}
-
-    <div class="mb-3">
-      <label class="form-label" for="id_title">모임 제목</label>
-      <input type="text" name="title" maxlength="200" class="form-control" placeholder="모임 제목" required="" id="id_title"
-        value="{{group.title}}">
+    <h4 class="text-center mb-4">모임 생성</h4>
+    <div class="row">
+      <div class="col-12 col-md-6 groups-form-input">
+        <div class="mb-3">
+          <label class="form-label" for="id_title">모임 제목</label>
+          <input type="text" name="title" maxlength="200" class="form-control" placeholder="모임 제목" required="" id="id_title"
+            value="{{group.title}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_introduce">소개글</label>
+          <input type="text" name="introduce" maxlength="200" class="form-control" placeholder="소개글" required=""
+            id="id_introduce" value="{{group.introduce}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_number">모집인원</label>
+          <input type="number" name="number" min="0" class="form-control" placeholder="모집인원" required="" id="id_number"
+            value="{{group.number}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_end_date">모집마감일</label>
+          <input type="text" name="end_date" class="datetimepick form-control" placeholder="모집마감일" required="" id="id_end_date"
+            value="{{group.end_date}}" autocomplete="off" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_meeting_date">모임날짜</label>
+          <input type="text" name="meeting_date" class="datetimepick form-control" placeholder="모임날짜" required="" id="id_meeting_date"
+            value="{{group.meeting_date}}" autocomplete="off" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_image">이미지</label>
+          <input type="file" name="image" accept="image/*" class="form-control" required="" id="id_image">
+        </div>
+      </div>
+      <div class="col-12 col-md-6 groups-form-input">
+        <!-- Group map -->
+        <div class="group-form-map mb-3" id="map"></div>
+        <div class="mb-3">
+          <label class="form-label" for="id_place">주소</label>
+          <input onblur="onblur_event();" type="text" name="place" maxlength="200" class="form-control" placeholder="주소" required="" id="id_place"
+            value="{{group.place}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_detail_place">모임장소</label>
+          <input type="text" name="detail_place" value="{{group.detail_place}}" maxlength="200" class="form-control"
+            placeholder="모임장소" required="" id="id_detail_place">
+        </div>
+      </div>
     </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_introduce">소개글</label>
-      <input type="text" name="introduce" maxlength="200" class="form-control" placeholder="소개글" required=""
-        id="id_introduce" value="{{group.introduce}}">
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_place">주소</label>
-      <input type="text" name="place" maxlength="200" class="form-control" placeholder="주소" required="" id="id_place"
-        value="{{group.place}}">
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_detail_place">모임장소</label>
-      <input type="text" name="detail_place" value="{{group.detail_place}}" maxlength="200" class="form-control"
-        placeholder="모임장소" required="" id="id_detail_place">
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_number">모집인원</label>
-      <input type="number" name="number" min="0" class="form-control" placeholder="모집인원" required="" id="id_number"
-        value="{{group.number}}">
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_end_date">신청 마감일(진수)</label>
-      <input name="end_date" class="datetimepick" placeholder="마감일을 입력해주세요.(필수)" required="" id="id_end_date2"
-        value="{{group.end_date}}" autocomplete="off" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_meeting_date">모임날짜(진수)</label>
-      <input name="meeting_date" class="datetimepick" placeholder="날짜와 시간을 입력해주세요.(필수)" required="" id="id_meeting_date2"
-        value="{{group.meeting_date}}" autocomplete="off" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="id_image">이미지</label>
-      <input type="file" name="image" accept="image/*" class="form-control" required="" id="id_image">
-
-    </div>
-    <button type="submit">제출</button>
-
+    <!-- sumbit -->
+    <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
   </form>
-
 </div>
-
 
 {% endblock content %}
 
 {% block js %}
-
-<script>
-  $("#id_end_date2").datepicker({
-      language: 'ko',
-      timepicker: true,
-      timeFormat: "hh:ii AA",
-      minDate: new Date(),
-      autoClose: true,
-  });
-</script>
-
-  <script>
-    $("#id_meeting_date2").datepicker({
-        language: 'ko',
-        timepicker: true,
-        timeFormat: "hh:ii AA",
-        minDate: new Date(),
-        autoClose: true,
-    });
-  </script>
-
   <!-- 최소값 제한달력 -->
-
   <script>
-    datePickerSet($("#id_end_date2"), $("#id_meeting_date2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
-
-/*
-    * 달력 생성기
-    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
-    * @example   datePickerSet($("#datepicker"));
-    * 
-    * 
-    * @param sDate, 
-    * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
-    * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
-    */
-function datePickerSet(sDate, eDate, flag) {
-
-    //시작 ~ 종료 2개 짜리 달력 datepicker	
-    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
+    datePickerSet($("#id_end_date"), $("#id_meeting_date"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+    /*
+        * 달력 생성기
+        * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
+        * @example   datePickerSet($("#datepicker"));
+        * 
+        * 
+        * @param sDate, 
+        * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
+        * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
+        */
+    function datePickerSet(sDate, eDate, flag) {
+      //시작 ~ 종료 2개 짜리 달력 datepicker	
+      if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
         var sDay = sDate.val();
         var eDay = eDate.val();
 
         if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { //처음 입력 날짜 설정, update...			
-            var sdp = sDate.datepicker().data("datepicker");
-            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+          var sdp = sDate.datepicker().data("datepicker");
+          sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
 
-            var edp = eDate.datepicker().data("datepicker");
-            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+          var edp = eDate.datepicker().data("datepicker");
+          edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
         }
 
         //시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
         if (!isValidStr(eDay)) {
-            sDate.datepicker({
-                maxDate: new Date(eDay.replace(/-/g, "/"))
-            });
+          sDate.datepicker({
+              minDate: new Date(),
+              maxDate: new Date(eDay.replace(/-/g, "/"))
+          });
         }
         sDate.datepicker({
-            language: 'ko',
-            autoClose: true,
-            onSelect: function () {
-                datePickerSet(sDate, eDate);
-            }
+          minDate: new Date(),
+          language: 'ko',
+          autoClose: true,
+          onSelect: function () {
+              datePickerSet(sDate, eDate);
+          }
         });
 
         //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
         if (!isValidStr(sDay)) {
-            eDate.datepicker({
-                minDate: new Date(sDay.replace(/-/g, "/"))
-            });
+          eDate.datepicker({
+              minDate: new Date(sDay.replace(/-/g, "/"))
+          });
         }
         eDate.datepicker({
-            language: 'ko',
-            autoClose: true,
-            onSelect: function () {
-                datePickerSet(sDate, eDate);
-            }
+          language: 'ko',
+          autoClose: true,
+          onSelect: function () {
+              datePickerSet(sDate, eDate);
+          }
         });
 
         //한개짜리 달력 datepicker
-    } else if (!isValidStr(sDate)) {
+      } else if (!isValidStr(sDate)) {
         var sDay = sDate.val();
         if (flag && !isValidStr(sDay)) { //처음 입력 날짜 설정, update...			
             var sdp = sDate.datepicker().data("datepicker");
@@ -154,16 +132,45 @@ function datePickerSet(sDate, eDate, flag) {
             language: 'ko',
             autoClose: true
         });
-    }
+      }
 
-
-    function isValidStr(str) {
+      function isValidStr(str) {
         if (str == null || str == undefined || str == "")
             return true;
         else
             return false;
+      }
     }
-}
   </script>
+
+   <!--여기부터 지도-->
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac496d224ad8e6aeb9687fa6abedb0fd&libraries=services"></script>
+   <script>
+      // 지도 생성
+      var mapContainer = document.getElementById('map'),
+      mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+      };
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
+  
+      // 장소 입력 input에서 포커스가 떠났을 때
+      function onblur_event() {
+        var geocoder = new kakao.maps.services.Geocoder();
+        var place = groups_form.place.value
+        console.log(place)
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(`${place}`, function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({map: map, position: coords});
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+          }
+        });
+      }
+   </script>
 
 {% endblock js %}
