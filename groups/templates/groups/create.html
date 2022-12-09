@@ -12,13 +12,12 @@
       <div class="col-12 col-md-6 groups-form-input">
         <div class="mb-3">
           <label class="form-label" for="id_title">모임 제목</label>
-          <input type="text" name="title" maxlength="200" class="form-control" placeholder="모임 제목" required="" id="id_title"
+          <input type="text" onkeyup="check_length(this);" name="title" maxlength="100" class="form-control" placeholder="모임 제목" required="" id="id_title"
             value="{{group.title}}">
         </div>
         <div class="mb-3">
           <label class="form-label" for="id_introduce">소개글</label>
-          <input type="text" name="introduce" maxlength="200" class="form-control" placeholder="소개글" required=""
-            id="id_introduce" value="{{group.introduce}}">
+          <textarea name="introduce" onkeyup="check_length2(this);" cols="40" rows="13" class="form-control" placeholder="소개글" required="" id="id_introduce">{{group.introduce}}</textarea>
         </div>
         <div class="mb-3">
           <label class="form-label" for="id_number">모집인원</label>
@@ -26,7 +25,20 @@
             value="{{group.number}}">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="id_end_date">신청 마감일</label>
+          <label class="form-label" for="id_image">이미지</label>
+          <input type="file" name="image" accept="image/*" class="form-control" required="" id="id_image">
+        </div>
+      </div>
+      <div class="col-12 col-md-6 groups-form-input">
+        <!-- Group map -->
+        <div class="group-form-map mb-3" id="map"></div>
+        <div class="mb-3">
+          <label class="form-label" for="id_place">주소</label>
+          <input onblur="onblur_event();" type="text" name="place" maxlength="200" class="form-control" placeholder="주소" required="" id="id_place"
+            value="{{group.place}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="id_end_date">모집마감일</label>
           {% if group.end_date %}
             <input type="text" name="end_date" class="datetimepick form-control" placeholder="기존 날짜:{{ group.end_date }}" required="" id="id_end_date"
              autocomplete="off"> 
@@ -44,24 +56,6 @@
             <input type="text" name="meeting_date" class="datetimepick form-control" placeholder="독서모임 날짜를 입력해주세요." required="" id="id_meeting_date"
              autocomplete="off">
           {% endif %}
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="id_image">이미지</label>
-          <input type="file" name="image" accept="image/*" class="form-control" required="" id="id_image">
-        </div>
-      </div>
-      <div class="col-12 col-md-6 groups-form-input">
-        <!-- Group map -->
-        <div class="group-form-map mb-3" id="map"></div>
-        <div class="mb-3">
-          <label class="form-label" for="id_place">주소</label>
-          <input onblur="onblur_event();" type="text" name="place" maxlength="200" class="form-control" placeholder="주소" required="" id="id_place"
-            value="{{group.place}}">
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="id_detail_place">모임장소</label>
-          <input type="text" name="detail_place" value="{{group.detail_place}}" maxlength="200" class="form-control"
-            placeholder="모임장소" required="" id="id_detail_place">
         </div>
       </div>
     </div>
@@ -167,6 +161,7 @@ function datePickerSet(sDate, eDate, flag) {
 </script>
 
    <!--여기부터 지도-->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac496d224ad8e6aeb9687fa6abedb0fd&libraries=services"></script>
    <script>
       // 지도 생성
@@ -208,8 +203,61 @@ function datePickerSet(sDate, eDate, flag) {
             // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
             map.setCenter(coords);
           }
+          // 이상한 주소 입력 시 
+          else {
+            // Sweet alert
+            Swal.fire({
+              icon: 'question',
+              iconHtml: '!',
+              title: '올바른 주소를 입력해주세요!',
+              text: '지번 주소 또는 도로명 주소가 필요합니다',
+              confirmButtonColor: '#92B4EC',
+            })
+          }
         });
       }
+   </script>
+
+   <script>
+    function check_length(area) {
+      var text = area.value;
+      var text_length = text.length;
+
+      if(text_length > 100) {
+        // Sweet alert
+        Swal.fire({
+          icon: 'question',
+          iconHtml: '!',
+          title: '너무 길어요!',
+          text: '100자 이내로 작성해주세요!',
+          confirmButtonColor: '#92B4EC',
+        })
+        text = text.substr(0, 100);
+        area.value = text;
+        area.focus();
+      }
+    }
+   </script>
+
+   <script>
+    function check_length2(area) {
+      var text = area.value;
+      var text_length = text.length;
+
+      if(text_length > 200) {
+        // Sweet alert
+        Swal.fire({
+          icon: 'question',
+          iconHtml: '!',
+          title: '너무 길어요!',
+          text: '200자 이내로 작성해주세요!',
+          confirmButtonColor: '#92B4EC',
+        })
+        text = text.substr(0, 200);
+        area.value = text;
+        area.focus();
+      }
+    }
    </script>
 
 {% endblock js %}

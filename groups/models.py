@@ -3,10 +3,9 @@ from django.contrib.auth import get_user_model
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=200)
-    introduce = models.CharField(max_length=200)
+    title = models.CharField(max_length=100)
+    introduce = models.TextField(max_length=400)
     place = models.CharField(max_length=200)
-    detail_place = models.CharField(max_length=200, default="모임장소")
     meeting_date = models.DateTimeField()
     number = models.PositiveIntegerField()
     end_date = models.DateTimeField()
