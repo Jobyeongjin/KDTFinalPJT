@@ -64,29 +64,10 @@
 
 {% block js %}
 
-<script>
-  $("#id_end_date2").datepicker({
-      language: 'ko',
-      timepicker: true,
-      timeFormat: "hh:ii AA",
-      minDate: new Date(),
-      autoClose: true,
-  });
-</script>
+
 
   <script>
-    $("#id_meeting_date2").datepicker({
-        language: 'ko',
-        timepicker: true,
-        timeFormat: "hh:ii AA",
-        minDate: new Date(),
-        autoClose: true,
-    });
-  </script>
 
-  <!-- 최소값 제한달력 -->
-
-  <script>
     datePickerSet($("#id_end_date2"), $("#id_meeting_date2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
 
 /*
@@ -117,12 +98,18 @@ function datePickerSet(sDate, eDate, flag) {
         //시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
         if (!isValidStr(eDay)) {
             sDate.datepicker({
-                maxDate: new Date(eDay.replace(/-/g, "/"))
+                minDate: new Date(),
+                maxDate: new Date(eDay.replace(/-/g, "/")),
+                timepicker: true,
+                timeFormat: "hh:ii",
             });
         }
         sDate.datepicker({
+            minDate: new Date(),
             language: 'ko',
             autoClose: true,
+            timepicker: true,
+            timeFormat: "hh:ii",
             onSelect: function () {
                 datePickerSet(sDate, eDate);
             }
@@ -131,12 +118,16 @@ function datePickerSet(sDate, eDate, flag) {
         //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
         if (!isValidStr(sDay)) {
             eDate.datepicker({
-                minDate: new Date(sDay.replace(/-/g, "/"))
+              minDate: new Date(sDay.replace(/-/g, "/")),
+              timepicker: true,
+              timeFormat: "hh:ii",
             });
         }
         eDate.datepicker({
             language: 'ko',
             autoClose: true,
+            timepicker: true,
+            timeFormat: "hh:ii",
             onSelect: function () {
                 datePickerSet(sDate, eDate);
             }
@@ -152,7 +143,8 @@ function datePickerSet(sDate, eDate, flag) {
 
         sDate.datepicker({
             language: 'ko',
-            autoClose: true
+            autoClose: true,
+            
         });
     }
 

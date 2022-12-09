@@ -4,7 +4,7 @@
 @import './common.css';
 /* accounts */
 @import './accounts/login.css';
-@import './accounts/jgroupli.css';
+@import './groups/index.css';
 @import './accounts/signup.css';
 @import './accounts/update.css';
 @import './accounts/delete.css';
