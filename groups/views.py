@@ -40,7 +40,7 @@ def detail(request, pk):
     place = group.place
     like_count = group.like_user.count()
     group_like_user = group.like_user
-    if like_count == group.number:
+    if like_count >= group.number:
         group.closed = True
         group.save()
     else:
