@@ -2,17 +2,18 @@
 {% load django_bootstrap5 %}
 {% block content %}
 {% include 'nav.html' %}
+{% load taggit_templatetags2_tags %}
 
 <!-- Search-top -->
 <div class="search-top">
     <h1>검색 목록</h1>
-    <h5><span class="search-query">"{{ query }}"</span> 에 대한 검색 결과입니다.</h5>
+    <h5><span class="search-query">" {{ query }} "</span> 에 대한 검색 결과입니다.</h5>
     <!-- search-form -->
     <div class="search-form-wrap">
         <form class="search-top-form" action="{% url 'books:search' %}" method="get">
             <input class="search-input" type="search" name="search" placeholder="검색어를 입력하세요.">
         </form>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
     </div>
 </div>
 
@@ -95,7 +96,7 @@
             <section class="accounts-review-list">
                 <div class="container">
                     <!-- Review-item -->
-                    {% for tag_review in tags %}
+                    {% for tag_review in tags_review %}
                     <div class="review__item">
                         <!-- review-item-content -->
                         <div class="review__item__content" style="cursor: pointer; background-color: {{ tag_review.color }};" onclick="location.href='{% url 'reviews:detail' tag_review.pk %}';">
@@ -109,6 +110,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="review-item-tag mt-2">
+                            {% get_tags_for_object tag_review as "tags" %}
+                            {% for tag in tags %}
+                                <span style="font-size: 14px;"> #{{tag}} </span>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
@@ -119,3 +126,25 @@
 </div>
 
 {% endblock content %}
+
+
+
+{% block js %}
+
+<script>
+// Nav-search
+const sSearchEl = document.querySelector('.search-top-form');
+const sSearchInputEl = sSearchEl.querySelector('input');
+const sSearchIcon = document.querySelector('.search-icon');
+
+sSearchInputEl.addEventListener('focus', function() {
+    sSearchIcon.classList.add('focused');
+});
+
+sSearchInputEl.addEventListener('blur', function() {
+    sSearchIcon.classList.remove('focused');
+});
+</script>
+
+{% endblock js %}
+    

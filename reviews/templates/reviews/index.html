@@ -47,11 +47,6 @@
                   </div>
                   <div class="review__item__username">
                     {{ review.user.username }}
-                    {% get_tags_for_object review as "tags" %}
-                    {% for tag in tags %}
-                    #{{tag}}
-                    {% endfor %}
-
                   </div>
                 </div>
               </a>
@@ -71,6 +66,22 @@
                   {% endif %}
                 </form>
                 <i class="fa-solid fa-share-nodes fa-lg"></i>
+              </div>
+            </div>
+            <!-- review-item-tag -->
+            <div class="review-item-tag mb-3 d-flex justify-content-between align-items-center">
+              <div class="review-item-tags">
+                {% get_tags_for_object review as "tags" %}
+                {% for tag in tags %}
+                  #{{tag}}
+                {% endfor %}
+              </div>
+              <div class="created-date">
+                {% if review.created_string == False %}
+                {{ review.registered_date|date:'m월 d일' }}
+                {% else %}
+                {{ review.created_string }}
+                {% endif %}
               </div>
             </div>
           </div>

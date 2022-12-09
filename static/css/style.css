@@ -21,6 +21,7 @@
 @import './reviews/detail.css';
 /* Groups */
 @import './groups/detail.css';
+@import './groups/create.css';
 /* Notices */
 @import './notices/index.css';
 @import './notices/detail.css';
@@ -49,7 +50,7 @@
 
 
 /* Nav */
-body > .nav {
+body>.nav {
   width: 100%;
   padding: 15px 0;
   background: rgba(255, 255, 255, 0.5);
@@ -124,7 +125,7 @@ body > .nav {
   align-items: center;
 }
 
-.nav-icon-wrap > i {
+.nav-icon-wrap>i {
   color: var(--main-color);
   margin-right: 20px;
 }
@@ -208,8 +209,9 @@ body > .nav {
 @media screen and (max-width: 1400px) {
   .write-gb {
     right: 100px;
-  } 
+  }
 }
+
 @media screen and (max-width: 1200px) {
   .nav__list__item a {
     font-size: 14px;
@@ -255,7 +257,7 @@ body > .nav {
   .nav__user__image {
     margin: 0;
   }
-  
+
   .nav__user .nav__user__btn:first-child {
     margin: 0;
   }
@@ -283,11 +285,13 @@ body > .nav {
   .nav__search input:focus {
     width: 150px;
   }
+
   .write-gb {
     right: 30px;
     width: 65px;
     height: 65px;
   }
+
   .write-gb button lord-icon {
     width: 50px;
     height: 50px;
