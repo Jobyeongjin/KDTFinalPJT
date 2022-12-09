@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+
+<div class="container review-create">
+      <form id="search-form" action="{% url 'reviews:pk_create_img' %}" method="get">
+        <input type="search" name="q" id="t">
+      </form>
+      {% if bookId %}
+      <img src="{{bookId.bookcover}} " alt="">
+      {% endif %}
+      {% for boo in book %}
+          {{boo.pk}}
+          <form action="">
+          <button  id="tt" name="aa" value="{{boo.pk}}"><img src="{{boo.bookcover}}" alt=""></button>
+        {% endfor %}  
+        </form>
+          <!-- update form -->
+      <form class="review-create-form" name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
+          <h4 class="text-center mb-4">사진 리뷰 작성</h4>
+          {% csrf_token %}
+          <!-- 글 : hidden -->
+          <div class="mb-3" style="display: none;">
+             <textarea name="content" cols="40" rows="14" class="form-control review-create-input" placeholder="맘에 드는 구절을 입력해주세요." id="id_content">{{ book_review.content }}</textarea>
+          </div>
+          <!-- 색상 : hidden(기본값 하양) -->
+          <div class="mb-3" style="display: none;">
+            <label class="form-label" for="id_color">색상</label>
+            <input type="text" name="color" value="#FFFFFF" maxlength="7" class="form-control" placeholder="Color" required="" id="id_color">
+          </div>
+          <!-- 사진 -->
+          <div class="mb-3">
+            <div class="mx-auto mb-2" style="width: 440px; height: 440px">
+              <img class="w-100 h-100" style="object-fit: cover;" id="image" src="/static/image/no_image.png">
+            </div>
+            <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
+          </div>
+          <!-- 태그 -->
+          <div class="mb-3">
+            <label class="form-label" style="color: var(--gray-dark-color);" for="id_tag"># 해시태그 입력</label>
+            <input type="text" id="id_tag" class='form-control' name="tags" placeholder="ex) 태그1, 태그2" value="{% for tag in book_review.tags.all %}{{ tag.name }}, {% endfor %}">
+          </div>
+          <!-- sumbit -->
+          <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
+        </form>
+    </div>
+      
+    <!-- Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+      function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if(input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+                 const previewImage = document.getElementById("image")
+                previewImage.src = e.target.result
+                }
+                // reader가 이미지 읽도록 하기
+                reader.readAsDataURL(input.files[0])
+            }
+          }
+          // input file에 change 이벤트 부여
+          const inputImage = document.getElementById("id_image")
+          inputImage.addEventListener("change", e => {
+              readImage(e.target)
+          })
+      
+          // 사진이 첨부되었는지 확인
+          function check() {
+            if(review_form.image.value == '') {
+              // Sweet alert
+              Swal.fire({
+                icon: 'question',
+                iconHtml: '!',
+                title: '사진을 첨부해주세요!',
+                text: '맘에 드는 장면을 기록해보세요',
+                confirmButtonColor: '#92B4EC',
+              })
+              review_form.image.focus();
+              return false;
+            }
+            else {
+              return true;
+            }
+          }
+        </script>
+      
+      {% endblock content %}
