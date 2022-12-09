@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load taggit_templatetags2_tags %}
 
 {% block content %}
 {% include 'nav.html' %}
@@ -102,7 +103,7 @@
                     {% for review in user.book_review_set.all %}
                     <div class="review__item">
                         <!-- review-item-content -->
-                        <div class="review__item__content" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+                        <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
                             {% if review.content != "" %}
                             <div class="review__item__content__quote">
                                 <div class="up-quote">
@@ -113,8 +114,40 @@
                                 <i class="fa-solid fa-quote-right fa-lg"></i>
                                 </div>
                             </div>
+                            <!-- review-item-tag -->
+                            <div class="review-item-tag mt-2 pe-2 d-flex justify-content-between align-items-center">
+                                <div class="review-item-tags">
+                                {% get_tags_for_object review as "tags" %}
+                                {% for tag in tags %}
+                                    #{{tag}}
+                                {% endfor %}
+                                </div>
+                                <div class="created-date">
+                                {% if review.created_string == False %}
+                                {{ review.registered_date|date:'m월 d일' }}
+                                {% else %}
+                                {{ review.created_string }}
+                                {% endif %}
+                                </div>
+                            </div>
                             {% else %}
                             <img class="bookReviewCardImage border" src="{{ review.image.url }}" alt="">
+                            <!-- review-item-tag -->
+                            <div class="review-item-tag mt-2 pe-2 d-flex justify-content-between align-items-center">
+                                <div class="review-item-tags">
+                                {% get_tags_for_object review as "tags" %}
+                                {% for tag in tags %}
+                                    #{{tag}}
+                                {% endfor %}
+                                </div>
+                                <div class="created-date">
+                                {% if review.created_string == False %}
+                                {{ review.registered_date|date:'m월 d일' }}
+                                {% else %}
+                                {{ review.created_string }}
+                                {% endif %}
+                                </div>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
@@ -173,11 +206,11 @@
                 <div class="container">
                     <!-- Review-item -->
                     {% for review in user.like_review.all %}
-                    <div class="review__item">
+                    <div class="review__item mb-5">
                         <!-- review-item-content -->
-                        <div class="review__item__content" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
+                        <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};">
                             {% if review.content != "" %}
-                            <div class="review__item__content__quote">
+                            <div class="review__item__content__quote" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
                                 <div class="up-quote">
                                 <i class="fa-solid fa-quote-left fa-lg"></i>
                                 </div>
@@ -186,8 +219,102 @@
                                 <i class="fa-solid fa-quote-right fa-lg"></i>
                                 </div>
                             </div>
+                            <!-- review-item-info -->
+                            <div class="review__item__info">
+                                <!-- review-item-proflie -->
+                                <a href="{% url 'accounts:detail' review.user.pk %}">
+                                <div class="review__item__proflie">
+                                    <div class="review__item__img">
+                                    <img src="{{ review.user.user_image }}" style="width: 35px; height: 35px;" alt="review-write-image">
+                                    </div>
+                                    <div class="review__item__username">
+                                    {{ review.user.username }}
+                                    </div>
+                                </div>
+                                </a>
+                                <!-- review-item-button -->
+                                <div class="review__item__btn">
+                                <!-- review-like-form -->
+                                <form class="like-forms" data-review-id="{{ review.pk }}">
+                                    {% csrf_token %}
+                                    {% if user in review.like_user.all %}
+                                    <button id="like-{{ review.pk }}" type="submit">
+                                    <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg" style="font-size: 18px;"></i>
+                                    </button>
+                                    {% else %}
+                                    <button id="like-{{ review.pk }}" type="submit">
+                                    <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg" style="font-size: 18px;"></i>
+                                    </button>
+                                    {% endif %}
+                                </form>
+                                <i class="fa-solid fa-share-nodes fa-lg" style="font-size: 18px;"></i>
+                                </div>
+                            </div>
+                            <!-- review-item-tag -->
+                            <div class="review-item-tag mt-2 pe-2 d-flex justify-content-between align-items-center">
+                                <div class="review-item-tags">
+                                {% get_tags_for_object review as "tags" %}
+                                {% for tag in tags %}
+                                    #{{tag}}
+                                {% endfor %}
+                                </div>
+                                <div class="created-date">
+                                {% if review.created_string == False %}
+                                {{ review.registered_date|date:'m월 d일' }}
+                                {% else %}
+                                {{ review.created_string }}
+                                {% endif %}
+                                </div>
+                            </div>
                             {% else %}
                             <img class="bookReviewCardImage border" src="{{ review.image.url }}" alt="">
+                            <!-- review-item-info -->
+                            <div class="review__item__info">
+                                <!-- review-item-proflie -->
+                                <a href="{% url 'accounts:detail' review.user.pk %}">
+                                <div class="review__item__proflie">
+                                    <div class="review__item__img">
+                                    <img src="{{ review.user.user_image }}" style="width: 35px; height: 35px;" alt="review-write-image">
+                                    </div>
+                                    <div class="review__item__username">
+                                    {{ review.user.username }}
+                                    </div>
+                                </div>
+                                </a>
+                                <!-- review-item-button -->
+                                <div class="review__item__btn">
+                                <!-- review-like-form -->
+                                <form class="like-forms" data-review-id="{{ review.pk }}">
+                                    {% csrf_token %}
+                                    {% if user in review.like_user.all %}
+                                    <button id="like-{{ review.pk }}" type="submit">
+                                    <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg" style="font-size: 18px;"></i>
+                                    </button>
+                                    {% else %}
+                                    <button id="like-{{ review.pk }}" type="submit">
+                                    <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg" style="font-size: 18px;"></i>
+                                    </button>
+                                    {% endif %}
+                                </form>
+                                <i class="fa-solid fa-share-nodes fa-lg" style="font-size: 18px;"></i>
+                                </div>
+                            </div>
+                            <!-- review-item-tag -->
+                            <div class="review-item-tag mt-2 px-2 d-flex justify-content-between align-items-center">
+                                <div class="review-item-tags">
+                                {% get_tags_for_object review as "tags" %}
+                                {% for tag in tags %}
+                                    #{{tag}}
+                                {% endfor %}
+                                </div>
+                                <div class="created-date">
+                                {% if review.created_string == False %}
+                                {{ review.registered_date|date:'m월 d일' }}
+                                {% else %}
+                                {{ review.created_string }}
+                                {% endif %}
+                                </div>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
@@ -250,6 +377,7 @@
 
 
 <!-- JS -->
+<!-- CDN axios -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!-- Follow -->
 <script>
@@ -314,6 +442,50 @@ photo.addEventListener('mouseleave', () => {
     photoHtag.style.color = '#6c757d';
 });
 
+</script>
+
+<!-- Likes -->
+<script>
+    const forms = document.querySelectorAll('.like-forms')
+
+    forms.forEach((form) => {
+        form.addEventListener('submit', function (evnet) {
+            event.preventDefault();
+            const reviewId = event.target.dataset.reviewId
+            // request axios
+            axios({
+                method: 'post',
+                url: `/reviews/${reviewId}/like/`,
+                headers: { 'X-CSRFToken': csrftoken }, // csrf token
+            })
+                // response views
+                .then((response) => {
+                    const isLiked = response.data.is_liked
+                    const likeBtn = document.querySelector(`#like-${reviewId}`)
+                    const heartBtn = document.querySelector(`#heart-${reviewId}`)
+                    if (isLiked === true) {
+                        heartBtn
+                            .classList
+                            .remove('fa-regular')
+                        heartBtn
+                            .classList
+                            .add('fa-solid')
+                        heartBtn.style.color = 'var(--main-color)';
+                    } else {
+                        heartBtn
+                            .classList
+                            .remove('fa-solid')
+                        heartBtn
+                            .classList
+                            .add('fa-regular')
+                        heartBtn.style.color = 'var(--main-color)';
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.response)
+                })
+        })
+    })
 </script>
 
 {% endblock content %}

@@ -83,10 +83,20 @@
   font-size: 26px;
 }
 
-.review-item-tag {
+.review-item-tags,
+.created-date {
   font-size: 14px;
   margin-left: 5px;
   color: var(--gray-dark-color);
+}
+
+.review-item-tag {
+  cursor: default;
+}
+
+.created-date {
+  width: 120px;
+  text-align: end;
 }
 
 
