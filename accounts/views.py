@@ -129,9 +129,13 @@ def delete_check(request):
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
     book_likes = user.books.all()
+    user_reviews = user.book_review_set.order_by("-pk")
+    user_like_reviews = user.like_review.order_by("-pk")
     context = {
         "user": user,
         "book_likes": book_likes,
+        "user_reviews": user_reviews,
+        "user_like_reviews": user_like_reviews,
     }
 
     return render(request, "accounts/detail.html", context)

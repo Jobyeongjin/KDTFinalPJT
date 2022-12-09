@@ -100,7 +100,7 @@
             <section class="accounts-review-list w-100">
                 <div class="container">
                     <!-- Review-item -->
-                    {% for review in user.book_review_set.all %}
+                    {% for review in user_reviews %}
                     <div class="review__item">
                         <!-- review-item-content -->
                         <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
@@ -205,7 +205,7 @@
             <section class="accounts-review-list w-100">
                 <div class="container">
                     <!-- Review-item -->
-                    {% for review in user.like_review.all %}
+                    {% for review in user_like_reviews %}
                     <div class="review__item mb-5">
                         <!-- review-item-content -->
                         <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};">
