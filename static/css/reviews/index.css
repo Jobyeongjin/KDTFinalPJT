@@ -83,6 +83,10 @@
   font-size: 26px;
 }
 
+.review-item-tag {
+  cursor: default;
+}
+
 .review-item-tags,
 .created-date {
   font-size: 14px;
@@ -90,8 +94,14 @@
   color: var(--gray-dark-color);
 }
 
-.review-item-tag {
-  cursor: default;
+.review-item-tags {
+  white-space: no-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .created-date {

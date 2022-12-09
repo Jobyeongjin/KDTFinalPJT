@@ -101,7 +101,7 @@
                 <div class="container">
                     <!-- Review-item -->
                     {% for review in user_reviews %}
-                    <div class="review__item">
+                    <div class="review__item mb-5">
                         <!-- review-item-content -->
                         <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};" onclick="location.href='{% url 'reviews:detail' review.pk %}';">
                             {% if review.content != "" %}
@@ -206,7 +206,7 @@
                 <div class="container">
                     <!-- Review-item -->
                     {% for review in user_like_reviews %}
-                    <div class="review__item mb-5">
+                    <div class="review__item mb-5 mt-2">
                         <!-- review-item-content -->
                         <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};">
                             {% if review.content != "" %}

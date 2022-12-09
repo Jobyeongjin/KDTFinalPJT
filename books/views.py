@@ -138,6 +138,7 @@ def search(request):
         authors = Book.objects.order_by("-pk").filter(authors__contains=query)
         user = User.objects.order_by("-pk").filter(nickname__contains=query)
         reviews = Book_Review.objects.filter(content__contains=query)
+        tags = Tag.objects.filter(name__contains=query)
         tags_review = Book_Review.objects.filter(tags__name__contains=query)
 
     context = {
@@ -146,6 +147,7 @@ def search(request):
         "user": user,
         "reviews": reviews,
         "authors": authors,
+        "tags": tags,
         "tags_review": tags_review,
     }
 
