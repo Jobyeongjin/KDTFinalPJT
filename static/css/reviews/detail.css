@@ -206,15 +206,20 @@
 }
 
 .review-tags p {
-  color: var(--gray-color);
+  display: flex;
+  align-items: center;
   margin: 0;
   margin-right: 12px;
-  padding: 5px 20px 7px 20px;
-  border: 1px solid var(--gray-color);
-  border-radius: 35px;
+  padding: 5px;
+  height: 40px;
   opacity: .5;
+  color: var(--gray-color);
   font-size: 16px;
   cursor: default;
+}
+
+.review-tags p:hover {
+  opacity: 1;
 }
 
 
@@ -331,8 +336,6 @@
 }
 
 /* Media */
-@media screen and (max-width: 1200px) {}
-
 @media screen and (max-width: 992px) {
   .review-like .button {
     top: -30px;
@@ -351,5 +354,15 @@
   .review-tags p {
     font-size: 14px;
     padding: 3px 15px 5px 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .review-tags {
+    flex-direction: column;
+  }
+
+  .review-tags p {
+    border: none;
   }
 }
