@@ -39,8 +39,9 @@
 
 }
 
-.group_index .card-body span {
+.group_index .card-image span {
     position:absolute;
-    translate: middle;
+    z-index: 1;
+    margin: 10px;
     
 }
