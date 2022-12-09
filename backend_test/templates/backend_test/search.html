@@ -4,11 +4,18 @@
 
 {% block content %}
 
-{% get_taglist as tags %}
+{{ttag}}
+{% for q in ttag %}
+리뷰:{{q.content}}
+{% endfor %}
+{% comment %} {% get_taglist as tags %}
 {% for tag in tags %}
 #{{tag}}|{{tag.num_times}}
-{% endfor %}
-<button type="button" class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
+{% endfor %} {% endcomment %}
+<form id="search-form" action="{% url 'backend_test:search' %}" method="get">
+  <input type="search" name="q" id="t"  class="btn btn--main" data-bs-toggle="modal" data-bs-target="#review-guide">
+</form>
+<button type="button">
     리뷰 작성
   </button>
   <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide" aria-hidden="true">
@@ -20,34 +27,42 @@
           <p class="record-text">기록할 유형을 선택해주세요 ✍️</p>
           <!-- Record-wrap -->
           <div class="record-wrap">
-            <form id="search-form" action="{% url 'backend_test:search' %}" method="get">
-              <input type="search" name="q" id="t">
+            
+            {% for boo in book %}
+            {{boo.pk}}
+            <form action="">
+            <button  id="tt" name="aa" value="{{boo.pk}}"><img src="{{boo.bookcover}}" alt=""></button>
             </form>
-            {{query}}
+          {% endfor %}
           </div>
         </div>
       </div>
     </div>
   </div>
   {{query}}
-  {% for boo in book %}
-  <form action="{% url 'backend_test:search' %}" method='get'>
-    <button><img src="{{boo.bookcover}}" alt=""></button>
-  </form>
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  {% comment %} <script>
+    const btn = document.querySelector('#tt')
+    
+    btn.addEventListener('click', function (event) {
+        const bookId = event.target.dataset.bookId
+    
+        axios({
+            method: 'post',
+            url: `/backend_test/search/`,
+        })
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error.response)
+            })
+    })
+  </script> {% endcomment %}
 
-  {% endfor %}
 
-   <script>
-  $( function() {
-    var availableTags = [
-        {% for book in books %}
-            "{{book.bookname}}",
-        {% endfor %}
-    ];
-    $( "#t" ).autocomplete({
-      source: availableTags
-    });
-  } );
-  </script>
+ 
 
+    
 {% endblock content %}
