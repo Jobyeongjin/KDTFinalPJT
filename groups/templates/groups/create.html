@@ -157,6 +157,7 @@ function datePickerSet(sDate, eDate, flag) {
 </script>
 
    <!--여기부터 지도-->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ac496d224ad8e6aeb9687fa6abedb0fd&libraries=services"></script>
    <script>
       // 지도 생성
@@ -197,6 +198,17 @@ function datePickerSet(sDate, eDate, flag) {
             var marker = new kakao.maps.Marker({map: map, position: coords});
             // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
             map.setCenter(coords);
+          }
+          // 이상한 주소 입력 시 
+          else {
+            // Sweet alert
+            Swal.fire({
+              icon: 'question',
+              iconHtml: '!',
+              title: '올바른 주소를 입력해주세요!',
+              text: '지번 주소 또는 도로명 주소가 필요합니다',
+              confirmButtonColor: '#92B4EC',
+            })
           }
         });
       }
