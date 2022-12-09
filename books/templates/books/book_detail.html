@@ -141,7 +141,7 @@
               <!-- Record-wrap -->
               <div class="record-wrap">
                 <!-- record-wording -->
-                <a href="{% url 'reviews:create_txt' %}">
+                <a href="{% url 'reviews:create_txt' book.pk %}">
                   <div class="record-wording">
                     <lord-icon
                       src="https://cdn.lordicon.com/nocovwne.json"
@@ -154,7 +154,7 @@
                   </div>
                 </a>
                 <!-- record-photo -->
-                <a href="{% url 'reviews:create_img' %}">
+                <a href="{% url 'reviews:create_img' book.pk %}">
                   <div class="record-photo">
                     <lord-icon
                       src="https://cdn.lordicon.com/vixtkkbk.json"
