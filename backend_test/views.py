@@ -3,6 +3,9 @@ import urllib.request
 import json
 from django.db.models import Q
 from books.models import Book
+from reviews.models import Book_Review
+from django.http import JsonResponse
+
 # Create your views here.
 def index(request):
     # books = Book.objects.all()
@@ -33,6 +36,9 @@ def index(request):
     return render(request, 'backend_test/index.html', context)
     
 def search(request):
+    print(request.GET)
+    # ttag = Book_Review.objects.filter(tags__name__in=["태"])
+    ttag = None
     books = Book.objects.all()
     book = None
     query = None
@@ -41,12 +47,19 @@ def search(request):
         book = Book.objects.order_by("-pk").filter(
             Q(bookname__contains=query) | Q(authors__contains=query)
         )
+        ttag = Book_Review.objects.filter(
+            tags__name__contains=query
+        )
     context = {
         "query": query,
         "book": book,
-        "books" : books
+        "books" : books,
+        "ttag" : ttag
     }
     return render(request, 'backend_test/search.html', context)
+
+def book(request, book_pk):
+    return render(request, "backend_test/search.html")
 
 def map(request):
     return render(request, "backend_test/map.html")
