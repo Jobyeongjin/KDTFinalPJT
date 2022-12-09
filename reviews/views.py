@@ -58,9 +58,9 @@ def index(request):
 
 # 글 리뷰 작성
 @login_required
-def create_txt(request):
+def create_txt(request, book_pk):
     # 임시 데이터
-    bookId = Book.objects.get(pk=1)
+    bookId = Book.objects.get(pk=book_pk)
     if request.user.is_authenticated:
         if request.method == "POST":
             book_review_form = Book_ReviewForm(request.POST, request.FILES)
@@ -82,9 +82,9 @@ def create_txt(request):
 
 # 사진 리뷰 작성
 @login_required
-def create_img(request):
+def create_img(request, book_pk):
     # 임시 데이터
-    bookId = Book.objects.get(pk=1)
+    bookId = Book.objects.get(pk=book_pk)
     if request.user.is_authenticated:
         if request.method == "POST":
             book_review_form = Book_ReviewForm(request.POST, request.FILES)
@@ -251,7 +251,7 @@ def like(request, pk):
         }
     )
 
-def create(request):
+def pk_create_txt(request):
     book = None
     query = None
     t = request.GET.get("aa")
@@ -291,4 +291,45 @@ def create(request):
         "book_review_form": book_review_form,
         "bookId" : bookId,
     }
-    return render(request, 'reviews/create.html', context)
+    return render(request, 'reviews/pk_create_txt.html', context)
+def pk_create_img(request):
+    book = None
+    query = None
+    t = request.GET.get("aa")
+    try:
+        bookId = Book.objects.get(pk=t)
+
+    except Book.DoesNotExist:
+        bookId = None
+
+    
+    
+    if "q" in request.GET:
+        query = request.GET.get("q")
+        book = Book.objects.order_by("-pk").filter(
+            bookname__contains=query
+        )
+
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            book_review_form = Book_ReviewForm(request.POST, request.FILES)
+            if book_review_form.is_valid():
+                book_review = book_review_form.save(commit=False)
+                book_review.user = request.user
+                book_review.bookId = bookId
+                book_review.save()
+                book_review_form.save_m2m()
+                return redirect(
+                    "books:detail",
+                    bookId.pk,
+                )
+        else:
+            book_review_form = Book_ReviewForm()
+  
+    context = {
+        "query": query,
+        "book": book,
+        "book_review_form": book_review_form,
+        "bookId" : bookId,
+    }
+    return render(request, 'reviews/pk_create_img.html', context)

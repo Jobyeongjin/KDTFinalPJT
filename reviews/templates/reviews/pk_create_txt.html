@@ -5,7 +5,7 @@
 {% include 'nav.html' %}
 
   <div class="container review-create">
-      <form id="search-form" action="{% url 'reviews:create' %}" method="get">
+      <form id="search-form" action="{% url 'reviews:pk_create_txt' %}" method="get">
         <input type="search" name="q" id="t">
       </form>
       {% if bookId %}
