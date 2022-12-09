@@ -100,13 +100,25 @@
                   <form class="review-like-forms" data-group-id="{{ group.pk }}">
                     {% csrf_token %}
                     {% if request.user in group.like_user.all %}
-                      <button id="like-{{ group.pk }}" class="btn" type="submit">
-                        모임 취소하기
-                      </button>
+                      {% if like_count >= group.number%}
+                        <button id="like-{{ group.pk }}" class="btn" type="submit">
+                          모임 취소하기
+                        </button>
+                      {% else %}
+                        <button id="like-{{ group.pk }}" class="btn" type="submit">
+                          모임 신청하기
+                        </button>
+                      {% endif %}
                     {% else %}
-                      <button id="like-{{ group.pk }}" class="btn" type="submit">
-                        모임 신청하기
-                      </button>
+                      {% if like_count >= group.number%}
+                        <div class="btn">
+                          모임이 마감되었습니다.
+                        </div>
+                      {% else %}
+                        <button id="like-{{ group.pk }}" class="btn" type="submit">
+                          모임 취소하기
+                        </button>
+                      {% endif %}
                     {% endif %}
                   </form>
                 {% endif %}
@@ -322,4 +334,5 @@
       }
     });
   </script>
+
 {% endblock js %}
