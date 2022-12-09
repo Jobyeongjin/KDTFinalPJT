@@ -8,9 +8,17 @@
 <div class="container book_index">
 
   <!-- Intro -->
-  <div class="book_index_intro">
+  <div class="book_index_intro" style="margin-bottom: 30px;">
     <h3> 도서 목록</h3>
     <p> 책:오에서 당신의 책을 찾아보세요.</p>
+  </div>
+
+  <!-- search-form -->
+  <div class="book-search-form-wrap">
+    <form class="search-top-form" action="{% url 'books:search' %}" method="get">
+        <input class="book-search-input" type="search" name="search" id="q" placeholder="검색어를 입력하세요.">
+    </form>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </div>
   
 
@@ -124,6 +132,20 @@
 
 masonryLayout();
 window.addEventListener("resize", masonryLayout);
+</script>
+
+<!-- 검색목록 -->
+<script>
+  $( function() {
+    var availableTags = [
+        {% for book in books %}
+            "{{book.bookname}}",
+        {% endfor %}
+    ];
+    $( "#q" ).autocomplete({
+      source: availableTags
+    });
+  } );
 </script>
 
 

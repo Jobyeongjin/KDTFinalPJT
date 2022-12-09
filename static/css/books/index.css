@@ -10,13 +10,41 @@
 }
 
 .book_index_intro h3 {
-    background-color: var(--yellow-color); width: 270px; border-radius: 30px;
-    margin:auto;
-    padding:10px;
+    background-color: var(--yellow-color);
+    width: 270px;
+    border-radius: 30px;
+    margin: auto;
+    padding: 10px;
 }
 
 .book_index_intro p {
     margin-top: 10px;
+}
+
+/* book search */
+.book-search-form-wrap {
+    position: relative;
+    margin: 0 auto 30px;
+    width: 700px;
+}
+
+.book-search-input {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 35px;
+    padding: 0 30px 0 50px;
+    color: var(--dark-color);
+    border: 1px solid var(--gray-color);
+}
+
+.book-search-form-wrap i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 18px;
+    font-size: 14px;
+    color: var(--gray-dark-color);
 }
 
 /* masonry */
@@ -51,7 +79,7 @@
     .masonry-container {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
 }
 
 @media screen and (max-width: 768px) {
@@ -76,4 +104,3 @@
         width: 80%;
     }
 }
-
