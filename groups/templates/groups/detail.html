@@ -85,50 +85,56 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- group-info-leader-end -->
               <div class="group-info-button">
-              {% if request.user.is_authenticated %}
-                {% if request.user == group.user %}
-                  <a href="{% url 'groups:group_closed' group.pk %}" type="submit">
-                    {% if group.closed == False %}
-                      <button class="btn">마감하기</button>
-                    {% else %}
-                      <button class="btn">마감 취소하기</button>
-                    {% endif %}
-                  </a>
+                {% if request.user.is_authenticated %}
+                  {% if request.user == group.user %}
+                    <a href="{% url 'groups:group_closed' group.pk %}" type="submit">
+                      {% if group.closed == False %}
+                        <button class="btn">마감하기</button>
+                      {% else %}
+                        <button class="btn">마감 취소하기</button>
+                      {% endif %}
+                    </a>
+                  {% else %}
+                    <!-- group-like-form -->
+                    <form class="review-like-forms" data-group-id="{{ group.pk }}">
+                      {% csrf_token %}
+                      {% if request.user in group.like_user.all %}
+                        {% if like_count >= group.number%}
+                          <button id="like-{{ group.pk }}" class="btn" type="submit">
+                            모임 취소하기
+                          </button>
+                        {% else %}
+                          <button id="like-{{ group.pk }}" class="btn" type="submit">
+                            모임 신청하기
+                          </button>
+                        {% endif %}
+                      {% else %}
+                        {% if like_count >= group.number%}
+                          <div class="btn">
+                            모임이 마감되었습니다.
+                          </div>
+                        {% else %}
+                          {% if like_count >= group.number%}
+                            <button id="like-{{ group.pk }}" class="btn" type="submit">
+                              모임 취소하기
+                            </button>
+                          {% else %}
+                            <button id="like-{{ group.pk }}" class="btn" type="submit">
+                              모임 신청하기
+                            </button>
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    </form>
+                  {% endif %}
                 {% else %}
-                  <!-- group-like-form -->
-                  <form class="review-like-forms" data-group-id="{{ group.pk }}">
-                    {% csrf_token %}
-                    {% if request.user in group.like_user.all %}
-                      {% if like_count >= group.number%}
-                        <button id="like-{{ group.pk }}" class="btn" type="submit">
-                          모임 취소하기
-                        </button>
-                      {% else %}
-                        <button id="like-{{ group.pk }}" class="btn" type="submit">
-                          모임 신청하기
-                        </button>
-                      {% endif %}
-                    {% else %}
-                      {% if like_count >= group.number%}
-                        <div class="btn">
-                          모임이 마감되었습니다.
-                        </div>
-                      {% else %}
-                        <button id="like-{{ group.pk }}" class="btn" type="submit">
-                          모임 취소하기
-                        </button>
-                      {% endif %}
-                    {% endif %}
-                  </form>
+                  <a href="{% url 'accounts:login' %}">
+                    <span style="color: var(--dark-color); font-size: 14px;">로그인 이후 사용이 가능합니다.</span>
+                  </a>
                 {% endif %}
-               {% else %}
-                <a href="{% url 'accounts:login' %}">
-                  <span style="color: var(--dark-color); font-size: 14px;">로그인 이후 사용이 가능합니다.</span>
-                </a>
-              {% endif %}
               </div>
             </div>
           </div>
