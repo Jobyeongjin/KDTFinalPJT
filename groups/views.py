@@ -40,6 +40,14 @@ def detail(request, pk):
     place = group.place
     like_count = group.like_user.count()
     group_like_user = group.like_user
+    if like_count == group.number:
+        group.closed = True
+        group.save()
+    else:
+        group.closed = False
+        group.save()
+
+
     context = {
         "group": group,
         "place": place,
