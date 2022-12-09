@@ -166,8 +166,24 @@ function datePickerSet(sDate, eDate, flag) {
         level: 3
       };
       var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+      // 수정 때 이전 장소 마커 불러오기
+      var geocoder = new kakao.maps.services.Geocoder();
+      var last_place = document.querySelector("#id_place").value
+      console.log(last_place)
+      // 주소로 좌표를 검색합니다
+      geocoder.addressSearch(`${last_place}`, function (result, status) {
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          // 결과값으로 받은 위치를 마커로 표시합니다
+          var marker = new kakao.maps.Marker({map: map, position: coords});
+          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+          map.setCenter(coords);
+        }
+      });
   
-      // 장소 입력 input에서 포커스가 떠났을 때
+      // 장소 입력 input에서 포커스가 떠났을 때 마커 이동하기
       function onblur_event() {
         var geocoder = new kakao.maps.services.Geocoder();
         var place = groups_form.place.value

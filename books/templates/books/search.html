@@ -48,6 +48,10 @@
                 </div>
                 {% endfor %}
             </div>
+            {% else %}
+            <div class="m-5 p-3 d-flex flex-column align-items-center">
+                <h5><span class="search-query">" {{ query }} "</span> 과 관련된 책이 없습니다.</h5>
+            </div>
             {% endif %}
         </div>
         <!-- author -->
@@ -60,10 +64,14 @@
                         onclick="location.href='{% url 'books:detail' book.pk %}';">
                     <div class="text-center tab-book-title">
                         <p class="m-0" style="font-weight: 700;">{{ book.bookname }}</p>
-                        <p class="ellipsis""> {{ book.authors }}</p>
+                        <p class="ellipsis"> {{ book.authors }}</p>
                     </div>
                 </div>
                 {% endfor %}
+            </div>
+            {% else %}
+            <div class="m-5 p-3 d-flex flex-column align-items-center">
+                <h5><span class="search-query">" {{ query }} "</span> 과 관련된 저자가 없습니다.</h5>
             </div>
             {% endif %}
         </div>
@@ -120,6 +128,10 @@
                             {% endif %}
                             </div>
                         </div>
+                    </div>
+                    {% empty %}
+                    <div class="m-5 p-3 d-flex flex-column align-items-center">
+                        <h5><span class="search-query">" {{ query }} "</span> 을 포함한 리뷰가 없습니다.</h5>
                     </div>
                     {% endfor %}
                 </div>
@@ -178,6 +190,10 @@
                             {% endif %}
                             </div>
                         </div>
+                    </div>
+                    {% empty %}
+                    <div class="m-5 p-3 d-flex flex-column align-items-center">
+                        <h5><span class="search-query"># {{ query }}</span>&nbsp;&nbsp; 태그를 포함한 리뷰가 없습니다.</h5>
                     </div>
                     {% endfor %}
                 </div>

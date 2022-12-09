@@ -1,5 +1,4 @@
 /* book_index */
-
 .book_index {
     margin-top: 170px;
     text-align: center;
@@ -25,7 +24,7 @@
 .book-search-form-wrap {
     position: relative;
     margin: 0 auto 30px;
-    width: 700px;
+    width: 350px;
 }
 
 .book-search-input {
@@ -45,6 +44,28 @@
     left: 18px;
     font-size: 14px;
     color: var(--gray-dark-color);
+}
+
+.ui-menu {
+    width: 350px !important;
+}
+
+.ui-widget-content {
+    border: 1px solid var(--white-color) !important;
+    background: var(--white-color) !important;
+    color: var(--gray-dark-color) !important;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: 1px solid var(--white-color) !important;
+    background: var(--main-color) !important;
+    font-weight: bold !important;
+    color: var(--white-color) !important;
 }
 
 /* masonry */
