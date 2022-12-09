@@ -86,6 +86,40 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- review-item-info -->
+                        <div class="review__item__info">
+                            <!-- review-item-proflie -->
+                            <a href="{% url 'accounts:detail' review.user.pk %}">
+                            <div class="review__item__proflie">
+                                <div class="review__item__img">
+                                <img src="{{ review.user.user_image }}" style="width: 35px; height: 35px;" alt="review-write-image">
+                                </div>
+                                <div class="review__item__username">
+                                {{ review.user.username }}
+                                </div>
+                            </div>
+                            </a>
+                            <!-- review-item-button -->
+                            <div class="review__item__btn">
+                                <i class="fa-solid fa-share-nodes fa-lg" style="font-size: 18px;"></i>
+                            </div>
+                        </div>
+                        <!-- review-item-tag -->
+                        <div class="review-item-tag mt-2 pe-2 d-flex justify-content-between align-items-center">
+                            <div class="review-item-tags">
+                            {% get_tags_for_object review as "tags" %}
+                            {% for tag in tags %}
+                                #{{tag}}
+                            {% endfor %}
+                            </div>
+                            <div class="created-date">
+                            {% if review.created_string == False %}
+                            {{ review.registered_date|date:'m월 d일' }}
+                            {% else %}
+                            {{ review.created_string }}
+                            {% endif %}
+                            </div>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
@@ -110,11 +144,39 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="review-item-tag mt-2">
+                        <!-- review-item-info -->
+                        <div class="review__item__info">
+                            <!-- review-item-proflie -->
+                            <a href="{% url 'accounts:detail' tag_review.user.pk %}">
+                            <div class="review__item__proflie">
+                                <div class="review__item__img">
+                                <img src="{{ tag_review.user.user_image }}" style="width: 35px; height: 35px;" alt="review-write-image">
+                                </div>
+                                <div class="review__item__username">
+                                {{ tag_review.user.username }}
+                                </div>
+                            </div>
+                            </a>
+                            <!-- review-item-button -->
+                            <div class="review__item__btn">
+                                <i class="fa-solid fa-share-nodes fa-lg" style="font-size: 18px;"></i>
+                            </div>
+                        </div>
+                        <!-- review-item-tag -->
+                        <div class="review-item-tag mt-2 pe-2 d-flex justify-content-between align-items-center">
+                            <div class="review-item-tags">
                             {% get_tags_for_object tag_review as "tags" %}
                             {% for tag in tags %}
-                                <span style="font-size: 14px;"> #{{tag}} </span>
+                                #{{tag}}
                             {% endfor %}
+                            </div>
+                            <div class="created-date">
+                            {% if tag_review.created_string == False %}
+                            {{ tag_review.registered_date|date:'m월 d일' }}
+                            {% else %}
+                            {{ tag_review.created_string }}
+                            {% endif %}
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
