@@ -136,7 +136,6 @@ body>.nav {
   align-items: center;
   height: 34px;
   position: relative;
-  margin-right: 15px;
 }
 
 .nav__search input {
@@ -307,10 +306,6 @@ body>.nav {
 }
 
 @media screen and (max-width: 576px) {
-  .nav__search input:focus {
-    width: 150px;
-  }
-
   .write-gb {
     right: 30px;
     width: 65px;

@@ -139,7 +139,7 @@
       {% empty %}
       <div class="my-5 d-flex flex-column align-items-center">
         <p style="color: var(--gray-color);">책:오의 첫 리뷰 주인공이 되어주세요!</p>
-        <button class="btn btn--main mt-3">리뷰 작성</button>
+        <button class="btn btn--main mt-3" data-bs-toggle="modal" data-bs-target="#review-guide">리뷰 작성</button>
       </div>
       {% endfor %}
     </div>
@@ -159,43 +159,35 @@
     </div>
     <!-- Main-metting-list -->
     <div class="mm__list">
+      <!-- main-metting-item -->
+      {% for group in groups %}
       <div class="mm__list__item">
         <div class="card" style="width: 18rem;">
           <div class="card-image">
-            <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg" class="card-img-top"
-              alt="metting-image">
+            <a href="{% url 'groups:detail' group.pk %}">
+              <img src="{{ group.image.url }}" class="card-img-top"
+                alt="metting-image">
+            </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-            <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
+            <h6 class="card-title ellipsis-01" style="margin-bottom: 20px;">{{ group.title }}</h6>
+            <p class="card-text" style="font-size: 14px;"> 
+              <span class="ellipsis-01" style="font-size: 14px;">소개: {{ group.introduce }}<br/></span>
+              <span class="ellipsis-01" style="font-size: 14px;">장소: {{ group.place }}<br/></span>
+              인원: {{ group.number }}명<br/>
+              일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}<br/>
+            </p>
           </div>
         </div>
       </div>
-      <div class="mm__list__item">
-        <div class="card" style="width: 18rem;">
-          <div class="card-image">
-            <img src="https://i.pinimg.com/564x/47/15/9f/47159faf62691e0a28513aafd883389c.jpg" class="card-img-top"
-              alt="metting-image">
-          </div>
-          <div class="card-body">
-            <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-            <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-          </div>
-        </div>
+      {% empty %}
+      <div class="my-5 d-flex flex-column align-items-center">
+        <p style="color: var(--gray-color);">책:오의 첫 모임 주인공이 되어주세요!</p>
+        <a href="{% url 'groups:create' %}">
+          <button class="btn btn--main mt-3">모임 생성</button>
+        </a>
       </div>
-      <div class="mm__list__item">
-        <div class="card" style="width: 18rem;">
-          <div class="card-image">
-            <img src="https://i.pinimg.com/564x/06/54/6a/06546a0b2d7bf1ed86914a482e3ca80c.jpg" class="card-img-top"
-              alt="metting-image">
-          </div>
-          <div class="card-body">
-            <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-            <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-          </div>
-        </div>
-      </div>
-
+      {% endfor %}
     </div>
   </div>
 </section>
