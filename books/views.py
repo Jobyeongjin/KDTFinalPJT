@@ -9,6 +9,7 @@ from django.db.models import Q
 from accounts.models import User
 from books.models import Book
 from reviews.models import Book_Review
+from groups.models import Group
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from taggit.models import Tag
 
@@ -31,6 +32,7 @@ def onboarding(request):
 def main(request):
     books = Book.objects.all().annotate(hot=Count("like_user")).order_by("-hot")
     reviews = Book_Review.objects.annotate(hot=Count("like_user")).order_by("-hot")
+    groups = Group.objects.order_by("pk")
 
     return render(
         request,
@@ -39,6 +41,7 @@ def main(request):
             "books": books[:4],
             "reviews": reviews[:3],
             "book_reviews_carousel": reviews[:10],
+            "groups": groups[:3],
         },
     )
 
@@ -72,7 +75,7 @@ def index(request):
             book_list = books_page.page(books_page.num_pages)
 
     count = Book.objects.all().count()
-    
+
     return render(
         request,
         "books/index.html",
