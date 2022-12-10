@@ -124,7 +124,7 @@
         <!-- review-tags -->
         <div class="review-tags">
           {% for tag in review.tags.all %}
-            <p>#{{tag.name}}</p>
+            <p># <a class="tag-btn" onclick="sendTag(this)">{{tag.name}}</a></p>
           {% endfor %}
         </div>
 
@@ -191,6 +191,14 @@
 
 <!-- Sweet alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<!-- Send-tag -->
+<script>
+  function sendTag(e) {
+    let value = e.innerText;
+    location.href = 'http://127.0.0.1:8000/books/search?search=' + value;
+  }
+</script>
 
 
 <!-- Check-word -->
@@ -267,7 +275,7 @@
         })
     })
   })
-</script>
+</scrip>
 
 
 <!-- Followings -->

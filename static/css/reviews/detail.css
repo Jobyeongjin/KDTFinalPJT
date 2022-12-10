@@ -218,6 +218,10 @@
   cursor: default;
 }
 
+.review-tags p a {
+  color: var(--gray-color);
+}
+
 .review-tags p:hover {
   opacity: 1;
 }
