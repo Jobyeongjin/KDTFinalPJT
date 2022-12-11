@@ -159,8 +159,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 #     AWS_REGION,
 # )
 
-# DEBUG = os.getenv("DEBUG") == "True"
-DEBUG = False
+DEBUG = os.getenv("DEBUG") == "True"
+# DEBUG = False
 
 if DEBUG: 
     MEDIA_URL = "/media/"
