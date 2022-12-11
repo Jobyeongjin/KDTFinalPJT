@@ -255,3 +255,9 @@
   border-radius: 4px;
   padding: 0;
 }
+
+#search-form input {
+  padding: 8px 18px;
+  font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+}
