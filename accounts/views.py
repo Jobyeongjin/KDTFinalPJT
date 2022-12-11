@@ -118,9 +118,13 @@ def delete_check(request):
     today = datetime.date(datetime.now())
     date_joined = datetime.date(user.date_joined)
     diff = (today - date_joined).days + 1
+    reviews = user.book_review_set.count
+    user_groups = user.group_set.count
     context = {
         "user": user,
         "diff": diff,
+        "reviews": reviews,
+        "user_groups": user_groups,
     }
     return render(request, "accounts/delete.html", context)
 
@@ -131,11 +135,15 @@ def detail(request, user_pk):
     book_likes = user.books.all()
     user_reviews = user.book_review_set.order_by("-pk")
     user_like_reviews = user.like_review.order_by("-pk")
+    user_groups = user.group_set.order_by("-pk")
+    user_like_groups = user.like_group.order_by("-pk")
     context = {
         "user": user,
         "book_likes": book_likes,
         "user_reviews": user_reviews,
         "user_like_reviews": user_like_reviews,
+        "user_groups": user_groups,
+        "user_like_groups": user_like_groups,
     }
 
     return render(request, "accounts/detail.html", context)

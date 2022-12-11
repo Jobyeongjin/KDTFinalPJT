@@ -99,8 +99,8 @@
   position: relative !important;
   width: 100% !important;
   display: none !important;
-  border-top: 2px solid var(--main-color)!important;
-  padding: 75px 10px!important;
+  border-top: 2px solid var(--main-color) !important;
+  padding: 75px 10px !important;
 }
 
 .tab-create-btn {
@@ -113,7 +113,8 @@
 #tab1:checked~#content1,
 #tab2:checked~#content2,
 #tab3:checked~#content3,
-#tab4:checked~#content4 {
+#tab4:checked~#content4,
+#tab5:checked~#content5 {
   display: flex !important;
 }
 
@@ -137,4 +138,3 @@
   text-align: center;
   min-height: 50px;
 }
-
