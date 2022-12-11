@@ -11,10 +11,10 @@ from django.contrib.auth.decorators import login_required
 from books.models import Book
 
 # Create your views here.
-def index(request):
-    users = get_user_model().objects.all()
-    context = {"users": users}
-    return render(request, "accounts/index.html", context)
+# def index(request):
+#     users = get_user_model().objects.all()
+#     context = {"users": users}
+#     return render(request, "accounts/index.html", context)
 
 
 # 회원가입

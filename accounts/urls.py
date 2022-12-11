@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 app_name = "accounts"
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    # path("", views.index, name="index"),
     path("signup/", views.signup, name="signup"),
     path("signup_done/", views.signup_done, name="signup_done"),
     path("login/", views.login, name="login"),
