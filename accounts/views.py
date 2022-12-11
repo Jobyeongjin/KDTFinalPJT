@@ -118,9 +118,13 @@ def delete_check(request):
     today = datetime.date(datetime.now())
     date_joined = datetime.date(user.date_joined)
     diff = (today - date_joined).days + 1
+    reviews = user.book_review_set.count
+    user_groups = user.group_set.count
     context = {
         "user": user,
         "diff": diff,
+        "reviews": reviews,
+        "user_groups": user_groups,
     }
     return render(request, "accounts/delete.html", context)
 
