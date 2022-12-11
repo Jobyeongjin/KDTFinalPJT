@@ -6,21 +6,32 @@
 
 
 <div class="container review-create">
-      <form id="search-form" action="{% url 'reviews:pk_create_img' %}" method="get">
-        <input type="search" name="q" id="t">
+    <!-- form title -->
+    <h4 class="text-center mb-4">사진 리뷰 작성</h4>
+    <!-- 책 검색 -->
+    <div class="review-search-form">
+      <form class="mb-3" id="search-form" action="{% url 'reviews:pk_create_img' %}" method="get">
+        {% if bookId %}  
+        <input class="form-control" type="search" name="q" id="t" value="{{ bookId.bookname }}">
+        {% else %}
+        <input class="form-control" type="search" name="q" id="t">
+        {% endif %}
       </form>
-      {% if bookId %}
-      <img src="{{bookId.bookcover}} " alt="">
+      <!-- 검색결과 -->
+      {% if book %}
+        <div class="review-search-list mx-auto">
+          {% for boo in book %}
+            <form action="">
+              <button id="tt" name="aa" value="{{boo.pk}}">
+                <p>{{ boo.bookname }}</p>
+              </button>
+            </form>
+          {% endfor %}
+        </div>
       {% endif %}
-      {% for boo in book %}
-          {{boo.pk}}
-          <form action="">
-          <button  id="tt" name="aa" value="{{boo.pk}}"><img src="{{boo.bookcover}}" alt=""></button>
-        {% endfor %}  
-        </form>
-          <!-- update form -->
+    </div>
+    <!-- create/update form -->
       <form class="review-create-form" name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
-          <h4 class="text-center mb-4">사진 리뷰 작성</h4>
           {% csrf_token %}
           <!-- 글 : hidden -->
           <div class="mb-3" style="display: none;">

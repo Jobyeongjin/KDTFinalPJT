@@ -165,15 +165,68 @@
 
 /* review form */
 .review-create {
-  min-height: 900px;
+  min-height: 1000px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.review-search-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+}
+
+.review-search-list {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: 440px;
+  max-height: 200px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  border: solid 1px var(--gray-light-color);
+  border-radius: 0 0 10px 10px;
+  background: var(--white-color);
+}
+
+.review-search-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.review-search-list::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 10px;
+}
+
+.review-search-list::-webkit-scrollbar-track {
+  background: var(--gray-light-color);
+}
+
+.review-search-list p {
+  margin: 0;
+  padding: 0.2em 0.4em;
+  text-align: justify;
+}
+
+.review-search-list button {
+  width: 100%;
+  color: #333333;
+}
+
+.review-search-list button:hover {
+  border: 1px solid var(--white-color);
+  background: var(--main-color);
+  font-weight: bold;
+  color: var(--white-color);
+}
+
 .review-create-form {
   width: 440px;
-  margin: 100px 0;
 }
 
 .review-create-input {
