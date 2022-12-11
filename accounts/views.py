@@ -131,11 +131,15 @@ def detail(request, user_pk):
     book_likes = user.books.all()
     user_reviews = user.book_review_set.order_by("-pk")
     user_like_reviews = user.like_review.order_by("-pk")
+    user_groups = user.group_set.order_by("-pk")
+    user_like_groups = user.like_group.order_by("-pk")
     context = {
         "user": user,
         "book_likes": book_likes,
         "user_reviews": user_reviews,
         "user_like_reviews": user_like_reviews,
+        "user_groups": user_groups,
+        "user_like_groups": user_like_groups,
     }
 
     return render(request, "accounts/detail.html", context)

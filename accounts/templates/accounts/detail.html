@@ -92,7 +92,9 @@
         <input type="radio" name="tabs" id="tab3">
         <label for="tab3">좋아요한 책</label>
         <input type="radio" name="tabs" id="tab4">
-        <label for="tab4">참여한 모임</label>
+        <label for="tab4">개최한 모임</label>
+        <input type="radio" name="tabs" id="tab5">
+        <label for="tab5">신청한 모임</label>
 
         <!-- 탭1 : 작성한 리뷰 -->
         <div id="content1" class="tab-content">
@@ -156,7 +158,7 @@
                         <p class="m-0" style="color: var(--gray-dark-color);">리뷰가 하나도 없어요...</p>
                         <!-- 리뷰 작성 버튼 -->
                         <button type="button" class="btn btn--main my-3" data-bs-toggle="modal"
-                            data-bs-target="#review-guide">리뷰 작성</button>
+                            data-bs-target="#review-guide">리뷰 작성하기</button>
                         <!-- 리뷰 작성 모달 -->
                         <div class="modal fade" id="review-guide" tabindex="-1" aria-labelledby="review-guide"
                             aria-hidden="true">
@@ -206,7 +208,7 @@
                 <div class="container">
                     <!-- Review-item -->
                     {% for review in user_like_reviews %}
-                    <div class="review__item mb-5 mt-2">
+                    <div class="review__item mb-5">
                         <!-- review-item-content -->
                         <div class="review__item__content mb-5" style="cursor: pointer; background-color: {{ review.color }};">
                             {% if review.content != "" %}
@@ -345,33 +347,66 @@
             {% else %}
             <div class="w-100 m-5 d-flex flex-column align-items-center">
                 <p style="color: var(--gray-dark-color);">책이 하나도 없어요...</p>
-                <a href="{% url 'books:index' %}" class="btn btn--main">책보러가기</a>
+                <a href="{% url 'books:index' %}" class="btn btn--main">책 보러가기</a>
             </div>
             {% endif %}
         </div>
 
-        <!-- 탭4 : 참여한 모임 -->
+        <!-- 탭4 : 개최한 모임 -->
         <div id="content4" class="tab-content">
-            <!-- 모임 생성 버튼 -->
-            <a class="btn btn--main tab-create-btn my-3" href="">모임 생성</a>
-            <!-- 참여한 모임 리스트 -->
-            <div class="row gx-5 w-100">
-                <!-- 반복문 시작 -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;" onclick="location.href='';">
-                    <div class="card w-100 mb-5 mx-auto">
-                        <div class="card-image">
-                            <img src="https://i.pinimg.com/564x/02/6d/03/026d032582a1a1876dd92acf86fa5401.jpg"
-                                class="card-img-top" alt="metting-image">
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title" style="margin-bottom: 20px;">(모임 제목)</h6>
-                            <p class="card-text" style="font-size: 14px;">(모임 소개글) 장소 / 인원 / 모집기간</p>
-                        </div>
+            <div class="row gx-5 w-100 mx-auto">
+                {% for group in user_groups %}
+                <div class="col-12 col-md-6 col-lg-3" style="cursor: pointer;"
+                  onclick="location.href='{% url 'groups:detail' group.pk %}';">
+                  <div class="card w-100 mb-5 mx-auto">
+                    <div class="card-image" style="height: 250px;">
+                      <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
                     </div>
+                    <div class="card-body">
+                      <p class="card-title" style="margin-bottom: 10px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+                      -webkit-box-orient: vertical; font-weight: 600;">{{ group.title }}</p>
+                      <p class="card-text" style="font-size: 14px; color: var(--gray-dark-color);">장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 
+                        일시: {{ group.meeting_date|date:"m.d A h:i" }} <br> 모집 마감일: {{ group.end_date |date:"m.d A h:i" }}까지</p>
+                    </div>
+                  </div>
                 </div>
-                <!-- 반복문 끝 -->
+                {% empty %}
+                <div class="my-5 d-flex flex-column align-items-center">
+                  <p style="color: var(--gray-color);">개최한 모임이 없어요...</p>
+                  <a href="{% url 'groups:create' %}" class="btn btn--main">모임 개최하기</a>
+                </div>
+                {% endfor %}
             </div>
         </div>
+        
+        <!-- 탭5 : 신청한 모임 -->
+        <div id="content5" class="tab-content">
+            <!-- 신청한 모임 리스트 -->
+            <div class="row gx-5 w-100 mx-auto">
+                {% for group in user_like_groups %}
+                <div class="col-12 col-md-6 col-lg-3" style="cursor: pointer;"
+                  onclick="location.href='{% url 'groups:detail' group.pk %}';">
+                  <div class="card w-100 mb-5 mx-auto">
+                    <div class="card-image" style="height: 250px;">
+                      <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image" style="height: 100%;">
+                    </div>
+                    <div class="card-body">
+                      <p class="card-title" style="margin-bottom: 10px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+                      -webkit-box-orient: vertical; font-weight: 600;">{{ group.title }}</p>
+                      <p class="card-text" style="font-size: 14px; color: var(--gray-dark-color);">장소: {{ group.place }} <br>인원: {{ group.number }}명 <br> 
+                        일시: {{ group.meeting_date|date:"m.d A h:i" }} <br> 모집 마감일: {{ group.end_date |date:"m.d A h:i" }}까지</p>
+                    </div>
+                  </div>
+                </div>
+                {% empty %}
+                <div class="my-5 d-flex flex-column align-items-center">
+                    <p style="color: var(--gray-color);">신청한 모임이 없어요...</p>
+                    <a href="{% url 'groups:index' %}" class="btn btn--main">모임 구경하기</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
 </div>
 
