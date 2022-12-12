@@ -251,6 +251,7 @@ def like(request, pk):
         }
     )
 
+@login_required
 def pk_create_txt(request):
     book = None
     query = None
@@ -292,6 +293,8 @@ def pk_create_txt(request):
         "bookId" : bookId,
     }
     return render(request, 'reviews/pk_create_txt.html', context)
+
+@login_required
 def pk_create_img(request):
     book = None
     query = None
