@@ -6,7 +6,7 @@
 
 <div class="container update">
     <!-- update form -->
-    <form class="update-form p-5" name="update_form" action="" method="POST" enctype="multipart/form-data">
+    <form class="update-form p-5" name="update_form" onsubmit="return ageCheck();" action="" method="POST" enctype="multipart/form-data">
         <h4 class="text-center mb-4">회원정보 수정</h4>
         {% csrf_token %}
         <!-- input -->
@@ -32,9 +32,9 @@
                 <div class="mb-4">
                     <label class="form-label" for="id_age">나이</label>
                     {% if user.age == 0 %}
-                    <input type="number" name="age" class="form-control" min="1" placeholder="나이" required="" id="id_age" value="">
+                    <input type="number" name="age" class="form-control" placeholder="나이" required="" id="id_age" value="">
                     {% else %}
-                    <input type="number" name="age" class="form-control" min="1" placeholder="나이" required="" id="id_age" value="{{ user.age }}">
+                    <input type="number" name="age" class="form-control" placeholder="나이" required="" id="id_age" value="{{ user.age }}">
                     {% endif %}
                 </div>
             </div>
@@ -109,6 +109,28 @@
         if (radioGroup[i].value === interest) {
             console.log(radioGroup[i])
             radioGroup[i].checked = true
+        }
+    }
+
+    // 나이가 양수 이상인지 확인
+    function ageCheck() {
+        // 음수이면
+        if(update_form.age.value <= 0) {
+            // Sweet alert
+            Swal.fire({
+                icon: 'question',
+                iconHtml: '!',
+                title: update_form.age.value+'살이요...?',
+                text: '본인 나이를 작성해주세요!',
+                confirmButtonColor: '#92B4EC',
+            })
+            update_form.age.focus();
+            // false : submit X
+            return false;
+        }
+        else {
+            // true : submit reader.onload
+            return true;
         }
     }
 </script>
