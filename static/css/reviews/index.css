@@ -1,16 +1,23 @@
 /* Reviews */
 .reviews {
-  margin-top: 120px;
+  margin-top: 170px;
   text-align: center;
 }
 
-.reviews-title {
-  color: var(--dark-color);
+.reviews__title {
+  color: white;
+  background-color: var(--main-color);
+  width: 270px;
+  border-radius: 30px;
+  margin: auto;
+  padding: 10px;
 }
 
+
 .reviews__wording {
-  color: var(--gray-dark-color);
-  margin: 40px 0;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 80px;
 }
 
 
