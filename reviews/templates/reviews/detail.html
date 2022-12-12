@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
+{% autoescape on %}
 {% block content %}
 {% include 'nav.html' %}
 
@@ -183,7 +184,7 @@
 </div>
 
 {% endblock content %}
-
+{% endautoescape %}
 
 
 {% block js %}
