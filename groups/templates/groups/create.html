@@ -258,28 +258,35 @@
   </script>
 
   <script>
-        // 모집인원이 양수 이상인지 확인
-        function numberCheck() {
-          // 음수이면
-          if(groups_form.number.value <= 0) {
-              // Sweet alert
-              Swal.fire({
-                  icon: 'question',
-                  iconHtml: '!',
-                  title: groups_form.number.value+'명을 모집할 수는 없어요!',
-                  text: '1명 이상을 모집해주세요!',
-                  confirmButtonColor: '#92B4EC',
-              })
-              groups_form.number.value = 1
-              groups_form.number.focus();
-              // false : submit X
-              return false;
-          }
-          else {
-              // true : submit reader.onload
-              return true;
-          }
+    // 모집인원이 양수 이상인지 확인
+    function numberCheck() {
+      // 공백일 때
+      if (groups_form.number.value.length == 0) {
+        // Sweet alert
+        Swal.fire({
+          icon: 'question',
+          iconHtml: '!',
+          title: '모집인원을 입력해주세요!',
+          text: '1명 이상을 모집해주세요!',
+          confirmButtonColor: '#92B4EC',
+        })
+        groups_form.number.value = 1
+        groups_form.number.focus();
       }
+      // 음수이면
+      if(groups_form.number.value <= 0) {
+        // Sweet alert
+        Swal.fire({
+            icon: 'question',
+            iconHtml: '!',
+            title: groups_form.number.value+'명을 모집할 수는 없어요...',
+            text: '1명 이상을 모집해주세요!',
+            confirmButtonColor: '#92B4EC',
+        })
+        groups_form.number.value = 1
+        groups_form.number.focus();
+      }
+    }
   </script>
 
 {% endblock js %}
