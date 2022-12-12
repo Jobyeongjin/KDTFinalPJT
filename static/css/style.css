@@ -276,10 +276,6 @@ body>.nav {
     margin: 0;
   }
 
-  .nav__user .nav__user__btn:first-child {
-    margin: 0;
-  }
-
   .nav-toogle-btn {
     display: block;
     position: absolute;
@@ -302,6 +298,9 @@ body>.nav {
     width: 50px;
     height:50px;
     bottom: 150px;
+  }
+  .nav__user__btn {
+    margin: 0 8px;
   }
 }
 
