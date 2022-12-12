@@ -1,6 +1,6 @@
 {% extends 'base-notice.html' %}
 
-
+{% autoescape on %}
 {% block content %}
 {% include 'nav.html' %}
 
@@ -20,10 +20,9 @@
       </div>
   
       <hr style="color: var(--gray-color);">
-      
       <!-- notice-bottom -->
       <div class="notice-bottom">
-        <p>{{ notice.content }}</p>
+        <div style="white-space: pre-wrap;">{{ notice.content }}</div>
       </div>
     </div>
   
@@ -90,6 +89,8 @@
   }
 </script>
 {% endblock content %}
+{% endautoescape %}
+
 
 
 <a href="{% url 'notices:update' notice.pk %}">공지사항 수정하기</a>

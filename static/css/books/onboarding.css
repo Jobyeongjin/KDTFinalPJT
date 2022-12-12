@@ -122,7 +122,7 @@ body {
 }
 
 .onboarding-intro2-textbox {
-  margin: auto;
+  margin: auto 0;
   justify-content: center;
   text-align: left;
 }
@@ -260,7 +260,7 @@ body {
     text-align: center;
     font-family: 'Noto Serif KR';
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .onboarding-web-outro {
