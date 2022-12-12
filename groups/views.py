@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 # 모임 페이지
 def index(request):
-    groups = Group.objects.all()
+    groups = Group.objects.order_by("-pk")
     ing_groups = Group.objects.filter(closed=0)
     end_groups = Group.objects.filter(closed=1)
     context = {
