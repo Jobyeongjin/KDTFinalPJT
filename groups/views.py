@@ -43,9 +43,6 @@ def detail(request, pk):
     if like_count >= group.number:
         group.closed = True
         group.save()
-    else:
-        group.closed = False
-        group.save()
 
 
     context = {
