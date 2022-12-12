@@ -29,7 +29,7 @@ function YesScroll() {
         });
         masonryLayout();
         const totalPageNum = totalPage.textContent
-        if (pagenum > totalPageNum) {
+        if (pagenum >= totalPageNum) {
           document.removeEventListener('scroll', OnScroll, { passive: true });
         }
         pagenum++;
