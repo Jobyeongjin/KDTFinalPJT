@@ -199,7 +199,7 @@
       <!-- main-metting-item -->
       {% for group in groups %}
       <div class="mm__list__item">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <div class="card-image">
             <a href="{% url 'groups:detail' group.pk %}">
               <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image">

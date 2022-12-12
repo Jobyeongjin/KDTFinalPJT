@@ -137,11 +137,11 @@
 
   .accounts-review-list .review__item,
   .review-list .review__item {
-    width: 445px;
+    width: 100%;
   }
 
   .review__item__content {
-    width: 445px;
+    width: 100%;
     height: 445px;
     font-size: 20px;
   }
