@@ -4,11 +4,11 @@
 }
 
 .myinfo {
-  padding: 100px 0;
+  position: relative;
+  margin: 200px 0 100px;
 }
 
 .myinfo-content {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -16,6 +16,7 @@
 
 .profile-img {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
