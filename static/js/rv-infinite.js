@@ -33,6 +33,47 @@ function YesScroll() {
         }
         pagenum++;
         oneTime = false;
+        const forms = document.querySelectorAll('.like-forms')
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      
+        forms.forEach((form) => {
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const reviewId = event.target.dataset.reviewId
+            // request axios
+            axios({
+              method: 'post',
+              url: `/reviews/${reviewId}/like/`,
+              headers: { 'X-CSRFToken': csrftoken }, // csrf token
+            })
+              // response views
+              .then((response) => {
+                const isLiked = response.data.is_liked
+                const likeBtn = document.querySelector(`#like-${reviewId}`)
+                const heartBtn = document.querySelector(`#heart-${reviewId}`)
+                if (isLiked === true) {
+                  heartBtn
+                    .classList
+                    .remove('fa-regular')
+                  heartBtn
+                    .classList
+                    .add('fa-solid')
+                  heartBtn.style.color = 'var(--main-color)';
+                } else {
+                  heartBtn
+                    .classList
+                    .remove('fa-solid')
+                  heartBtn
+                    .classList
+                    .add('fa-regular')
+                  heartBtn.style.color = 'var(--main-color)';
+                }
+              })
+              .catch((error) => {
+                console.log(error.response)
+              })
+          })
+        })
       })
       .catch(function (error) {
         console.log(error)
