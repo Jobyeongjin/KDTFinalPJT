@@ -119,6 +119,19 @@
 </div>
 <!-- Book-index-End -->
 <div class="findme" style="width:auto; height:400px;">
+  <!-- 검색목록 -->
+<script>
+  $( function() {
+    var availableTags = [
+        {% for book in books %}
+            "{{book.bookname}}",
+        {% endfor %}
+    ];
+    $( "#q" ).autocomplete({
+      source: availableTags
+    });
+  } );
+</script>
 
 </div>
 <!-- JS -->
@@ -145,20 +158,6 @@
 
 masonryLayout();
 window.addEventListener("resize", masonryLayout);
-</script>
-
-<!-- 검색목록 -->
-<script>
-  $( function() {
-    var availableTags = [
-        {% for book in books %}
-            "{{book.bookname}}",
-        {% endfor %}
-    ];
-    $( "#q" ).autocomplete({
-      source: availableTags
-    });
-  } );
 </script>
 
 
