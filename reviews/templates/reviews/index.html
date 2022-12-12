@@ -260,49 +260,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <!-- Likes -->
-<script>
-  const forms = document.querySelectorAll('.like-forms')
-  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-  forms.forEach((form) => {
-    form.addEventListener('submit', function (evnet) {
-      event.preventDefault();
-      const reviewId = event.target.dataset.reviewId
-      // request axios
-      axios({
-        method: 'post',
-        url: `/reviews/${reviewId}/like/`,
-        headers: { 'X-CSRFToken': csrftoken }, // csrf token
-      })
-        // response views
-        .then((response) => {
-          const isLiked = response.data.is_liked
-          const likeBtn = document.querySelector(`#like-${reviewId}`)
-          const heartBtn = document.querySelector(`#heart-${reviewId}`)
-          if (isLiked === true) {
-            heartBtn
-              .classList
-              .remove('fa-regular')
-            heartBtn
-              .classList
-              .add('fa-solid')
-            heartBtn.style.color = 'var(--main-color)';
-          } else {
-            heartBtn
-              .classList
-              .remove('fa-solid')
-            heartBtn
-              .classList
-              .add('fa-regular')
-            heartBtn.style.color = 'var(--main-color)';
-          }
-        })
-        .catch((error) => {
-          console.log(error.response)
-        })
-    })
-  })
-</script>
 
 <script src="{% static 'js/write-btn.js' %}"></script>
 {% endblock js %}
