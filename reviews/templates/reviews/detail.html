@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
+{% autoescape on %}
 {% block content %}
 {% include 'nav.html' %}
 
@@ -36,7 +37,7 @@
             <div class="up-quote">
               <i class="fa-solid fa-quote-left fa-lg"></i>
             </div>
-            <p class="text-center m-0">{{ review.content }}</p>
+            <p>{{ review.content }}</p>
             <div class="down-quote">
               <i class="fa-solid fa-quote-right fa-lg"></i>
             </div>
@@ -183,7 +184,7 @@
 </div>
 
 {% endblock content %}
-
+{% endautoescape %}
 
 
 {% block js %}

@@ -41,7 +41,7 @@
 }
 
 .review-content p {
-  font-size: var(--large-font);
+  font-size: 24px;
 }
 
 .review-content-image {
@@ -367,6 +367,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  .review-content {
+    height: 400px;
+  }
+  .review-content p {
+    font-size: 16px;
+  }
   .review-tags {
     flex-direction: column;
   }
