@@ -44,7 +44,7 @@
           </div>
         </div>
         {% empty %}
-        <div class="my-5 d-flex flex-column align-items-center">
+        <div class="my-5 d-flex flex-column align-items-center" style="min-height: 250px;">
           <p style="color: var(--gray-dark-color);">책:오의 첫 모임 주인공이 되어주세요!</p>
         </div>
         {% endfor %}
@@ -56,8 +56,7 @@
       <!-- 모집중 모임 리스트 -->
       <div class="row gx-5 w-100">
         <!-- 반복문 시작 -->
-        {% for group in groups %}
-        {% if group.closed == 0 %}
+        {% for group in ing_groups %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
           onclick="location.href='{% url 'groups:detail' group.pk %}';">
           <div class=" card w-100 mb-5 mx-auto">
@@ -73,9 +72,8 @@
             </div>
           </div>
         </div>
-        {% endif %}
         {% empty %}
-        <div class="my-5 d-flex flex-column align-items-center">
+        <div class="my-5 d-flex flex-column align-items-center" style="min-height: 250px;">
           <p style="color: var(--gray-dark-color);">모집중인 모임이 없어요</p>
         </div>
         {% endfor %}
@@ -87,8 +85,7 @@
       <!-- 모집마감 모임 리스트 -->
       <div class="row gx-5 w-100 mx-auto">
         <!-- 반복문 시작 -->
-        {% for group in groups %}
-        {% if group.closed == 1 %}
+        {% for group in end_groups %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="cursor: pointer;"
           onclick="location.href='{% url 'groups:detail' group.pk %}';">
           <div class="card w-100 mb-5 mx-auto">
@@ -103,10 +100,9 @@
             </div>
           </div>
         </div>
-        {% endif %}
         {% empty %}
-        <div class="my-5 d-flex flex-column align-items-center">
-          <p style="color: var(--gray-dark-color);">모집마감한 모임이 없습니다</p>
+        <div class="my-5 d-flex flex-column align-items-center" style="min-height: 250px;">
+          <p style="color: var(--gray-dark-color);">모집 마감한 모임이 없습니다</p>
         </div>
         {% endfor %}
         <!-- 반복문 끝 -->

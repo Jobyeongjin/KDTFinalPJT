@@ -10,8 +10,12 @@ from django.contrib.auth.decorators import login_required
 # 모임 페이지
 def index(request):
     groups = Group.objects.all()
+    ing_groups = Group.objects.filter(closed=0)
+    end_groups = Group.objects.filter(closed=1)
     context = {
         "groups": groups,
+        "ing_groups": ing_groups,
+        "end_groups": end_groups,
     }
     return render(request, "groups/index.html", context)
 
@@ -43,7 +47,6 @@ def detail(request, pk):
     if like_count >= group.number:
         group.closed = True
         group.save()
-
 
     context = {
         "group": group,
