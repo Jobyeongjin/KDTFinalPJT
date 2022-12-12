@@ -96,6 +96,17 @@
 
 .s-tab-card .tab-book-title {
   min-height: 85px;
+  text-align: center;
+}
+
+.s-tab-card .tab-book-title p {
+  white-space: no-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .s-tab-card img {

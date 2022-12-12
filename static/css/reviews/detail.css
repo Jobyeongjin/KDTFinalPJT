@@ -83,6 +83,11 @@
   border-radius: 5px 5px 0 0;
 }
 
+.review-content-dot .dropdown-menu li a:active {
+  background-color: #e9ecef;
+  color: #1e2125;
+}
+
 .detail-top-wrap>.book-info {
   margin: 0;
   padding: 30px;
