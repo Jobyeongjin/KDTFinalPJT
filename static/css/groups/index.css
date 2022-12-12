@@ -1,10 +1,26 @@
 
 .group_index {
-    margin-top: 120px;
+    margin-top: 170px;
 }
 
 .group_index_introduction {
     text-align: center;
+}
+
+.group_index_introduction h3 {
+    background-color: var(--main-color);
+    width: 270px;
+    border-radius: 30px;
+    margin: auto;
+    padding: 10px;
+    color: white;
+}
+
+.group_index_introduction p {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+
 }
 
 .group_index_tap {

@@ -9,15 +9,16 @@
 }
 
 .book_index_intro h3 {
-    background-color: var(--yellow-color);
+    background-color: var(--main-color);
     width: 270px;
     border-radius: 30px;
     margin: auto;
     padding: 10px;
+    color: white;
 }
 
 .book_index_intro p {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 /* book search */
