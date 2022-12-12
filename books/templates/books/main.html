@@ -117,7 +117,7 @@
                 {% csrf_token %}
                 {% if user in review.like_user.all %}
                 <button id="like-{{ review.pk }}" type="submit">
-                <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
+                  <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
                 </button>
                 {% else %}
                 <button id="like-{{ review.pk }}" type="submit">
@@ -125,7 +125,44 @@
                 </button>
                 {% endif %}
               </form>
-              <i class="fa-solid fa-share-nodes fa-lg"></i>
+              <!--공유하기-->
+              <i type="button" class="fa-solid fa-share-nodes fa-lg" data-bs-toggle="modal"
+                data-bs-target="#exampleModal"></i>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">공유하기</h1>
+                    </div>
+                    <div class="modal-body">
+                      <div class="d-flex justify-content-center">
+                        <a href="javascript:sendLinkFacebook()"><i class="bi bi-facebook mx-3"
+                            style="font-size: 52px;"></i></a>
+                        <a href="javascript:sendLinkTwitter()"><i class="bi bi-twitter mx-3"
+                            style="font-size: 52px;"></i></a>
+                        <script>
+                          function sendLinkFacebook() {
+                            var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}";
+                            window.open(facebook_share_url,
+                              'Share on Facebook',
+                              'scrollbars=no, width=500, height=500');
+                          }
+
+                          function sendLinkTwitter() {
+                            var twitter_share_text = "{{ post.title }}";
+                            var twitter_share_url = "{{ request.build_absolute_uri }}";
+                            window.open("https://twitter.com/share?text=" + twitter_share_text + "&url=" + twitter_share_url,
+                              'Share on Twitter',
+                              'scrollbars=no, width=500, height=500');
+                          }
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {% else %}
@@ -133,7 +170,7 @@
             <span style="color: var(--dark-color); font-size: 14px;">로그인 이후 사용이 가능합니다.</span>
           </a>
           {% endif %}
-            
+
         </div>
       </div>
       {% empty %}
@@ -165,17 +202,16 @@
         <div class="card" style="width: 18rem;">
           <div class="card-image">
             <a href="{% url 'groups:detail' group.pk %}">
-              <img src="{{ group.image.url }}" class="card-img-top"
-                alt="metting-image">
+              <img src="{{ group.image.url }}" class="card-img-top" alt="metting-image">
             </a>
           </div>
           <div class="card-body">
             <h6 class="card-title ellipsis-01" style="margin-bottom: 20px;">{{ group.title }}</h6>
-            <p class="card-text" style="font-size: 14px;"> 
-              <span class="ellipsis-01" style="font-size: 14px;">소개: {{ group.introduce }}<br/></span>
-              <span class="ellipsis-01" style="font-size: 14px;">장소: {{ group.place }}<br/></span>
-              인원: {{ group.number }}명<br/>
-              일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}<br/>
+            <p class="card-text" style="font-size: 14px;">
+              <span class="ellipsis-01" style="font-size: 14px;">소개: {{ group.introduce }}<br /></span>
+              <span class="ellipsis-01" style="font-size: 14px;">장소: {{ group.place }}<br /></span>
+              인원: {{ group.number }}명<br />
+              일시: {{ group.meeting_date|date:"m.d(l) A h:i" }}<br />
             </p>
           </div>
         </div>
@@ -249,14 +285,14 @@
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
   forms.forEach((form) => {
-    form.addEventListener('submit', function(evnet) {
+    form.addEventListener('submit', function (evnet) {
       event.preventDefault();
       const reviewId = event.target.dataset.reviewId
       // request axios
       axios({
         method: 'post',
         url: `/reviews/${reviewId}/like/`,
-        headers: {'X-CSRFToken': csrftoken}, // csrf token
+        headers: { 'X-CSRFToken': csrftoken }, // csrf token
       })
         // response views
         .then((response) => {
@@ -267,19 +303,19 @@
           likeCountTag.innerText = likeCount
           if (isLiked === true) {
             heartBtn
-            .classList
-            .remove('fa-regular')
+              .classList
+              .remove('fa-regular')
             heartBtn
-            .classList
-            .add('fa-solid')
+              .classList
+              .add('fa-solid')
             heartBtn.style.color = 'var(--main-color)';
           } else {
             heartBtn
-            .classList
-            .remove('fa-solid')
+              .classList
+              .remove('fa-solid')
             heartBtn
-            .classList
-            .add('fa-regular')
+              .classList
+              .add('fa-regular')
             heartBtn.style.color = 'var(--main-color)';
           }
         })
@@ -293,4 +329,3 @@
 <script src="{% static 'js/write-btn.js' %}"></script>
 
 {% endblock js %}
-  
