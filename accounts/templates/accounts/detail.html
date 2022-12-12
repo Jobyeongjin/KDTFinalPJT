@@ -322,9 +322,9 @@
                     </div>
                     {% empty %}
                     <div class="m-5 d-flex flex-column align-items-center">
-                        <p style="color: var(--gray-dark-color);">좋아요한 리뷰가 없어요...</p>
+                        <p style="color: var(--gray-dark-color);" class="m-0">좋아요한 리뷰가 없어요...</p>
                         <!-- 리뷰 작성 버튼 -->
-                        <a href="{% url 'reviews:index' %}" type="button" class="btn btn--main">리뷰 구경하기</a>
+                        <a href="{% url 'reviews:index' %}" type="button" class="btn btn--main my-3">리뷰 구경하기</a>
                     </div>
                     {% endfor %}
                 </div>
@@ -346,8 +346,8 @@
             </div>
             {% else %}
             <div class="w-100 m-5 d-flex flex-column align-items-center">
-                <p style="color: var(--gray-dark-color);">책이 하나도 없어요...</p>
-                <a href="{% url 'books:index' %}" class="btn btn--main">책 보러가기</a>
+                <p style="color: var(--gray-dark-color);" class="m-0">책이 하나도 없어요...</p>
+                <a href="{% url 'books:index' %}" class="btn btn--main my-3">책 보러가기</a>
             </div>
             {% endif %}
         </div>
@@ -372,8 +372,8 @@
                 </div>
                 {% empty %}
                 <div class="my-5 d-flex flex-column align-items-center">
-                  <p style="color: var(--gray-color);">개최한 모임이 없어요...</p>
-                  <a href="{% url 'groups:create' %}" class="btn btn--main">모임 개최하기</a>
+                  <p style="color: var(--gray-dark-color);" class="m-0">개최한 모임이 없어요...</p>
+                  <a href="{% url 'groups:create' %}" class="btn btn--main my-3">모임 개최하기</a>
                 </div>
                 {% endfor %}
             </div>
@@ -400,8 +400,8 @@
                 </div>
                 {% empty %}
                 <div class="my-5 d-flex flex-column align-items-center">
-                    <p style="color: var(--gray-color);">신청한 모임이 없어요...</p>
-                    <a href="{% url 'groups:index' %}" class="btn btn--main">모임 구경하기</a>
+                    <p style="color: var(--gray-dark-color);" class="m-0">신청한 모임이 없어요...</p>
+                    <a href="{% url 'groups:index' %}" class="btn btn--main my-3">모임 구경하기</a>
                 </div>
                 {% endfor %}
             </div>
