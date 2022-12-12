@@ -41,7 +41,7 @@
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3 tab-card s-tab-card justify-content-end">
                     <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;"
                         onclick="location.href='{% url 'books:detail' book.pk %}';">
-                    <div class="text-center tab-book-title">
+                    <div class="tab-book-title">
                         <p class="m-0" style="font-weight: 700;">{{ book.bookname }}</p>
                         <p class="ellipsis"> {{ book.authors }}</p>
                     </div>
@@ -62,7 +62,7 @@
                 <div class="col-6 col-md-4 col-lg-3 tab-card s-tab-card justify-content-end">
                     <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;"
                         onclick="location.href='{% url 'books:detail' book.pk %}';">
-                    <div class="text-center tab-book-title">
+                    <div class="tab-book-title">
                         <p class="m-0" style="font-weight: 700;">{{ book.bookname }}</p>
                         <p class="ellipsis"> {{ book.authors }}</p>
                     </div>
