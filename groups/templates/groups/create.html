@@ -12,7 +12,7 @@
       <div class="col-12 col-md-6 groups-form-input">
         <div class="mb-3">
           <label class="form-label" for="id_title">모임 제목</label>
-          <input type="text" onkeyup="check_length(this);" name="title" maxlength="100" class="form-control" placeholder="모임 제목" required="" id="id_title"
+          <input type="text" onkeyup="check_length(this);" name="title" maxlength="101" class="form-control" placeholder="모임 제목" required="" id="id_title"
             value="{{group.title}}">
         </div>
         <div class="mb-3">
@@ -21,7 +21,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="id_number">모집인원</label>
-          <input type="number" name="number" min="0" class="form-control" placeholder="모집인원" required="" id="id_number"
+          <input type="number" name="number" min="1" class="form-control" placeholder="모집인원" required="" id="id_number"
             value="{{group.number}}">
         </div>
         <div class="mb-3">
@@ -38,17 +38,17 @@
             value="{{group.place}}">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="id_end_date">모집마감일</label>
+          <label class="form-label" for="id_end_date">모집 마감일</label>
           {% if group.end_date %}
             <input type="text" name="end_date" class="datetimepick form-control" placeholder="기존 날짜:{{ group.end_date }}" required="" id="id_end_date"
              autocomplete="off"> 
           {% else %}
-            <input type="text" name="end_date" class="datetimepick form-control" placeholder="신청 마감일을 입력해주세요." required="" id="id_end_date"
+            <input type="text" name="end_date" class="datetimepick form-control" placeholder="모집 마감일을 입력해주세요." required="" id="id_end_date"
              autocomplete="off">
           {% endif %}
         </div>
         <div class="mb-3">
-          <label class="form-label" for="id_meeting_date">모임날짜</label>
+          <label class="form-label" for="id_meeting_date">모임 날짜</label>
           {% if group.meeting_date %} 
             <input type="text" name="meeting_date" class="datetimepick form-control" placeholder="기존 날짜:{{ group.meeting_date }}" required="" id="id_meeting_date"
              autocomplete="off">
@@ -60,7 +60,7 @@
       </div>
     </div>
     <!-- sumbit -->
-    <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
+    <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="등록하기">
   </form>
 </div>
 

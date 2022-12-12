@@ -6,7 +6,7 @@
 
 <div class="container update">
     <!-- update form -->
-    <form class="update-form p-5" name="update_form" onsubmit="return ageCheck();" action="" method="POST" enctype="multipart/form-data">
+    <form class="update-form p-5" name="update_form" action="" method="POST" enctype="multipart/form-data">
         <h4 class="text-center mb-4">회원정보 수정</h4>
         {% csrf_token %}
         <!-- input -->
@@ -31,7 +31,11 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label" for="id_age">나이</label>
-                    <input type="number" name="age" class="form-control" placeholder="Age" required="" id="id_age" value="{{ user.age }}">
+                    {% if user.age == 0 %}
+                    <input type="number" name="age" class="form-control" min="1" placeholder="나이" required="" id="id_age" value="">
+                    {% else %}
+                    <input type="number" name="age" class="form-control" min="1" placeholder="나이" required="" id="id_age" value="{{ user.age }}">
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -66,7 +70,7 @@
             <div class="form-text">원본 비밀번호는 저장되지 않으므로, 해당 사용자의 비밀번호를 확인할 수 없습니다. 다만 이 <a style="color: var(--main-color)" href="../password/">폼</a>을 사용하여 비밀번호를 변경할 수 있습니다.</div>
         </div>
         <!-- sumbit -->
-        <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="Register">
+        <input class="btn btn--main--reverse w-100 mb-3" type="submit" value="등록하기">
     </form>
 </div>
 
@@ -105,29 +109,6 @@
         if (radioGroup[i].value === interest) {
             console.log(radioGroup[i])
             radioGroup[i].checked = true
-        }
-    }
-
-    // 나이가 양수 이상인지 확인
-    function ageCheck() {
-        // 공백이면
-        if(update_form.age.value <= 0) {
-            // Sweet alert
-            Swal.fire({
-                icon: 'question',
-                iconHtml: '!',
-                title: update_form.age.value+'살이요...?',
-                text: '본인 나이를 작성해주세요!',
-                confirmButtonColor: '#92B4EC',
-            })
-            update_form.age.focus();
-            // false : submit X
-            return false;
-        }
-        // 공백이 아니면
-        else {
-            // true : submit reader.onload
-            return true;
         }
     }
 </script>
