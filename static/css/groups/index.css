@@ -61,3 +61,11 @@
     margin: 10px;
     
 }
+
+
+/* Media */
+@media screen and (max-width: 576px) {
+    .group-index-item {
+        padding: 0;
+    }
+}
