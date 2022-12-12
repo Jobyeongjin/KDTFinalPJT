@@ -5,7 +5,7 @@ from django.http import HttpResponseForbidden
 
 
 def index(request):
-    notices = Notice.objects.order_by("pk")
+    notices = Notice.objects.order_by("-pk")
     return render(
         request,
         "notices/index.html",
