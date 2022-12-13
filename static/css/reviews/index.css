@@ -157,6 +157,7 @@
 
 .review__item__content__quote p {
   padding: 0 10px;
+  font-family: 'Noto serif KR', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .fa-quote-left {

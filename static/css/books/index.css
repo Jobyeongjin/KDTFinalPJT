@@ -55,6 +55,24 @@
     border: 1px solid var(--white-color) !important;
     background: var(--white-color) !important;
     color: var(--gray-dark-color) !important;
+    max-height: 400px !important;
+    overflow-y: scroll !important;
+    -ms-overflow-style: none !important;
+    /* IE and Edge */
+    scrollbar-width: none !important;
+}
+
+.ui-widget-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ui-widget-content::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 10px;
+}
+
+.ui-widget-content::-webkit-scrollbar-track {
+    background: var(--gray-light-color);
 }
 
 .ui-state-hover,
