@@ -55,15 +55,15 @@
             <!-- review-item-button -->
             <div class="review__item__btn">
               <!-- review-like-form -->
-              <form class="like-forms" data-review-id="{{ review.pk }}">
+              <form class="like-forms">
                 {% csrf_token %}
                 {% if user in review.like_user.all %}
                 <button id="like-{{ review.pk }}" type="submit">
-                  <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg"></i>
+                  <i id="heart-{{ review.pk }}" class="fa-solid fa-heart fa-lg "data-action="provenlike" data-review-id="{{ review.pk }}"></i>
                 </button>
                 {% else %}
-                <button id="like-{{ review.pk }}" type="submit">
-                  <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg"></i>
+                <button id="like-{{ review.pk }}" type="submit" >
+                  <i id="heart-{{ review.pk }}" class="fa-regular fa-heart fa-lg" data-action="provenlike" data-review-id="{{ review.pk }}"></i>
                 </button>
                 {% endif %}
               </form>
