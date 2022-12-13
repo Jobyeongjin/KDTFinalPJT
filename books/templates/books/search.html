@@ -59,7 +59,7 @@
             {% if authors %}
             <div class="row gx-5 w-100 mx-auto">
                 {% for book in authors %}
-                <div class="col-6 col-md-4 col-lg-3 tab-card s-tab-card justify-content-end">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 tab-card s-tab-card justify-content-end">
                     <img class="border tab-book-img" src="{{ book.bookcover }}" alt="bookcover" style="cursor: pointer;"
                         onclick="location.href='{% url 'books:detail' book.pk %}';">
                     <div class="tab-book-title">
