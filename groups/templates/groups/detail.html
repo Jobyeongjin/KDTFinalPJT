@@ -153,7 +153,7 @@
           <!-- Group-description -->
           <div class="group-description">
             <h3>모임 소개</h3>
-            <p>{{group.introduce}}</p>
+            <p id="id_introduce">{{group.introduce}}</p>
           </div>
 
           <div class="group-map-wrap">
@@ -338,6 +338,13 @@
         map.setCenter(coords);
       }
     });
+  </script>
+
+  <script>
+    var introduce = document.querySelector("#id_introduce").innerHTML
+    introduce = introduce.replaceAll(/(\n|\r\n)/g, "<br>");
+    console.log(introduce)
+    document.querySelector("#id_introduce").innerHTML = introduce
   </script>
 
 {% endblock js %}
