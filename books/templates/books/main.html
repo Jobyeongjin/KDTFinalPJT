@@ -278,6 +278,34 @@
 <!-- CDN axios -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<!-- review-create-modal -->
+<script>
+  // reivew-create-modal
+  const wording = document.querySelector(".record-wording");
+  const wordingIcon = wording.querySelector('lord-icon');
+  const wordingHtag = wording.querySelector('h5');
+  const photo = document.querySelector('.record-photo');
+  const photoIcon = photo.querySelector('lord-icon');
+  const photoHtag = photo.querySelector('h5');
+
+  wording.addEventListener('mouseenter', () => {
+      wordingIcon.setAttribute('colors', 'primary:#92B4EC,secondary:#92B4EC');
+      wordingHtag.style.color = '#92B4EC';
+  });
+  wording.addEventListener('mouseleave', () => {
+      wordingIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
+      wordingHtag.style.color = '#6c757d';
+  });
+  photo.addEventListener('mouseenter', () => {
+      photoIcon.setAttribute('colors', 'primary:#92B4EC,secondary:#92B4EC');
+      photoHtag.style.color = '#92B4EC';
+  });
+  photo.addEventListener('mouseleave', () => {
+      photoIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
+      photoHtag.style.color = '#6c757d';
+  });
+</script>
+
 <!-- Likes -->
 <script>
   const forms = document.querySelectorAll('.like-forms')
