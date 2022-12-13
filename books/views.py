@@ -32,7 +32,7 @@ def onboarding(request):
 def main(request):
     books = Book.objects.all().annotate(hot=Count("like_user")).order_by("-hot")
     reviews = Book_Review.objects.annotate(hot=Count("like_user")).order_by("-hot")
-    groups = Group.objects.order_by("pk")
+    groups = Group.objects.filter(closed=0).order_by("-pk")
 
     return render(
         request,
