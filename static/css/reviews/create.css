@@ -274,10 +274,6 @@
 
 /* Media */
 @media screen and (max-width: 576px) {
-  #review-guide .modal-dialog {
-    transform: translateX(13%);
-  }
-
   /* Review-search-form */
   .review-search-form,
   .review-create-form,
