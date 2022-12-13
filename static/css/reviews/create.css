@@ -1,10 +1,13 @@
 /* review-modal */
 #review-guide .modal-dialog,
-#review-guide .modal-content {
+#review-guide-main .modal-dialog,
+#review-guide .modal-content,
+#review-guide-main .modal-content {
   width: 700px;
 }
 
-#review-guide .modal-dialog {
+#review-guide .modal-dialog,
+#review-guide-main .modal-dialog {
   margin-top: 0;
   margin-bottom: 0;
   height: 100vh;
@@ -83,11 +86,14 @@
 @media screen and (max-width: 992px) {
 
   #review-guide .modal-dialog,
-  #review-guide .modal-content {
+  #review-guide-main .modal-dialog,
+  #review-guide .modal-content,
+  #review-guide-main .modal-content {
     width: 540px;
   }
 
-  #review-guide .modal-dialog {
+  #review-guide .modal-dialog,
+  #review-guide-main .modal-dialog {
     transform: translateX(0);
   }
 
@@ -120,11 +126,14 @@
 @media screen and (max-width: 768px) {
 
   #review-guide .modal-dialog,
-  #review-guide .modal-content {
+  #review-guide-main .modal-dialog,
+  #review-guide .modal-content,
+  #review-guide-main .modal-content {
     width: 380px;
   }
 
-  #review-guide .modal-dialog {
+  #review-guide .modal-dialog,
+  #review-guide-main .modal-dialog {
     transform: translateX(0);
   }
 
