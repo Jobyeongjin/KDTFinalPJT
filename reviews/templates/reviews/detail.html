@@ -37,7 +37,7 @@
             <div class="up-quote">
               <i class="fa-solid fa-quote-left fa-lg"></i>
             </div>
-            <p>{{ review.content }}</p>
+            <p id="id_content">{{ review.content }}</p>
             <div class="down-quote">
               <i class="fa-solid fa-quote-right fa-lg"></i>
             </div>
@@ -515,6 +515,13 @@
       newSnow();
     })
   }
+</script>
+
+<script>
+  var content = document.querySelector("#id_content").innerHTML
+  content = content.replaceAll(/(\n|\r\n)/g, "<br>");
+  console.log(content)
+  document.querySelector("#id_content").innerHTML = content
 </script>
 
 {% endblock js %}
