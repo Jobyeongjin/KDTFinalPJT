@@ -73,7 +73,7 @@
             <div class="group-info-profile">
               <!-- group-info-leader -->
               <div class="group-info-leader">
-                <img src="{{ group.user.user_image }}" alt="group-leader-image">
+                <a href="{% url 'accounts:detail' group.user.pk %}"><img src="{{ group.user.user_image }}" alt="group-leader-image"></a>
                 <!-- group-leader-info -->
                 <div class="group-leader-info">
                   <h5 class="group-leader-name">{{ group.user.username }}</h5>
