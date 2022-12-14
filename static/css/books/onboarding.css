@@ -118,7 +118,7 @@ body {
 
 .onboarding-intro2 {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .onboarding-intro2-textbox {
