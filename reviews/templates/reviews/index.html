@@ -262,7 +262,7 @@
     $( function() {
       var availableTags = [
           {% for review in reviews %}
-            "{{review.content|truncatewords:20|truncatechars:20}}",
+            "{{review.content|cut:"\""|truncatewords:20}}",
           {% endfor %}
       ];
       $( "#rq" ).autocomplete({
