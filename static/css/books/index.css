@@ -87,6 +87,14 @@
     color: var(--white-color) !important;
 }
 
+.ui-widget-content a {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 1 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
 /* masonry */
 
 .masonry-container {
