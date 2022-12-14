@@ -7,7 +7,11 @@
 <!-- Search-top -->
 <div class="search-top">
     <h1>검색 목록</h1>
+    {% if query|length > 20 %}
+    <h5><span class="search-query">" {{ query|slice:":20" }}... "</span> 에 대한 검색 결과입니다.</h5>
+    {% else %}
     <h5><span class="search-query">" {{ query }} "</span> 에 대한 검색 결과입니다.</h5>
+    {% endif %}
     <!-- search-form -->
     <div class="search-form-wrap">
         <form class="search-top-form" action="{% url 'books:search' %}" method="get">
@@ -50,7 +54,11 @@
             </div>
             {% else %}
             <div class="m-5 p-3 d-flex flex-column align-items-center">
+                {% if query|length > 20 %}
+                <h5><span class="search-query">" {{ query|slice:":20" }}... "</span> 과 관련된 책이 없습니다.</h5>
+                {% else %}
                 <h5><span class="search-query">" {{ query }} "</span> 과 관련된 책이 없습니다.</h5>
+                {% endif %}
             </div>
             {% endif %}
         </div>
@@ -71,7 +79,11 @@
             </div>
             {% else %}
             <div class="m-5 p-3 d-flex flex-column align-items-center">
+                {% if query|length > 20 %}
+                <h5><span class="search-query">" {{ query|slice:":20" }}... "</span> 과 관련된 저자가 없습니다.</h5>
+                {% else %}
                 <h5><span class="search-query">" {{ query }} "</span> 과 관련된 저자가 없습니다.</h5>
+                {% endif %}
             </div>
             {% endif %}
         </div>
@@ -131,7 +143,11 @@
                     </div>
                     {% empty %}
                     <div class="m-5 p-3 d-flex flex-column align-items-center">
+                        {% if query|length > 20 %}
+                        <h5><span class="search-query">" {{ query|slice:":20" }}... "</span> 을 포함한 리뷰가 없습니다.</h5>
+                        {% else %}
                         <h5><span class="search-query">" {{ query }} "</span> 을 포함한 리뷰가 없습니다.</h5>
+                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>
@@ -227,7 +243,11 @@
                     </div>
                     {% empty %}
                     <div class="m-5 p-3 d-flex flex-column align-items-center">
+                        {% if query|length > 20 %}
+                        <h5><span class="search-query"># {{ query|slice:":20" }}...</span>&nbsp;&nbsp; 태그를 포함한 리뷰가 없습니다.</h5>
+                        {% else %}
                         <h5><span class="search-query"># {{ query }}</span>&nbsp;&nbsp; 태그를 포함한 리뷰가 없습니다.</h5>
+                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>
