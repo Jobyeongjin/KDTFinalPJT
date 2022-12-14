@@ -7,7 +7,11 @@
 <div class="container groups-create">
   <form class="groups-create-form p-5" name="groups_form" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    {% if request.resolver_match.url_name == 'create' %}  
     <h4 class="text-center mb-4">모임 생성</h4>
+    {% else %}
+    <h4 class="text-center mb-4">모임 수정</h4>
+    {% endif %}
     <div class="row">
       <div class="col-12 col-md-6 groups-form-input">
         <div class="mb-3">
