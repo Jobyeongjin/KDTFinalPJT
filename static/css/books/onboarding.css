@@ -237,7 +237,7 @@ body {
   .onboarding-mo-outro {
     display: block;
     background-color: var(--gray-light-color);
-    padding: 80px;
+    padding: 80px 80px 10px 80px;
   }
 
   .onboarding-mo-outro img {

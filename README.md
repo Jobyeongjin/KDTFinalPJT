@@ -4,15 +4,21 @@
 
 <br/>
 
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=ffffff"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=ffffff"/>　<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=ffffff"/> <img src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=ffffff"/> <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=ffffff"/> <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=ffffff"/>　<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=ffffff"/>　<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=ffffff"/> <img src="https://img.shields.io/badge/bootstrap-purple?style=flat-square&logo=bootstrap&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=Amazon%20AWS&logoColor=white"/></a>
+<!-- Badge -->
 
-</p>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=ffffff"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=ffffff"/> <img src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=ffffff"/> <img src="https://img.shields.io/badge/bootstrap-purple?style=flat-square&logo=bootstrap&logoColor=white"/> <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=ffffff"/> <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=ffffff"/>
+<br>
+<img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=Amazon%20AWS&logoColor=white"/>　<img src="https://img.shields.io/badge/SQLite-232F3E?style=flat-square&logo=SQLite&logoColor=ffffff"/>
+　<img src="https://img.shields.io/badge/postgreSQL-3776AB?style=flat-square&logo=postgreSQL&logoColor=ffffff"/>　<img src="https://img.shields.io/badge/AXIOS-E34F26?style=flat-square&logo=AXIOS&logoColor=ffffff"/>
+<br>
+<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=ffffff"/>　<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=ffffff"/>　<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=ffffff"/> <img src="https://img.shields.io/badge/Notion-fff?style=flat-square&logo=Notion&logoColor=black"/>　<img src="https://img.shields.io/badge/Discord-1572B6?style=flat-square&logo=Discord&logoColor=ffffff"/>
 
 <br/>
 
 ## **📅 일정**
 
 - **2022.11.24 ~ 2022.12.14**
+- 사이트 주소 : http://book5-env.eba-pcyrdwbs.ap-northeast-2.elasticbeanstalk.com/
 
 <br />
 
@@ -240,3 +246,94 @@
 ---
 
 ## **📖 서비스 소개**
+
+<br />
+
+### **책:오에 담긴 의미들**
+
+<br />
+
+## **WEB**
+
+### **1. On-boarding**
+
+- 온보딩 페이지에서는 서비스에서 이용할 수 있는 기능들을 소개하는 `간략한 문구`와 `기능 미리보기 영상`으로 구성하였습니다.
+- 문구와 미리보기, 사용자의 기록을 보고나면 시작하기 버튼을 클릭해 `메인으로 이동`합니다.
+
+![onboarding](https://user-images.githubusercontent.com/103917901/207339167-bac35c7a-d69e-4d7b-8528-5664d9cc5b21.gif)
+
+---
+
+<br />
+
+### **2. Main**
+
+- 메인 페이지에서는 페이지 간 이동이 자유로울 수 있도록 `네비와 각각 섹션에 링크`를 걸어두었습니다.
+- 리뷰 작성은 어디서든 작성할 수 있게 `하단에 작성하기 버튼`을 추가하였습니다.
+
+![main](https://user-images.githubusercontent.com/103917901/207329691-885f693b-924f-420e-bd80-10e9dd276def.gif)
+
+---
+
+<br />
+
+### **3. Books**
+
+#### 3-1. 도서 목록
+
+- 목록 개수가 늘어남에 따라 해당 페이지는 `무한 스크롤 기능`을 사용하였으며, 무한 스크롤의 취약점을 보완하기 위해서 `페이지 상단에 검색 기능`을 추가하였습니다.
+- 스크롤을 내리면 `20개씩 도서가 노출`됩니다.
+
+![book_index](https://user-images.githubusercontent.com/103917901/207338741-08c80326-f6cf-4cd3-990f-861e9f7c3444.gif)
+
+#### 3-2. 도서 상세
+
+- 도서 정보와 해당 도서의 리뷰를 확인하고, `마음에 드는 도서라면 좋아요`를 눌러 회원 프로필에 저장할 수 있습니다.
+- 책을 구매하고 싶은 소비자의 욕구를 충족하기 위해 `외부링크로 연결된 구매하기 버튼`을 추가하였습니다.
+
+![](./static/img/web/book_detail-01.png)
+![](./static/img/web/book_detail-02.png)
+
+---
+
+<br />
+
+### **4. Reviews**
+
+- index video
+- detail photo
+- create-modal
+- create-01
+- create-02
+- comment
+
+---
+
+<br />
+
+### **5. Groups**
+
+- index video
+- detail photo
+- create photo
+
+---
+
+<br />
+
+### **6. Notices**
+
+- index photo
+- detail photo
+
+---
+
+<br />
+
+### **7. Accounts**
+
+- detail video
+- login photo
+- signup photo
+- update photo
+- delete photo
