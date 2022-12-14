@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Group(models.Model):
@@ -7,7 +8,7 @@ class Group(models.Model):
     introduce = models.TextField(max_length=400)
     place = models.CharField(max_length=200)
     meeting_date = models.DateTimeField()
-    number = models.PositiveIntegerField()
+    number = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     end_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
