@@ -1,5 +1,5 @@
 /* Sub Font Style : Noto serif KR */
-body { 
+body {
   margin: 0;
   font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -11,11 +11,16 @@ body {
   font-weight: 400;
 }
 
-*:focus { 
+*:focus {
   outline: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   color: var(--dark-color);
 }
@@ -122,4 +127,9 @@ button {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-color: #1e2125 !important;
+  --bs-dropdown-link-active-bg: #e9ecef !important;
 }

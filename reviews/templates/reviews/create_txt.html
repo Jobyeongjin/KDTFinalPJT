@@ -7,7 +7,11 @@
   <div class="container review-create">
     <!-- update form -->
     <form class="review-create-form" name="review_form" onsubmit="return check();" action="" method="POST" enctype="multipart/form-data">
-        <h4 class="text-center mb-4">글 리뷰 작성</h4>
+      {% if request.resolver_match.url_name == 'create' %}  
+      <h4 class="text-center mb-4">글 리뷰 작성</h4>
+      {% else %}
+      <h4 class="text-center mb-4">글 리뷰 수정</h4>
+      {% endif %}
         {% csrf_token %}
         <!-- 글 -->
         <div class="mb-3">
