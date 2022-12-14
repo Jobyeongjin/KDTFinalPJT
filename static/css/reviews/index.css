@@ -91,6 +91,10 @@
   font-size: 26px;
 }
 
+.review-index-btn i {
+  margin-right: 0;
+}
+
 .review-item-tag {
   cursor: default;
 }
