@@ -50,16 +50,14 @@
           <!-- review-item-info -->
           <div class="review__item__info">
             <!-- review-item-proflie -->
-            <a href="{% url 'accounts:detail' review.user.pk %}">
-              <div class="review__item__proflie">
-                <div class="review__item__img">
-                  <img src="{{ review.user.user_image }}" alt="review-write-image">
-                </div>
-                <div class="review__item__username">
-                  {{ review.user.username }}
-                </div>
+            <div class="review__item__proflie" onclick="location.href='{% url 'accounts:detail' review.user.pk %}';">
+              <div class="review__item__img">
+                <img src="{{ review.user.user_image }}" alt="review-write-image">
               </div>
-            </a>
+              <div class="review__item__username">
+                {{ review.user.username }}
+              </div>
+            </div>
             {% if request.user.is_authenticated %}
             <!-- review-item-button -->
             <div class="review__item__btn">
@@ -264,7 +262,7 @@
     $( function() {
       var availableTags = [
           {% for review in reviews %}
-              "{{review.content|truncatechars:20}}",
+              "{{review.content}}",
           {% endfor %}
       ];
       $( "#q" ).autocomplete({

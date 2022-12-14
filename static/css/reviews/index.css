@@ -65,6 +65,7 @@
   display: flex;
   align-items: center;
   margin-top: 3px;
+  cursor: pointer;
 }
 
 .review__item__img img {
