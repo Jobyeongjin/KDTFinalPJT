@@ -12,6 +12,15 @@
 </div>
 
 
+<!-- search-form -->
+<div class="book-search-form-wrap">
+  <form class="search-top-form" action="{% url 'books:search' %}" method="get">
+      <input class="book-search-input" type="search" name="search" id="q" placeholder="검색어를 입력하세요.">
+  </form>
+  <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+
 <!-- Review-list -->
 <section class="review-list">
   <div class="container">
@@ -113,10 +122,10 @@
           </div>
           <!-- review-item-tag -->
           <div class="review-item-tag mb-3 d-flex justify-content-between align-items-center">
-            <div class="review-item-tags">
+            <div class="review-item-tags d-flex">
               {% get_tags_for_object review as "tags" %}
               {% for tag in tags %}
-              #{{tag}}
+              <p class="m-0">#<a class="tag-btn" style="font-size: 14px; margin-right:3px; color: var(--gray-dark-color);" onclick="sendTag(this)">{{tag.name}}</a></p>
               {% endfor %}
             </div>
             <div class="created-date">
@@ -197,6 +206,7 @@
   </div>
 </section>
 
+
 <!--Shortcuts-->
 <div class="write-gb-top">
   <a type="button" href="#">
@@ -250,7 +260,6 @@
 
 <!-- JS -->
 {% block js %}
-
 <!-- review-create-modal -->
 <script>
   // reivew-create-modal
@@ -277,6 +286,15 @@
       photoIcon.setAttribute('colors', 'primary:#6c757d,secondary:#6c757d');
       photoHtag.style.color = '#6c757d';
   });
+</script>
+
+
+<!-- Send-tag -->
+<script>
+  function sendTag(e) {
+    let value = e.innerText;
+    location.href = 'http://book5-env.eba-pcyrdwbs.ap-northeast-2.elasticbeanstalk.com/search/?search=' + value;
+  }
 </script>
 
 
