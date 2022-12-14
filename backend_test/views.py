@@ -36,7 +36,8 @@ def index(request):
     return render(request, 'backend_test/index.html', context)
     
 def search(request):
-    print(request.GET)
+
+
     # ttag = Book_Review.objects.filter(tags__name__in=["태"])
     ttag = None
     books = Book.objects.all()
