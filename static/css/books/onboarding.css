@@ -30,6 +30,8 @@ body {
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
+  word-break: keep-all;
+  width: 50%;
 }
 
 .onboarding-intro1-logobox {
@@ -229,7 +231,7 @@ body {
     justify-content: center;
     bottom: 40px;
     left: 50%;
-    transform:translateX(-50%);
+    transform: translateX(-50%);
     cursor: pointer;
     z-index: 100;
   }
