@@ -249,10 +249,6 @@
 
 <br />
 
-### **책:오에 담긴 의미들**
-
-<br />
-
 ## **WEB**
 
 ### **1. On-boarding**
@@ -286,6 +282,8 @@
 
 ![book_index](https://user-images.githubusercontent.com/103917901/207338741-08c80326-f6cf-4cd3-990f-861e9f7c3444.gif)
 
+<br />
+
 #### 3-2. 도서 상세
 
 - 도서 정보와 해당 도서의 리뷰를 확인하고, `마음에 드는 도서라면 좋아요`를 눌러 회원 프로필에 저장할 수 있습니다.
@@ -300,12 +298,40 @@
 
 ### **4. Reviews**
 
-- index video
-- detail photo
-- create-modal
-- create-01
-- create-02
-- comment
+#### 4-1. 리뷰 목록
+
+- `무한 스크롤 기능`을 구현하였으며, 마음에 드는 리뷰라면 빠르게 저장할 수 있도록 `좋아요 버튼`과 `리뷰 작성자의 프로필`로 이동이 가능합니다.
+
+![review_index](https://user-images.githubusercontent.com/103917901/207338772-5bf3903d-be67-4b7d-9af9-e936b8162cc2.gif)
+
+<br />
+
+#### 4-2. 리뷰 상세
+
+![](./static/img/web/review_detail-01.png)
+![](./static/img/web/review_detail-02.png)
+
+<br />
+
+#### 4-3. 리뷰 작성
+
+- 리뷰 작성은 `글과 사진 2가지 버전으로 작성`이 가능하며, 글 작성시 `원하는 배경색을 선택`할 수 있습니다.
+- 도서 상세 페이지가 아닌 곳에서 작성시에는 `도서 검색 기능`을 추가해 어디서든 원하는 도서의 리뷰를 작성할 수 있게 하였습니다.
+
+![](./static/img/web/review_create_modal.png)
+![](./static/img/web/review_create_word.png)
+![](./static/img/web/review_create_photo-01.png)
+![](./static/img/web/review_create_photo-02.png)
+![](./static/img/web/review_create_word_pk-01.png)
+![](./static/img/web/review_create_word_pk-02.png)
+![](./static/img/web/review_create_photo_pk.png)
+
+<br />
+
+#### 4-4. 리뷰 댓글
+
+![](./static/img/web/comment-01.png)
+![](./static/img/web/comment-02.png)
 
 ---
 
@@ -313,9 +339,25 @@
 
 ### **5. Groups**
 
-- index video
-- detail photo
-- create photo
+#### 5-1. 모임 목록
+
+![group_index](https://user-images.githubusercontent.com/103917901/207338977-f9bbd1aa-19f9-4999-a7b8-a0d945c534b5.gif)
+
+<br />
+
+#### 5-2. 모임 상세
+
+- 모임 생성자는 `마감 및 삭제 수정`이 가능하고, 생성자가 아니라면 `모임 정보를 확인하고 신청`할 수 있습니다.
+
+![](./static/img/web/group_detail-01.png)
+![](./static/img/web/group_detail-02.png)
+
+<br />
+
+#### 5-3. 모임 생성
+
+- 모임에 대한 `정보를 입력`하고, `날짜를 선택`해 모임을 개설합니다.
+  ![](./static/img/web/group_create.png)
 
 ---
 
@@ -323,8 +365,17 @@
 
 ### **6. Notices**
 
-- index photo
-- detail photo
+#### 6-1. 공지 목록
+
+- 공지사항은 서비스 `운영자만 관리`합니다.
+
+![](./static/img/web/notice_index.png)
+
+<br />
+
+#### 6-2. 공지 상세
+
+![](./static/img/web/notice_detail.png)
 
 ---
 
@@ -332,8 +383,38 @@
 
 ### **7. Accounts**
 
-- detail video
-- login photo
-- signup photo
-- update photo
-- delete photo
+#### 7-1. 회원 프로필
+
+- 회원 상세 페이지에서는 `회원이 작성한 리뷰, 좋아요한 리뷰와 도서, 개설한 모임과 신청한 모임을 확인`할 수 있습니다.
+
+![accounts_detail](https://user-images.githubusercontent.com/103917901/207338990-4bf5e183-16bc-4e92-8bc2-9919d23d178b.gif)
+
+<br />
+
+#### 7-2. 로그인
+
+![](./static/img/web/accounts_login.png)
+![](./static/img/web/accounts_login-help.png)
+
+<br />
+
+#### 7-3. 회원가입
+
+![](./static/img/web/accounts_signup.png)
+![](./static/img/web/accounts_signup-next.png)
+
+<br />
+
+#### 7-4. 회원 수정
+
+- 회원 정보 수정시 `프로필 사진, 소개글, 나이 등 필수 입력`하게 됩니다.
+
+![](./static/img/web/accounts_update.png)
+
+<br />
+
+#### 7-5. 회원 탈퇴
+
+- 회원 탈퇴시 회원이 `서비스를 이용한 일수와 기록한 리뷰, 참여한 모임을 확인`합니다.
+
+![](./static/img/web/accounts_delete.png)
