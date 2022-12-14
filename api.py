@@ -14,10 +14,7 @@ django.setup()
 from books.models import Book
 
 # ============베이스 코드============
-# 인증키 1: c30a173104dbac8b7924d537a3ec76270dda1187394b8cd8a8f2ae3b1bdd509a
-# 인증키 2: 4b79eb502a251ec0b573ee817ed0c953145c242f3f57da8cdb61056c69371b64
-# 인증키 3: f6eef0c1020ec2a9c93bc051911362bff8895ebe495b7bd057252a261f232328
-api_key = "f6eef0c1020ec2a9c93bc051911362bff8895ebe495b7bd057252a261f232328"
+api_key = os.getenv("API_KEY")
 isbn = "&isbn13=" + "9788983921987"
 format = "&format=" + "xml"
 
