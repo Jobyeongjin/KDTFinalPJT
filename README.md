@@ -471,8 +471,8 @@
 - 도서 정보와 해당 도서의 리뷰를 확인하고, `마음에 드는 도서라면 좋아요`를 눌러 회원 프로필에 저장할 수 있습니다.
 - 책을 구매하고 싶은 소비자의 욕구를 충족하기 위해 `외부링크로 연결된 구매하기 버튼`을 추가하였습니다.
 
-![](./static/img/mobile/book_detail-01.png)
-![](./static/img/mobile/book_detail-02.png)
+<img src="./static/img/mobile/book_detail-01.png" width="320"><br/>
+<img src="./static/img/mobile/book_detail-02.png" width="320">
 
 ---
 
@@ -490,8 +490,8 @@
 
 #### 4-2. 리뷰 상세
 
-![](./static/img/mobile/review_detail-01.png)
-![](./static/img/mobile/review_detail-02.png)
+<img src="./static/img/mobile/review_detail-01.png" width="320"><br/>
+<img src="./static/img/mobile/review_detail-02.png" width="320">
 
 <br />
 
@@ -500,24 +500,24 @@
 - 리뷰 작성은 `글과 사진 2가지 버전으로 작성`이 가능하며, 글 작성시 `원하는 배경색을 선택`할 수 있습니다.
 - 도서 상세 페이지가 아닌 곳에서 작성시에는 `도서 검색 기능`을 추가해 어디서든 원하는 도서의 리뷰를 작성할 수 있게 하였습니다.
 
-![](./static/img/mobile/review_create_modal.png)
-![](./static/img/mobile/review_create_word.png)
-![](./static/img/mobile/review_create_photo.png)
-![](./static/img/mobile/review_create_word_pk.png)
-![](./static/img/mobile/review_create_photo_pk.png)
+<img src="./static/img/mobile/review_create_modal.png" width="320"><br/>
+<img src="./static/img/mobile/review_create_word.png" width="320"><br/>
+<img src="./static/img/mobile/review_create_photo.png" width="320"><br/>
+<img src="./static/img/mobile/review_create_word_pk.png" width="320"><br/>
+<img src="./static/img/mobile/review_create_photo_pk.png" width="320">
 
 <br />
 
 #### 4-4. 리뷰 수정
 
-![](./static/img/mobile/review_update.png)
+<img src="./static/img/mobile/review_update.png" width="320">
 
 <br />
 
 #### 4-5. 리뷰 댓글
 
-![](./static/img/mobile/comment-01.png)
-![](./static/img/mobile/comment-02.png)
+<img src="./static/img/mobile/comment-01.png" width="320"><br/>
+<img src="./static/img/mobile/comment-02.png" width="320">
 
 ---
 
@@ -535,16 +535,17 @@
 
 - 모임 생성자는 `마감 및 삭제 수정`이 가능하고, 생성자가 아니라면 `모임 정보를 확인하고 신청`할 수 있습니다.
 
-![](./static/img/mobile/group_detail-01.png)
-![](./static/img/mobile/group_detail-02.png)
+<img src="./static/img/mobile/group_detail-01.png" width="320"><br/>
+<img src="./static/img/mobile/group_detail-02.png" width="320">
 
 <br />
 
 #### 5-3. 모임 생성
 
 - 모임에 대한 `정보를 입력`하고, `날짜를 선택`해 모임을 개설합니다.
-  ![](./static/img/mobile/group_create-01.png)
-  ![](./static/img/mobile/group_create-02.png)
+
+<img src="./static/img/mobile/group_create-01.png" width="320"><br/>
+<img src="./static/img/mobile/group_create-02.png" width="320">
 
 ---
 
@@ -556,13 +557,13 @@
 
 - 공지사항은 서비스 `운영자만 관리`합니다.
 
-![](./static/img/mobile/notice_index.png)
+<img src="./static/img/mobile/notice_index.png" width="320">
 
 <br />
 
 #### 6-2. 공지 상세
 
-![](./static/img/mobile/notice_detail.png)
+<img src="./static/img/mobile/notice_detail.png" width="320">
 
 ---
 
@@ -580,15 +581,15 @@
 
 #### 7-2. 로그인
 
-![](./static/img/mobile/accounts_login.png)
-![](./static/img/mobile/accounts_login-help.png)
+<img src="./static/img/mobile/accounts_login.png" width="320"><br/>
+<img src="./static/img/mobile/accounts_login-help.png" width="320">
 
 <br />
 
 #### 7-3. 회원가입
 
-![](./static/img/mobile/accounts_signup.png)
-![](./static/img/mobile/accounts_signup-next.png)
+<img src="./static/img/mobile/accounts_signup.png" width="320"><br/>
+<img src="./static/img/mobile/accounts_signup-next.png" width="320">
 
 <br />
 
@@ -596,8 +597,8 @@
 
 - 회원 정보 수정시 `프로필 사진, 소개글, 나이 등 필수 입력`하게 됩니다.
 
-![](./static/img/mobile/accounts_update-01.png)
-![](./static/img/mobile/accounts_update-02.png)
+<img src="./static/img/mobile/accounts_update-01.png" width="320"><br/>
+<img src="./static/img/mobile/accounts_update-02.png" width="320">
 
 <br />
 
@@ -605,7 +606,6 @@
 
 - 회원 탈퇴시 회원이 `서비스를 이용한 일수와 기록한 리뷰, 참여한 모임을 확인`합니다.
 
-![](./static/img/mobile/accounts_delete-01.png)
-![](./static/img/mobile/accounts_delete-02.png)
+<img src="./static/img/mobile/accounts_delete.png" width="320">
 
 </details>
